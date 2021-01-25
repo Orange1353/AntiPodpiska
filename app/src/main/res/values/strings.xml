@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">AntiPodpiska</string>
+    <string name="add_sub">Add Flower</string>
+
+    <string name="flower1_name">Chance</string>
+    <string name="flower2_name">Microsoft</string>
+    <string name="flower1_description">https://chance.ru/</string>
+    <string name="flower2_description">https://docs.microsoft.com/</string>
+
+    <string-array name="spinner_array_period">
+        <item>Days</item>
+        <item>Weeks</item>
+        <item>Mounths</item>
+    </string-array>
+    <string-array name="spinner_array_curr_cost">
+        <item>RUB</item>
+        <item>USD</item>
+        <item>EUR</item>
+        <item>GPB</item>
+        <item>CNY</item>
+        <item>CHF</item>
+        <item>JPY</item>
+        <item>OTHER</item>
+
+    </string-array>
+
+</resources>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Добавить подписку"
+        android:textAlignment="center"
+        android:textAppearance="?attr/textAppearanceHeadline5" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Введите название"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/add_flower_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Введите ссылку на ресурс"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/add_flower_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Введите что-нибудь"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/add_end_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:focusableInTouchMode="false"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Введите дату платежа"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/day_pay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:focusableInTouchMode="false"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:layout_width="228dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Бесплатный период"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_free_days"
+                android:layout_width="228dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:digits="0123456789"
+                android:maxLength="3" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/spinner_free_period_type"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="30"
+            android:spinnerMode="dialog"
+            android:entries="@array/spinner_array_period"/>
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom"
+    android:orientation="horizontal">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="228dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Введите цену платежа"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/add_cost"
+            android:layout_width="228dp"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine|number"
+            android:digits="0123456789."
+            android:maxLength="7" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/spinner_curr_cost"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="68dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="30"
+        android:entries="@array/spinner_array_curr_cost"
+        android:spinnerMode="dialog" />
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="228dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Периодичность платежей"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/add_period"
+            android:layout_width="228dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:digits="0123456789"
+            android:maxLength="3" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+        <Spinner
+            android:id="@+id/spinner_period_pay"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="68dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="30"
+            android:entries="@array/spinner_array_period"
+            android:spinnerMode="dialog" />
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Введите последние 4 цифры карты"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:digits="0123456789"
+            android:maxLength="4"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/done_button"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Добавить" />
+
+</LinearLayout>
+</ScrollView>

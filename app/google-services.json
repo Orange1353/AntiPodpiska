@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "445025176610",
+    "project_id": "antipodpiska-9a239",
+    "storage_bucket": "antipodpiska-9a239.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445025176610:android:e18080ddb7cf2dd5588e7b",
+        "android_client_info": {
+          "package_name": "com.example.antipodpiska"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445025176610-r870jd4se27ojj2tgflrgd3hti5fg765.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKeg5rgc4WU36nCQWqeZxhj6yqgljo5OU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445025176610-r870jd4se27ojj2tgflrgd3hti5fg765.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
