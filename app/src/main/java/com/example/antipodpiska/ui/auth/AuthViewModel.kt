@@ -19,6 +19,7 @@ class AuthViewModel(
     //email and password for the input
     var email: String? = null
     var password: String? = null
+    var nickname: String? = null
 
     //auth listener
     var authListener: AuthListener? = null
@@ -73,6 +74,16 @@ class AuthViewModel(
                     authListener?.onFailure(it.message!!)
                 })
         disposables.add(disposable)
+
+        val disposable2 =   repository.addUserInFirebase(email!!, password!!, nickname!!)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                authListener?.onSuccess()
+            }, {
+                authListener?.onFailure(it.message!!)
+            })
+        disposables.add(disposable2)
     }
 
 
@@ -89,6 +100,21 @@ class AuthViewModel(
             view.context.startActivity(it)
         }
     }
+
+
+    fun addUser() {
+
+        val disposableAdd = repository.addUserInFirebase(email!!, password!!, nickname!!)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                authListener?.onSuccess()
+            }, {
+                authListener?.onFailure(it.message!!)
+            })
+        disposables.add(disposableAdd)
+    }
+
 
 
 

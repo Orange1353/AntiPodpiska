@@ -12,7 +12,7 @@ fun subList(resources: Resources,  context: Context): List<Sub> {
 
 val sub = Sub(
         id = 1,
-        name = resources.getString(R.string.flower1_name),
+        name = "Хуй",
         image = R.drawable.img,
         description = resources.getString(R.string.flower1_description),
         card = "",
@@ -39,7 +39,7 @@ val sub = Sub(
     editor.putString(sub.name, json).apply()
     var obj: Sub
 
-//    var json1: String? = sharedPreference.getString("MyObject", "")
+  //  var json1: String? = sharedPreference.getString("MyObject", "")
   //  var obj: Sub = gson.fromJson(json1, Sub::class.java)
 
     val map: Map<String, *> = sharedPreference.getAll()
@@ -47,13 +47,24 @@ val sub = Sub(
     val keyList = ArrayList(map.keys)
     val valueList = ArrayList(map.values)
 
-    val subListFromPref: ArrayList<Sub>? = null
-    var sub1: Sub
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //  val subListFromPref: ArrayList<Sub>? = null
+    val subListFromPref: ArrayList<Sub> = ArrayList()
+
+ //   var sub1: Sub
+
     for(i in keyList.indices) {
         json = valueList[i].toString()
         obj = gson.fromJson(json, Sub::class.java)
         subListFromPref?.add(obj)
     }
+
+    // var list1 = subListFromPref.toList()
+    // var list1 = listOf(subListFromPref!![0])
+
+    //   return list1
+
+
         return listOf(
         Sub(
                 id = 1,
@@ -99,7 +110,12 @@ val sub = Sub(
                 periodPay= "2",
                 periodTypeFree = "Weeks",
                 periodTypePay = "Weeks"
-        ))
+        ),
+                subListFromPref[0]
+
+
+
+        )
 
 }
 

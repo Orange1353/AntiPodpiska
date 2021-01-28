@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.antipodpiska.FirebaseApplication
 import com.example.antipodpiska.R
 import com.example.antipodpiska.databinding.ActivitySignupBinding
+import com.example.antipodpiska.subList.SubListActivity
 import com.example.antipodpiska.ui.home.HomeActivity
 import com.example.antipodpiska.utils.startHomeActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -37,7 +38,7 @@ class SignupActivity : AppCompatActivity(), AuthListener, KodeinAware {
 
     override fun onStarted() {
         progressbar.visibility = View.VISIBLE
-        Intent(this, HomeActivity::class.java).also {
+        Intent(this, SubListActivity::class.java).also {
             it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(it)
         }

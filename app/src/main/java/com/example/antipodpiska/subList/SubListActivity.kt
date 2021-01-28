@@ -28,6 +28,8 @@ import com.example.antipodpiska.subDetails.SubDetailActivity
 
 
 import com.example.antipodpiska.subList.SubListViewModel
+import com.example.antipodpiska.ui.home.HomeActivity
+import com.example.antipodpiska.utils.startSubListActivity
 
 const val SUB_ID = "sub id"
 const val SUB_NAME = "name"
@@ -129,9 +131,15 @@ class SubListActivity : AppCompatActivity() {
                 if ( card == null)
                     card = ""
 
-                subsListViewModel.insertSub(subName, subDescription, dateEnd, dayPay,  periodFree, cost, currCost, periodPay, peroidTypeFree, peroidTypePay, card)
+                subsListViewModel.insertSub(subName, subDescription, dateEnd, dayPay,  periodFree, cost, currCost, periodPay, peroidTypeFree, peroidTypePay, card, this)
             }
         }
     }
 
+
+    fun logout(view: View)
+    {
+        var t = Intent(this, HomeActivity::class.java)
+        startActivity(t)
+    }
 }

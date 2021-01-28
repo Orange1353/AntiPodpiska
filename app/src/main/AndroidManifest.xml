@@ -11,13 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AntiPodpiska">
         <activity android:name=".ui.home.HomeActivity"/>
-        <activity android:name=".ui.auth.SignupActivity" />
+        <activity android:name=".subList.SubListActivity" />
 
-        <activity android:name=".ui.auth.LoginActivity" />
+        <activity android:name=".ui.auth.SignupActivity" />
 
         <activity android:name=".subDetails.SubDetailActivity" />
         <activity android:name=".addition.AddSubActivity" />
-        <activity android:name=".subList.SubListActivity">
+        <activity android:name=".ui.auth.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

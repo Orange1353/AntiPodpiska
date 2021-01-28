@@ -1,6 +1,9 @@
 package com.example.antipodpiska.data.repositories
 
+import com.example.antipodpiska.data.Sub
+import com.example.antipodpiska.data.firebase.FirebaseCloud
 import com.example.antipodpiska.data.firebase.FirebaseSource
+
 
 class UserRepository (
     private val firebase: FirebaseSource
@@ -12,4 +15,7 @@ class UserRepository (
     fun currentUser() = firebase.currentUser()
 
     fun logout() = firebase.logout()
+
+    fun addUserInFirebase(email: String, password: String, nickname: String) = firebase.addUserInFirebase(email, password, nickname)
+
 }

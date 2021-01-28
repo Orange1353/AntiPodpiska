@@ -27,9 +27,18 @@
             android:onClick="@{(v) -> viewmodel.logout(v)}"
             android:text="Logout"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/textViewEmail"
+            android:layout_below="@id/Sure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/Sure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/textViewEmail"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:text="Вы уверены?" />
 
     </RelativeLayout>
 

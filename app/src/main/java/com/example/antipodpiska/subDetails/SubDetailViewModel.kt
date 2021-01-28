@@ -4,6 +4,7 @@ package com.example.antipodpiska.subDetails
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
 import com.example.recyclersample.data.DataSource
 
@@ -16,8 +17,12 @@ class SubDetailViewModel(private val datasource: DataSource) : ViewModel() {
     }
 
     /* Queries datasource to remove a flower. */
-    fun removeFlower(flower: Sub) {
-        datasource.removeSub(flower)
+    fun removeFlower(sub: Sub, context: Context) {
+
+ /*       val  Shared: SharedPrefSource = SharedPrefSource(context)
+        Shared.deleteShared(sub)
+   */     datasource.removeSub(sub, context)
+        datasource.removeFromFirebase(sub)
     }
 }
 

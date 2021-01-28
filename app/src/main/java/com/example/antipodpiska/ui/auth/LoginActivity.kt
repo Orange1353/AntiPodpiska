@@ -13,6 +13,7 @@ import com.example.antipodpiska.FirebaseApplication
 import com.example.antipodpiska.R
 import com.example.antipodpiska.databinding.ActivityLoginBinding
 import com.example.antipodpiska.utils.startHomeActivity
+import com.example.antipodpiska.utils.startSubListActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
@@ -42,7 +43,7 @@ class LoginActivity : AppCompatActivity(), AuthListener, KodeinAware {
 
     override fun onSuccess() {
         progressbar.visibility = View.GONE
-        startHomeActivity()
+        startSubListActivity()
     }
 
     override fun onFailure(message: String) {
@@ -53,7 +54,7 @@ class LoginActivity : AppCompatActivity(), AuthListener, KodeinAware {
     override fun onStart() {
         super.onStart()
         viewModel.user?.let {
-            startHomeActivity()
+            startSubListActivity()
         }
     }
 }

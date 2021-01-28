@@ -1,6 +1,7 @@
 package com.example.antipodpiska
 
 import android.app.Application
+import com.example.antipodpiska.data.firebase.FirebaseCloud
 import com.example.antipodpiska.data.firebase.FirebaseSource
 import com.example.antipodpiska.data.repositories.UserRepository
 import com.example.antipodpiska.ui.auth.AuthViewModelFactory

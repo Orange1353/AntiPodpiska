@@ -9,8 +9,15 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.antipodpiska.R
+import com.example.antipodpiska.data.Sub
+import com.example.antipodpiska.data.repositories.UserRepository
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import io.reactivex.Completable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -130,6 +137,8 @@ class AddSubActivity : AppCompatActivity() {
         if (addSubName.text.isNullOrEmpty() || addSubDescription.text.isNullOrEmpty() || addSubEndDate.text.isNullOrEmpty()) {
            Toast.makeText(this@AddSubActivity, "Заполните перые 3 строки!",  Toast.LENGTH_SHORT).show()
         } else {
+
+            //Sub() !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             val name = addSubName.text.toString()
             val description = addSubDescription.text.toString()
             val date= addSubEndDate.text.toString()
@@ -158,5 +167,9 @@ class AddSubActivity : AppCompatActivity() {
             finish()
         }
 
+
+
     }
+
+
 }

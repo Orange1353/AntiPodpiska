@@ -113,19 +113,20 @@ if (currentSub?.datePay!= null && currentSub?.datePay != "") {
 }
 
          //   while (dateEnd < dateNow)
-                when (currentSub?.periodTypePay) {
-                    "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay.toLong())
-                    "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay.toLong())
-                    "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay.toLong())
-                }
+    if (currentSub.periodPay != "") {
+        when (currentSub?.periodTypePay) {
+            "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay.toLong())
+            "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay.toLong())
+            "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay.toLong())
+        }
 
-                while (dateEnd < dateNow)
-                    when (currentSub?.periodTypePay) {
-                        "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay.toLong())
-                        "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay.toLong())
-                        "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay.toLong())
-                    }
-
+        while (dateEnd < dateNow)
+            when (currentSub?.periodTypePay) {
+                "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay.toLong())
+                "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay.toLong())
+                "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay.toLong())
+            }
+    }
             dateNearestPay.text = "Следующий платёж " + dateEnd.format(formatter).toString()
         }
 
@@ -145,7 +146,7 @@ if (currentSub?.datePay!= null && currentSub?.datePay != "") {
 
             removeSubButton.setOnClickListener {
                 if (currentSub != null) {
-                    subDetailViewModel.removeFlower(currentSub)
+                    subDetailViewModel.removeFlower(currentSub, this)
                 }
                 finish()
             }

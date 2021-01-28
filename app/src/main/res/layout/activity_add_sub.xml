@@ -26,12 +26,14 @@
         android:layout_gravity="center"
         android:hint="Введите название"
         android:paddingTop="10dp"
+
         android:paddingBottom="10dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/add_flower_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text = "iiii"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -42,6 +44,7 @@
         android:layout_gravity="center"
         android:hint="Введите ссылку на ресурс"
         android:paddingTop="10dp"
+
         android:paddingBottom="10dp">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -49,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
+            android:text = "iiii"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -67,16 +71,19 @@
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:focusableInTouchMode="false"
+            android:text = "10.10.2020"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:hint="Введите дату платежа"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:paddingBottom="10dp"
+    >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/day_pay"

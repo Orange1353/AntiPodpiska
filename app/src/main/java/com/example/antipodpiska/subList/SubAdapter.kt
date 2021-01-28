@@ -12,8 +12,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.antipodpiska.R
 import com.example.antipodpiska.data.Sub
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class SubAdapter(private val onClick: (Sub) -> Unit) :
@@ -69,6 +71,10 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
 
             var dateNow = LocalDate.now()
 
+
+
+
+
              if (currentSub?.periodFree != "")
             when (currentSub?.periodTypeFree) {
                 "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodFree!!.toLong())
@@ -78,24 +84,23 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
 
 
                 //   while (dateEnd < dateNow)
-                when (currentSub?.periodTypePay) {
-                    "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay!!.toLong())
-                    "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay!!.toLong())
-                    "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay!!.toLong())
-                }
-
-                while (dateEnd < dateNow)
+                if (currentSub?.periodPay != "") {
                     when (currentSub?.periodTypePay) {
                         "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay!!.toLong())
                         "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay!!.toLong())
                         "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay!!.toLong())
                     }
 
+                    while (dateEnd < dateNow)
+                        when (currentSub?.periodTypePay) {
+                            "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay!!.toLong())
+                            "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay!!.toLong())
+                            "Mounths" -> dateEnd =
+                                dateEnd.plusMonths(currentSub?.periodPay!!.toLong())
+                        }
+                }
                 addDatePay.text =dateEnd.format(formatter).toString()
         }
-
-
-
 
 
 
@@ -110,8 +115,6 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
             addPeriodTypeFree.selectedItem.toString()
             addCostCurr.selectedItem.toString()
             addPeriodTypePay.selectedItem.toString()*/
-
-
 
 
             if (sub.image != null) {
