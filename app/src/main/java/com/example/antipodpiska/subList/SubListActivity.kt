@@ -6,12 +6,19 @@ import com.example.antipodpiska.R
 
 
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 
 import android.view.View
+import android.widget.Button
 import androidx.activity.addCallback
 import androidx.activity.viewModels
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.observe
 
 import androidx.recyclerview.widget.ConcatAdapter
@@ -51,6 +58,9 @@ class SubListActivity : AppCompatActivity() {
         SubListViewModelFactory(this)
     }
 
+    private val CHANNEL_ID = "channel"
+    private val notificationId = 101
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -76,7 +86,47 @@ class SubListActivity : AppCompatActivity() {
         fab.setOnClickListener {
             fabOnClick()
         }
+
+
+        createNotCh()
+        val button: Button = findViewById(R.id.button)
+        button.setOnClickListener {
+sendNot()
+        }
+
+
     }
+
+    private fun createNotCh(){
+        if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
+            val name = "Not title"
+            val descript = "not decs"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descript
+            }
+            val notificationManager: NotificationManager= getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+
+        }
+    }
+    private fun sendNot(){
+
+        val intent = Intent(this, SubListActivity::class.java).apply {
+           flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+        val pendingIntent: PendingIntent= PendingIntent.getActivity(this, 0, intent, 0)
+
+        val builder= NotificationCompat.Builder(this, CHANNEL_ID).setSmallIcon(R.drawable.logo_mail)
+            .setContentTitle("Время проверить подписку!")
+            .setContentText("Завтра истекает N ")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            with(NotificationManagerCompat.from(this)){
+                notify(notificationId, builder.build())
+            }
+    }
+
 
     /* Opens FlowerDetailActivity when RecyclerView item is clicked. */
     private fun adapterOnClick(sub: Sub) {

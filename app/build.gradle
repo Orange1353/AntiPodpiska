@@ -92,5 +92,8 @@ dependencies {
     //gson for sharedpref
     implementation 'com.google.code.gson:gson:2.8.6'
 
+    //notifications
+   //     implementation "com.android.support:support-compat:28.0.0"
+
 
 }

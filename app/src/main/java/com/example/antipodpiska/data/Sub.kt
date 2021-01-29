@@ -11,6 +11,7 @@ data class Sub(
         val description: String= "",
     //дата окончания подписки
         val dateEnd: String= "",
+        //Дата начала подписки
         val datePay: String= "",
         val periodFree: String= "",
         val costSub: String= "",
@@ -18,5 +19,6 @@ data class Sub(
         val periodPay: String= "",
         val periodTypeFree: String= "",
         val periodTypePay: String= "",
-        val card: String= ""
+        val card: String= "",
+        var pushEnabled: Boolean= false
 )

@@ -18,9 +18,11 @@ package com.example.antipodpiska.subDetails
 
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Switch
 import android.widget.TextView
 import androidx.activity.viewModels
 
@@ -51,12 +53,12 @@ class SubDetailActivity : AppCompatActivity() {
         val subImage: ImageView = findViewById(R.id.flower_detail_image)
         val subDescription: TextView = findViewById(R.id.flower_detail_description)
         val removeSubButton: Button = findViewById(R.id.remove_button)
-        val pushButton: Button = findViewById(R.id.push_button)
         val costPlusPeriod: TextView =  findViewById(R.id.cost_plus_period)
         val dateNearestPay: TextView = findViewById(R.id.data_nearest_pay)
         val card: TextView = findViewById(R.id.card_pay)
         val freePeriod:TextView = findViewById(R.id.free_period)
         val paidSumm: TextView = findViewById(R.id.paid_summ)
+        val pushEnabled: Switch = findViewById(R.id.switch_enabled)
 
 
 
@@ -138,16 +140,27 @@ if (currentSub?.datePay!= null && currentSub?.datePay != "") {
             freePeriod.text = "Бесплатный период " + currentSub?.periodFree + " " + currentSub?.periodTypeFree
             //paidSumm.text = currentSub?.
 
-
-
+            if(currentSub?.pushEnabled == true) {
+                pushEnabled.text = "Включены"
+                pushEnabled.isChecked = true
+            }else {
+                pushEnabled.text = "Выключены"
+                pushEnabled.isChecked = false
+            }
             removeSubButton.setOnClickListener {
                 if (currentSub != null) {
                     subDetailViewModel.removeFlower(currentSub, this)
                 }
                 finish()
             }
-            pushButton.setOnClickListener {
 
+
+
+
+            pushEnabled.setOnCheckedChangeListener { buttonView, isChecked ->
+
+                if (currentSub != null)
+                subDetailViewModel.pushAboutSub(currentSub)
 
 
             }

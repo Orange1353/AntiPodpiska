@@ -24,7 +24,14 @@ class SubDetailViewModel(private val datasource: DataSource) : ViewModel() {
    */     datasource.removeSub(sub, context)
         datasource.removeFromFirebase(sub)
     }
+
+    fun pushAboutSub(sub: Sub){
+        datasource.pushAboutSub(sub)
+    }
+
 }
+
+
 
 class SubDetailViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
 

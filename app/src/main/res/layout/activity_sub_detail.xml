@@ -13,10 +13,10 @@
 -->
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -79,6 +79,25 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:text="Оплачено уже" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/push_enabled"
+            android:layout_width="178dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Push" />
+
+        <Switch
+            android:id="@+id/switch_enabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Выключены" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/remove_button"
@@ -87,13 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Удалить" />
-    <Button
-        android:id="@+id/push_button"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Сигнализировать" />
+
     <Button
         android:id="@+id/edit_button"
         style="?attr/materialButtonOutlinedStyle"
@@ -101,6 +114,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Редактировать" />
+
+
 
 </LinearLayout>
 </ScrollView>

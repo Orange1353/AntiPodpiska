@@ -127,7 +127,6 @@ class FirebaseSource {
         val docRef = firebaseFirestore.collection("Subscriptions").whereEqualTo("id_user",  FirebaseAuth.getInstance().currentUser?.uid.toString()).get()
                 .addOnSuccessListener { result ->
                     for (document in result) {
-                        Log.e("TAG", "${document.id} => ${document.data}")
                         subListFromPref.add(document.toObject(Sub::class.java))
                     }
                 }

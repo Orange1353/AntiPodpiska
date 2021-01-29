@@ -17,6 +17,7 @@
 package com.example.recyclersample.data
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Resources
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -25,6 +26,9 @@ import com.example.antipodpiska.R
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.data.subList
+import com.example.antipodpiska.subDetails.SubDetailActivity
+import com.example.antipodpiska.ui.auth.SignupActivity
+import com.example.antipodpiska.utils.startSignupActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
@@ -37,6 +41,10 @@ class DataSource(resources: Resources, context: Context) {
     private val firebaseFirestore: FirebaseFirestore by lazy {
         FirebaseFirestore.getInstance()
     }
+    //??????????
+    private val Shared: SharedPrefSource by lazy{ SharedPrefSource(context)}
+
+
     /* Adds flower to liveData and posts value. */
     fun addSub(sub: Sub, context: Context) {
         val currentList = subLiveData.value
@@ -48,7 +56,7 @@ class DataSource(resources: Resources, context: Context) {
             subLiveData.postValue(updatedList)
         }
 
-        val  Shared: SharedPrefSource = SharedPrefSource(context)
+
         Shared.saveToShared(sub)
 
     }
@@ -61,7 +69,6 @@ class DataSource(resources: Resources, context: Context) {
             updatedList.remove(sub)
             subLiveData.postValue(updatedList)
 
-            val  Shared: SharedPrefSource = SharedPrefSource(context)
             Shared.deleteShared(sub)
         }
     }
@@ -134,6 +141,8 @@ class DataSource(resources: Resources, context: Context) {
     }
 
     fun pushAboutSub(sub:Sub){
+        sub.pushEnabled = !sub.pushEnabled
+        Shared.saveToShared(sub)
 
     }
 
