@@ -87,7 +87,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Удалить" />
-
+    <Button
+        android:id="@+id/push_button"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Сигнализировать" />
+    <Button
+        android:id="@+id/edit_button"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Редактировать" />
 
 </LinearLayout>
 </ScrollView>

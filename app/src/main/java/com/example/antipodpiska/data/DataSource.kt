@@ -21,6 +21,7 @@ import android.content.res.Resources
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.antipodpiska.R
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.data.subList
@@ -79,8 +80,9 @@ class DataSource(resources: Resources, context: Context) {
 
     /* Returns a random flower asset for flowers that are added. */
     fun getRandomSubImageAsset(): Int? {
-        val randomNumber = (initialSubList.indices).random()
-        return initialSubList[randomNumber].image
+      //  val randomNumber = (initialSubList.indices).random()
+     //   return initialSubList[randomNumber].image
+        return R.drawable.img
     }
 
     companion object {
@@ -98,9 +100,9 @@ class DataSource(resources: Resources, context: Context) {
 
     fun addSubInFirebase(sub: Sub)
     {
-        val subItem = HashMap<String, String>()
+        val subItem = HashMap<String, Any>()
 
-        subItem.put("image", sub.image.toString())
+        subItem.put("image", sub.image!!.toInt())
         subItem.put("description", sub.description.toString())
         subItem.put("name", sub.name.toString())
         subItem.put("card", sub.card.toString())
@@ -131,10 +133,11 @@ class DataSource(resources: Resources, context: Context) {
 
     }
 
-/*   fun getFromShared(sub: Sub, context: Context): Sub {
-/   val  Shared: SharedPrefSource = SharedPrefSource(context)
-     return Shared.getFromShared(sub)
-  }*/
+    fun pushAboutSub(sub:Sub){
+
+    }
+
+
 }
 
 

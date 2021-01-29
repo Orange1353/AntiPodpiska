@@ -51,6 +51,7 @@ class SubDetailActivity : AppCompatActivity() {
         val subImage: ImageView = findViewById(R.id.flower_detail_image)
         val subDescription: TextView = findViewById(R.id.flower_detail_description)
         val removeSubButton: Button = findViewById(R.id.remove_button)
+        val pushButton: Button = findViewById(R.id.push_button)
         val costPlusPeriod: TextView =  findViewById(R.id.cost_plus_period)
         val dateNearestPay: TextView = findViewById(R.id.data_nearest_pay)
         val card: TextView = findViewById(R.id.card_pay)
@@ -139,17 +140,20 @@ if (currentSub?.datePay!= null && currentSub?.datePay != "") {
 
 
 
-
-
-
-
-
             removeSubButton.setOnClickListener {
                 if (currentSub != null) {
                     subDetailViewModel.removeFlower(currentSub, this)
                 }
                 finish()
             }
+            pushButton.setOnClickListener {
+
+
+
+            }
+
+
+
         }
 
     }

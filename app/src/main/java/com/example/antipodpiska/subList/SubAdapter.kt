@@ -56,6 +56,7 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
         /* Bind flower name and image.
         * изменяет значение у уже существующего Viewholder*/
         fun bind(sub: Sub) {
+
             currentSub = sub
 
             subName.text = sub.name

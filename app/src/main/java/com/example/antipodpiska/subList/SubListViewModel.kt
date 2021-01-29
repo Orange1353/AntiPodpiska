@@ -52,6 +52,7 @@ val si:Sub = Shared.getFromShared(newSub)
 
 
         dataSource.addSub(newSub, context)
+
         dataSource.addSubInFirebase(newSub)
     }
 

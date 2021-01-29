@@ -10,7 +10,7 @@ class UserRepository (
 ){
     fun login(email: String, password: String) = firebase.login(email, password)
 
-    fun register(email: String, password: String) = firebase.register(email, password)
+    fun register(email: String, password: String, nickname: String) = firebase.register(email, password, nickname)
 
     fun currentUser() = firebase.currentUser()
 

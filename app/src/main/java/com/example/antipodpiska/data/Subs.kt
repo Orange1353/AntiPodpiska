@@ -3,16 +3,20 @@ package com.example.antipodpiska.data
 import android.content.Context
 import android.content.res.Resources
 import com.example.antipodpiska.R
+import com.example.antipodpiska.data.firebase.FirebaseSource
+import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 //private var sharedPreferencesref: SharedPreferences? = null
 /* Returns initial list of flowers. */
 fun subList(resources: Resources,  context: Context): List<Sub> {
 
-val sub = Sub(
+/*val sub = Sub(
         id = 1,
-        name = "Хуй",
+        name = "Тест",
         image = R.drawable.img,
         description = resources.getString(R.string.flower1_description),
         card = "",
@@ -24,7 +28,7 @@ val sub = Sub(
         periodPay= "",
         periodTypeFree = "",
         periodTypePay = ""
-)
+)*/
     //shared preferences
    // val sharedPreference =  context.getSharedPreferences("PREFERENCE_NAME",Context.MODE_PRIVATE)
   //  var editor = sharedPreference.edit()
@@ -32,17 +36,23 @@ val sub = Sub(
   //  editor.remove("username")
   //  editor.clear()
 
-    val sharedPreference =  context.getSharedPreferences("PREFERENCE_NAME",Context.MODE_PRIVATE)
+    val sharedPreference =  context.getSharedPreferences(FirebaseAuth.getInstance().currentUser?.uid.toString(),Context.MODE_PRIVATE)
     var editor = sharedPreference.edit()
     val gson = Gson()
-    var json = gson.toJson(sub);
-    editor.putString(sub.name, json).apply()
+ //   var json = gson.toJson(sub);
+//    editor.putString(sub.name, json).apply()
     var obj: Sub
 
   //  var json1: String? = sharedPreference.getString("MyObject", "")
   //  var obj: Sub = gson.fromJson(json1, Sub::class.java)
 
+    var json: String
+
+
     val map: Map<String, *> = sharedPreference.getAll()
+
+    //если в map пусто- сверка с firebase
+
 
     val keyList = ArrayList(map.keys)
     val valueList = ArrayList(map.values)
@@ -54,6 +64,7 @@ val sub = Sub(
  //   var sub1: Sub
 
     for(i in keyList.indices) {
+
         json = valueList[i].toString()
         obj = gson.fromJson(json, Sub::class.java)
         subListFromPref?.add(obj)
@@ -62,10 +73,18 @@ val sub = Sub(
     // var list1 = subListFromPref.toList()
     // var list1 = listOf(subListFromPref!![0])
 
-    //   return list1
+    //
+val t: FirebaseSource = FirebaseSource()
+    t.getFromFirebase()
 
+    var list1:List<Sub> = ArrayList<Sub>()
 
-        return listOf(
+    for(i in keyList.indices)
+        list1= list1.plus(subListFromPref[i])
+
+    return list1
+
+    /*    return listOf(
         Sub(
                 id = 1,
                 name = resources.getString(R.string.flower1_name),
@@ -115,7 +134,7 @@ val sub = Sub(
 
 
 
-        )
+        )*/
 
 }
 
