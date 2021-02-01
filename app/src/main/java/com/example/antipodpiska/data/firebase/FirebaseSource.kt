@@ -56,7 +56,7 @@ class FirebaseSource {
         subItem.put("description", sub.description.toString())
         subItem.put("name", sub.id.toString())
         subItem.put("card", sub.card.toString())
-        subItem.put("dateEnd", sub.dateEnd.toString())
+        subItem.put("dateEnd", sub.typeSub.toString())
         subItem.put("datePay", sub.datePay.toString())
         subItem.put("periodFree", sub.periodPay.toString())
         subItem.put("costSub", sub.costSub.toString())

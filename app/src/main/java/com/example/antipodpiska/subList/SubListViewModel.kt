@@ -22,10 +22,10 @@ class SubListViewModel(val dataSource: DataSource) : ViewModel() {
     val subsLiveData = dataSource.getSubList()
 
     /* If the name and description are present, create new Flower and add it to the datasource */
-    fun insertSub(subName: String?, subDescription: String?,  dateEnd: String?, datePay: String, periodFree: String, costSub: String,
-                  costCurr: String, periodPay: String, periodTypeFree: String, periodTypePay: String,card: String, context: Context
+    fun insertSub(subName: String?, subDescription: String?,  typeSub: String, datePay: String?, periodFree: String, costSub: String,
+                  costCurr: String, periodPay: String, periodTypeFree: String, periodTypePay: String,card: String, pushEnabled:Boolean, context: Context
     ) {
-        if (subName == null || subDescription == null || dateEnd == null) {
+        if (subName == null || subDescription == null || datePay == null) {
             return
         }
 
@@ -35,7 +35,7 @@ class SubListViewModel(val dataSource: DataSource) : ViewModel() {
             subName,
             image,
             subDescription,
-            dateEnd,
+            typeSub,
             datePay,
             periodFree,
             costSub,
@@ -43,7 +43,8 @@ class SubListViewModel(val dataSource: DataSource) : ViewModel() {
             periodPay,
             periodTypeFree,
             periodTypePay,
-            card
+            card,
+            pushEnabled
         )
 /*
 val  Shared: SharedPrefSource = SharedPrefSource(context)

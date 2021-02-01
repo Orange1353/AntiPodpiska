@@ -5,20 +5,21 @@ import androidx.annotation.DrawableRes
 
 data class Sub(
         val id: Long = 0,
-        val name: String = "",
+        var name: String = "",
         @DrawableRes
         val image: Int? =0,
-        val description: String= "",
+        var description: String= "",
     //дата окончания подписки
-        val dateEnd: String= "",
+        var typeSub: String= "",
         //Дата начала подписки
-        val datePay: String= "",
-        val periodFree: String= "",
-        val costSub: String= "",
-        val costCurr: String= "",
-        val periodPay: String= "",
-        val periodTypeFree: String= "",
-        val periodTypePay: String= "",
-        val card: String= "",
+        var datePay: String= "",
+        var periodFree: String= "",
+        var costSub: String= "",
+        var costCurr: String= "",
+        var periodPay: String= "",
+        var periodTypeFree: String= "",
+        var periodTypePay: String= "",
+        var card: String= "",
         var pushEnabled: Boolean= false
+
 )

@@ -6,6 +6,8 @@
     <string name="flower2_name">Microsoft</string>
     <string name="flower1_description">https://chance.ru/</string>
     <string name="flower2_description">https://docs.microsoft.com/</string>
+    <string name="spinner_default_text">Выберите тип подписки</string>
+
 
     <string-array name="spinner_array_period">
         <item>Days</item>
@@ -22,6 +24,16 @@
         <item>JPY</item>
         <item>OTHER</item>
 
+    </string-array>
+
+    <string-array name="spinner_array_tupe_sub">
+        <item>Выберите тип подписки</item>
+        <item>Музыка</item>
+        <item>Приложения</item>
+        <item>Смарт-Тв</item>
+        <item>Связь</item>
+        <item>Облака</item>
+        <item>Иное</item>
     </string-array>
 
 </resources>

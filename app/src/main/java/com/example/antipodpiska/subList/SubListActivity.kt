@@ -1,9 +1,5 @@
 package com.example.antipodpiska.subList
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.example.antipodpiska.R
-
 
 import android.app.Activity
 import android.app.NotificationChannel
@@ -12,36 +8,27 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-
+import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import androidx.activity.addCallback
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.observe
-
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.antipodpiska.R
 import com.example.antipodpiska.addition.AddSubActivity
-
-
-
-
+import com.example.antipodpiska.addition.EditActivity
 import com.example.antipodpiska.data.Sub
-
 import com.example.antipodpiska.subDetails.SubDetailActivity
-
-
-
-import com.example.antipodpiska.subList.SubListViewModel
 import com.example.antipodpiska.ui.home.HomeActivity
-import com.example.antipodpiska.utils.startSubListActivity
 
 const val SUB_ID = "sub id"
 const val SUB_NAME = "name"
 const val SUB_DESCRIPTION = "description"
-const val END_DATE = "date"
+const val TYPE = "typeSub"
 const val CARD = "card"
 const val DATE_PAY = "pay"
 const val FREE_PERIOD = "freePeriod"
@@ -50,18 +37,21 @@ const val PERIOD = "Period"
 const val TYPE_FREE = "typeFreePeriod"
 const val CURR_COST = "typeCost"
 const val TYPE_PERIOD = "typePeriod"
-
+const val PUSH = "push"
 
 class SubListActivity : AppCompatActivity() {
     private val newSubActivityRequestCode = 1
     private val subsListViewModel by viewModels<SubListViewModel> {
         SubListViewModelFactory(this)
     }
+    private val EditActivity = com.example.antipodpiska.addition.EditActivity()
+
 
     private val CHANNEL_ID = "channel"
     private val notificationId = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -81,6 +71,7 @@ class SubListActivity : AppCompatActivity() {
                 headerAdapter.updateSubCount(it.size)
             }
         }
+
 
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener {
@@ -133,7 +124,7 @@ sendNot()
         val intent = Intent(this, SubDetailActivity()::class.java)
         intent.putExtra(SUB_ID, sub.id)
         startActivity(intent)
-    }
+        }
 
     override fun onBackPressed() {
 
@@ -154,8 +145,10 @@ sendNot()
             intentData?.let { data ->
                 val subName = data.getStringExtra(SUB_NAME)
                 val subDescription = data.getStringExtra(SUB_DESCRIPTION)
-                val dateEnd = data.getStringExtra(END_DATE)
 
+                var typeSub = data.getStringExtra(TYPE)
+                if (typeSub == null || typeSub == "Выберите тип подписки")
+                    typeSub = "Иное"
                 var dayPay = data.getStringExtra(DATE_PAY)
                 if (dayPay == null)
                     dayPay = ""
@@ -180,8 +173,26 @@ sendNot()
                 var card = data.getStringExtra(CARD)
                 if ( card == null)
                     card = ""
+              //  val t = data.getBooleanArrayExtra(PUSH)
+                var push = data.getBooleanExtra(PUSH, false)
 
-                subsListViewModel.insertSub(subName, subDescription, dateEnd, dayPay,  periodFree, cost, currCost, periodPay, peroidTypeFree, peroidTypePay, card, this)
+
+
+                subsListViewModel.insertSub(
+                    subName,
+                    subDescription,
+                    typeSub,
+                    dayPay,
+                    periodFree,
+                    cost,
+                    currCost,
+                    periodPay,
+                    peroidTypeFree,
+                    peroidTypePay,
+                    card,
+                    push,
+                    this
+                )
             }
         }
     }

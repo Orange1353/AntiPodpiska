@@ -27,9 +27,13 @@ import android.widget.TextView
 import androidx.activity.viewModels
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import com.example.antipodpiska.R
+import com.example.antipodpiska.addition.EditActivity
 
 import com.example.antipodpiska.subList.SUB_ID
+import com.example.antipodpiska.subList.SubListActivity
+import com.example.antipodpiska.utils.startSubListActivity
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.Period
@@ -58,7 +62,8 @@ class SubDetailActivity : AppCompatActivity() {
         val card: TextView = findViewById(R.id.card_pay)
         val freePeriod:TextView = findViewById(R.id.free_period)
         val paidSumm: TextView = findViewById(R.id.paid_summ)
-        val pushEnabled: Switch = findViewById(R.id.switch_enabled)
+        val pushEnabled: SwitchCompat = findViewById(R.id.switch_enabled)
+        val editButton: Button = findViewById(R.id.edit_button)
 
 
 
@@ -82,71 +87,86 @@ class SubDetailActivity : AppCompatActivity() {
 
             subDescription.text = currentSub?.description
             if (currentSub?.costSub != "" && currentSub?.periodPay != "")
-            costPlusPeriod.text = "Оплата " + currentSub?.costSub + " " + currentSub?.costCurr + " каждые " + currentSub?.periodPay + " " + currentSub?.periodTypePay
+                costPlusPeriod.text = "Оплата " + currentSub?.costSub + " " + currentSub?.costCurr + " каждые " + currentSub?.periodPay + " " + currentSub?.periodTypePay
 
-if (currentSub?.datePay!= null && currentSub?.datePay != "") {
-    var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
-    var dateEnd = LocalDate.parse(currentSub?.datePay, formatter)
+            if (currentSub?.datePay != null && currentSub?.datePay != "") {
+                var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+                var dateEnd = LocalDate.parse(currentSub?.datePay, formatter)
 
-    var dateNow = LocalDate.now()
+                var dateNow = LocalDate.now()
 
-    if (currentSub?.periodFree != "")
-        when (currentSub?.periodTypeFree) {
-            "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodFree.toLong())
-            "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodFree.toLong())
-            "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodFree.toLong())
-        }
+                if (currentSub?.periodFree != "")
+                    when (currentSub?.periodTypeFree) {
+                        "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodFree.toLong())
+                        "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodFree.toLong())
+                        "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodFree.toLong())
+                    }
 
-    if (currentSub?.costSub != "")
-    { var dateEndAfterFree = dateEnd
-    var counter_Summ = -currentSub?.costSub.toInt()
-    while (dateEndAfterFree < dateNow) {
-        when (currentSub?.periodTypePay) {
-            "Days" -> dateEndAfterFree = dateEndAfterFree.plusDays(currentSub?.periodPay.toLong())
-            "Weeks" -> dateEndAfterFree = dateEndAfterFree.plusWeeks(currentSub?.periodPay.toLong())
-            "Mounths" -> dateEndAfterFree =
-                dateEndAfterFree.plusMonths(currentSub?.periodPay.toLong())
-        }
-        counter_Summ += currentSub?.costSub.toInt()
-    }
+                if (currentSub?.costSub != "") {
+                    var dateEndAfterFree = dateEnd
+                    var counter_Summ = -currentSub?.costSub.toInt()
+                    while (dateEndAfterFree < dateNow) {
+                        when (currentSub?.periodTypePay) {
+                            "Days" -> dateEndAfterFree = dateEndAfterFree.plusDays(currentSub?.periodPay.toLong())
+                            "Weeks" -> dateEndAfterFree = dateEndAfterFree.plusWeeks(currentSub?.periodPay.toLong())
+                            "Mounths" -> dateEndAfterFree =
+                                    dateEndAfterFree.plusMonths(currentSub?.periodPay.toLong())
+                        }
+                        counter_Summ += currentSub?.costSub.toInt()
+                    }
 
-        if (counter_Summ < 0)
-            counter_Summ = 0
-    paidSumm.text = "Оплачено уже " + counter_Summ.toString()
-}
+                    if (counter_Summ < 0)
+                        counter_Summ = 0
+                    paidSumm.text = "Оплачено уже " + counter_Summ.toString()
+                }
 
-         //   while (dateEnd < dateNow)
-    if (currentSub.periodPay != "") {
-        when (currentSub?.periodTypePay) {
-            "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay.toLong())
-            "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay.toLong())
-            "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay.toLong())
-        }
+                //   while (dateEnd < dateNow)
+                if (currentSub.periodPay != "") {
+                    when (currentSub?.periodTypePay) {
+                        "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay.toLong())
+                        "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay.toLong())
+                        "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay.toLong())
+                    }
 
-        while (dateEnd < dateNow)
-            when (currentSub?.periodTypePay) {
-                "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay.toLong())
-                "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay.toLong())
-                "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay.toLong())
+                    while (dateEnd < dateNow)
+                        when (currentSub?.periodTypePay) {
+                            "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay.toLong())
+                            "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay.toLong())
+                            "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay.toLong())
+                        }
+                }
+                dateNearestPay.text = "Следующий платёж " + dateEnd.format(formatter).toString()
             }
-    }
-            dateNearestPay.text = "Следующий платёж " + dateEnd.format(formatter).toString()
-        }
 
             if (currentSub?.card != "")
-            card.text = "Привязанная карта " + "*" + currentSub?.card
+                card.text = "Привязанная карта " + "*" + currentSub?.card
 
             if (currentSub?.periodFree != "")
-            freePeriod.text = "Бесплатный период " + currentSub?.periodFree + " " + currentSub?.periodTypeFree
+                freePeriod.text = "Бесплатный период " + currentSub?.periodFree + " " + currentSub?.periodTypeFree
             //paidSumm.text = currentSub?.
 
-            if(currentSub?.pushEnabled == true) {
+            if (currentSub?.pushEnabled == true) {
                 pushEnabled.text = "Включены"
                 pushEnabled.isChecked = true
-            }else {
+            } else {
                 pushEnabled.text = "Выключены"
                 pushEnabled.isChecked = false
             }
+
+            editButton.setOnClickListener {
+                if (currentSub != null) {
+
+
+                    Intent(this, EditActivity::class.java).also {
+                        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        it.putExtra("CurrentSub", currentSubId)
+
+                        startActivity(it)
+                    }
+                }
+                finish()
+            }
+
             removeSubButton.setOnClickListener {
                 if (currentSub != null) {
                     subDetailViewModel.removeFlower(currentSub, this)
@@ -157,14 +177,13 @@ if (currentSub?.datePay!= null && currentSub?.datePay != "") {
 
 
 
+
+
             pushEnabled.setOnCheckedChangeListener { buttonView, isChecked ->
 
                 if (currentSub != null)
-                subDetailViewModel.pushAboutSub(currentSub)
-
-
+                    subDetailViewModel.pushAboutSub(currentSub)
             }
-
 
 
         }

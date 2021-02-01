@@ -68,7 +68,7 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
             if (currentSub?.datePay != null && currentSub?.datePay !="")
             {
             var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
-            var dateEnd = LocalDate.parse(currentSub?.datePay, formatter)
+            var datePay = LocalDate.parse(currentSub?.datePay, formatter)
 
             var dateNow = LocalDate.now()
 
@@ -78,29 +78,29 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
 
              if (currentSub?.periodFree != "")
             when (currentSub?.periodTypeFree) {
-                "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodFree!!.toLong())
-                "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodFree!!.toLong())
-                "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodFree!!.toLong())
+                "Days" -> datePay = datePay.plusDays(currentSub?.periodFree!!.toLong())
+                "Weeks" -> datePay = datePay.plusWeeks(currentSub?.periodFree!!.toLong())
+                "Mounths" -> datePay = datePay.plusMonths(currentSub?.periodFree!!.toLong())
             }
 
 
-                //   while (dateEnd < dateNow)
+                //   while (datePay < dateNow)
                 if (currentSub?.periodPay != "") {
                     when (currentSub?.periodTypePay) {
-                        "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay!!.toLong())
-                        "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay!!.toLong())
-                        "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay!!.toLong())
+                        "Days" -> datePay = datePay.plusDays(currentSub?.periodPay!!.toLong())
+                        "Weeks" -> datePay = datePay.plusWeeks(currentSub?.periodPay!!.toLong())
+                        "Mounths" -> datePay = datePay.plusMonths(currentSub?.periodPay!!.toLong())
                     }
 
-                    while (dateEnd < dateNow)
+                    while (datePay < dateNow)
                         when (currentSub?.periodTypePay) {
-                            "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay!!.toLong())
-                            "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay!!.toLong())
-                            "Mounths" -> dateEnd =
-                                dateEnd.plusMonths(currentSub?.periodPay!!.toLong())
+                            "Days" -> datePay = datePay.plusDays(currentSub?.periodPay!!.toLong())
+                            "Weeks" -> datePay = datePay.plusWeeks(currentSub?.periodPay!!.toLong())
+                            "Mounths" -> datePay =
+                                datePay.plusMonths(currentSub?.periodPay!!.toLong())
                         }
                 }
-                addDatePay.text =dateEnd.format(formatter).toString()
+                addDatePay.text =datePay.format(formatter).toString()
         }
 
 

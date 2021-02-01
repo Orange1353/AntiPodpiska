@@ -3,18 +3,17 @@
     package="com.example.antipodpiska">
 
     <application
-     android:name=".FirebaseApplication"
+        android:name=".FirebaseApplication"
         android:allowBackup="true"
         android:icon="@drawable/logo_mail"
         android:label="Отписка"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AntiPodpiska">
-        <activity android:name=".ui.home.HomeActivity"/>
+        <activity android:name=".addition.EditActivity"></activity>
+        <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".subList.SubListActivity" />
-
         <activity android:name=".ui.auth.SignupActivity" />
-
         <activity android:name=".subDetails.SubDetailActivity" />
         <activity android:name=".addition.AddSubActivity" />
         <activity android:name=".ui.auth.LoginActivity">

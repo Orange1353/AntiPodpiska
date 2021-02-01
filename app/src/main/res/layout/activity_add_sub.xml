@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -57,24 +57,19 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
+
+    <Spinner
+        android:id="@+id/spinner_type_sub"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:hint="Введите что-нибудь"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:hint="@string/spinner_default_text"
+        android:layout_weight="30"
+        android:entries="@array/spinner_array_tupe_sub"
+        android:spinnerMode="dialog" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/add_end_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:focusableInTouchMode="false"
-            android:text = "10.10.2020"
-            />
 
-    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -220,7 +215,25 @@
             />
 
     </com.google.android.material.textfield.TextInputLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal">
 
+        <TextView
+            android:id="@+id/push_enabled"
+            android:layout_width="178dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Push" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_enabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Выключены" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/done_button"

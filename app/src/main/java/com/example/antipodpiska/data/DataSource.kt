@@ -113,7 +113,7 @@ class DataSource(resources: Resources, context: Context) {
         subItem.put("description", sub.description.toString())
         subItem.put("name", sub.name.toString())
         subItem.put("card", sub.card.toString())
-        subItem.put("dateEnd", sub.dateEnd.toString())
+        subItem.put("typeSub", sub.typeSub.toString())
         subItem.put("datePay", sub.datePay.toString())
         subItem.put("periodFree", sub.periodPay.toString())
         subItem.put("costSub", sub.costSub.toString())
@@ -122,6 +122,8 @@ class DataSource(resources: Resources, context: Context) {
         subItem.put("periodTypeFree", sub.periodTypeFree.toString())
         subItem.put("periodTypePay", sub.periodTypePay.toString())
         subItem.put("id_user", FirebaseAuth.getInstance().currentUser?.uid.toString())
+        subItem.put("push", sub.pushEnabled)
+
 
         val cal: Calendar = GregorianCalendar()
         val dateFormat = SimpleDateFormat("dd.MM.yyyy")
@@ -129,6 +131,13 @@ class DataSource(resources: Resources, context: Context) {
 
         firebaseFirestore.collection("Subscriptions").document(sub.id.toString()).set(subItem).addOnSuccessListener { Log.d("AddSub", "DocumentSnapshot successfully written!") }
                 .addOnFailureListener { e -> Log.w("AddSub", "Error writing document", e) }
+
+        if (sub.card != "") {
+            val subItemCard = HashMap<String, Any>()
+            subItemCard.put(sub.card.toString(), "something")
+            firebaseFirestore.collection("Users_cards").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).set(subItemCard).addOnSuccessListener { Log.d("AddCard", "DocumentSnapshot successfully written!") }
+                    .addOnFailureListener { e -> Log.w("AddCard", "Error writing document", e) }
+        }
     }
 
 
@@ -140,11 +149,14 @@ class DataSource(resources: Resources, context: Context) {
 
     }
 
+
+
     fun pushAboutSub(sub:Sub){
         sub.pushEnabled = !sub.pushEnabled
         Shared.saveToShared(sub)
-
+        addSubInFirebase(sub)
     }
+
 
 
 }
