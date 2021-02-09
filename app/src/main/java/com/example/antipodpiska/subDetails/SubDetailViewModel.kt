@@ -21,12 +21,17 @@ class SubDetailViewModel(private val datasource: DataSource) : ViewModel() {
 
  /*       val  Shared: SharedPrefSource = SharedPrefSource(context)
         Shared.deleteShared(sub)
-   */     datasource.removeSub(sub, context)
+   */   datasource.removeSub(sub, context)
         datasource.removeFromFirebase(sub)
     }
 
     fun pushAboutSub(sub: Sub){
         datasource.pushAboutSub(sub)
+    }
+
+    fun editSub(sub:Sub, editedSub: Sub, context: Context){
+        datasource.editSub(sub, editedSub, context)
+        datasource.addSubInFirebase(editedSub)
     }
 
 }

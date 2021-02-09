@@ -2,6 +2,7 @@ package com.example.antipodpiska.data
 
 import android.content.Context
 import android.content.res.Resources
+import android.util.Log
 import com.example.antipodpiska.R
 import com.example.antipodpiska.data.firebase.FirebaseSource
 import com.google.firebase.auth.FirebaseAuth
@@ -9,13 +10,10 @@ import com.google.gson.Gson
 import java.util.*
 import kotlin.collections.ArrayList
 
-
-//private var sharedPreferencesref: SharedPreferences? = null
-/* Returns initial list of flowers. */
 fun subList(resources: Resources,  context: Context): List<Sub> {
 
 /*val sub = Sub(
-        id = 1,
+        id = 10,
         name = "Тест",
         image = R.drawable.img,
         description = resources.getString(R.string.flower1_description),
@@ -29,39 +27,17 @@ fun subList(resources: Resources,  context: Context): List<Sub> {
         periodTypeFree = "",
         periodTypePay = ""
 )*/
-    //shared preferences
-   // val sharedPreference =  context.getSharedPreferences("PREFERENCE_NAME",Context.MODE_PRIVATE)
-  //  var editor = sharedPreference.edit()
-  //  editor.putString("Chance","t").apply()
-  //  editor.remove("username")
-  //  editor.clear()
+    var subListFromPref: ArrayList<Sub> = ArrayList()
 
     val sharedPreference =  context.getSharedPreferences(FirebaseAuth.getInstance().currentUser?.uid.toString(),Context.MODE_PRIVATE)
     var editor = sharedPreference.edit()
     val gson = Gson()
- //   var json = gson.toJson(sub);
-//    editor.putString(sub.name, json).apply()
     var obj: Sub
-
-  //  var json1: String? = sharedPreference.getString("MyObject", "")
-  //  var obj: Sub = gson.fromJson(json1, Sub::class.java)
-
     var json: String
 
-
-    val map: Map<String, *> = sharedPreference.getAll()
-
-    //если в map пусто- сверка с firebase
-
-
-    val keyList = ArrayList(map.keys)
-    val valueList = ArrayList(map.values)
-
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //  val subListFromPref: ArrayList<Sub>? = null
-    val subListFromPref: ArrayList<Sub> = ArrayList()
-
- //   var sub1: Sub
+    var map: Map<String, *> = sharedPreference.getAll()
+    var keyList = ArrayList(map.keys)
+    var valueList = ArrayList(map.values)
 
     for(i in keyList.indices) {
 
@@ -70,17 +46,37 @@ fun subList(resources: Resources,  context: Context): List<Sub> {
         subListFromPref?.add(obj)
     }
 
-    // var list1 = subListFromPref.toList()
-    // var list1 = listOf(subListFromPref!![0])
-
-    //
-val t: FirebaseSource = FirebaseSource()
-    t.getFromFirebase()
-
     var list1:List<Sub> = ArrayList<Sub>()
 
     for(i in keyList.indices)
         list1= list1.plus(subListFromPref[i])
+
+    if (subListFromPref.size == 0)
+    {
+        val t: FirebaseSource = FirebaseSource()
+        subListFromPref = t.getFromFirebase(context)
+
+
+       map= sharedPreference.getAll()
+        keyList = ArrayList(map.keys)
+        valueList = ArrayList(map.values)
+
+        for(i in keyList.indices) {
+
+            json = valueList[i].toString()
+            obj = gson.fromJson(json, Sub::class.java)
+            subListFromPref?.add(obj)
+        }
+
+
+
+
+
+
+
+        for (i in subListFromPref.indices)
+            list1= list1.plus(subListFromPref[i])
+    }
 
     return list1
 
@@ -114,29 +110,8 @@ val t: FirebaseSource = FirebaseSource()
                 periodPay= "1",
                 periodTypeFree = "Weeks",
                 periodTypePay = "Mounths"
-        ),
-        Sub(
-                id = 3,
-                name = resources.getString(R.string.flower2_name),
-                image = R.drawable.img,
-                description = resources.getString(R.string.flower2_description),
-                card = "5555",
-                dateEnd = "29.01.2021",
-                datePay= "30.10.3222",
-                periodFree= "8",
-                costSub = "88",
-                costCurr = "RUB",
-                periodPay= "2",
-                periodTypeFree = "Weeks",
-                periodTypePay = "Weeks"
-        ),
+        )
                 subListFromPref[0]
-
-
-
         )*/
 
 }
-
-
-

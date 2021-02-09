@@ -25,6 +25,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.antipodpiska.R
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
+import com.example.antipodpiska.data.firebase.FirebaseSource
 import com.example.antipodpiska.data.subList
 import com.example.antipodpiska.subDetails.SubDetailActivity
 import com.example.antipodpiska.ui.auth.SignupActivity
@@ -32,6 +33,8 @@ import com.example.antipodpiska.utils.startSignupActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 /* Handles operations on flowersLiveData and holds details about it. */
@@ -55,10 +58,19 @@ class DataSource(resources: Resources, context: Context) {
             updatedList.add(0, sub)
             subLiveData.postValue(updatedList)
         }
-
-
         Shared.saveToShared(sub)
+    }
 
+    fun editSub(sub: Sub, editedSub:Sub, context: Context) {
+        val currentList = subLiveData.value
+        if (currentList == null) {
+            subLiveData.postValue(listOf(sub))
+        } else {
+            val updatedList = currentList.toMutableList()
+            updatedList.replaceAll { sub->editedSub }
+            subLiveData.postValue(updatedList)
+        }
+        Shared.saveToShared(sub)
     }
 
     /* Removes flower from liveData and posts value. */
@@ -75,6 +87,7 @@ class DataSource(resources: Resources, context: Context) {
 
     /* Returns flower given an ID. */
     fun getSubForId(id: Long): Sub? {
+
         subLiveData.value?.let { sub ->
             return sub.firstOrNull{ it.id == id}
         }
@@ -109,6 +122,7 @@ class DataSource(resources: Resources, context: Context) {
     {
         val subItem = HashMap<String, Any>()
 
+        subItem.put("id", sub.id)
         subItem.put("image", sub.image!!.toInt())
         subItem.put("description", sub.description.toString())
         subItem.put("name", sub.name.toString())
@@ -124,10 +138,17 @@ class DataSource(resources: Resources, context: Context) {
         subItem.put("id_user", FirebaseAuth.getInstance().currentUser?.uid.toString())
         subItem.put("push", sub.pushEnabled)
 
-
         val cal: Calendar = GregorianCalendar()
         val dateFormat = SimpleDateFormat("dd.MM.yyyy")
         subItem.put("date_add", dateFormat.format(cal.getTime()).toString())
+
+
+        if (sub?.datePay != null && sub?.datePay !="")
+        {
+            subItem.put("nearDayPay", calcNearDayPay(sub))
+        }
+
+
 
         firebaseFirestore.collection("Subscriptions").document(sub.id.toString()).set(subItem).addOnSuccessListener { Log.d("AddSub", "DocumentSnapshot successfully written!") }
                 .addOnFailureListener { e -> Log.w("AddSub", "Error writing document", e) }
@@ -138,6 +159,46 @@ class DataSource(resources: Resources, context: Context) {
             firebaseFirestore.collection("Users_cards").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).set(subItemCard).addOnSuccessListener { Log.d("AddCard", "DocumentSnapshot successfully written!") }
                     .addOnFailureListener { e -> Log.w("AddCard", "Error writing document", e) }
         }
+
+    }
+
+    fun checkUserCloud(context: Context){
+       if(firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()) == null)
+       {
+           var listUser = Shared.getTempUser(context)
+           val firebase = FirebaseSource()
+           firebase.addUserInFirebaseWithCheck(listUser[0], listUser[1], listUser[2])
+       }
+    }
+
+
+    fun calcNearDayPay(sub: Sub): String {
+
+            var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+            var datePay = LocalDate.parse(sub?.datePay, formatter)
+
+            var dateNow = LocalDate.now()
+
+            if (sub?.periodFree != "")
+                when (sub?.periodTypeFree) {
+                    "Days" -> datePay = datePay.plusDays(sub?.periodFree!!.toLong())
+                    "Weeks" -> datePay = datePay.plusWeeks(sub?.periodFree!!.toLong())
+                    "Mounths" -> datePay = datePay.plusMonths(sub?.periodFree!!.toLong())
+                }
+
+            if (sub?.periodPay != "") {
+                while (datePay < dateNow)
+                    when (sub?.periodTypePay) {
+                        "Days" -> datePay = datePay.plusDays(sub?.periodPay!!.toLong())
+                        "Weeks" -> datePay = datePay.plusWeeks(sub?.periodPay!!.toLong())
+                        "Mounths" -> datePay =
+                            datePay.plusMonths(sub?.periodPay!!.toLong())
+                    }
+            }
+
+
+          return datePay.format(formatter).toString()
+
     }
 
 

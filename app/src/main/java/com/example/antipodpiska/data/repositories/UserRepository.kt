@@ -16,6 +16,6 @@ class UserRepository (
 
     fun logout() = firebase.logout()
 
-    fun addUserInFirebase(email: String, password: String, nickname: String) = firebase.addUserInFirebase(email, password, nickname)
+    fun addUserInFirebase(email: String, password: String, nickname: String) = firebase.addUserInFirebaseWithCheck(email, password, nickname)
 
 }

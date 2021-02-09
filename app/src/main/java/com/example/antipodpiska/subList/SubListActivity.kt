@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.activity.viewModels
@@ -20,10 +21,13 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.antipodpiska.R
 import com.example.antipodpiska.addition.AddSubActivity
-import com.example.antipodpiska.addition.EditActivity
 import com.example.antipodpiska.data.Sub
+import com.example.antipodpiska.data.firebase.FirebaseSource
+import com.example.antipodpiska.pushNotifications.FirebaseInstanceIDService
 import com.example.antipodpiska.subDetails.SubDetailActivity
 import com.example.antipodpiska.ui.home.HomeActivity
+import com.google.firebase.iid.FirebaseInstanceId
+
 
 const val SUB_ID = "sub id"
 const val SUB_NAME = "name"
@@ -55,7 +59,7 @@ class SubListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+    //   val t:FirebaseInstanceIDService =
         /* Instantiates headerAdapter and flowersAdapter. Both adapters are added to concatAdapter.
         which displays the contents sequentially */
         val headerAdapter = HeaderAdapter()
@@ -70,8 +74,8 @@ class SubListActivity : AppCompatActivity() {
                 subsAdapter.submitList(it as MutableList<Sub>)
                 headerAdapter.updateSubCount(it.size)
             }
-        }
 
+        }
 
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener {
@@ -86,7 +90,10 @@ sendNot()
         }
 
 
+
+
     }
+
 
     private fun createNotCh(){
         if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
@@ -176,8 +183,7 @@ sendNot()
               //  val t = data.getBooleanArrayExtra(PUSH)
                 var push = data.getBooleanExtra(PUSH, false)
 
-
-
+//image?
                 subsListViewModel.insertSub(
                     subName,
                     subDescription,

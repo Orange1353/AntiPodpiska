@@ -58,7 +58,10 @@ val si:Sub = Shared.getFromShared(newSub)
     }
 
 
+
 }
+
+
 
 class SubListViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
 

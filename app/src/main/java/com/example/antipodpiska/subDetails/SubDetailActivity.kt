@@ -30,6 +30,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import com.example.antipodpiska.R
 import com.example.antipodpiska.addition.EditActivity
+import com.example.antipodpiska.addition.EditSubActivity
 
 import com.example.antipodpiska.subList.SUB_ID
 import com.example.antipodpiska.subList.SubListActivity
@@ -84,7 +85,6 @@ class SubDetailActivity : AppCompatActivity() {
                 subImage.setImageResource(currentSub.image)
             }
 
-
             subDescription.text = currentSub?.description
             if (currentSub?.costSub != "" && currentSub?.periodPay != "")
                 costPlusPeriod.text = "Оплата " + currentSub?.costSub + " " + currentSub?.costCurr + " каждые " + currentSub?.periodPay + " " + currentSub?.periodTypePay
@@ -95,6 +95,12 @@ class SubDetailActivity : AppCompatActivity() {
 
                 var dateNow = LocalDate.now()
 
+                var costSub = 0
+                var summCost = 0
+
+                if (currentSub?.costSub != "")
+                    costSub = currentSub?.costSub.toInt()
+
                 if (currentSub?.periodFree != "")
                     when (currentSub?.periodTypeFree) {
                         "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodFree.toLong())
@@ -102,40 +108,18 @@ class SubDetailActivity : AppCompatActivity() {
                         "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodFree.toLong())
                     }
 
-                if (currentSub?.costSub != "") {
-                    var dateEndAfterFree = dateEnd
-                    var counter_Summ = -currentSub?.costSub.toInt()
-                    while (dateEndAfterFree < dateNow) {
-                        when (currentSub?.periodTypePay) {
-                            "Days" -> dateEndAfterFree = dateEndAfterFree.plusDays(currentSub?.periodPay.toLong())
-                            "Weeks" -> dateEndAfterFree = dateEndAfterFree.plusWeeks(currentSub?.periodPay.toLong())
-                            "Mounths" -> dateEndAfterFree =
-                                    dateEndAfterFree.plusMonths(currentSub?.periodPay.toLong())
-                        }
-                        counter_Summ += currentSub?.costSub.toInt()
-                    }
 
-                    if (counter_Summ < 0)
-                        counter_Summ = 0
-                    paidSumm.text = "Оплачено уже " + counter_Summ.toString()
-                }
-
-                //   while (dateEnd < dateNow)
-                if (currentSub.periodPay != "") {
+                if (currentSub?.periodPay != "")
+                while (dateEnd < dateNow) {
+                    summCost += costSub
                     when (currentSub?.periodTypePay) {
                         "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay.toLong())
                         "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay.toLong())
                         "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay.toLong())
                     }
-
-                    while (dateEnd < dateNow)
-                        when (currentSub?.periodTypePay) {
-                            "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay.toLong())
-                            "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay.toLong())
-                            "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay.toLong())
-                        }
                 }
                 dateNearestPay.text = "Следующий платёж " + dateEnd.format(formatter).toString()
+                paidSumm.text = "Оплачено уже " + summCost.toString() + " " + currentSub?.costCurr
             }
 
             if (currentSub?.card != "")
@@ -146,7 +130,7 @@ class SubDetailActivity : AppCompatActivity() {
             //paidSumm.text = currentSub?.
 
             if (currentSub?.pushEnabled == true) {
-                pushEnabled.text = "Включены"
+                pushEnabled.text = "Включены  "
                 pushEnabled.isChecked = true
             } else {
                 pushEnabled.text = "Выключены"
@@ -156,11 +140,9 @@ class SubDetailActivity : AppCompatActivity() {
             editButton.setOnClickListener {
                 if (currentSub != null) {
 
-
-                    Intent(this, EditActivity::class.java).also {
+                    Intent(this, EditSubActivity::class.java).also {
                         it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        it.putExtra("CurrentSub", currentSubId)
-
+                        it.putExtra(SUB_ID, currentSubId)
                         startActivity(it)
                     }
                 }
@@ -175,14 +157,16 @@ class SubDetailActivity : AppCompatActivity() {
             }
 
 
-
-
-
-
             pushEnabled.setOnCheckedChangeListener { buttonView, isChecked ->
 
                 if (currentSub != null)
                     subDetailViewModel.pushAboutSub(currentSub)
+
+                if( pushEnabled.text == "Выключены")
+                pushEnabled.text = "Включены"
+                else
+                    pushEnabled.text = "Выключены"
+
             }
 
 

@@ -2,24 +2,32 @@ package com.example.antipodpiska.addition
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import com.example.antipodpiska.R
+import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
+import com.example.antipodpiska.data.User
+import com.example.antipodpiska.data.firebase.FirebaseSource
 import com.example.antipodpiska.data.repositories.UserRepository
+import com.example.recyclersample.data.DataSource
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.iid.FirebaseInstanceId
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_add_sub.*
+import kotlinx.android.synthetic.main.activity_sub_detail.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -38,6 +46,7 @@ const val CARD = "card"
 const val PUSH = "push"
 
 class AddSubActivity : AppCompatActivity() {
+
     private lateinit var addSubName: TextInputEditText
     private lateinit var addSubDescription: TextInputEditText
     private lateinit var addTypeSub: Spinner
@@ -74,20 +83,9 @@ class AddSubActivity : AppCompatActivity() {
         addPeriodTypePay = findViewById(R.id.spinner_period_pay)
         addCard = findViewById(R.id.card)
         pushEnabled = findViewById(R.id.switch_enabled)
-        /*addSubName
-        addSubDescription
-        addSubEndDate
-        addDatePay
-        addPeriodFree
-        addCostSub
-        addPeriodPay
-        addPeriodTypeFree
-        addCostCurr
-        addPeriodTypePay*/
 
 
-
-        //SimpleDateFormat("dd.MM.yyyy").format(System.currentTimeMillis())
+        checkUserCloud()
 
         var cal = Calendar.getInstance()
 
@@ -97,7 +95,7 @@ class AddSubActivity : AppCompatActivity() {
             cal.set(Calendar.MONTH, monthOfYear)
             cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-            val myFormat = "dd.MM.yyyy" // mention the format you need
+            val myFormat = "dd.MM.yyyy"
             val sdf = SimpleDateFormat(myFormat, Locale.US)
 
             addDatePay.setText(sdf.format(cal.time))
@@ -114,6 +112,13 @@ class AddSubActivity : AppCompatActivity() {
 
 
 
+        pushEnabled.setOnCheckedChangeListener { buttonView, isChecked ->
+
+            if( pushEnabled.text == "Выключены")
+                pushEnabled.text = "Включены  "
+            else
+                pushEnabled.text = "Выключены"
+        }
 
     }
 
@@ -123,8 +128,49 @@ class AddSubActivity : AppCompatActivity() {
     /* The onClick action for the done button. Closes the activity and returns the new flower name
     and description as part of the intent. If the name or description are missing, the result is set
     to cancelled. */
+    private val Shared: SharedPrefSource by lazy{ SharedPrefSource(this) }
+
+    private val firebaseFirestore: FirebaseFirestore by lazy {
+        FirebaseFirestore.getInstance()
+    }
+
+    fun checkUserCloud(){
+
+            firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).get()
+                    .addOnSuccessListener { document ->
+                        if (document.data != null )
+                        {
+                            val user = document.toObject(User::class.java)
+                            if (user?.token != FirebaseInstanceId.getInstance().token.toString()) {
+                                user?.token = FirebaseInstanceId.getInstance().token.toString()
+                               val firebase = FirebaseSource()
+                                if (user != null) {
+                                    firebase.addUserInFirebase(user)
+                                }
+                            }
+                            Log.d("!!!!!", "1 DocumentSnapshot data: ${document.data}")
+                        } else {
+                            Log.d("!!!!!", "2 DocumentSnapshot data: ${document.data}")
+                            var listUser = Shared.getTempUser(this)
+                            Log.d("!!!!!", "listUser: $listUser")
+                            val firebase = FirebaseSource()
+                            firebase.addUserInFirebaseWithCheck(listUser[0], listUser[1], listUser[2])
+                        }
+                    }
+                    .addOnFailureListener { exception ->
+                        Log.d("!!!!!", "get failed with ", exception)
+                    }
+            var listUser = Shared.getTempUser(this)
+            val firebase = FirebaseSource()
+            firebase.addUserInFirebaseWithCheck(listUser[0], listUser[1], listUser[2])
+    }
+
 
     private fun addSub() {
+
+     //   checkUserCloud()
+
+
         val resultIntent = Intent()
 
         if (addSubName.text.isNullOrEmpty() || addSubDescription.text.isNullOrEmpty() || addDatePay.text.isNullOrEmpty()) {
@@ -163,9 +209,6 @@ class AddSubActivity : AppCompatActivity() {
             finish()
         }
 
-
-
     }
-
 
 }

@@ -3,6 +3,7 @@ package com.example.antipodpiska.ui.auth
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import com.example.antipodpiska.FirebaseApplication
 import com.example.antipodpiska.R
+import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.databinding.ActivityLoginBinding
 import com.example.antipodpiska.utils.startHomeActivity
 import com.example.antipodpiska.utils.startSubListActivity
@@ -38,6 +40,7 @@ class LoginActivity : AppCompatActivity(), AuthListener, KodeinAware {
     }
 
     override fun onStarted() {
+
         progressbar.visibility = View.VISIBLE
     }
 

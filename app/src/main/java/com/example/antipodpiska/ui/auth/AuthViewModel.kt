@@ -1,16 +1,23 @@
 package com.example.antipodpiska.ui.auth
 
+import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
+import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.repositories.UserRepository
 import com.example.antipodpiska.ui.home.HomeActivity
 import com.example.antipodpiska.utils.startHomeActivity
 import com.example.antipodpiska.utils.startLoginActivity
 import com.example.antipodpiska.utils.startSignupActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.iid.FirebaseInstanceId
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlin.concurrent.thread
 
 class AuthViewModel(
         private val repository: UserRepository
@@ -59,23 +66,14 @@ class AuthViewModel(
     }
 
     //Doing same thing with signup
-    fun signup() {
-        if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
+    fun signup()
+    {
+        if (email.isNullOrEmpty() || password.isNullOrEmpty() || nickname.isNullOrEmpty()) {
             authListener?.onFailure("Please input all values")
             return
         }
         authListener?.onStarted()
         val disposable = repository.register(email!!, password!!, nickname!!)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    authListener?.onSuccess()
-                }, {
-                    authListener?.onFailure(it.message!!)
-                })
-        disposables.add(disposable)
-
-        val disposable2 =   repository.addUserInFirebase(email!!, password!!, nickname!!)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -83,7 +81,7 @@ class AuthViewModel(
             }, {
                 authListener?.onFailure(it.message!!)
             })
-        disposables.add(disposable2)
+        disposables.add(disposable)
     }
 
 
@@ -102,18 +100,7 @@ class AuthViewModel(
     }
 
 
-    fun addUser() {
 
-        val disposableAdd = repository.addUserInFirebase(email!!, password!!, nickname!!)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                authListener?.onSuccess()
-            }, {
-                authListener?.onFailure(it.message!!)
-            })
-        disposables.add(disposableAdd)
-    }
 
 
 

@@ -1,9 +1,14 @@
 package com.example.antipodpiska.data.firebase
 
+import android.content.Context
 import android.util.Log
+import com.example.antipodpiska.R
+import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
+import com.example.antipodpiska.data.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.iid.FirebaseInstanceId
 import io.reactivex.Completable
 
 class FirebaseSource {
@@ -31,14 +36,15 @@ class FirebaseSource {
     fun register(email: String, password: String, nickname: String) = Completable.create { emitter ->
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if (!emitter.isDisposed) {
-                if (it.isSuccessful)
+                if (it.isSuccessful) {
                     emitter.onComplete()
+                }
                 else
                     emitter.onError(it.exception!!)
             }
         }
 
-//        addUserInFirebase(email, password, nickname)
+
     }
 
 
@@ -46,10 +52,9 @@ class FirebaseSource {
 
     fun currentUser() = firebaseAuth.currentUser
 
-
     fun addSubInFirebase(sub: Sub) = Completable.create { emitter ->
 
-        val subItem = HashMap<String, String>()
+   /*     val subItem = HashMap<String, String>()
 
 
         subItem.put( "image", sub.image.toString())
@@ -66,10 +71,10 @@ class FirebaseSource {
         subItem.put("periodTypePay", sub.periodTypePay.toString())
         subItem.put("id_user", FirebaseAuth.getInstance().currentUser?.uid.toString())
         subItem.put("date_add", java.util.Calendar.getInstance().toString())
+*/
 
 
-
-        firebaseFirestore.collection("Subscriptions").document(sub.id.toString()).set(subItem)
+        firebaseFirestore.collection("Subscriptions").document(sub.id.toString()).set(sub)
                 .addOnCompleteListener {
                     if (!emitter.isDisposed) {
                         if (it.isSuccessful)
@@ -80,30 +85,57 @@ class FirebaseSource {
                 }
     }
 
-    fun addUserInFirebase(email: String, password: String, nickname: String) = Completable.create { emitter ->
+    fun getUserFromFirebase(){
+
+    }
+
+    fun addUserInFirebase(user: User) {
+        firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).set(user)
+            .addOnCompleteListener {
+
+                if (it.isSuccessful)
+                {
+
+                }
+                else{
+
+                }
+
+            }
+    }
+
+    fun addUserInFirebaseWithCheck(email: String, password: String, nickname: String) {
 
         val userItem = HashMap<String, String>()
+        val token =  FirebaseInstanceId.getInstance().token
+        if (token != null) {
+            userItem.put("token", token)
+        }
+
         userItem.put("email", email)
         userItem.put("password", password)
         userItem.put("nickname", nickname)
         var checkAvailabilityId = 0
 
-        while (checkAvailabilityId != 1) {
 
+
+        while (checkAvailabilityId != 1) {
             if (FirebaseAuth.getInstance().currentUser?.uid.toString() != "null") {
+
                 firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).set(userItem)
-                        .addOnCompleteListener {
-                            if (!emitter.isDisposed) {
-                                if (it.isSuccessful)
-                                    emitter.onComplete()
-                                else
-                                    emitter.onError(it.exception!!)
-                            }
-                        }
+                    .addOnCompleteListener {
+                            if (it.isSuccessful)
+                            {
+                                }
+                            else{
+
+                                }
+                    }
                 checkAvailabilityId += 1
             }
         }
     }
+
 
     fun addUserInFirebase(email: String, password: String, nickname: String, phone: String) = Completable.create { emitter ->
 
@@ -116,32 +148,33 @@ class FirebaseSource {
 
         firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).set("iii")
 //ДОБАВИТЬ
-
     }
 
-    fun getFromFirebase()/*: ArrayList<Sub>*/ {
-        val subListFromPref: ArrayList<Sub> = ArrayList()
+    fun getFromFirebase(context: Context): ArrayList<Sub> {
 
-        //   var sub1: Sub
+        var subListFromPref: ArrayList<Sub> = ArrayList()
+        val shared: SharedPrefSource = SharedPrefSource(context)
 
-        val docRef = firebaseFirestore.collection("Subscriptions").whereEqualTo("id_user",  FirebaseAuth.getInstance().currentUser?.uid.toString()).get()
+        var docRef = firebaseFirestore.collection("Subscriptions").whereEqualTo("id_user",  FirebaseAuth.getInstance().currentUser?.uid.toString()).get()
                 .addOnSuccessListener { result ->
                     for (document in result) {
-                        subListFromPref.add(document.toObject(Sub::class.java))
+                        shared.saveToShared(document.toObject(Sub::class.java))
                     }
                 }
                 .addOnFailureListener { exception ->
                     Log.e("TAG", "Error getting documents: ", exception)
                 }
-        /*for(i in keyList.indices) {
 
-
-            var obj : Sub
-            subListFromPref?.add(obj)
-        }*/
-
-//return ArrayList<Sub>()
+        return subListFromPref
     }
 
+
+    fun updateFieldNearDayPay(){
+
+        val userItem = HashMap<String, String>()
+
+        userItem.put("nearDay", "good")
+        firebaseFirestore.collection("Subscriptions").document("6781629119882284938").set(userItem)
+    }
 
 }

@@ -106,9 +106,9 @@
                         android:singleLine="true"
                         android:text="@={viewmodel.nickname}"
                         android:id="@+id/edit_text_nickname"
-
+                        android:maxLength="20"
                         android:hint="Nickname"
-                        android:inputType="textPassword"/>
+                        />
 
 
 
@@ -135,6 +135,13 @@
                         android:text="Already have an account.\nLogin Here"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
+
+                    <Button
+                        android:id="@+id/button3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Button"
+                        android:onClick="onClick"/>
                 </LinearLayout>
 
             </RelativeLayout>
