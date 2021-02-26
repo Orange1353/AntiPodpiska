@@ -17,6 +17,7 @@ import com.example.antipodpiska.databinding.ActivitySignupBinding
 import com.example.antipodpiska.subList.SubListActivity
 import com.example.antipodpiska.ui.home.HomeActivity
 import com.example.antipodpiska.utils.startHomeActivity
+import com.example.antipodpiska.utils.startSignupActivity
 import com.example.antipodpiska.utils.startSubListActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -107,23 +108,16 @@ fun onClick(view: View){
         if (token != null) {
             userItem.put("token", token)
         }
-
         userItem.put("email", email)
         userItem.put("password", password)
         userItem.put("nickname", nickname)
         var checkAvailabilityId = 0
 
-
-
-
         while (checkAvailabilityId != 1) {
 
             if (FirebaseAuth.getInstance().currentUser?.uid.toString() != "null") {
-
-
                 firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).set(userItem)
                     .addOnCompleteListener {
-
                         if (it.isSuccessful)
                         {
 

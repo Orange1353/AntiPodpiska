@@ -1,15 +1,26 @@
 package com.example.antipodpiska.data.firebase
 
 import android.content.Context
+import android.content.Intent
+import android.content.res.Resources
 import android.util.Log
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.MutableLiveData
 import com.example.antipodpiska.R
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.data.User
-import com.google.firebase.auth.FirebaseAuth
+import com.example.antipodpiska.data.subList
+import com.example.antipodpiska.ui.home.HomeActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.*
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.ktx.Firebase
 import io.reactivex.Completable
+import java.util.concurrent.TimeUnit
 
 class FirebaseSource {
 
@@ -33,6 +44,7 @@ class FirebaseSource {
         }
     }
 
+
     fun register(email: String, password: String, nickname: String) = Completable.create { emitter ->
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if (!emitter.isDisposed) {
@@ -43,6 +55,11 @@ class FirebaseSource {
                     emitter.onError(it.exception!!)
             }
         }
+
+
+    }
+
+    fun sendVerificationCode(phone: String)= Completable.create { emitter ->
 
 
     }
@@ -85,9 +102,6 @@ class FirebaseSource {
                 }
     }
 
-    fun getUserFromFirebase(){
-
-    }
 
     fun addUserInFirebase(user: User) {
         firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).set(user)
@@ -176,5 +190,22 @@ class FirebaseSource {
         userItem.put("nearDay", "good")
         firebaseFirestore.collection("Subscriptions").document("6781629119882284938").set(userItem)
     }
+
+
+
+    fun signInWithCredential(credential: PhoneAuthCredential) = Completable.create { emitter ->
+        // inside this method we are checking if
+        // the code entered is correct or not.
+        firebaseAuth.signInWithCredential(credential)
+            .addOnCompleteListener(OnCompleteListener<AuthResult?> {
+                if (it.isSuccessful)
+                    emitter.onComplete()
+                else
+                    emitter.onError(it.exception!!)
+            })
+    }
+
+
+
 
 }

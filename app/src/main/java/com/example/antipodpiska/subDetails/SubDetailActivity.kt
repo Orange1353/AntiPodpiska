@@ -18,16 +18,20 @@ package com.example.antipodpiska.subDetails
 
 
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.Switch
-import android.widget.TextView
+import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.*
 import androidx.activity.viewModels
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.view.ViewCompat
 import com.example.antipodpiska.R
 import com.example.antipodpiska.addition.EditActivity
 import com.example.antipodpiska.addition.EditSubActivity
@@ -35,6 +39,14 @@ import com.example.antipodpiska.addition.EditSubActivity
 import com.example.antipodpiska.subList.SUB_ID
 import com.example.antipodpiska.subList.SubListActivity
 import com.example.antipodpiska.utils.startSubListActivity
+import com.google.android.material.shape.CornerFamily
+import com.google.android.material.shape.MaterialShapeDrawable
+import com.google.android.material.shape.ShapeAppearanceModel
+import kotlinx.android.synthetic.main.element_detail_any_text.view.*
+import kotlinx.android.synthetic.main.element_detail_cost_only.view.*
+import kotlinx.android.synthetic.main.element_detail_cost_only.view.text_cost_details
+import kotlinx.android.synthetic.main.element_detail_with_free.view.*
+import kotlinx.android.synthetic.main.element_next_pay.view.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.Period
@@ -43,30 +55,38 @@ import java.util.*
 
 class SubDetailActivity : AppCompatActivity() {
 
+    private var summCost: Int = 0
     private val subDetailViewModel by viewModels<SubDetailViewModel> {
         SubDetailViewModelFactory(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sub_detail)
+        setContentView(R.layout.activity_sub_detail_base)
 
         var currentSubId: Long? = null
 
         /* Connect variables to UI elements. */
         val subName: TextView = findViewById(R.id.flower_detail_name)
-        val subImage: ImageView = findViewById(R.id.flower_detail_image)
-        val subDescription: TextView = findViewById(R.id.flower_detail_description)
+        val subImage: TextView = findViewById(R.id.flower_detail_image)
+        val backButton: Button = findViewById(R.id.button_back)
+       // val subDescription: TextView = findViewById(R.id.flower_detail_description)
         val removeSubButton: Button = findViewById(R.id.remove_button)
-        val costPlusPeriod: TextView =  findViewById(R.id.cost_plus_period)
-        val dateNearestPay: TextView = findViewById(R.id.data_nearest_pay)
-        val card: TextView = findViewById(R.id.card_pay)
-        val freePeriod:TextView = findViewById(R.id.free_period)
-        val paidSumm: TextView = findViewById(R.id.paid_summ)
-        val pushEnabled: SwitchCompat = findViewById(R.id.switch_enabled)
         val editButton: Button = findViewById(R.id.edit_button)
 
+   //     val dateNearestPay: TextView = findViewById(R.id.data_nearest_pay)
+   /*     val costPlusPeriod: TextView =  findViewById(R.id.cost_plus_period)
+        val paidSumm: TextView = findViewById(R.id.paid_summ)
+        val card: TextView = findViewById(R.id.card_pay)
+        val freePeriod:TextView = findViewById(R.id.free_period)
 
+        val pushEnabled: SwitchCompat = findViewById(R.id.switch_enabled)
+*/
+
+        val inflater = applicationContext.getSystemService(
+                Context.LAYOUT_INFLATER_SERVICE
+        ) as LayoutInflater
+        val container = findViewById<View>(R.id.base_lay) as LinearLayout
 
 
         val bundle: Bundle? = intent.extras
@@ -80,14 +100,30 @@ class SubDetailActivity : AppCompatActivity() {
             val currentSub = subDetailViewModel.getFlowerForId(it)
             subName.text = currentSub?.name
             if (currentSub?.image == null) {
-                subImage.setImageResource(R.drawable.img)
+
+                val radius: Float = 20F
+                val shapeAppearanceModel = ShapeAppearanceModel()
+                        .toBuilder()
+                        .setAllCorners(CornerFamily.ROUNDED, radius)
+                        .build()
+                val shapeDrawable = MaterialShapeDrawable(shapeAppearanceModel)
+
+                var t = Color.parseColor("#"+ currentSub!!.image)
+                shapeDrawable.setTint(t)
+                ViewCompat.setBackground(subImage, shapeDrawable)
+                subImage.setGravity(Gravity.CENTER)
+                var firstLetter: String = currentSub!!.name.substring(0, 1)
+                firstLetter=firstLetter.toUpperCase()
+                subImage.setText(firstLetter)
+
             } else {
-                subImage.setImageResource(currentSub.image)
+                subImage.setBackgroundColor(Color.parseColor("#" + currentSub.image))
+                var firstLetter: String = currentSub!!.name.substring(0, 1)
+                firstLetter=firstLetter.toUpperCase()
+                subImage.setText(firstLetter)
             }
 
-            subDescription.text = currentSub?.description
-            if (currentSub?.costSub != "" && currentSub?.periodPay != "")
-                costPlusPeriod.text = "Оплата " + currentSub?.costSub + " " + currentSub?.costCurr + " каждые " + currentSub?.periodPay + " " + currentSub?.periodTypePay
+
 
             if (currentSub?.datePay != null && currentSub?.datePay != "") {
                 var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
@@ -96,7 +132,7 @@ class SubDetailActivity : AppCompatActivity() {
                 var dateNow = LocalDate.now()
 
                 var costSub = 0
-                var summCost = 0
+                summCost = 0
 
                 if (currentSub?.costSub != "")
                     costSub = currentSub?.costSub.toInt()
@@ -118,16 +154,70 @@ class SubDetailActivity : AppCompatActivity() {
                         "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay.toLong())
                     }
                 }
-                dateNearestPay.text = "Следующий платёж " + dateEnd.format(formatter).toString()
-                paidSumm.text = "Оплачено уже " + summCost.toString() + " " + currentSub?.costCurr
+
+
+
+                val dateNearestPay: View = inflater.inflate(R.layout.element_next_pay, null)
+                val container = findViewById<View>(R.id.base_lay) as LinearLayout
+                dateNearestPay.nextPay.text = "Следующий платёж " + dateEnd.format(formatter).toString()
+                container.addView(dateNearestPay)
+
             }
 
-            if (currentSub?.card != "")
-                card.text = "Привязанная карта " + "*" + currentSub?.card
 
             if (currentSub?.periodFree != "")
-                freePeriod.text = "Бесплатный период " + currentSub?.periodFree + " " + currentSub?.periodTypeFree
-            //paidSumm.text = currentSub?.
+            {
+                if (currentSub?.costSub != "") {
+                    val costPlusPeriod: View = inflater.inflate(R.layout.element_detail_with_free, null)
+
+                    if (currentSub?.periodPay != "") {
+                        costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr + " каждые " + currentSub?.periodPay + " " + currentSub?.periodTypePay
+                        container.addView(costPlusPeriod)
+                    }
+                    else
+                    {
+                        costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr
+                        container.addView(costPlusPeriod)
+                    }
+                    costPlusPeriod.text_before_free.text = currentSub?.periodFree + " " + currentSub?.periodTypeFree
+
+                }
+
+            }
+            else
+            if (currentSub?.costSub != "") {
+
+                if (currentSub?.periodPay != "") {
+                    val costPlusPeriod: View = inflater.inflate(R.layout.element_detail_cost_only, null)
+                    costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr + " каждые " + currentSub?.periodPay + " " + currentSub?.periodTypePay
+                    container.addView(costPlusPeriod)
+                }
+                else
+                {
+                    val costPlusPeriod: View = inflater.inflate(R.layout.element_detail_cost_only, null)
+                    costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr
+                    container.addView(costPlusPeriod)
+                }
+
+            }
+
+
+
+
+
+          if (currentSub?.card != "") {
+              val card: View = inflater.inflate(R.layout.element_detail_any_text, null)
+              card.name_field.text = "Привязанная карта"
+              card.value_field.text = "*" + currentSub?.card
+              container.addView(card)
+          }
+
+            val paidSumm: View = inflater.inflate(R.layout.element_detail_any_text, null)
+            paidSumm.name_field.text = "Оплачено уже"
+            paidSumm.value_field.text = summCost.toString() + " " + currentSub?.costCurr
+            container.addView(paidSumm)
+
+    /*
 
             if (currentSub?.pushEnabled == true) {
                 pushEnabled.text = "Включены  "
@@ -135,6 +225,11 @@ class SubDetailActivity : AppCompatActivity() {
             } else {
                 pushEnabled.text = "Выключены"
                 pushEnabled.isChecked = false
+            }
+*/
+            backButton.setOnClickListener {
+                onBackPressed()
+                finish()
             }
 
             editButton.setOnClickListener {
@@ -157,7 +252,7 @@ class SubDetailActivity : AppCompatActivity() {
             }
 
 
-            pushEnabled.setOnCheckedChangeListener { buttonView, isChecked ->
+       /*     pushEnabled.setOnCheckedChangeListener { buttonView, isChecked ->
 
                 if (currentSub != null)
                     subDetailViewModel.pushAboutSub(currentSub)
@@ -168,7 +263,7 @@ class SubDetailActivity : AppCompatActivity() {
                     pushEnabled.text = "Выключены"
 
             }
-
+*/
 
         }
 

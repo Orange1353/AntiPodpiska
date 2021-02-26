@@ -6,8 +6,7 @@ import androidx.annotation.DrawableRes
 data class Sub(
         val id: Long = 0,
         var name: String = "",
-        @DrawableRes
-        val image: Int? =0,
+        val image: String ="#FFFFFF",
         var description: String= "",
     //дата окончания подписки
         var typeSub: String= "",
@@ -20,6 +19,7 @@ data class Sub(
         var periodTypeFree: String= "",
         var periodTypePay: String= "",
         var card: String= "",
-        var pushEnabled: Boolean= false
+        var pushEnabled: Boolean= false,
+        val date_add: String = ""
 
 )

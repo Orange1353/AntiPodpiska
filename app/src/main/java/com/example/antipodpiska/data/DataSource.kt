@@ -39,8 +39,10 @@ import java.util.*
 
 /* Handles operations on flowersLiveData and holds details about it. */
 class DataSource(resources: Resources, context: Context) {
-    private val initialSubList = subList(resources, context)
-    private val subLiveData = MutableLiveData(initialSubList)
+    val resForFunDel = resources
+    val conForFunDel = context
+    private var initialSubList = subList(resources, context)
+    private var subLiveData = MutableLiveData(initialSubList)
     private val firebaseFirestore: FirebaseFirestore by lazy {
         FirebaseFirestore.getInstance()
     }
@@ -59,6 +61,12 @@ class DataSource(resources: Resources, context: Context) {
             subLiveData.postValue(updatedList)
         }
         Shared.saveToShared(sub)
+    }
+
+    fun deleteLiveData(){
+      initialSubList = subList(resForFunDel, conForFunDel)
+      subLiveData = MutableLiveData(initialSubList)
+
     }
 
     fun editSub(sub: Sub, editedSub:Sub, context: Context) {
@@ -95,14 +103,21 @@ class DataSource(resources: Resources, context: Context) {
     }
 
     fun getSubList(): LiveData<List<Sub>> {
+        deleteLiveData()
         return subLiveData
     }
 
     /* Returns a random flower asset for flowers that are added. */
-    fun getRandomSubImageAsset(): Int? {
+    fun getRandomSubImageAsset(): String {
       //  val randomNumber = (initialSubList.indices).random()
      //   return initialSubList[randomNumber].image
-        return R.drawable.img
+
+        val listColor= listOf("FAB328", "EF5F72", "00B8E2", "7E3390", "1D6BF0")
+        val randomColor = listColor.random()
+        return randomColor
+
+
+
     }
 
     companion object {
@@ -123,7 +138,7 @@ class DataSource(resources: Resources, context: Context) {
         val subItem = HashMap<String, Any>()
 
         subItem.put("id", sub.id)
-        subItem.put("image", sub.image!!.toInt())
+        subItem.put("image", sub.image)
         subItem.put("description", sub.description.toString())
         subItem.put("name", sub.name.toString())
         subItem.put("card", sub.card.toString())
@@ -138,10 +153,13 @@ class DataSource(resources: Resources, context: Context) {
         subItem.put("id_user", FirebaseAuth.getInstance().currentUser?.uid.toString())
         subItem.put("push", sub.pushEnabled)
 
-        val cal: Calendar = GregorianCalendar()
-        val dateFormat = SimpleDateFormat("dd.MM.yyyy")
-        subItem.put("date_add", dateFormat.format(cal.getTime()).toString())
-
+        if (sub.date_add != "" && sub.date_add != null)
+            subItem.put("date_add", sub.date_add)
+        else {
+            val cal: Calendar = GregorianCalendar()
+            val dateFormat = SimpleDateFormat("dd.MM.yyyy")
+            subItem.put("date_add", dateFormat.format(cal.getTime()).toString())
+        }
 
         if (sub?.datePay != null && sub?.datePay !="")
         {

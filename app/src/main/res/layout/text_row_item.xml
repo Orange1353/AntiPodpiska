@@ -3,9 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="100dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/shape_item">
 
-    <ImageView
+    <TextView
         android:id="@+id/flower_image"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -14,6 +18,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/flower_text"
         app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/shape_initial_item"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:textSize="35sp"
+        android:text="T"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -21,17 +30,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif"
         android:text="@string/flower1_name"
         android:textAppearance="?attr/textAppearanceHeadline5"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/flower_image"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.506" />
 
     <TextView
         android:id="@+id/card_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:fontFamily="sans-serif"
+        android:textSize="11sp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -43,6 +59,8 @@
         android:id="@+id/day_pay_calulat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textSize="11sp"
 
         tools:layout_editor_absoluteX="58dp"
         tools:layout_editor_absoluteY="51dp"
@@ -55,6 +73,8 @@
         android:id="@+id/cost_nearest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textSize="11sp"
 
         app:layout_constraintBottom_toBottomOf="@+id/day_pay_calulat"
         app:layout_constraintEnd_toEndOf="parent"

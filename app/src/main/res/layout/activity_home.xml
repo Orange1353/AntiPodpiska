@@ -12,7 +12,8 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.home.HomeActivity">
+        tools:context=".ui.home.HomeActivity"
+        android:background="#232323">
 
         <TextView
             android:text="@{viewmodel.user.email}"

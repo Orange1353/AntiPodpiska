@@ -1,18 +1,25 @@
 package com.example.antipodpiska.subList
 
 
+//import android.widget.ListAdapter
+
+import android.graphics.Color
+import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-//import android.widget.ListAdapter
 import android.widget.TextView
+import androidx.core.view.ViewCompat
+import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.antipodpiska.R
 import com.example.antipodpiska.data.Sub
-import java.text.SimpleDateFormat
+import com.google.android.material.shape.CornerFamily
+import com.google.android.material.shape.MaterialShapeDrawable
+import com.google.android.material.shape.ShapeAppearanceModel
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -25,7 +32,7 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
     class SubViewHolder(itemView: View, val onClick: (Sub) -> Unit) :
         RecyclerView.ViewHolder(itemView) {
         private val subName: TextView = itemView.findViewById(R.id.flower_text)
-        private val subImageView: ImageView = itemView.findViewById(R.id.flower_image)
+        private val subImageView: TextView = itemView.findViewById(R.id.flower_image)
         private val cardNum: TextView = itemView.findViewById(R.id.card_num)
         private val addDatePay: TextView =  itemView.findViewById(R.id.day_pay_calulat)
         private val costNear: TextView =  itemView.findViewById(R.id.cost_nearest)
@@ -109,9 +116,34 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
 
 
             if (sub.image != null) {
-                subImageView.setImageResource(sub.image)
+           //     subImageView.setImageResource(R.drawable.shape_initial_item)
+
+         //       subImageView.setGravity(Gravity.CENTER)
+
+           //     subImageView.setBackgroundColor(Color.BLUE)
+
+          //      subImageView.setText("F");
+
+
+                val radius: Float = 20F
+                val shapeAppearanceModel = ShapeAppearanceModel()
+                        .toBuilder()
+                        .setAllCorners(CornerFamily.ROUNDED, radius)
+                        .build()
+                val shapeDrawable = MaterialShapeDrawable(shapeAppearanceModel)
+
+                var t = Color.parseColor("#"+ sub.image)
+                shapeDrawable.setTint(t)
+                ViewCompat.setBackground(subImageView, shapeDrawable)
+                subImageView.setGravity(Gravity.CENTER)
+               var firstLetter: String = sub.name.substring(0, 1)
+                firstLetter=firstLetter.toUpperCase()
+                subImageView.setText(firstLetter)
+
+
+
             } else {
-                subImageView.setImageResource(R.drawable.img)
+                subImageView.setBackgroundResource(R.drawable.img)
             }
         }
     }

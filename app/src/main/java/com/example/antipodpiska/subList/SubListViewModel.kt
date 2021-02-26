@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Completable
 import java.util.HashMap
+import kotlin.math.log
 
 import kotlin.random.Random
 
@@ -20,10 +21,10 @@ class SubListViewModel(val dataSource: DataSource) : ViewModel() {
         FirebaseFirestore.getInstance()
     }
     val subsLiveData = dataSource.getSubList()
-
+   // var viewModelRoutesFragment = ViewModelProvider(SubListActivity()).get(SubListViewModel::class.java)
     /* If the name and description are present, create new Flower and add it to the datasource */
     fun insertSub(subName: String?, subDescription: String?,  typeSub: String, datePay: String?, periodFree: String, costSub: String,
-                  costCurr: String, periodPay: String, periodTypeFree: String, periodTypePay: String,card: String, pushEnabled:Boolean, context: Context
+                  costCurr: String, periodPay: String, periodTypeFree: String, periodTypePay: String,card: String, pushEnabled:Boolean, dateAdd:String, context: Context
     ) {
         if (subName == null || subDescription == null || datePay == null) {
             return
@@ -44,21 +45,17 @@ class SubListViewModel(val dataSource: DataSource) : ViewModel() {
             periodTypeFree,
             periodTypePay,
             card,
-            pushEnabled
+            pushEnabled,
+            dateAdd
         )
 /*
 val  Shared: SharedPrefSource = SharedPrefSource(context)
 val si:Sub = Shared.getFromShared(newSub)
 */
-
-
         dataSource.addSub(newSub, context)
 
         dataSource.addSubInFirebase(newSub)
     }
-
-
-
 }
 
 

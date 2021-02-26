@@ -12,13 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AntiPodpiska">
+        <activity android:name=".addition.AddSubActivityFragments"></activity>
+        <activity android:name=".ui.auth.PhoneAuthActivity" />
         <activity android:name=".addition.EditSubActivity" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".subList.SubListActivity" />
         <activity android:name=".ui.auth.SignupActivity" />
         <activity android:name=".subDetails.SubDetailActivity" />
+        <activity android:name=".subDetails.SubDetailActivityBase" />
         <activity android:name=".addition.AddSubActivity" />
-        <activity android:name=".ui.auth.LoginActivity">
+        <activity android:name=".ui.auth.LoginActivity" />
+        <activity android:name=".ui.auth.VerifyPhoneActivity" />
+        <activity android:name=".ui.auth.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,12 +31,11 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".pushNotifications.FirebaseInstanceIDService">
+        <service android:name=".pushNotifications.FirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>            </intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
         </service>
-
     </application>
 
 </manifest>

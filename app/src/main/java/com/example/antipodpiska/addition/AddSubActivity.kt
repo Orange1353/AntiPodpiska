@@ -44,6 +44,7 @@ const val CURR_COST = "typeCost"
 const val TYPE_PERIOD = "typePeriod"
 const val CARD = "card"
 const val PUSH = "push"
+const val DATE_ADD = "dateAdd"
 
 class AddSubActivity : AppCompatActivity() {
 
@@ -83,7 +84,7 @@ class AddSubActivity : AppCompatActivity() {
         addPeriodTypePay = findViewById(R.id.spinner_period_pay)
         addCard = findViewById(R.id.card)
         pushEnabled = findViewById(R.id.switch_enabled)
-
+val buttonBack: Button = findViewById(R.id.button_back)
 
         checkUserCloud()
 
@@ -118,6 +119,10 @@ class AddSubActivity : AppCompatActivity() {
                 pushEnabled.text = "Включены  "
             else
                 pushEnabled.text = "Выключены"
+        }
+
+        buttonBack.setOnClickListener {
+            onBackPressed()
         }
 
     }
@@ -191,6 +196,11 @@ class AddSubActivity : AppCompatActivity() {
             val card = addCard.text.toString()
             val push = pushEnabled.isChecked()
 
+            val dateFormat = SimpleDateFormat("dd.MM.yyyy")
+            val cal: Calendar = GregorianCalendar()
+
+            val dateAdd = dateFormat.format(cal.getTime()).toString()
+
 
             resultIntent.putExtra(SUB_NAME, name)
             resultIntent.putExtra(SUB_DESCRIPTION, description)
@@ -204,6 +214,7 @@ class AddSubActivity : AppCompatActivity() {
             resultIntent.putExtra(TYPE_PERIOD, typePeriod)
             resultIntent.putExtra(CARD, card)
             resultIntent.putExtra(PUSH, push)
+            resultIntent.putExtra(DATE_ADD, dateAdd)
 
             setResult(Activity.RESULT_OK, resultIntent)
             finish()

@@ -9,24 +9,25 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
-import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.antipodpiska.R
 import com.example.antipodpiska.addition.AddSubActivity
+import com.example.antipodpiska.addition.AddSubActivityFragments
+import com.example.antipodpiska.addition.DATE_ADD
 import com.example.antipodpiska.data.Sub
-import com.example.antipodpiska.data.firebase.FirebaseSource
-import com.example.antipodpiska.pushNotifications.FirebaseInstanceIDService
+import com.example.antipodpiska.menu.MenuFragment
 import com.example.antipodpiska.subDetails.SubDetailActivity
+import com.example.antipodpiska.subDetails.SubDetailActivityBase
 import com.example.antipodpiska.ui.home.HomeActivity
-import com.google.firebase.iid.FirebaseInstanceId
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 const val SUB_ID = "sub id"
@@ -55,27 +56,42 @@ class SubListActivity : AppCompatActivity() {
     private val notificationId = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+    /*    val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+      bottomNav.setOnNavigationItemSelectedListener { item ->
+          var selectedFragment: Fragment = Fragment()
+          when (item.itemId){
+              R.id.item_menu -> {
+
+                  selectedFragment = MenuFragment()
+              }
+          }
+          getSupportFragmentManager().beginTransaction().replace(
+              R.id.fragment_container,
+              selectedFragment
+          ).commit();
+          true
+      }*/
 
     //   val t:FirebaseInstanceIDService =
         /* Instantiates headerAdapter and flowersAdapter. Both adapters are added to concatAdapter.
         which displays the contents sequentially */
-        val headerAdapter = HeaderAdapter()
+    //    val headerAdapter = HeaderAdapter()
         val subsAdapter = SubAdapter { sub -> adapterOnClick(sub) }
-        val concatAdapter = ConcatAdapter(headerAdapter, subsAdapter)
+  //      val concatAdapter = ConcatAdapter(headerAdapter, subsAdapter)
 
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
-        recyclerView.adapter = concatAdapter
+        recyclerView.adapter = subsAdapter
 
         subsListViewModel.subsLiveData.observe(this) {
             it?.let {
                 subsAdapter.submitList(it as MutableList<Sub>)
-                headerAdapter.updateSubCount(it.size)
+  //              headerAdapter.updateSubCount(it.size)
             }
 
         }
+
 
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener {
@@ -84,10 +100,10 @@ class SubListActivity : AppCompatActivity() {
 
 
         createNotCh()
-        val button: Button = findViewById(R.id.button)
+      /*  val button: Button = findViewById(R.id.button)
         button.setOnClickListener {
 sendNot()
-        }
+        }*/
 
 
 
@@ -137,9 +153,11 @@ sendNot()
 
     }
 
+
+
     /* Adds flower to flowerList when FAB is clicked. */
     private fun fabOnClick() {
-        val intent = Intent(this, AddSubActivity::class.java)
+        val intent = Intent(this, AddSubActivityFragments::class.java)
         startActivityForResult(intent, newSubActivityRequestCode)
     }
 
@@ -180,8 +198,9 @@ sendNot()
                 var card = data.getStringExtra(CARD)
                 if ( card == null)
                     card = ""
-              //  val t = data.getBooleanArrayExtra(PUSH)
                 var push = data.getBooleanExtra(PUSH, false)
+                val dateAdd = data.getStringExtra(DATE_ADD)
+
 
 //image?
                 subsListViewModel.insertSub(
@@ -197,6 +216,7 @@ sendNot()
                     peroidTypePay,
                     card,
                     push,
+                    dateAdd!!,
                     this
                 )
             }
@@ -209,4 +229,6 @@ sendNot()
         var t = Intent(this, HomeActivity::class.java)
         startActivity(t)
     }
+
+
 }

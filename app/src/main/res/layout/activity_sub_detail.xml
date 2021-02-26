@@ -30,7 +30,7 @@
         android:paddingBottom="24dp"
         android:text="@string/flower1_name"
         android:textAlignment="center"
-        android:textAppearance="?attr/textAppearanceHeadline3" />
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/flower_detail_image"
@@ -38,7 +38,7 @@
         android:layout_height="154dp"
         android:layout_gravity="center"
         android:contentDescription="ffff"
-        app:srcCompat="@drawable/img" />
+        />
 
     <TextView
         android:id="@+id/flower_detail_description"
