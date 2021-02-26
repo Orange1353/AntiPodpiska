@@ -208,7 +208,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView57" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button4"
+                android:id="@+id/button_continue"
                 android:layout_width="240dp"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
