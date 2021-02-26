@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+
+        android:id="@+id/item_subs"
+        android:enabled="true"
+        android:icon="@drawable/menu_subs"
+        android:title="Подписки"/>
+    <item
+        android:id="@+id/item_archive"
+        android:enabled="true"
+        android:icon="@drawable/menu_archive"
+        android:title="Архив"/>
+    <item
+        android:id="@+id/item_calendar"
+        android:enabled="true"
+        android:icon="@drawable/menu_calendar"
+        android:title="Календарь"/>
+    <item
+        android:id="@+id/item_menu"
+        android:enabled="true"
+        android:icon="@drawable/menu_menu"
+        android:title="Меню"/>
+</menu>

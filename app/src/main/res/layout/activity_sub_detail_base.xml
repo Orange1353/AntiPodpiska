@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/darkBack"
+
+    >
+
+    <LinearLayout
+        android:id="@+id/base_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkBack"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="77dp"
+            android:background="@color/dark_light">
+
+
+            <Button
+                android:id="@+id/remove_button"
+                android:layout_width="38.5dp"
+                android:layout_height="38.5dp"
+                android:background="@drawable/ic_garbage_121312"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/edit_button"
+                android:layout_width="38.5dp"
+                android:layout_height="38.5dp"
+                android:background="@drawable/ic_edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/flower_detail_image"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_marginStart="20dp"
+                android:textSize="40sp"
+                android:gravity="center"
+                android:background="@drawable/shape_initial_item"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/remove_button"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/flower_detail_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button_back"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="11dp"
+                android:background="@drawable/ic_cross"
+                android:text="Button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_unSub"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="25dp"
+        android:backgroundTint="#286BFA"
+        app:cornerRadius="8dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:text="Отписаться"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
