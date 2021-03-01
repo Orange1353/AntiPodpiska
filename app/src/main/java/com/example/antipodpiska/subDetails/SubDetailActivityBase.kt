@@ -25,7 +25,7 @@ class SubDetailActivityBase : AppCompatActivity() {
 
         val view2: View = inflater.inflate(R.layout.element_detail_cost_only, null)
         container.addView(view2)
-       view2.text_cost_details.text = "Оплачено уже "
+        view2.text_cost_details.text = "Оплачено уже "
 
         val view3: View = inflater.inflate(R.layout.element_detail_any_text, null)
         container.addView(view3)

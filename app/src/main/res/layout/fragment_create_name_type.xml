@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="36dp"
-                android:text="Ссылка на ресурс"
+                android:text="Ссылка на ресурс *"
                 android:textColor="@color/grey2"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
