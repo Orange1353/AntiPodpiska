@@ -199,17 +199,17 @@ class DataSource(resources: Resources, context: Context) {
 
             if (sub?.periodFree != "")
                 when (sub?.periodTypeFree) {
-                    "Days" -> datePay = datePay.plusDays(sub?.periodFree!!.toLong())
-                    "Weeks" -> datePay = datePay.plusWeeks(sub?.periodFree!!.toLong())
-                    "Mounths" -> datePay = datePay.plusMonths(sub?.periodFree!!.toLong())
+                    "Дней" -> datePay = datePay.plusDays(sub?.periodFree!!.toLong())
+                    "Недель" -> datePay = datePay.plusWeeks(sub?.periodFree!!.toLong())
+                    "Месяцев" -> datePay = datePay.plusMonths(sub?.periodFree!!.toLong())
                 }
 
             if (sub?.periodPay != "") {
                 while (datePay < dateNow)
                     when (sub?.periodTypePay) {
-                        "Days" -> datePay = datePay.plusDays(sub?.periodPay!!.toLong())
-                        "Weeks" -> datePay = datePay.plusWeeks(sub?.periodPay!!.toLong())
-                        "Mounths" -> datePay =
+                        "Дней" -> datePay = datePay.plusDays(sub?.periodPay!!.toLong())
+                        "Недель" -> datePay = datePay.plusWeeks(sub?.periodPay!!.toLong())
+                        "Месяцев" -> datePay =
                             datePay.plusMonths(sub?.periodPay!!.toLong())
                     }
             }
