@@ -11,12 +11,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import com.example.antipodpiska.R
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.User
 import com.example.antipodpiska.data.firebase.FirebaseSource
+import com.example.antipodpiska.menu.NavigationMenuFragment
 import com.example.antipodpiska.subDetails.SubDetailActivity
 import com.example.antipodpiska.subList.SUB_ID
+import com.example.antipodpiska.subList.SubListViewModel
 import com.example.antipodpiska.utils.startSubListActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth

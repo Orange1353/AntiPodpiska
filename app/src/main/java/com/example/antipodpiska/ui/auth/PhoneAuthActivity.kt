@@ -26,8 +26,8 @@ class PhoneAuthActivity : AppCompatActivity() {
         buttonContinue=findViewById(R.id.buttonContinue)
         spinner?.setAdapter(ArrayAdapter<String>(
                 this,
-                R.layout.support_simple_spinner_dropdown_item,
-                CountryDataDelete.countryNames
+                R.layout.spinner_dropdown_dark,
+                CountryDataDelete.countryAreaCodes
             )
         )
         editText = findViewById(R.id.editTextPhone)
@@ -39,14 +39,17 @@ class PhoneAuthActivity : AppCompatActivity() {
 
 
     fun onClickContinue(v: View?) {
-        val code: String = CountryDataDelete.countryAreaCodes.get(spinner!!.getSelectedItemPosition())
+        val code: String = spinner!!.selectedItem.toString()
         val number = editText?.getText().toString().trim { it <= ' ' }
         if (number.isEmpty() || number.length < 10) {
             editText?.setError("Valid number is required")
             editText?.requestFocus()
             return
         }
-        val phoneNumber = "+$code$number"
+
+
+
+        val phoneNumber = "$code$number"
         val intent = Intent(this@PhoneAuthActivity, VerifyPhoneActivity::class.java)
         intent.putExtra("phonenumber", phoneNumber)
         startActivity(intent)

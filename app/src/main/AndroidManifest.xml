@@ -7,9 +7,9 @@
     <application
         android:name=".FirebaseApplication"
         android:allowBackup="true"
-        android:icon="@drawable/logo_mail"
+        android:icon="@mipmap/ic_launcher"
         android:label="Отписка"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.AntiPodpiska">
         <activity android:name=".addition.AddSubActivityFragments"></activity>

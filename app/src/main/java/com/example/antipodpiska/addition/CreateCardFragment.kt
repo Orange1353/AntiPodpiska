@@ -11,6 +11,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.appcompat.widget.SwitchCompat
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import com.example.antipodpiska.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -45,6 +47,9 @@ class CreateCardFragment : Fragment() {
         var addCard: EditText = view.findViewById(R.id.add_card)
 
         val btnContinue: Button = view.findViewById(R.id.button_continue)
+        val btnReady:Button = view.findViewById(R.id.button_ready)
+        var lay :ConstraintLayout = view.findViewById(R.id.color)
+
 
         var pushEnabled : SwitchCompat= view.findViewById(R.id.switch_enabled)
 
@@ -59,9 +64,16 @@ class CreateCardFragment : Fragment() {
         val push = pushEnabled.isChecked()
 
         communicator = activity as Communicator
+
         btnContinue.setOnClickListener {
+            btnReady.isVisible = true
+            lay.isVisible = false
+        }
+
+        btnReady.setOnClickListener {
             communicator.cardFragmentToListSub(addCard.text.toString(), push)
         }
+
 
         return view
     }
