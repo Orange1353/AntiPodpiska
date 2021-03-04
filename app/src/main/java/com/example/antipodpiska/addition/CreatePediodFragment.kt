@@ -42,7 +42,6 @@ class CreatePediodFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_create_pediod, container, false)
 
         val context: Context? = getContext()
-
         val spinner_free_period: Spinner = view.findViewById(R.id.spinner_free_period_type)
         var spinner_period_pay: Spinner = view.findViewById(R.id.spinner_period_pay)
         val adapter_free_period: ArrayAdapter<*> = ArrayAdapter.createFromResource(

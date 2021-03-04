@@ -30,14 +30,14 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 class EditSubActivity : AppCompatActivity() {
-    private lateinit var addSubName: EditText
-    private lateinit var addSubDescription: EditText
+    private lateinit var addSubName: TextInputEditText
+    private lateinit var addSubDescription: TextInputEditText
     private lateinit var addTypeSub: Spinner
-    private lateinit var addDatePay: EditText
-    private lateinit var addPeriodFree: EditText
-    private lateinit var addCostSub: EditText
-    private lateinit var addPeriodPay: EditText
-    private lateinit var addCard: EditText
+    private lateinit var addDatePay: TextInputEditText
+    private lateinit var addPeriodFree: TextInputEditText
+    private lateinit var addCostSub: TextInputEditText
+    private lateinit var addPeriodPay: TextInputEditText
+    private lateinit var addCard: TextInputEditText
     private lateinit var addPeriodTypeFree: Spinner
     private lateinit var addCostCurr: Spinner
     private lateinit var addPeriodTypePay: Spinner
@@ -68,38 +68,8 @@ class EditSubActivity : AppCompatActivity() {
         addCard = findViewById(R.id.card)
         pushEnabled = findViewById(R.id.switch_enabled)
 
-        val saveSubButton: Button = findViewById(R.id.done_button)
+        val removeSubButton: Button = findViewById(R.id.done_button)
 
-
-        var spinner_typeSub: Spinner = findViewById(R.id.spinner_type_sub)
-        val adapter: ArrayAdapter<*> = ArrayAdapter.createFromResource(
-            this,
-            R.array.spinner_array_tupe_sub,
-            R.layout.spinner_dropdown_text)
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_text)
-        spinner_typeSub.setAdapter(adapter)
-
-
-
-        val spinner_free_period: Spinner = findViewById(R.id.spinner_free_period_type)
-        var spinner_period_pay: Spinner = findViewById(R.id.spinner_period_pay)
-        val adapter_free_period: ArrayAdapter<*> = ArrayAdapter.createFromResource(
-            this,
-            R.array.spinner_array_period,
-            R.layout.spinner_dropdown_text)
-        adapter_free_period.setDropDownViewResource(R.layout.spinner_dropdown_text);
-
-        spinner_free_period.setAdapter(adapter_free_period);
-        spinner_period_pay.setAdapter(adapter_free_period);
-
-        val spinner_cost: Spinner = findViewById(R.id.spinner_curr_cost)
-        val adapter_cost: ArrayAdapter<*> = ArrayAdapter.createFromResource(
-            this,
-            R.array.spinner_array_curr_cost,
-            R.layout.spinner_dropdown_text)
-
-        adapter_cost.setDropDownViewResource(R.layout.spinner_dropdown_text);
-        spinner_cost.setAdapter(adapter_cost);
 
 
 
@@ -141,11 +111,11 @@ class EditSubActivity : AppCompatActivity() {
 
 
 
-            saveSubButton.setOnClickListener {
+            removeSubButton.setOnClickListener {
                 if (currentSub != null) {
 
                     var newSub = clone(currentSub)
-                    newSub = fillNewSub(currentSub)
+                    newSub = fillCurrentSub(currentSub)
 
                     subDetailViewModel.editSub(currentSub, newSub, this)
 
@@ -157,8 +127,8 @@ class EditSubActivity : AppCompatActivity() {
 
             pushEnabled.setOnCheckedChangeListener { buttonView, isChecked ->
 
-    //            if (currentSub != null)
-   //                 subDetailViewModel.pushAboutSub(currentSub)
+                if (currentSub != null)
+                    subDetailViewModel.pushAboutSub(currentSub)
 
                 if( pushEnabled.text == "Выключены")
                     pushEnabled.text = "Включены"
@@ -178,7 +148,7 @@ class EditSubActivity : AppCompatActivity() {
       startSubListActivity()
     }
 
-    fun fillNewSub(currentSub: Sub): Sub {
+    fun fillCurrentSub(currentSub: Sub): Sub {
         currentSub.name= addSubName.text.toString()
         currentSub.description= addSubDescription.text.toString()
         currentSub.typeSub= addTypeSub.selectedItem.toString()
@@ -235,9 +205,6 @@ class EditSubActivity : AppCompatActivity() {
         //
         addCard.setText(currentSub?.card)
         pushEnabled.isChecked = currentSub?.pushEnabled!!
-
-        if (pushEnabled.isChecked)
-            pushEnabled.text = "Включены"
 
 
 

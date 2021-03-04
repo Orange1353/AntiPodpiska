@@ -48,8 +48,6 @@
         <Spinner
             android:id="@+id/spinnerCountries"
             android:layout_width="120dp"
-            android:gravity="end"
-            android:popupBackground="@color/darkBack"
             android:layout_height="wrap_content" />
 
         <EditText

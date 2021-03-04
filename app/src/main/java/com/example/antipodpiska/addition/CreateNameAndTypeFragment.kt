@@ -35,8 +35,8 @@ class CreateNameAndTypeFragment : Fragment() {
             context!!,
             R.array.spinner_array_tupe_sub,
             R.layout.spinner_dropdown_text)
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_text)
-        spinner_typeSub.setAdapter(adapter)
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_text);
+        spinner_typeSub.setAdapter(adapter);
 
         var addSubName: EditText = view.findViewById(R.id.add_flower_name)
         var addSubDescription: EditText= view.findViewById(R.id.add_flower_description)

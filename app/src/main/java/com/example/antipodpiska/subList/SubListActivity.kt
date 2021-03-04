@@ -14,18 +14,18 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import com.example.antipodpiska.R
+import com.example.antipodpiska.addition.AddSubActivity
 import com.example.antipodpiska.addition.AddSubActivityFragments
-import com.example.antipodpiska.addition.CreateNameAndTypeFragment
 import com.example.antipodpiska.addition.DATE_ADD
 import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.menu.MenuFragment
-import com.example.antipodpiska.menu.NavigationMenuFragment
 import com.example.antipodpiska.subDetails.SubDetailActivity
+import com.example.antipodpiska.subDetails.SubDetailActivityBase
 import com.example.antipodpiska.ui.home.HomeActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -49,6 +49,7 @@ class SubListActivity : AppCompatActivity() {
     private val subsListViewModel by viewModels<SubListViewModel> {
         SubListViewModelFactory(this)
     }
+    private val EditActivity = com.example.antipodpiska.addition.EditActivity()
 
 
     private val CHANNEL_ID = "channel"
@@ -58,43 +59,21 @@ class SubListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        this.supportFragmentManager.beginTransaction().replace(R.id.lay_container, MenuFragment())
-            .addToBackStack(
-                null
-            )
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-            .commit()
+    /*    val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+      bottomNav.setOnNavigationItemSelectedListener { item ->
+          var selectedFragment: Fragment = Fragment()
+          when (item.itemId){
+              R.id.item_menu -> {
 
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNavigationView.setOnNavigationItemSelectedListener {
-            when (it.itemId){
-                R.id.item_menu -> {
-                    bottomNavigationView.isSelected = true
-
-                    val fragment = NavigationMenuFragment()
-                    this.supportFragmentManager.beginTransaction().replace(R.id.lay_container, fragment)
-                        .addToBackStack(
-                            null
-                        )
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                        .commit()
-                    true
-                }
-
-
-                R.id.item_subs -> {
-                    bottomNavigationView.isSelected = true
-
-                    val fragment = NavigationMenuFragment()
-                    this.supportFragmentManager.popBackStack()
-
-                    true
-                }
-
-                else->false
-            }
-        }
-
+                  selectedFragment = MenuFragment()
+              }
+          }
+          getSupportFragmentManager().beginTransaction().replace(
+              R.id.fragment_container,
+              selectedFragment
+          ).commit();
+          true
+      }*/
 
     //   val t:FirebaseInstanceIDService =
         /* Instantiates headerAdapter and flowersAdapter. Both adapters are added to concatAdapter.
@@ -103,7 +82,8 @@ class SubListActivity : AppCompatActivity() {
         val subsAdapter = SubAdapter { sub -> adapterOnClick(sub) }
   //      val concatAdapter = ConcatAdapter(headerAdapter, subsAdapter)
 
-
+        val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
+        recyclerView.adapter = subsAdapter
 
         subsListViewModel.subsLiveData.observe(this) {
             it?.let {
@@ -114,16 +94,25 @@ class SubListActivity : AppCompatActivity() {
         }
 
 
+        val fab: View = findViewById(R.id.fab)
+        fab.setOnClickListener {
+            fabOnClick()
+        }
 
 
-        createNotChannel()
+        createNotCh()
+      /*  val button: Button = findViewById(R.id.button)
+        button.setOnClickListener {
+sendNot()
+        }*/
+
+
+
 
     }
 
 
-
-
-    private fun createNotChannel(){
+    private fun createNotCh(){
         if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
             val name = "Not title"
             val descript = "not decs"
@@ -136,7 +125,6 @@ class SubListActivity : AppCompatActivity() {
 
         }
     }
-
     private fun sendNot(){
 
         val intent = Intent(this, SubListActivity::class.java).apply {
@@ -154,6 +142,7 @@ class SubListActivity : AppCompatActivity() {
             }
     }
 
+
     /* Opens FlowerDetailActivity when RecyclerView item is clicked. */
     private fun adapterOnClick(sub: Sub) {
         val intent = Intent(this, SubDetailActivity()::class.java)
@@ -168,6 +157,10 @@ class SubListActivity : AppCompatActivity() {
 
 
     /* Adds flower to flowerList when FAB is clicked. */
+    private fun fabOnClick() {
+        val intent = Intent(this, AddSubActivityFragments::class.java)
+        startActivityForResult(intent, newSubActivityRequestCode)
+    }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
@@ -232,6 +225,11 @@ class SubListActivity : AppCompatActivity() {
     }
 
 
+    fun logout(view: View)
+    {
+        var t = Intent(this, HomeActivity::class.java)
+        startActivity(t)
+    }
+
+
 }
-
-

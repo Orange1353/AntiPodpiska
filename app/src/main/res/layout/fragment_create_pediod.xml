@@ -156,7 +156,6 @@
                 android:entries="@array/spinner_array_period"
                 android:popupBackground="@color/darkBack"
                 android:spinnerMode="dropdown"
-
                 android:textColor="@color/white"
                 app:layout_constraintStart_toEndOf="@+id/add_cost"
                 app:layout_constraintTop_toBottomOf="@+id/textView56" />

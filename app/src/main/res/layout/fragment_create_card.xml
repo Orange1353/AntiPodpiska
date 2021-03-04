@@ -26,21 +26,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button">
 
-        <Button
-            style="?android:attr/borderlessButtonStyle"
-            android:id="@+id/button_ready"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:drawableTop="@drawable/ic_success_added"
-            android:paddingTop="150dp"
-            android:singleLine="false"
-            android:textAllCaps="false"
-            android:text="Подписка&#10;добавлена"
-            android:textSize="25sp"
-            android:visibility="invisible">
-
-        </Button>
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/color"
             android:layout_width="match_parent"
