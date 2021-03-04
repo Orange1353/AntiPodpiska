@@ -144,10 +144,6 @@ class EditSubActivity : AppCompatActivity() {
 
     }
 
-    override fun onBackPressed() {
-      startSubListActivity()
-    }
-
     fun fillCurrentSub(currentSub: Sub): Sub {
         currentSub.name= addSubName.text.toString()
         currentSub.description= addSubDescription.text.toString()
@@ -182,9 +178,9 @@ class EditSubActivity : AppCompatActivity() {
         addPeriodPay.setText(currentSub?.periodPay)
 
         when(currentSub?.periodTypeFree){
-            "Дней"->  addPeriodTypeFree.setSelection(0)
-            "Недель"-> addPeriodTypeFree.setSelection(1)
-            "Месяцев"->  addPeriodTypeFree.setSelection(2)
+            "Days"->  addPeriodTypeFree.setSelection(0)
+            "Weeks"-> addPeriodTypeFree.setSelection(1)
+            "Mounths"->  addPeriodTypeFree.setSelection(2)
         }
         when(currentSub?.costCurr){
             "RUB" -> addCostCurr.setSelection(0)
@@ -198,9 +194,9 @@ class EditSubActivity : AppCompatActivity() {
         }
         //  addCostCurr
         when(currentSub?.periodTypePay){
-            "Дней"->  addPeriodTypePay.setSelection(0)
-            "Недель"-> addPeriodTypePay.setSelection(1)
-            "Месяцев"->  addPeriodTypePay.setSelection(2)
+            "Days"->  addPeriodTypePay.setSelection(0)
+            "Weeks"-> addPeriodTypePay.setSelection(1)
+            "Mounths"->  addPeriodTypePay.setSelection(2)
         }
         //
         addCard.setText(currentSub?.card)

@@ -99,7 +99,7 @@ class SubDetailActivity : AppCompatActivity() {
         currentSubId?.let {
             val currentSub = subDetailViewModel.getFlowerForId(it)
             subName.text = currentSub?.name
-
+            if (currentSub?.image == null) {
 
                 val radius: Float = 20F
                 val shapeAppearanceModel = ShapeAppearanceModel()
@@ -115,9 +115,13 @@ class SubDetailActivity : AppCompatActivity() {
                 var firstLetter: String = currentSub!!.name.substring(0, 1)
                 firstLetter=firstLetter.toUpperCase()
                 subImage.setText(firstLetter)
-           // subImage.setBackgroundColor(Color.parseColor("#" + currentSub.image))
 
-
+            } else {
+                subImage.setBackgroundColor(Color.parseColor("#" + currentSub.image))
+                var firstLetter: String = currentSub!!.name.substring(0, 1)
+                firstLetter=firstLetter.toUpperCase()
+                subImage.setText(firstLetter)
+            }
 
 
 
@@ -135,9 +139,9 @@ class SubDetailActivity : AppCompatActivity() {
 
                 if (currentSub?.periodFree != "")
                     when (currentSub?.periodTypeFree) {
-                        "Дней" -> dateEnd = dateEnd.plusDays(currentSub?.periodFree.toLong())
-                        "Недель" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodFree.toLong())
-                        "Месяцев" -> dateEnd = dateEnd.plusMonths(currentSub?.periodFree.toLong())
+                        "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodFree.toLong())
+                        "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodFree.toLong())
+                        "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodFree.toLong())
                     }
 
 
@@ -145,9 +149,9 @@ class SubDetailActivity : AppCompatActivity() {
                 while (dateEnd < dateNow) {
                     summCost += costSub
                     when (currentSub?.periodTypePay) {
-                        "Дней" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay.toLong())
-                        "Недель" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay.toLong())
-                        "Месяцев" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay.toLong())
+                        "Days" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay.toLong())
+                        "Weeks" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay.toLong())
+                        "Mounths" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay.toLong())
                     }
                 }
 

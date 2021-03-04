@@ -36,7 +36,14 @@ class PhoneAuthActivity : AppCompatActivity() {
 
     }
 
-
+    override fun onStart() {
+        super.onStart()
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+    }
 
     fun onClickContinue(v: View?) {
         val code: String = CountryDataDelete.countryAreaCodes.get(spinner!!.getSelectedItemPosition())

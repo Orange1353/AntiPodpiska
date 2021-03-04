@@ -82,9 +82,9 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
 
              if (currentSub?.periodFree != "")
             when (currentSub?.periodTypeFree) {
-                "Дней" -> datePay = datePay.plusDays(currentSub?.periodFree!!.toLong())
-                "Недель" -> datePay = datePay.plusWeeks(currentSub?.periodFree!!.toLong())
-                "Месяцев" -> datePay = datePay.plusMonths(currentSub?.periodFree!!.toLong())
+                "Days" -> datePay = datePay.plusDays(currentSub?.periodFree!!.toLong())
+                "Weeks" -> datePay = datePay.plusWeeks(currentSub?.periodFree!!.toLong())
+                "Mounths" -> datePay = datePay.plusMonths(currentSub?.periodFree!!.toLong())
             }
 
 
@@ -92,9 +92,9 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
                 if (currentSub?.periodPay != "") {
                     while (datePay < dateNow)
                         when (currentSub?.periodTypePay) {
-                            "Дней" -> datePay = datePay.plusDays(currentSub?.periodPay!!.toLong())
-                            "Недель" -> datePay = datePay.plusWeeks(currentSub?.periodPay!!.toLong())
-                            "Месяцев" -> datePay = datePay.plusMonths(currentSub?.periodPay!!.toLong())
+                            "Days" -> datePay = datePay.plusDays(currentSub?.periodPay!!.toLong())
+                            "Weeks" -> datePay = datePay.plusWeeks(currentSub?.periodPay!!.toLong())
+                            "Mounths" -> datePay = datePay.plusMonths(currentSub?.periodPay!!.toLong())
                         }
                 }
                 addDatePay.text =datePay.format(formatter).toString()

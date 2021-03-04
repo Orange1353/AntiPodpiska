@@ -7,7 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
 import com.example.antipodpiska.R
 import java.text.SimpleDateFormat
 import java.util.*
@@ -95,11 +98,7 @@ class CreatePediodFragment : Fragment() {
         val btnContinue: Button = view.findViewById(R.id.button_continue)
         communicator = activity as Communicator
         btnContinue.setOnClickListener {
-
-            if(/*costSub.text.toString() != "" &&*/ addDatePay.text.toString()!= "")
-            communicator.periodFragmentToCardFragment(freePeriod.text.toString(), spinner_free_period.selectedItem.toString(), costSub.text.toString(), spinner_cost.selectedItem.toString(), periodPay.text.toString(), spinner_period_pay.selectedItem.toString(), addDatePay.text.toString())
-            else
-                Toast.makeText(context, "Заполните обязательные поля!",  Toast.LENGTH_SHORT).show()
+            communicator.periodFragmentToCardFragment(freePeriod.text.toString(), spinner_free_period.selectedItem.toString(), costSub.text.toString(), spinner_cost.selectedItem.toString(), periodPay.text.toString(), spinner_period_pay.selectedItem.toString(), periodPay.text.toString())
         }
 
 
