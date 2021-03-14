@@ -10,6 +10,11 @@
         <item name="colorSecondaryVariant">@color/darkBack</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
+
+        <item name="textInputStyle">@style/TextAppearance.App.TextInputLayout</item>
+        <item name="colorControlActivated">@color/grey2</item>
+        <item name="colorControlHighlight">@color/grey2</item>
+        <item name="colorControlNormal">@color/grey2</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnSecondary</item>
         <!-- Customize your theme here. -->
 
@@ -25,5 +30,22 @@
         <item name="android:paddingBottom">4dp</item>
         <item name="android:popupBackground">#FFFFFF</item>
     </style>
+    <style name="TextLabel" parent="TextAppearance.AppCompat">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorAccent">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+    </style>
 
+
+
+
+    <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/grey2</item>
+        <item name="android:textSize">14sp</item>
+
+    </style>
 </resources>

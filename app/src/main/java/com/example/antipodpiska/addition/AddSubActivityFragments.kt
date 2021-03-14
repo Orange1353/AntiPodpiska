@@ -106,6 +106,7 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
                             user?.token = FirebaseInstanceId.getInstance().token.toString()
                             val firebase = FirebaseSource()
                             if (user != null) {
+                                //возможно токен сменился, это чтобы перезаписать с новым
                                 firebase.addUserInFirebase(user)
                             }
                         }
@@ -113,6 +114,7 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
                     } else {
                         Log.d("!!!!!", "2 DocumentSnapshot data: ${document.data}")
                         var listUser = Shared.getTempUser(this)
+
                         Log.d("!!!!!", "listUser: $listUser")
                         val firebase = FirebaseSource()
                         firebase.addUserInFirebaseWithCheck(listUser[0], listUser[1], listUser[2])

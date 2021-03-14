@@ -9,7 +9,6 @@
     android:background="@color/darkBack"
     tools:context=".ui.auth.PhoneAuthActivity">
 
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -69,7 +68,9 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonContinue"
         android:layout_width="240dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:layout_below="@id/linearLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"

@@ -6,11 +6,15 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.example.antipodpiska.FirebaseApplication
 import com.example.antipodpiska.R
+import com.example.antipodpiska.databinding.ActivitySignupBinding
+import com.example.antipodpiska.databinding.ActivitySplashScreenBinding
 import com.example.antipodpiska.subDetails.SubDetailActivity
 import com.example.antipodpiska.subList.SUB_ID
+import com.example.antipodpiska.utils.startSplashScreenActivity
 import com.example.antipodpiska.utils.startSubListActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
@@ -28,18 +32,20 @@ class SplashScreenActivity : AppCompatActivity() , AuthListener, KodeinAware {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        viewModel = ViewModelProviders.of(this, factory).get(AuthViewModel::class.java)
+    //    viewModel = ViewModelProviders.of(this, factory).get(AuthViewModel::class.java)
 
+
+        val binding: ActivitySplashScreenBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash_screen)
+        viewModel = ViewModelProviders.of(this, factory).get(AuthViewModel::class.java)
+        binding.viewmodel = viewModel
         viewModel.authListener = this
 
-
-
-        val buttonIn : Button = findViewById(R.id.button_in)
+    /*    val buttonIn : Button = findViewById(R.id.button_in)
 
         buttonIn.setOnClickListener {
-            val intent = Intent(this, PhoneAuthActivity()::class.java)
+            val intent = Intent(this, LoginActivity()::class.java)
             startActivity(intent)
-        }
+        }*/
     }
     override fun onStarted() {
 
@@ -62,6 +68,9 @@ class SplashScreenActivity : AppCompatActivity() , AuthListener, KodeinAware {
             startSubListActivity()
         }
     }
-
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startSplashScreenActivity()
+    }
 
 }

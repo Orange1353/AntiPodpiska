@@ -6,6 +6,7 @@ import com.example.antipodpiska.subList.SubListActivity
 import com.example.antipodpiska.ui.auth.LoginActivity
 import com.example.antipodpiska.ui.auth.PhoneAuthActivity
 import com.example.antipodpiska.ui.auth.SignupActivity
+import com.example.antipodpiska.ui.auth.SplashScreenActivity
 import com.example.antipodpiska.ui.home.HomeActivity
 
 fun Context.startHomeActivity() =
@@ -34,3 +35,8 @@ fun Context.startPhoneLoginActivity() =
         it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(it)
     }
+fun Context.startSplashScreenActivity() =
+        Intent(this, SplashScreenActivity::class.java).also {
+            it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(it)
+        }

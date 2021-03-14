@@ -164,6 +164,28 @@ class FirebaseSource {
 //ДОБАВИТЬ
     }
 
+    fun getUserFromFirebase(context: Context){
+
+        val shared: SharedPrefSource = SharedPrefSource(context)
+
+        val docRef = firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).get()
+            .addOnSuccessListener { document ->
+                if (document!= null) {
+               //     Log.e("shared.saveToShared", "DocumentSnapshot data: ${document.data}" )
+                   if(document.data != null)
+                    shared.saveUserToShared(document.toObject(User::class.java)!!, context)
+
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.e("TAG", "Error getting user from bd: ", exception)
+            }
+        Log.e("docRef", docRef.toString() )
+
+
+    }
+
+
     fun getFromFirebase(context: Context): ArrayList<Sub> {
 
         var subListFromPref: ArrayList<Sub> = ArrayList()

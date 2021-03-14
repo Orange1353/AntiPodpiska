@@ -18,6 +18,7 @@ import com.example.antipodpiska.subList.SubListActivity
 import com.example.antipodpiska.ui.home.HomeActivity
 import com.example.antipodpiska.utils.startHomeActivity
 import com.example.antipodpiska.utils.startSignupActivity
+import com.example.antipodpiska.utils.startSplashScreenActivity
 import com.example.antipodpiska.utils.startSubListActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -34,14 +35,14 @@ class SignupActivity : AppCompatActivity(), AuthListener, KodeinAware {
     private lateinit var tempEmail: EditText
     private lateinit var tempPassword: EditText
     private lateinit var tempNickname: EditText
-
+    private lateinit var tempPasswordConfirm: EditText
 
     private lateinit var viewModel: AuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
-       val buttonReg: Button = findViewById(R.id.button3)
+
        tempEmail = findViewById(R.id.text_email)
        tempPassword = findViewById(R.id.edit_text_password)
        tempNickname = findViewById(R.id.edit_text_nickname)
@@ -56,13 +57,25 @@ class SignupActivity : AppCompatActivity(), AuthListener, KodeinAware {
 
 fun onClick(view: View){
 
-    tempEmail = findViewById(R.id.text_email)
     tempPassword = findViewById(R.id.edit_text_password)
-    tempNickname = findViewById(R.id.edit_text_nickname)
-    val shared: SharedPrefSource = SharedPrefSource(this)
+    tempPasswordConfirm = findViewById(R.id.edit_text_password2)
 
-    shared.addTempUser(tempEmail.text.toString(), tempPassword.text.toString(), tempNickname.text.toString(), this)
+    if(tempPassword == tempPasswordConfirm) {
 
+        tempEmail = findViewById(R.id.text_email)
+        tempNickname = findViewById(R.id.edit_text_nickname)
+        val shared: SharedPrefSource = SharedPrefSource(this)
+
+        shared.addTempUser(
+            tempEmail.text.toString(),
+            tempPassword.text.toString(),
+            tempNickname.text.toString(),
+            this
+        )
+    }
+    else{
+        Toast.makeText(this, "Пароли не совпадают", Toast.LENGTH_SHORT).show()
+    }
 }
 
     override fun onStarted() {
@@ -129,6 +142,11 @@ fun onClick(view: View){
                 checkAvailabilityId += 1
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startSplashScreenActivity()
     }
 }
 

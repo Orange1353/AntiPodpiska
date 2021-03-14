@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
+import com.example.antipodpiska.data.User
 import com.example.recyclersample.data.DataSource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -55,6 +56,10 @@ val si:Sub = Shared.getFromShared(newSub)
         dataSource.addSub(newSub, context)
 
         dataSource.addSubInFirebase(newSub)
+    }
+
+    fun editUser(userNew: User, context: Context){
+       dataSource.editUserProfile(userNew, context)
     }
 }
 

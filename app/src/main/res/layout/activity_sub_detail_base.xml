@@ -84,7 +84,9 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_unSub"
         android:layout_width="240dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:layout_marginBottom="25dp"
         android:backgroundTint="#286BFA"
         app:cornerRadius="8dp"

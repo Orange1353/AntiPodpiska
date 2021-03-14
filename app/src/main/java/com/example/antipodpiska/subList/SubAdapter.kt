@@ -9,6 +9,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.core.view.marginBottom
@@ -35,7 +36,7 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
         private val subImageView: TextView = itemView.findViewById(R.id.flower_image)
         private val cardNum: TextView = itemView.findViewById(R.id.card_num)
         private val addDatePay: TextView =  itemView.findViewById(R.id.day_pay_calulat)
-        private val costNear: TextView =  itemView.findViewById(R.id.cost_nearest)
+        private val status: EditText = itemView.findViewById(R.id.text_status)
 
 
        /* private val addSubName: TextView = itemView.findViewById(R.id.add_flower_name)
@@ -80,12 +81,18 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
             var dateNow = LocalDate.now()
 
 
-             if (currentSub?.periodFree != "")
-            when (currentSub?.periodTypeFree) {
-                "Дней" -> datePay = datePay.plusDays(currentSub?.periodFree!!.toLong())
-                "Недель" -> datePay = datePay.plusWeeks(currentSub?.periodFree!!.toLong())
-                "Месяцев" -> datePay = datePay.plusMonths(currentSub?.periodFree!!.toLong())
-            }
+
+             if (currentSub?.periodFree != "") {
+                 when (currentSub?.periodTypeFree) {
+                     "Дней" -> datePay = datePay.plusDays(currentSub?.periodFree!!.toLong())
+                     "Недель" -> datePay = datePay.plusWeeks(currentSub?.periodFree!!.toLong())
+                     "Месяцев" -> datePay = datePay.plusMonths(currentSub?.periodFree!!.toLong())
+                 }
+                 if (datePay > dateNow)
+                     status.setText("Бесплатно")
+                 status.setBackgroundColor(Color.parseColor("#9934BD"))
+
+             }
 
 
                 //   while (datePay < dateNow)
@@ -97,12 +104,22 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
                             "Месяцев" -> datePay = datePay.plusMonths(currentSub?.periodPay!!.toLong())
                         }
                 }
-                addDatePay.text =datePay.format(formatter).toString()
+                if (sub.costSub != null) {
+
+                    if (datePay != null){
+                        var tmp: String=""
+                        when(sub.periodTypePay){
+                        "Дней"-> tmp = "дн."
+                        "Недель" -> tmp = "нед."
+                        "Месяцев" -> tmp = "мес."
+                        }
+                        addDatePay.text = "После " + datePay.format(formatter).toString() + ": " + sub.costSub + " " + sub.costCurr + "/ " + sub.periodPay + " " + tmp
+                }
+
+                }
         }
 
 
-
-            costNear.text = sub.costSub + " " + sub.costCurr
             /*addSubName.text =
             addSubDescription.text
             addSubEndDate.text

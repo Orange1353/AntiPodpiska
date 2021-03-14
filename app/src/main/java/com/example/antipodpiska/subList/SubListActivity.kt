@@ -14,19 +14,22 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.fragment.app.FragmentManager
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.observe
-import androidx.recyclerview.widget.RecyclerView
 import com.example.antipodpiska.R
 import com.example.antipodpiska.addition.AddSubActivityFragments
-import com.example.antipodpiska.addition.CreateNameAndTypeFragment
+import com.example.antipodpiska.menu.CommunicatorMenu
 import com.example.antipodpiska.addition.DATE_ADD
+import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
+import com.example.antipodpiska.data.User
+import com.example.antipodpiska.data.firebase.FirebaseSource
+import com.example.antipodpiska.menu.ArchiveFragment
 import com.example.antipodpiska.menu.MenuFragment
 import com.example.antipodpiska.menu.NavigationMenuFragment
 import com.example.antipodpiska.subDetails.SubDetailActivity
-import com.example.antipodpiska.ui.home.HomeActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -44,7 +47,7 @@ const val CURR_COST = "typeCost"
 const val TYPE_PERIOD = "typePeriod"
 const val PUSH = "push"
 
-class SubListActivity : AppCompatActivity() {
+class SubListActivity : AppCompatActivity(), CommunicatorMenu {
     private val newSubActivityRequestCode = 1
     private val subsListViewModel by viewModels<SubListViewModel> {
         SubListViewModelFactory(this)
@@ -58,6 +61,13 @@ class SubListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val fab: View = findViewById(R.id.fab)
+        fab.setOnClickListener {
+            fabOnClick()
+        }
+
+        setUserDataToSharedForFutureProfile()
+
         this.supportFragmentManager.beginTransaction().replace(R.id.lay_container, MenuFragment())
             .addToBackStack(
                 null
@@ -69,10 +79,66 @@ class SubListActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId){
                 R.id.item_menu -> {
+                    fab.isVisible = false
                     bottomNavigationView.isSelected = true
 
                     val fragment = NavigationMenuFragment()
-                    this.supportFragmentManager.beginTransaction().replace(R.id.lay_container, fragment)
+                    this.supportFragmentManager.beginTransaction().replace(
+                        R.id.lay_container,
+                        fragment
+                    )
+                        .addToBackStack(
+                            null
+                        )
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .commit()
+                    true
+                }
+
+                R.id.item_subs -> {
+                    fab.isVisible = true
+                    bottomNavigationView.isSelected = true
+
+                    val fragment = MenuFragment()
+                    this.supportFragmentManager.popBackStack()
+
+                    this.supportFragmentManager.beginTransaction().replace(
+                        R.id.lay_container,
+                        fragment
+                    )
+                        .addToBackStack(
+                            null
+                        )
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .commit()
+
+
+                    true
+                }
+
+                R.id.item_archive -> {
+                    fab.isVisible = false
+                    bottomNavigationView.isSelected = true
+                    val fragment = ArchiveFragment()
+                    this.supportFragmentManager.beginTransaction().replace(
+                        R.id.lay_container,
+                        fragment
+                    )
+                        .addToBackStack(
+                            null
+                        )
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .commit()
+                    true
+                }
+                R.id.item_calendar -> {
+                    fab.isVisible = false
+                    bottomNavigationView.isSelected = true
+                    val fragment = ArchiveFragment()
+                    this.supportFragmentManager.beginTransaction().replace(
+                        R.id.lay_container,
+                        fragment
+                    )
                         .addToBackStack(
                             null
                         )
@@ -82,27 +148,18 @@ class SubListActivity : AppCompatActivity() {
                 }
 
 
-                R.id.item_subs -> {
-                    bottomNavigationView.isSelected = true
-
-                    val fragment = NavigationMenuFragment()
-                    this.supportFragmentManager.popBackStack()
-
-                    true
-                }
-
                 else->false
             }
         }
 
 
-    //   val t:FirebaseInstanceIDService =
-        /* Instantiates headerAdapter and flowersAdapter. Both adapters are added to concatAdapter.
-        which displays the contents sequentially */
+
     //    val headerAdapter = HeaderAdapter()
         val subsAdapter = SubAdapter { sub -> adapterOnClick(sub) }
   //      val concatAdapter = ConcatAdapter(headerAdapter, subsAdapter)
 
+  //      val recyclerView: RecyclerView = findViewById(R.id.recycler_view_menu)
+    //    recyclerView.adapter = subsAdapter
 
 
         subsListViewModel.subsLiveData.observe(this) {
@@ -114,13 +171,15 @@ class SubListActivity : AppCompatActivity() {
         }
 
 
-
-
         createNotChannel()
 
     }
 
 
+    private fun fabOnClick() {
+        val intent = Intent(this, AddSubActivityFragments::class.java)
+        startActivityForResult(intent, newSubActivityRequestCode)
+    }
 
 
     private fun createNotChannel(){
@@ -135,6 +194,10 @@ class SubListActivity : AppCompatActivity() {
             notificationManager.createNotificationChannel(channel)
 
         }
+    }
+
+    override fun editProfile(userNew: User){
+        subsListViewModel.editUser(userNew, this)
     }
 
     private fun sendNot(){
@@ -162,13 +225,30 @@ class SubListActivity : AppCompatActivity() {
         }
 
     override fun onBackPressed() {
-
+        this.supportFragmentManager.popBackStack()
     }
 
 
+   override fun replaceFragment(fragment: Fragment){
+        val fragmentManager = supportFragmentManager
+        fragmentManager.beginTransaction().replace(R.id.lay_container, fragment)
+            .addToBackStack(
+                null
+            )
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            .commit()
+    }
 
-    /* Adds flower to flowerList when FAB is clicked. */
-
+    //if login on new device
+    fun setUserDataToSharedForFutureProfile(){
+        var Shared: SharedPrefSource = SharedPrefSource(this)
+        var listUser = Shared.getTempUser(this)
+        if(listUser[0] == "")
+        {
+            var fireUser: FirebaseSource = FirebaseSource()
+            fireUser.getUserFromFirebase(this)
+        }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
         super.onActivityResult(requestCode, resultCode, intentData)

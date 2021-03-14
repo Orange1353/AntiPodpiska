@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.example.antipodpiska.FirebaseApplication
 import com.example.antipodpiska.R
+import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.databinding.ActivityLoginBinding
 import com.example.antipodpiska.utils.startSubListActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -37,6 +38,8 @@ class LoginActivity : AppCompatActivity(), AuthListener, KodeinAware {
         binding.viewmodel = viewModel
 
         viewModel.authListener = this
+
+        viewModel.deleteSharedAfterSignIn(this)
 
     }
 

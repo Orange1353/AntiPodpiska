@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.repositories.UserRepository
 import com.example.antipodpiska.data.subList
 import com.example.antipodpiska.utils.startSignupActivity
@@ -95,6 +96,11 @@ class AuthViewModel(
         disposables.add(disposable)
     }
 
+    fun deleteSharedAfterSignIn(context: Context){
+
+            val shared: SharedPrefSource = SharedPrefSource(context)
+            shared.deleteSharedUser(context)
+    }
 
     fun goToSignup(view: View) {
 

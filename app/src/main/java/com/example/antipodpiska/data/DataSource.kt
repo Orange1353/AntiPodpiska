@@ -25,6 +25,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.antipodpiska.R
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
+import com.example.antipodpiska.data.User
 import com.example.antipodpiska.data.firebase.FirebaseSource
 import com.example.antipodpiska.data.subList
 import com.example.antipodpiska.subDetails.SubDetailActivity
@@ -32,6 +33,7 @@ import com.example.antipodpiska.ui.auth.SignupActivity
 import com.example.antipodpiska.utils.startSignupActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.iid.FirebaseInstanceId
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -104,8 +106,33 @@ class DataSource(resources: Resources, context: Context) {
 
     fun getSubList(): LiveData<List<Sub>> {
         deleteLiveData()
+     /*   var listSubLive = ArrayList<Sub>()
+        for(i in 1..subLiveData.value!!.size)
+        {
+            if ()
+        }
+*/
+
         return subLiveData
     }
+
+    fun editUserProfile(userNew: User, context: Context){
+        Shared.saveUserToShared(userNew, context)
+        userNew.token = FirebaseInstanceId.getInstance().token.toString()
+        firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).set(userNew)
+            .addOnCompleteListener {
+
+                if (it.isSuccessful)
+                {
+
+                }
+                else{
+
+                }
+
+            }
+    }
+
 
     /* Returns a random flower asset for flowers that are added. */
     fun getRandomSubImageAsset(): String {
@@ -115,8 +142,6 @@ class DataSource(resources: Resources, context: Context) {
         val listColor= listOf("FAB328", "EF5F72", "00B8E2", "7E3390", "1D6BF0")
         val randomColor = listColor.random()
         return randomColor
-
-
 
     }
 

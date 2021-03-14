@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable name="viewmodel"
@@ -11,153 +10,151 @@
 
     <RelativeLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#008577"
+        android:background="@color/darkBack"
         android:orientation="vertical"
-        tools:context=".ui.auth.SignupActivity"
+        tools:context=".ui.auth.LoginActivity"
         android:scrollbarAlwaysDrawVerticalTrack="true">
 
-        <RelativeLayout
-            android:id="@+id/signupLayout"
-            android:layout_centerInParent="true"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:text="Регистрация"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_email0"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:hint="Email"
+            android:textColorHint="@color/grey2"
+            android:paddingTop="5dp"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+            android:paddingBottom="10dp"
+            app:boxBackgroundColor="@color/darkBack">
 
-            <TextView
-                android:id="@+id/login_title"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:gravity="center_horizontal"
-                android:text="New User Signup"
-                android:textColor="#fff"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_email"
+                android:text="@={viewmodel.email}"
+                android:layout_marginLeft="25dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:inputType="textEmailAddress"
+                android:layout_marginRight="25dp"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/login_title"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="70dp"
-                android:background="#fff"
-                android:elevation="4dp"
-                android:orientation="vertical"
-                android:padding="20dp">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_email0"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:hint="Пароль"
+            android:textColorHint="@color/grey2"
+            android:paddingTop="5dp"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+            android:paddingBottom="10dp"
+            app:boxBackgroundColor="@color/darkBack">
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="30dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_password"
+                android:layout_marginLeft="25dp"
+                android:text="@={viewmodel.password}"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:inputType="textPassword"
+                android:layout_marginRight="25dp"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_pass2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_pass"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:hint="Введите пароль ещё раз"
+            android:textColorHint="@color/grey2"
+            android:paddingTop="5dp"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+            android:paddingBottom="10dp"
+            app:boxBackgroundColor="@color/darkBack">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_password2"
+                android:layout_marginLeft="25dp"
+                android:text="@={viewmodel.password}"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:inputType="textPassword"
+                android:layout_marginRight="25dp"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nick1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_pass2"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:hint="Никнейм"
+            android:textColorHint="@color/grey2"
+            android:paddingTop="5dp"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+            android:paddingBottom="10dp"
+            app:boxBackgroundColor="@color/darkBack">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_nickname"
+                android:layout_marginLeft="25dp"
+                android:text="@={viewmodel.nickname}"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:layout_marginRight="25dp"
+                android:textSize="18sp"
+                android:maxLength="20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-                    <TextView
-                        android:labelFor="@id/text_email"
-                        android:text="email"
-                        android:fontFamily="sans-serif-light"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
 
-                    <EditText
-                        android:id="@+id/text_email"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-
-                        android:drawablePadding="10dp"
-                        android:singleLine="true"
-                        android:text="@={viewmodel.email}"
-                        android:layout_marginBottom="10dp"
-                        android:hint="john@gmail.com"
-                        android:inputType="textEmailAddress"/>
-
-                    <TextView
-                        android:labelFor="@id/edit_text_password"
-                        android:text="password"
-                        android:fontFamily="sans-serif-light"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <EditText
-                        android:drawablePadding="10dp"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:text="@={viewmodel.password}"
-                        android:id="@+id/edit_text_password"
-
-                        android:hint="Password"
-                        android:inputType="textPassword"/>
-
-
-
-
-                    <TextView
-                        android:labelFor="@id/edit_text_nickname"
-                        android:text="nickname"
-                        android:fontFamily="sans-serif-light"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <EditText
-                        android:drawablePadding="10dp"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:text="@={viewmodel.nickname}"
-                        android:id="@+id/edit_text_nickname"
-                        android:maxLength="20"
-                        android:hint="Nickname"
-                        />
-
-
-
-
-
-                    <Button
-                        android:id="@+id/button_sign_up"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="22dp"
-                        android:onClick="@{() -> viewmodel.signup()}"
-                        android:background="#d67601"
-                        android:text="Sign Up"
-                        android:textAllCaps="false"
-                        android:textColor="#fff"
-                        android:textSize="18sp"/>
-
-                    <TextView
-                        android:id="@+id/text_view_register"
-                        android:layout_gravity="center_horizontal"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                        android:textAlignment="center"
-                        android:onClick="@{(v) -> viewmodel.goToLogin(v)}"
-                        android:text="Already have an account.\nLogin Here"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <Button
-                        android:id="@+id/button3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Button"
-                        android:onClick="onClick"/>
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <ImageButton
-                android:id="@+id/user_profile_photo"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_below="@+id/login_title"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
-android:background="@drawable/logo_mail"
-                android:elevation="4dp"
-                 />
-
-        </RelativeLayout>
+        <Button
+            android:id="@+id/button_sign_up"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="22dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="70dp"
+            android:backgroundTint="#286BFA"
+            android:onClick="@{() -> viewmodel.signup()}"
+            android:text="Войти"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:cornerRadius="8dp" />
 
         <ProgressBar
             android:id="@+id/progressbar"
@@ -169,3 +166,5 @@ android:background="@drawable/logo_mail"
     </RelativeLayout>
 
 </layout>
+
+

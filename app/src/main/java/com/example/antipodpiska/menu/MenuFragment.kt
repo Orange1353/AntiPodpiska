@@ -70,7 +70,7 @@ class MenuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-val view: View  = inflater.inflate(R.layout.fragment_menu, container, false)
+        val view: View  = inflater.inflate(R.layout.fragment_menu, container, false)
 
         val subsAdapter = SubAdapter { sub -> adapterOnClick(sub) }
         //      val concatAdapter = ConcatAdapter(headerAdapter, subsAdapter)
@@ -91,7 +91,7 @@ val view: View  = inflater.inflate(R.layout.fragment_menu, container, false)
 
     /*    val fab: View = view.findViewById(R.id.fab)
         fab.setOnClickListener {
-            fabOnClick()
+         fabOnClick()
         }
 */
 
@@ -118,7 +118,10 @@ val view: View  = inflater.inflate(R.layout.fragment_menu, container, false)
         val intent = Intent(context, AddSubActivityFragments::class.java)
         startActivityForResult(intent, newSubActivityRequestCode)
     }*/
-
+   private fun fabOnClick() {
+       val intent = Intent(context, AddSubActivityFragments::class.java)
+       startActivityForResult(intent, newSubActivityRequestCode)
+   }
 
 
 
