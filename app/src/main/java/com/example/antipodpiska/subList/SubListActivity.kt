@@ -7,9 +7,11 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
@@ -20,13 +22,13 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.observe
 import com.example.antipodpiska.R
 import com.example.antipodpiska.addition.AddSubActivityFragments
-import com.example.antipodpiska.menu.CommunicatorMenu
 import com.example.antipodpiska.addition.DATE_ADD
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.data.User
 import com.example.antipodpiska.data.firebase.FirebaseSource
 import com.example.antipodpiska.menu.ArchiveFragment
+import com.example.antipodpiska.menu.CommunicatorMenu
 import com.example.antipodpiska.menu.MenuFragment
 import com.example.antipodpiska.menu.NavigationMenuFragment
 import com.example.antipodpiska.subDetails.SubDetailActivity
@@ -177,10 +179,10 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
 
 
     private fun fabOnClick() {
-        val intent = Intent(this, AddSubActivityFragments::class.java)
-        startActivityForResult(intent, newSubActivityRequestCode)
-    }
 
+      val intent = Intent(this, AddSubActivityFragments::class.java)
+      startActivityForResult(intent, newSubActivityRequestCode)
+    }
 
     private fun createNotChannel(){
         if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
@@ -225,9 +227,24 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
         }
 
     override fun onBackPressed() {
-        this.supportFragmentManager.popBackStack()
+
+    }
+    override fun onBackPressedMenuItem() {
+        val fragment = NavigationMenuFragment()
+        this.supportFragmentManager.beginTransaction().replace(
+            R.id.lay_container,
+            fragment
+        )
+            .addToBackStack(
+                null
+            )
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            .commit()
     }
 
+    override fun onBackPressedPopBackstack() {
+        this.supportFragmentManager.popBackStack()
+    }
 
    override fun replaceFragment(fragment: Fragment){
         val fragmentManager = supportFragmentManager

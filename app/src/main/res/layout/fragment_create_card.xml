@@ -9,8 +9,9 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_back"
         android:layout_width="match_parent"
+        android:drawableLeft="@drawable/ic_arrow_back_white"
         android:layout_height="wrap_content"
         android:background="@color/header_back"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +25,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button">
+        app:layout_constraintTop_toBottomOf="@+id/button_back">
 
         <Button
             style="?android:attr/borderlessButtonStyle"
@@ -32,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:drawableTop="@drawable/ic_success_added"
+            android:fontFamily="@font/sf_display_medium"
             android:paddingTop="150dp"
             android:singleLine="false"
             android:textAllCaps="false"
@@ -63,6 +65,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="53dp"
                 android:text="Данные оплаты"
+                android:fontFamily="@font/sf_display_medium"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -75,6 +78,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="36dp"
+                android:fontFamily="@font/sf_display_regular"
                 android:text="Чтобы вы знали с какой карты будут списаны средства за подписку"
                 android:textColor="@color/grey2"
                 android:textSize="14sp"
@@ -100,7 +104,7 @@
                     android:id="@+id/enter_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
+                    android:fontFamily="@font/sf_display_regular"
                     android:layout_marginBottom="50dp"
                     android:text="Введите последние 4 цифры карты"
                     android:textColor="@color/grey2"
@@ -118,13 +122,14 @@
                     android:gravity="center"
                     android:inputType="number"
                     android:maxLength="4"
-
+                    android:fontFamily="@font/sf_display_regular"
                     android:layout_marginBottom="20dp"
                     android:layout_marginStart="42dp"
                     android:layout_gravity="bottom|left"
-
+                    android:imeOptions="actionDone"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    />
                 <TextView
                     android:id="@+id/stars"
                     android:layout_width="wrap_content"
@@ -175,6 +180,7 @@
                     android:id="@+id/push_enabled"
                     android:layout_width="125dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_display_regular"
                     android:layout_marginStart="42dp"
                     android:textColor="@color/grey2"
                     android:text="Push" />
@@ -184,7 +190,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Выключены"
-
+                    android:fontFamily="@font/sf_display_regular"
                     android:textColor="@color/white" />
 
 
@@ -201,6 +207,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"
+                android:fontFamily="@font/sf_display_medium"
                 app:cornerRadius="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

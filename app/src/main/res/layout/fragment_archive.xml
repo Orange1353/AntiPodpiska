@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
         android:text="Страница в разработке"
+        android:fontFamily="@font/sf_display_medium"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

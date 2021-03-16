@@ -4,15 +4,14 @@ package com.example.antipodpiska.subList
 //import android.widget.ListAdapter
 
 import android.graphics.Color
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.ViewCompat
-import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -37,6 +36,7 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
         private val cardNum: TextView = itemView.findViewById(R.id.card_num)
         private val addDatePay: TextView =  itemView.findViewById(R.id.day_pay_calulat)
         private val status: EditText = itemView.findViewById(R.id.text_status)
+        private val subDateUntil: TextView = itemView.findViewById(R.id.textViewUntil)
 
 
        /* private val addSubName: TextView = itemView.findViewById(R.id.add_flower_name)
@@ -88,10 +88,15 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
                      "Недель" -> datePay = datePay.plusWeeks(currentSub?.periodFree!!.toLong())
                      "Месяцев" -> datePay = datePay.plusMonths(currentSub?.periodFree!!.toLong())
                  }
-                 if (datePay > dateNow)
+                 if (datePay > dateNow) {
                      status.setText("Бесплатно")
-                 status.setBackgroundColor(Color.parseColor("#9934BD"))
+                     status.setBackgroundResource(R.drawable.shape_text_input)
+                     val wrappedDrawable = DrawableCompat.wrap(status.getBackground())
+                     DrawableCompat.setTint(wrappedDrawable, Color.parseColor("#9934BD"))
+                     status.setBackgroundDrawable(wrappedDrawable)
 
+
+                 }
              }
 
 
@@ -100,8 +105,10 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
                     while (datePay < dateNow)
                         when (currentSub?.periodTypePay) {
                             "Дней" -> datePay = datePay.plusDays(currentSub?.periodPay!!.toLong())
-                            "Недель" -> datePay = datePay.plusWeeks(currentSub?.periodPay!!.toLong())
-                            "Месяцев" -> datePay = datePay.plusMonths(currentSub?.periodPay!!.toLong())
+                            "Недель" -> datePay =
+                                datePay.plusWeeks(currentSub?.periodPay!!.toLong())
+                            "Месяцев" -> datePay =
+                                datePay.plusMonths(currentSub?.periodPay!!.toLong())
                         }
                 }
                 if (sub.costSub != null) {
@@ -109,14 +116,17 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
                     if (datePay != null){
                         var tmp: String=""
                         when(sub.periodTypePay){
-                        "Дней"-> tmp = "дн."
-                        "Недель" -> tmp = "нед."
-                        "Месяцев" -> tmp = "мес."
+                            "Дней" -> tmp = "дн."
+                            "Недель" -> tmp = "нед."
+                            "Месяцев" -> tmp = "мес."
                         }
                         addDatePay.text = "После " + datePay.format(formatter).toString() + ": " + sub.costSub + " " + sub.costCurr + "/ " + sub.periodPay + " " + tmp
                 }
 
                 }
+
+               subDateUntil.text = "до "+ datePay.format(formatter).toString()
+
         }
 
 
@@ -149,7 +159,7 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
                         .build()
                 val shapeDrawable = MaterialShapeDrawable(shapeAppearanceModel)
 
-                var t = Color.parseColor("#"+ sub.image)
+                var t = Color.parseColor("#" + sub.image)
                 shapeDrawable.setTint(t)
                 ViewCompat.setBackground(subImageView, shapeDrawable)
                 subImageView.setGravity(Gravity.CENTER)

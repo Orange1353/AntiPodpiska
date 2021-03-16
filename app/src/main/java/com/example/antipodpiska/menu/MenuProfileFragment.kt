@@ -9,15 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.antipodpiska.R
-import com.example.antipodpiska.addition.Communicator
 import com.example.antipodpiska.data.SharedPrefSource
-import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.data.User
-import com.example.antipodpiska.data.firebase.FirebaseSource
-import com.google.firebase.auth.FirebaseAuth
 
 
 class MenuProfileFragment : Fragment() {
@@ -26,7 +21,6 @@ class MenuProfileFragment : Fragment() {
     private lateinit var nickUser: EditText
     private lateinit var phoneUser: EditText
     private lateinit var emailUser: EditText
-    private lateinit var buttonEditProfile: Button
     private lateinit var buttonBack: Button
     private lateinit var buttonSave: Button
     private var user: User = User()
@@ -46,6 +40,12 @@ class MenuProfileFragment : Fragment() {
         var context: Context? = getContext()
         var Shared: SharedPrefSource = SharedPrefSource(context!!)
 
+        var desired_string = ""
+        val arguments = arguments
+        if(arguments != null) {
+            desired_string = arguments.getString("key_from").toString()
+        }
+
         user = Shared.getUserFromShared(context)
 
         nameUser = view.findViewById(R.id.edit_text_profile_name)
@@ -58,28 +58,31 @@ class MenuProfileFragment : Fragment() {
         nameUser.setText(user.name)
         phoneUser.setText(user.phone)
 
-        buttonEditProfile = view.findViewById(R.id.button_edit)
         buttonBack = view.findViewById(R.id.button_back)
         buttonSave = view.findViewById(R.id.button_save_profile)
 
-        buttonEditProfile.setOnClickListener {
-
+        if (desired_string == "edit")
+        {
             buttonSave.visibility = View.VISIBLE
             emailUser.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
             nickUser.setInputType(InputType.TYPE_CLASS_TEXT)
             nameUser.setInputType(InputType.TYPE_CLASS_TEXT)
             phoneUser.setInputType(InputType.TYPE_CLASS_PHONE)
         }
-
         communicator = activity as CommunicatorMenu
 
         buttonSave.setOnClickListener {
-            user = User(email = emailUser.text.toString(), nickname =  nickUser.text.toString(), name = nameUser.text.toString(), phone = phoneUser.text.toString(), password = user.password )
-
+            user = User(
+                email = emailUser.text.toString(),
+                nickname = nickUser.text.toString(),
+                name = nameUser.text.toString(),
+                phone = phoneUser.text.toString(),
+                password = user.password
+            )
             communicator.editProfile(user)
         }
         buttonBack.setOnClickListener {
-            communicator.onBackPressed()
+            communicator.onBackPressedPopBackstack()
         }
 
         return view

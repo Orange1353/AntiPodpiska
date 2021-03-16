@@ -14,6 +14,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_display_bold"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="130dp"
@@ -27,6 +28,7 @@
         android:layout_width="260dp"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/sf_display_regular"
         android:layout_below="@+id/textView"
         android:gravity="center"
         android:layout_marginTop="24dp"
@@ -52,11 +54,13 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:digits="0123456789"
+            android:fontFamily="@font/sf_display_regular"
             android:hint="СМС-код"
             android:maxLength="6"
             android:textColor="@color/white"
             android:textColorHint="@color/grey2"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:imeOptions="actionDone"/>
 
     </LinearLayout>
 
@@ -70,6 +74,7 @@
         android:backgroundTint="#286BFA"
         android:textSize="16sp"
         android:textColor="@color/white"
+        android:fontFamily="@font/sf_display_medium"
         android:text="Войти"
         app:cornerRadius="8dp"
         android:onClick="onClickContinue"

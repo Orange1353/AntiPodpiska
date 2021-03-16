@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/darkBack"
+        tools:context=".menu.MenuSettingFragment">
+
+        <FrameLayout
+            android:id="@+id/lay_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/button_menu_back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/header_back"
+                android:text="Настройки"
+                android:fontFamily="@font/sf_display_regular"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                />
+
+            <Button
+                android:id="@+id/button_back"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:background="@color/header_back"
+                android:drawableLeft="@drawable/ic_menu_buttom_back"
+                android:paddingLeft="23dp"
+                android:gravity="center_horizontal"
+                android:layout_gravity="start|center_horizontal"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                />
+
+        </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lay_up">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_profile"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/dark_light"
+            android:drawableLeft="@drawable/ic_menu_profile_email"
+            android:paddingLeft="27dp"
+            android:textAllCaps="false"
+            android:textColor="@color/menu_text"
+            android:clickable="false"
+            android:textSize="16sp"
+            />
+
+        <Button
+            android:id="@+id/button_push"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/dark_light"
+            android:text="Push-уведомления"
+            android:fontFamily="@font/sf_display_medium"
+            android:paddingLeft="20dp"
+            android:gravity="start|center_vertical"
+            android:editable="false"
+            android:singleLine="true"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:textColor="@color/menu_text"
+             />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/line_break" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_setting"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/ic_user_menu"
+            android:backgroundTint="@color/dark_light"
+            android:paddingLeft="32dp"
+            android:clickable="false"
+            android:textAllCaps="false"
+            android:textColor="@color/menu_text"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/button_edit_profile"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/dark_light"
+            android:text="Редактировать профиль"
+            android:gravity="start|center_vertical"
+            android:fontFamily="@font/sf_display_medium"
+            android:paddingLeft="20dp"
+            android:editable="false"
+            android:singleLine="true"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:textColor="@color/menu_text"
+           />
+
+    </LinearLayout>
+    </LinearLayout>
+
+    </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

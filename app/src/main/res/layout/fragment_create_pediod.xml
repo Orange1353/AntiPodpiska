@@ -9,7 +9,8 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_back"
+        android:drawableLeft="@drawable/ic_arrow_back_white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/header_back"
@@ -24,7 +25,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button">
+        app:layout_constraintTop_toBottomOf="@+id/button_back">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/color"
@@ -41,6 +42,7 @@
                 android:gravity="center_vertical"
                 android:focusableInTouchMode="false"
                 android:text="ДД.ММ.ГГГГ"
+                android:fontFamily="@font/sf_display_regular"
                 android:textColor="@color/grey2"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -63,6 +65,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="55dp"
                 android:text="Условия подписки"
+                android:fontFamily="@font/sf_display_medium"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -75,6 +78,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="36dp"
                 android:text="Бесплатный период"
+                android:fontFamily="@font/sf_display_regular"
                 android:textColor="@color/grey2"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -89,6 +93,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/shape_text_input"
+                android:fontFamily="@font/sf_display_regular"
                 android:digits="0123456789"
                 android:gravity="center_vertical"
                 android:inputType="number"
@@ -97,13 +102,14 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                android:imeOptions="actionDone"/>
 
             <Spinner
                 android:id="@+id/spinner_free_period_type"
                 android:layout_width="115dp"
                 android:layout_height="35dp"
-
+                android:fontFamily="@font/sf_display_regular"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/arrow_spinner"
@@ -122,6 +128,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Стоимость подписки"
                 android:textColor="@color/grey2"
+                android:fontFamily="@font/sf_display_regular"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/add_free_days" />
@@ -141,15 +148,17 @@
                 android:maxLength="7"
                 android:paddingStart="10dp"
                 android:textColor="@color/white"
+                android:fontFamily="@font/sf_display_regular"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView56" />
+                app:layout_constraintTop_toBottomOf="@+id/textView56"
+                android:imeOptions="actionDone"/>
 
             <Spinner
                 android:id="@+id/spinner_curr_cost"
                 android:layout_width="115dp"
                 android:layout_height="35dp"
-
+                android:fontFamily="@font/sf_display_regular"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/arrow_spinner"
@@ -170,6 +179,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Периодичность платежей"
                 android:textColor="@color/grey2"
+                android:fontFamily="@font/sf_display_regular"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/add_cost" />
@@ -185,19 +195,21 @@
                 android:backgroundTint="@color/darkBack"
                 android:digits="0123456789"
                 android:gravity="center_vertical"
+                android:fontFamily="@font/sf_display_regular"
                 android:inputType="number"
                 android:maxLength="3"
                 android:paddingStart="10dp"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView57" />
+                app:layout_constraintTop_toBottomOf="@+id/textView57"
+                android:imeOptions="actionDone"/>
 
             <Spinner
                 android:id="@+id/spinner_period_pay"
                 android:layout_width="115dp"
                 android:layout_height="35dp"
-
+                android:fontFamily="@font/sf_display_regular"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/arrow_spinner"
@@ -218,7 +230,7 @@
                 android:text="Далее"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-
+                android:fontFamily="@font/sf_display_medium"
                 android:textSize="16sp"
                 app:cornerRadius="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -243,6 +255,7 @@
                 android:layout_marginTop="22dp"
                 android:text="Дата начала подписки *"
                 android:textColor="@color/grey2"
+                android:fontFamily="@font/sf_display_regular"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView4"
                 app:layout_constraintTop_toBottomOf="@+id/spinner_period_pay" />

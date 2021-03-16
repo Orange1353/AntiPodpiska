@@ -37,5 +37,6 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about">Приложение "Антиподписка" создано для того, чтобы Ваши платежи не были внезапными и Вы всегда знали когда, сколько и кому Вы платите. Мы поможем контролировать Вам расходы, часто навязываемые в регулярном формате. Платите только за то, что знаете и используете!</string>
 
 </resources>

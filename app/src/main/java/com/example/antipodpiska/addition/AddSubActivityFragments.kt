@@ -94,6 +94,13 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
  //       startSubListActivity()
     }
 
+    override fun onBackPressedInFragms23() {
+        this.fragmentManager.popBackStack()
+    }
+
+    override fun onBackPressedInFragm() {
+        finish()
+    }
 
     fun checkUserCloud(){
 

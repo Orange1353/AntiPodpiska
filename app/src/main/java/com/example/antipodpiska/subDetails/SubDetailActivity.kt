@@ -69,10 +69,10 @@ class SubDetailActivity : AppCompatActivity() {
         /* Connect variables to UI elements. */
         val subName: TextView = findViewById(R.id.flower_detail_name)
         val subImage: TextView = findViewById(R.id.flower_detail_image)
-        val backButton: Button = findViewById(R.id.button_back)
+        val backButton: ImageButton = findViewById(R.id.button_back)
        // val subDescription: TextView = findViewById(R.id.flower_detail_description)
-        val removeSubButton: Button = findViewById(R.id.remove_button)
-        val editButton: Button = findViewById(R.id.edit_button)
+        val removeSubButton: ImageButton = findViewById(R.id.remove_button)
+        val editButton: ImageButton = findViewById(R.id.edit_button)
 
    //     val dateNearestPay: TextView = findViewById(R.id.data_nearest_pay)
    /*     val costPlusPeriod: TextView =  findViewById(R.id.cost_plus_period)
@@ -167,7 +167,15 @@ class SubDetailActivity : AppCompatActivity() {
                     val costPlusPeriod: View = inflater.inflate(R.layout.element_detail_with_free, null)
 
                     if (currentSub?.periodPay != "") {
-                        costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr + " каждые " + currentSub?.periodPay + " " + currentSub?.periodTypePay
+
+                            var tmp: String=""
+                            when(currentSub.periodTypePay){
+                                "Дней" -> tmp = "дн."
+                                "Недель" -> tmp = "нед."
+                                "Месяцев" -> tmp = "мес."
+                            }
+
+                        costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr + " / " + currentSub?.periodPay + " " + tmp
                         container.addView(costPlusPeriod)
                     }
                     else
@@ -184,8 +192,16 @@ class SubDetailActivity : AppCompatActivity() {
             if (currentSub?.costSub != "") {
 
                 if (currentSub?.periodPay != "") {
+
+                    var tmp: String=""
+                    when(currentSub.periodTypePay){
+                        "Дней" -> tmp = "дн."
+                        "Недель" -> tmp = "нед."
+                        "Месяцев" -> tmp = "мес."
+                    }
+
                     val costPlusPeriod: View = inflater.inflate(R.layout.element_detail_cost_only, null)
-                    costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr + " каждые " + currentSub?.periodPay + " " + currentSub?.periodTypePay
+                    costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr + " / " + currentSub?.periodPay + " " + tmp
                     container.addView(costPlusPeriod)
                 }
                 else

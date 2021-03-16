@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.example.antipodpiska.R
+import com.example.antipodpiska.utils.startSubListActivity
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.*
 
@@ -51,6 +52,13 @@ class CreateNameAndTypeFragment : Fragment() {
             else
                 Toast.makeText(context, "Заполните обязательные поля!",  Toast.LENGTH_SHORT).show()
         }
+
+        val buttonBack: Button= view.findViewById(R.id.button_back0)
+
+        buttonBack.setOnClickListener {
+            communicator.onBackPressedInFragm()
+        }
+
 
         return view
     }

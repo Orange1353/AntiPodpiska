@@ -16,8 +16,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
+
         android:text="Вход"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:fontFamily="@font/sf_display_bold"
         android:textColor="@color/white"
         android:textSize="24sp" />
 
@@ -28,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
         android:gravity="center"
+        android:fontFamily="@font/sf_display_regular"
         android:layout_marginTop="24dp"
         android:text="Пожалуйста, введите номер вашего телефона, чтобы начать"
         android:textColor="@color/grey2"
@@ -48,6 +50,7 @@
             android:id="@+id/spinnerCountries"
             android:layout_width="120dp"
             android:gravity="end"
+            android:fontFamily="@font/sf_display_regular"
             android:popupBackground="@color/darkBack"
             android:layout_height="wrap_content" />
 
@@ -57,11 +60,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:textSize="18sp"
+            android:fontFamily="@font/sf_display_regular"
             android:digits="0123456789"
             android:textColor="@color/white"
             android:textColorHint="@color/grey2"
             android:hint="Номер телефона"
-            android:maxLength="10" />
+            android:maxLength="10"
+            android:imeOptions="actionDone"/>
 
     </LinearLayout>
 
@@ -74,6 +79,7 @@
         android:layout_below="@id/linearLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
+        android:fontFamily="@font/sf_display_medium"
         android:backgroundTint="#286BFA"
         android:textSize="16sp"
         android:textColor="@color/white"

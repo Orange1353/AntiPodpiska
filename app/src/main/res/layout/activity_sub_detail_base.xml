@@ -14,29 +14,33 @@
         android:id="@+id/base_lay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/darkBack"
+        android:background="#2F3034"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="77dp"
-            android:background="@color/dark_light">
+            android:background="@color/header_back">
 
 
-            <Button
+            <ImageButton
                 android:id="@+id/remove_button"
                 android:layout_width="38.5dp"
                 android:layout_height="38.5dp"
                 android:background="@drawable/ic_garbage_121312"
+                android:backgroundTint="@color/grey2"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/edit_button"
                 android:layout_width="38.5dp"
                 android:layout_height="38.5dp"
                 android:background="@drawable/ic_edit"
+                android:backgroundTint="@color/grey2"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -45,9 +49,9 @@
                 android:layout_width="58dp"
                 android:layout_height="58dp"
                 android:layout_marginStart="20dp"
-                android:textSize="40sp"
-                android:gravity="center"
                 android:background="@drawable/shape_initial_item"
+                android:gravity="center"
+                android:textSize="40sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/remove_button"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -56,23 +60,23 @@
                 android:id="@+id/flower_detail_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/sf_display_medium"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/button_back"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
                 android:layout_marginTop="11dp"
                 android:layout_marginEnd="11dp"
                 android:background="@drawable/ic_cross"
                 android:text="Button"
+                android:backgroundTint="@color/grey2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -91,7 +95,9 @@
         android:backgroundTint="#286BFA"
         app:cornerRadius="8dp"
         android:textColor="@color/white"
+        android:fontFamily="@font/sf_display_medium"
         android:textSize="16sp"
+        android:textAllCaps="false"
         android:text="Отписаться"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

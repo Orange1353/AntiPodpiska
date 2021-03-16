@@ -7,4 +7,6 @@ interface CommunicatorMenu {
     fun replaceFragment(fragment: Fragment)
     fun editProfile(userNew: User)
     fun onBackPressed()
+    fun onBackPressedMenuItem()
+    fun onBackPressedPopBackstack()
 }

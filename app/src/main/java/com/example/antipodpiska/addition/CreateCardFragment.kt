@@ -74,6 +74,11 @@ class CreateCardFragment : Fragment() {
             communicator.cardFragmentToListSub(addCard.text.toString(), push)
         }
 
+        val buttonBack: Button= view.findViewById(R.id.button_back)
+
+        buttonBack.setOnClickListener {
+            communicator.onBackPressedInFragms23()
+        }
 
         return view
     }

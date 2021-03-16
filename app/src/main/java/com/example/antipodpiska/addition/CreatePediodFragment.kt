@@ -58,6 +58,7 @@ class CreatePediodFragment : Fragment() {
         val costSub: EditText = view.findViewById(R.id.add_cost)
         val periodPay: EditText = view.findViewById(R.id.add_period)
         val addDatePay: EditText = view.findViewById(R.id.day_pay)
+        val buttonBack: Button= view.findViewById(R.id.button_back)
 
 
 
@@ -93,6 +94,12 @@ class CreatePediodFragment : Fragment() {
             else
                 Toast.makeText(context, "Заполните обязательные поля!",  Toast.LENGTH_SHORT).show()
         }
+
+
+        buttonBack.setOnClickListener {
+            communicator.onBackPressedInFragms23()
+        }
+
 
 
         return view

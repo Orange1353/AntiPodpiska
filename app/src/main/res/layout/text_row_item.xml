@@ -19,9 +19,9 @@
         app:layout_constraintEnd_toStartOf="@+id/flower_text"
         app:layout_constraintStart_toStartOf="parent"
         android:background="@drawable/shape_initial_item"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/sf_display_medium"
         android:gravity="center"
-        android:textSize="50sp"
+        android:textSize="40sp"
         android:text="T"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,44 +30,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:fontFamily="sans-serif"
         android:text="@string/flower1_name"
+        android:fontFamily="@font/sf_display_medium"
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="#FFFFFF"
-
+android:layout_marginBottom="3dp"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/flower_image"
-        app:layout_constraintTop_toTopOf="@+id/flower_image" />
+        app:layout_constraintBottom_toTopOf="@+id/text_status"
+        app:layout_constraintStart_toEndOf="@+id/flower_image" />
 
     <TextView
         android:id="@+id/card_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:fontFamily="sans-serif"
+        android:layout_marginRight="28dp"
+        android:paddingTop="3dp"
+        android:textColor="@color/transparent_grey"
         android:textSize="11sp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="@font/sf_display_medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/textViewUntil" />
 
     <EditText
         android:id="@+id/text_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/flower_text"
-        app:layout_constraintStart_toStartOf="@+id/flower_text"
-        android:layout_marginTop="4dp"
-        android:inputType="none"
         android:background="@drawable/shape_text_input"
         android:backgroundTint="@color/orange"
+        android:clickable="false"
+        android:fontFamily="@font/sf_display_medium"
+        android:duplicateParentState="false"
+        android:editable="false"
+        android:inputType="none"
+        android:paddingLeft="8dp"
+        android:paddingTop="3dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="3dp"
         android:text="Оплачено"
-        android:textSize="14dp"
         android:textColor="@color/white"
-
-        >
+        android:layout_marginTop="3dp"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/flower_text"
+        app:layout_constraintTop_toTopOf="parent">
 
     </EditText>
 
@@ -76,10 +81,24 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:fontFamily="sans-serif"
+        android:fontFamily="@font/sf_display_medium"
         android:textSize="11sp"
         android:textColor="@color/transparent_grey"
         app:layout_constraintStart_toStartOf="@+id/flower_text"
         app:layout_constraintTop_toBottomOf="@+id/text_status" />
+
+    <TextView
+        android:id="@+id/textViewUntil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/sf_display_medium"
+        android:paddingTop="3dp"
+        android:textColor="@color/transparent_grey"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_status"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

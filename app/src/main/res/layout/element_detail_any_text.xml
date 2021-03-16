@@ -9,7 +9,7 @@
         android:id="@+id/name_field"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-
+        android:fontFamily="@font/sf_display_medium"
         android:layout_marginLeft="20dp"
         android:text="TextView"
         android:textColor="@color/transparent_grey"
@@ -23,7 +23,7 @@
         android:id="@+id/value_field"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-
+        android:fontFamily="@font/sf_display_medium"
         android:textSize="18sp"
         android:textColor="@color/white"
         android:text="TextView" />

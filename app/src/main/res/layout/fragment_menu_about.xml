@@ -1,14 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".menu.MenuAboutFragment">
+  <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/darkBack"
+      tools:context=".menu.MenuAboutFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+      <FrameLayout
+          android:id="@+id/lay_up"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="parent">
+
+          <Button
+              android:id="@+id/button_menu_back"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/header_back"
+              android:text="О приложении"
+              android:fontFamily="@font/sf_display_regular"
+              android:textAllCaps="false"
+              android:textSize="16sp"
+              />
+
+          <Button
+              android:id="@+id/button_back"
+              android:layout_width="55dp"
+              android:layout_height="match_parent"
+              android:background="@color/header_back"
+              android:drawableLeft="@drawable/ic_menu_buttom_back"
+              android:paddingLeft="23dp"
+              android:gravity="center_horizontal"
+              android:layout_gravity="start|center_horizontal"
+              android:textAllCaps="false"
+              android:textSize="16sp"
+              />
+
+      </FrameLayout>
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/textView9"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_text_input"
+        android:backgroundTint="@color/dark_light"
+        android:padding="20dp"
+        android:fontFamily="@font/sf_display_regular"
+        android:text="@string/about"
+        android:textColor="@color/menu_text"
+        android:textSize="18sp"
 
-</FrameLayout>
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

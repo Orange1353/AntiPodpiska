@@ -26,12 +26,13 @@
             android:text="Бесплатно"
             android:textColor="@color/white"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/sf_display_bold"/>
 
         <TextView
             android:id="@+id/text_before_free"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_display_medium"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="62dp"
             android:textColor="@color/white"
@@ -52,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textStyle="bold"
+            android:fontFamily="@font/sf_display_bold"
             android:textColor="@color/white"
             android:textSize="22sp"
             android:layout_marginTop="19dp"
@@ -63,8 +64,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="62dp"
             android:layout_marginLeft="5dp"
+            android:fontFamily="@font/sf_display_medium"
+            android:layout_marginTop="62dp"
             android:textColor="@color/white"
             android:textSize="18sp" />
     </FrameLayout>

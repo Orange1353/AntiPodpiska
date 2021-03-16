@@ -23,7 +23,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
             android:text="Регистрация"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:fontFamily="@font/sf_display_bold"
             android:textColor="@color/white"
             android:textSize="24sp" />
 
@@ -50,9 +50,11 @@
                 android:textColor="@color/white"
                 android:inputType="textEmailAddress"
                 android:layout_marginRight="25dp"
+                android:fontFamily="@font/sf_display_regular"
                 android:textSize="18sp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -73,13 +75,15 @@
                 android:id="@+id/edit_text_password"
                 android:layout_marginLeft="25dp"
                 android:text="@={viewmodel.password}"
+                android:fontFamily="@font/sf_display_regular"
                 android:singleLine="true"
                 android:textColor="@color/white"
                 android:inputType="textPassword"
                 android:layout_marginRight="25dp"
                 android:textSize="18sp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -101,12 +105,14 @@
                 android:layout_marginLeft="25dp"
                 android:text="@={viewmodel.password}"
                 android:singleLine="true"
+                android:fontFamily="@font/sf_display_regular"
                 android:textColor="@color/white"
                 android:inputType="textPassword"
                 android:layout_marginRight="25dp"
                 android:textSize="18sp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -132,8 +138,10 @@
                 android:layout_marginRight="25dp"
                 android:textSize="18sp"
                 android:maxLength="20"
+                android:fontFamily="@font/sf_display_regular"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -148,6 +156,7 @@
             android:layout_marginTop="22dp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="70dp"
+            android:fontFamily="@font/sf_display_medium"
             android:backgroundTint="#286BFA"
             android:onClick="@{() -> viewmodel.signup()}"
             android:text="Войти"
