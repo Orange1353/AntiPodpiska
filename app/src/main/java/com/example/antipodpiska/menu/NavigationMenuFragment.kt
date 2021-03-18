@@ -51,11 +51,15 @@ class NavigationMenuFragment : Fragment() {
         btnAbout.setOnClickListener {
             communicator.replaceFragment(MenuAboutFragment())
         }
-
         val btnSetting: Button = view.findViewById(R.id.button_setting)
         communicator = activity as CommunicatorMenu
         btnSetting.setOnClickListener {
             communicator.replaceFragment(MenuSettingFragment())
+        }
+        val btnSupport: Button = view.findViewById(R.id.button_support)
+        communicator = activity as CommunicatorMenu
+        btnSupport.setOnClickListener {
+            communicator.replaceFragment(MenuSupportFragment())
         }
 
        return view

@@ -16,7 +16,9 @@
         <activity android:name=".ui.auth.PhoneAuthActivity" />
         <activity android:name=".addition.EditSubActivity" />
         <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".subList.SubListActivity" />
+        <activity android:name=".subList.SubListActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity android:name=".ui.auth.SignupActivity" />
         <activity android:name=".subDetails.SubDetailActivity" />
         <activity android:name=".subDetails.SubDetailActivityBase" />

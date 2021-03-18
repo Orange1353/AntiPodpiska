@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:id="@+id/frameLayout2"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/darkBack"
+    android:layout_height="match_parent">
+   <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       xmlns:tools="http://schemas.android.com/tools"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="@color/darkBack"
+       tools:context=".menu.MenuSupportFragment">
+
+       <FrameLayout
+           android:id="@+id/lay_up"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toTopOf="parent">
+
+           <Button
+               android:id="@+id/button_menu_back"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:background="@color/header_back"
+               android:layout_marginLeft="55dp"
+               android:text="Написать в службу поддержки"
+               android:fontFamily="@font/sf_display_regular"
+               android:textAllCaps="false"
+               android:textSize="16sp"
+               />
+
+           <Button
+               android:id="@+id/button_back"
+               android:layout_width="55dp"
+               android:layout_height="match_parent"
+               android:background="@color/header_back"
+               android:drawableLeft="@drawable/ic_menu_buttom_back"
+               android:paddingLeft="23dp"
+               android:gravity="center_horizontal"
+               android:layout_gravity="start|center_horizontal"
+               android:textAllCaps="false"
+               android:textSize="16sp"
+               />
+       </FrameLayout>
+
+
+       <FrameLayout
+           android:id="@+id/frameLayout22"
+           android:layout_width="match_parent"
+           android:layout_marginLeft="22dp"
+           android:layout_marginRight="22dp"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="20dp"
+
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/lay_up">
+
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+
+
+               <com.google.android.material.textfield.TextInputLayout
+                   android:id="@+id/edit_text_emailL"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@+id/textView"
+                   android:layout_gravity="center"
+                   android:hint="Адрес электронной почты"
+                   android:maxLength="40"
+                   android:textColorHint="@color/grey2"
+                   android:paddingTop="10dp"
+                   android:textSize="18sp"
+                   android:fontFamily="@font/sf_display_medium"
+                   android:singleLine="true"
+                   app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                   android:paddingBottom="10dp"
+                   android:imeOptions="actionDone"
+                   app:boxBackgroundColor="@color/darkBack">
+
+                   <com.google.android.material.textfield.TextInputEditText
+                       android:id="@+id/edit_text_email"
+                       android:layout_marginLeft="25dp"
+                       android:singleLine="true"
+                       android:imeOptions="actionDone"
+                       android:maxLength="40"
+                       android:textColor="@color/white"
+                       android:fontFamily="@font/sf_display_regular"
+                       android:inputType="textEmailAddress"
+                       android:layout_marginRight="25dp"
+                       android:textSize="18sp"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content" />
+               </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+               <com.google.android.material.textfield.TextInputLayout
+                   android:id="@+id/edit_text_themeL"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@+id/textView"
+                   android:layout_gravity="center"
+                   android:hint="Введите тему обращения"
+                   android:maxLength="500"
+                   android:textColorHint="@color/grey2"
+                   android:paddingTop="10dp"
+                   android:textSize="18sp"
+                   android:fontFamily="@font/sf_display_medium"
+                   android:singleLine="false"
+                   app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                   android:paddingBottom="10dp"
+                   android:imeOptions="actionDone"
+                   app:boxBackgroundColor="@color/darkBack">
+
+                   <com.google.android.material.textfield.TextInputEditText
+                       android:id="@+id/edit_text_theme"
+                       android:layout_marginLeft="25dp"
+                       android:singleLine="true"
+                       android:imeOptions="actionDone"
+                       android:maxLength="40"
+                       android:textColor="@color/white"
+                       android:fontFamily="@font/sf_display_regular"
+                       android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ,@()+-=:?!%\/;' "
+                       android:inputType="textEmailAddress"
+                       android:layout_marginRight="25dp"
+                       android:textSize="18sp"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content" />
+               </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+               <com.google.android.material.textfield.TextInputLayout
+                   android:id="@+id/edit_text_messageL"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:hint="Введите текст обращения"
+                   android:textColorHint="@color/grey2"
+                   android:paddingTop="10dp"
+                   android:textSize="18sp"
+                   android:fontFamily="@font/sf_display_medium"
+                   android:singleLine="false"
+                   app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                   android:paddingBottom="10dp"
+                   android:imeOptions="actionDone"
+                   app:boxBackgroundColor="@color/darkBack">
+
+                   <com.google.android.material.textfield.TextInputEditText
+                       android:id="@+id/edit_text_message"
+                       android:layout_marginLeft="25dp"
+                       android:singleLine="false"
+                       android:maxLength="500"
+                       android:maxLines="10"
+                       android:textColor="@color/white"
+                       android:fontFamily="@font/sf_display_regular"
+                       android:inputType="textEmailAddress|textMultiLine"
+                       android:layout_marginRight="25dp"
+                       android:textSize="18sp"
+                       android:layout_width="match_parent"
+                       android:imeOptions="actionDone"
+                       android:layout_height="wrap_content" />
+               </com.google.android.material.textfield.TextInputLayout>
+</LinearLayout>
+
+
+
+       </FrameLayout>
+
+       <com.google.android.material.button.MaterialButton
+           android:id="@+id/button_send"
+           android:layout_width="240dp"
+           android:layout_height="50dp"
+           android:insetTop="0dp"
+           android:insetBottom="0dp"
+           android:layout_centerHorizontal="true"
+           android:layout_marginTop="150dp"
+           android:backgroundTint="@color/blue"
+           android:text="Отправить"
+           android:textAllCaps="false"
+           android:textColor="@color/white"
+           android:textSize="16sp"
+           app:cornerRadius="8dp"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintHorizontal_bias="0.497"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/frameLayout22" />
+
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

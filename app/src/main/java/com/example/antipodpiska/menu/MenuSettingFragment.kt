@@ -39,7 +39,7 @@ class MenuSettingFragment : Fragment() {
         val btnPush: Button = view.findViewById(R.id.button_push)
         communicator = activity as CommunicatorMenu
         btnPush.setOnClickListener {
-   //         communicator.replaceFragment(MenuProfileFragment())
+            communicator.replaceFragment(MenuPushFragment())
         }
 
         val btnProfile: Button = view.findViewById(R.id.button_edit_profile)

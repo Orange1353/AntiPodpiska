@@ -59,9 +59,7 @@ class CreatePediodFragment : Fragment() {
         val periodPay: EditText = view.findViewById(R.id.add_period)
         val addDatePay: EditText = view.findViewById(R.id.day_pay)
         val buttonBack: Button= view.findViewById(R.id.button_back)
-
-
-
+        val buttonCalendar: ImageView = view.findViewById(R.id.imageViewCalendar)
 
 
         var cal = Calendar.getInstance()
@@ -78,21 +76,22 @@ class CreatePediodFragment : Fragment() {
         }
 
         addDatePay.setOnClickListener {
-            DatePickerDialog(context, dateSetListenerDatePay,
-                cal.get(Calendar.YEAR),
-                cal.get(Calendar.MONTH),
-                cal.get(Calendar.DAY_OF_MONTH)).show()
+        addDate(context, cal, dateSetListenerDatePay)
         }
+        buttonCalendar.setOnClickListener{
+        addDate(context, cal, dateSetListenerDatePay)
+        }
+
 
 
         val btnContinue: Button = view.findViewById(R.id.button_continue)
         communicator = activity as Communicator
         btnContinue.setOnClickListener {
 
-            if(/*costSub.text.toString() != "" &&*/ addDatePay.text.toString()!= "")
+            if(/*costSub.text.toString() != "" &&*/ addDatePay.text.toString()!= "ДД.ММ.ГГГГ")
             communicator.periodFragmentToCardFragment(freePeriod.text.toString(), spinner_free_period.selectedItem.toString(), costSub.text.toString(), spinner_cost.selectedItem.toString(), periodPay.text.toString(), spinner_period_pay.selectedItem.toString(), addDatePay.text.toString())
             else
-                Toast.makeText(context, "Заполните обязательные поля!",  Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Заполните дату начала подписки!",  Toast.LENGTH_SHORT).show()
         }
 
 
@@ -103,6 +102,14 @@ class CreatePediodFragment : Fragment() {
 
 
         return view
+    }
+
+    fun addDate(context: Context, cal: Calendar, dateSetListenerDatePay: DatePickerDialog.OnDateSetListener )
+    {
+        DatePickerDialog(context, dateSetListenerDatePay,
+            cal.get(Calendar.YEAR),
+            cal.get(Calendar.MONTH),
+            cal.get(Calendar.DAY_OF_MONTH)).show()
     }
 
 

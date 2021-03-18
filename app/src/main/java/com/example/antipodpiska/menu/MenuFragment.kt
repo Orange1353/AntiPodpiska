@@ -41,28 +41,13 @@ const val TYPE_PERIOD = "typePeriod"
 const val PUSH = "push"
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MenuFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MenuFragment : Fragment() {
 
     private val newSubActivityRequestCode = 1
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        arguments?.let {
-
-        }
     }
 
     override fun onCreateView(
@@ -78,7 +63,6 @@ class MenuFragment : Fragment() {
         val recyclerView: RecyclerView = view!!.findViewById(R.id.recycler_view_menu)
         recyclerView.adapter = subsAdapter
         var subsListViewModel = ViewModelProvider(activity!!).get(SubListViewModel::class.java)
-
 
         subsListViewModel.subsLiveData.observe(this) {
             it?.let {

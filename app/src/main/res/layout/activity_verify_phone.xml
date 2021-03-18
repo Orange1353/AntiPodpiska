@@ -68,6 +68,8 @@
         android:id="@+id/buttonSignIn"
         android:layout_width="240dp"
         android:layout_height="50dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:layout_below="@id/linearLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"

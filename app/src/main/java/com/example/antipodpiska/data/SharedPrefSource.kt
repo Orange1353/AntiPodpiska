@@ -45,16 +45,18 @@ class SharedPrefSource constructor(context: Context)  {
         prefsEditorUser.putString("nickname", user.nickname).apply()
         prefsEditorUser.putString("phone", user.phone).apply()
         prefsEditorUser.putString("name", user.name).apply()
-
+        prefsEditorUser.putBoolean("pushAll", user.pushAll).apply()
+        prefsEditorUser.putInt("beginPush", user.beginPush).apply()
+        prefsEditorUser.putBoolean("periodPush", user.periodPush).apply()
     }
-
 
 
 
     fun getTempUser(context: Context): List<String> {
         val preferencesUser: SharedPreferences = context.getSharedPreferences("Temp", Context.MODE_PRIVATE)
 
-        return listOf( preferencesUser.getString("email", "").toString(), preferencesUser.getString("password", "").toString(),
+        return listOf( preferencesUser.getString("email", "").toString(),
+                preferencesUser.getString("password", "").toString(),
                 preferencesUser.getString("nickname", "").toString())
 
     }
@@ -65,8 +67,12 @@ class SharedPrefSource constructor(context: Context)  {
         user.email = prefsEditorUser.getString("email", "").toString()
         user.password = prefsEditorUser.getString("password", "").toString()
         user.nickname = prefsEditorUser.getString("nickname", "").toString()
-        user.phone =prefsEditorUser.getString("phone", "").toString()
+        user.phone = prefsEditorUser.getString("phone", "").toString()
         user.name= prefsEditorUser.getString("name", "").toString()
+        user.pushAll= prefsEditorUser.getBoolean("pushAll", true)
+        user.beginPush= prefsEditorUser.getInt("beginPush", 2)
+        user.periodPush= prefsEditorUser.getBoolean("periodPush", true)
+
         return user
     }
 

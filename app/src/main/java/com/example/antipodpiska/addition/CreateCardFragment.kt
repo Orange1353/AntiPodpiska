@@ -15,25 +15,14 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.example.antipodpiska.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CreateCardFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CreateCardFragment : Fragment() {
 
     private lateinit var communicator: Communicator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
 
-        }
 
     }
 
@@ -61,7 +50,7 @@ class CreateCardFragment : Fragment() {
                 pushEnabled.text = "Выключены"
         }
 
-        val push = pushEnabled.isChecked()
+    //    val push = pushEnabled.isChecked()
 
         communicator = activity as Communicator
 
@@ -71,7 +60,7 @@ class CreateCardFragment : Fragment() {
         }
 
         btnReady.setOnClickListener {
-            communicator.cardFragmentToListSub(addCard.text.toString(), push)
+            communicator.cardFragmentToListSub(addCard.text.toString(), pushEnabled.isChecked())
         }
 
         val buttonBack: Button= view.findViewById(R.id.button_back)

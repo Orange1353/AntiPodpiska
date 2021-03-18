@@ -21,6 +21,7 @@
                android:background="@color/header_back"
                android:fontFamily="@font/sf_display_regular"
                android:text="Push-уведомления"
+               android:layout_marginLeft="55dp"
                android:textAllCaps="false"
                android:textSize="16sp" />
 
@@ -62,82 +63,181 @@
                    android:orientation="horizontal">
 
                    <Button
-                       android:id="@+id/button_profile"
-                       style="?android:attr/borderlessButtonStyle"
-                       android:layout_width="70dp"
-                       android:layout_height="match_parent"
-                       android:backgroundTint="@color/dark_light"
-                       android:drawableLeft="@drawable/ic_menu_profile_email"
-                       android:paddingLeft="27dp"
-                       android:textAllCaps="false"
-                       android:textColor="@color/menu_text"
-                       android:clickable="false"
-                       android:textSize="16sp"
-                       />
-
-                   <Button
                        android:id="@+id/button_push"
                        style="?android:attr/borderlessButtonStyle"
-                       android:layout_width="match_parent"
+                       android:layout_width="wrap_content"
                        android:layout_height="match_parent"
                        android:backgroundTint="@color/dark_light"
                        android:text="Push-уведомления"
                        android:fontFamily="@font/sf_display_medium"
-                       android:paddingLeft="20dp"
+                       android:paddingLeft="15dp"
                        android:gravity="start|center_vertical"
-                       android:editable="false"
+                       android:clickable="false"
                        android:singleLine="true"
                        android:textSize="16sp"
                        android:textAllCaps="false"
                        android:textColor="@color/menu_text"
                        />
+                   <androidx.appcompat.widget.SwitchCompat
+                       android:id="@+id/switch_enabled"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:paddingRight="11dp"
+                       android:textSize="16sp"
+                       android:singleLine="true"
+                       app:track="@drawable/switch_style"
+                       app:switchMinWidth="35dp"
+                       app:thumbTint="@color/white"
+                       android:thumb="@drawable/shape_switch_thumb"
+                       android:fontFamily="@font/sf_display_regular"
+                       android:textColor="@color/white" />
+
+
+               </LinearLayout>
+           </LinearLayout>
+       </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/frameLayout3"
+
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   >
+
+
+
+                   <TextView
+                       android:id="@+id/textView10"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textSize="16sp"
+                       android:paddingLeft="15dp"
+                       android:textColor="@color/menu_text"
+                       android:text="Начать уведомлять об оплате за " />
+
+                   <TextView
+                       android:id="@+id/textView_seek_bar"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:gravity="center_vertical|start"
+                       android:textSize="16sp"
+                       android:paddingTop="5dp"
+                       android:textColor="@color/white"
+                        />
+
 
                </LinearLayout>
 
-               <ImageView
-                   android:id="@+id/imageView5"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:src="@drawable/line_break" />
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <SeekBar
+        android:id="@+id/seekBar_days"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingStart="60dp"
+        android:paddingEnd="60dp"
+        android:max="7"
+        android:thumbTint="@color/white"
+
+        android:progress="1"
+        android:progressDrawable="@drawable/shape_seek_bar"
+        android:min="1"
+        android:thumb="@drawable/shape_seek_thumb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+</LinearLayout>
+
+</LinearLayout>
+</FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout4"
+
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout3">
 
                <LinearLayout
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:orientation="horizontal">
 
-                   <Button
-                       android:id="@+id/button_setting"
-                       style="?android:attr/borderlessButtonStyle"
-                       android:layout_width="70dp"
-                       android:layout_height="match_parent"
-                       android:drawableLeft="@drawable/ic_user_menu"
-                       android:backgroundTint="@color/dark_light"
-                       android:paddingLeft="32dp"
-                       android:clickable="false"
-                       android:textAllCaps="false"
-                       android:textColor="@color/menu_text"
-                       android:textSize="16sp" />
 
-                   <Button
-                       android:id="@+id/button_edit_profile"
-                       style="?android:attr/borderlessButtonStyle"
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:backgroundTint="@color/dark_light"
-                       android:text="Редактировать профиль"
-                       android:fontFamily="@font/sf_display_medium"
 
-                       android:gravity="start|center_vertical"
-                       android:paddingLeft="20dp"
-                       android:editable="false"
-                       android:singleLine="true"
+                   <TextView
+                       android:id="@+id/textView11"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
                        android:textSize="16sp"
-                       android:textAllCaps="false"
+                       android:paddingLeft="15dp"
                        android:textColor="@color/menu_text"
-                       />
+                       android:text="Напоминание " />
+
+                   <androidx.appcompat.widget.SwitchCompat
+                       android:id="@+id/switch_everyday"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:text="Однократно "
+                       android:paddingRight="11dp"
+                       android:paddingStart="30dp"
+                       android:textSize="16sp"
+                       app:track="@drawable/switch_style"
+                       app:switchMinWidth="35dp"
+                       app:thumbTint="@color/white"
+                       android:thumb="@drawable/shape_switch_thumb"
+                       android:paddingLeft="10dp"
+                       android:fontFamily="@font/sf_display_regular"
+                       android:textColor="@color/white" />
+
 
                </LinearLayout>
-           </LinearLayout>
 
-       </FrameLayout>
-   </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_save"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:backgroundTint="@color/grey2"
+        android:text="Сохранить"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout4" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

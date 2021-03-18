@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       xmlns:tools="http://schemas.android.com/tools"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="@color/darkBack"
+       tools:context=".menu.MenuPushFragment">
+
+       <FrameLayout
+           android:id="@+id/lay_up"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toTopOf="parent">
+
+           <Button
+               android:id="@+id/button_menu_back"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:background="@color/header_back"
+               android:fontFamily="@font/sf_display_regular"
+               android:text="Push-уведомления"
+               android:layout_marginLeft="55dp"
+               android:textAllCaps="false"
+               android:textSize="16sp" />
+
+           <Button
+               android:id="@+id/button_back"
+               android:layout_width="55dp"
+               android:layout_height="match_parent"
+               android:background="@color/header_back"
+               android:drawableLeft="@drawable/ic_menu_buttom_back"
+               android:paddingLeft="23dp"
+               android:gravity="center_horizontal"
+               android:layout_gravity="start|center_horizontal"
+               android:textAllCaps="false"
+               android:textSize="16sp"
+               />
+
+       </FrameLayout>
+
+       <FrameLayout
+           android:id="@+id/frameLayout2"
+
+           android:layout_width="320dp"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="20dp"
+           android:background="@drawable/shape_item"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/lay_up">
+
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+                   <Button
+                       android:id="@+id/button_push"
+                       style="?android:attr/borderlessButtonStyle"
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:backgroundTint="@color/dark_light"
+                       android:text="Push-уведомления"
+                       android:fontFamily="@font/sf_display_medium"
+                       android:paddingLeft="15dp"
+                       android:gravity="start|center_vertical"
+                       android:clickable="false"
+                       android:singleLine="true"
+                       android:textSize="16sp"
+                       android:textAllCaps="false"
+                       android:textColor="@color/menu_text"
+                       />
+                   <androidx.appcompat.widget.SwitchCompat
+                       android:id="@+id/switch_enabled"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Включены"
+                       android:textSize="16sp"
+                       android:singleLine="true"
+                       app:track="@drawable/switch_style"
+                       app:thumbTint="@color/white"
+                       android:fontFamily="@font/sf_display_regular"
+                       android:textColor="@color/white" />
+
+
+               </LinearLayout>
+
+               
+               
+               
+               
+               <ImageView
+                   android:id="@+id/imageView5"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/line_break" />
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+                   <SeekBar
+                       android:id="@+id/seekBar_days"
+                       android:paddingTop="10dp"
+                       android:paddingBottom="5dp"
+                       android:paddingStart="60dp"
+                       android:paddingEnd="60dp"
+                       android:max="7"
+                       android:thumbTint="@color/white"
+
+                       android:progress="1"
+                       android:progressDrawable="@drawable/shape_seek_bar"
+                       android:min="1"
+                       android:thumb="@drawable/shape_seek_thumb"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1" />
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+
+
+                   <TextView
+                       android:id="@+id/textView10"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textSize="16sp"
+                       android:paddingLeft="15dp"
+                       android:textColor="@color/menu_text"
+                       android:text="Начать уведомлять за " />
+
+                   <TextView
+                       android:id="@+id/textView_seek_bar"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:gravity="center_vertical|start"
+                       android:textSize="16sp"
+                       android:paddingTop="5dp"
+                       android:textColor="@color/white"
+                        />
+
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+
+
+                   <TextView
+                       android:id="@+id/textView11"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textSize="16sp"
+                       android:paddingLeft="15dp"
+                       android:textColor="@color/menu_text"
+                       android:text="Периодичность " />
+
+                   <androidx.appcompat.widget.SwitchCompat
+                       android:id="@+id/switch_everyday"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Однократно "
+                       android:textSize="16sp"
+                       android:paddingLeft="10dp"
+                       android:fontFamily="@font/sf_display_regular"
+                       android:textColor="@color/white" />
+
+
+               </LinearLayout>
+
+
+           </LinearLayout>
+
+       </FrameLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_save"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:backgroundTint="@color/grey2"
+        android:text="Сохранить"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

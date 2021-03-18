@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.antipodpiska.R
 import com.example.antipodpiska.data.SharedPrefSource
@@ -72,13 +73,14 @@ class MenuProfileFragment : Fragment() {
         communicator = activity as CommunicatorMenu
 
         buttonSave.setOnClickListener {
-            user = User(
-                email = emailUser.text.toString(),
-                nickname = nickUser.text.toString(),
-                name = nameUser.text.toString(),
-                phone = phoneUser.text.toString(),
-                password = user.password
-            )
+
+            user.email = emailUser.text.toString()
+            user.nickname = nickUser.text.toString()
+            user.name = nameUser.text.toString()
+            user.phone = phoneUser.text.toString()
+            user.password = user.password
+
+            Toast.makeText(context, "Сохранено", Toast.LENGTH_SHORT).show()
             communicator.editProfile(user)
         }
         buttonBack.setOnClickListener {

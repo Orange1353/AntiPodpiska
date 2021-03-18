@@ -13,6 +13,7 @@ import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.data.User
 import com.example.antipodpiska.data.subList
 import com.example.antipodpiska.ui.home.HomeActivity
+import com.example.recyclersample.data.DataSource
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
@@ -118,33 +119,45 @@ class FirebaseSource {
             }
     }
 
+    //На создание пользователя нужно время. так, чуть позже после регистрации добавляем данные пользователя. при последующих нажатиях прежде чем записать проверяем есть ли уже в бд user
     fun addUserInFirebaseWithCheck(email: String, password: String, nickname: String) {
 
-        val userItem = HashMap<String, String>()
+        val userItem = HashMap<String, Any>()
         val token =  FirebaseInstanceId.getInstance().token
         if (token != null) {
             userItem.put("token", token)
         }
 
+        userItem.put("pushAll", true)
+        userItem.put("beginPush", 2)
+        userItem.put("periodPush", true)
         userItem.put("email", email)
         userItem.put("password", password)
         userItem.put("nickname", nickname)
         var checkAvailabilityId = 0
 
-
-
         while (checkAvailabilityId != 1) {
             if (FirebaseAuth.getInstance().currentUser?.uid.toString() != "null") {
 
-                firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).set(userItem)
-                    .addOnCompleteListener {
-                            if (it.isSuccessful)
-                            {
+                firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).get()
+                    .addOnSuccessListener { document ->
+                    if (document.data != null )
+                    {
+
+                    }
+                        else{
+                        firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).set(userItem)
+                            .addOnCompleteListener {
+                                if (it.isSuccessful)
+                                {
                                 }
-                            else{
+                                else{
 
                                 }
+                            }
                     }
+                    }
+
                 checkAvailabilityId += 1
             }
         }
@@ -227,7 +240,17 @@ class FirebaseSource {
             })
     }
 
+    /*companion object {
+        private var INSTANCE: FirebaseSource? = null
 
+        fun getFirebaseSource(): FirebaseSource {
+            return synchronized(FirebaseSource::class) {
+                val newInstance = INSTANCE ?: FirebaseSource()
+                INSTANCE = newInstance
+                newInstance
+            }
+        }
+    }*/
 
 
 }

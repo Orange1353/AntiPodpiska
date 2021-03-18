@@ -9,4 +9,5 @@ interface CommunicatorMenu {
     fun onBackPressed()
     fun onBackPressedMenuItem()
     fun onBackPressedPopBackstack()
+    fun sendSupportMessage(text: String, email: String, type: String)
 }

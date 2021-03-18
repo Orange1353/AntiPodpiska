@@ -107,16 +107,16 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
         firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).get()
                 .addOnSuccessListener { document ->
                     if (document.data != null )
-                    {
+                    {Log.d("!!!!!", "1 DocumentSnapshot data: ${document.data}")
                         val user = document.toObject(User::class.java)
-                        if (user?.token != FirebaseInstanceId.getInstance().token.toString()) {
+                       /* if (user?.token != FirebaseInstanceId.getInstance().token.toString()) {
                             user?.token = FirebaseInstanceId.getInstance().token.toString()
                             val firebase = FirebaseSource()
                             if (user != null) {
                                 //возможно токен сменился, это чтобы перезаписать с новым
                                 firebase.addUserInFirebase(user)
                             }
-                        }
+                        }*/
                         Log.d("!!!!!", "1 DocumentSnapshot data: ${document.data}")
                     } else {
                         Log.d("!!!!!", "2 DocumentSnapshot data: ${document.data}")

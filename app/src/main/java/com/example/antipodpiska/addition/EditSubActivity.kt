@@ -1,6 +1,7 @@
 package com.example.antipodpiska.addition
 
 import android.app.DatePickerDialog
+import android.content.Context
 import com.example.antipodpiska.subDetails.SubDetailViewModel
 import com.example.antipodpiska.subDetails.SubDetailViewModelFactory
 
@@ -67,7 +68,7 @@ class EditSubActivity : AppCompatActivity() {
         addPeriodTypePay = findViewById(R.id.spinner_period_pay)
         addCard = findViewById(R.id.card)
         pushEnabled = findViewById(R.id.switch_enabled)
-
+        val buttonCalendar: ImageView = findViewById(R.id.imageViewCalendar)
         val saveSubButton: Button = findViewById(R.id.done_button)
 
 
@@ -132,20 +133,20 @@ class EditSubActivity : AppCompatActivity() {
                 addDatePay.setText(sdf.format(cal.time))
             }
 
+
+
             addDatePay.setOnClickListener {
-                DatePickerDialog(this@EditSubActivity, dateSetListenerDatePay,
-                    cal.get(Calendar.YEAR),
-                    cal.get(Calendar.MONTH),
-                    cal.get(Calendar.DAY_OF_MONTH)).show()
+                addDate(this, cal, dateSetListenerDatePay)
             }
-
-
+            buttonCalendar.setOnClickListener{
+                addDate(this, cal, dateSetListenerDatePay)
+            }
 
             saveSubButton.setOnClickListener {
                 if (currentSub != null) {
 
                     var newSub = clone(currentSub)
-                    newSub = fillNewSub(currentSub)
+                    newSub = fillNewSub(newSub!!)
 
                     subDetailViewModel.editSub(currentSub, newSub, this)
 
@@ -243,7 +244,13 @@ class EditSubActivity : AppCompatActivity() {
 
 
     }
-
+    fun addDate(context: Context, cal: Calendar, dateSetListenerDatePay: DatePickerDialog.OnDateSetListener )
+    {
+        DatePickerDialog(context, dateSetListenerDatePay,
+            cal.get(Calendar.YEAR),
+            cal.get(Calendar.MONTH),
+            cal.get(Calendar.DAY_OF_MONTH)).show()
+    }
 
 fun clone(sub:Sub): Sub? {
     val stringSub = Gson().toJson(sub, Sub::class.java)

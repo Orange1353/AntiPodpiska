@@ -6,5 +6,8 @@ data class User (
     var email: String = "",
     var password: String ="",
     var nickname: String="",
-    var token: String = ""
+    var token: String = "",
+    var pushAll: Boolean = true,
+    var beginPush: Int = 2,
+    var periodPush: Boolean = true //true = каждый день
         )

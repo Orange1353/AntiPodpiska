@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.ViewCompat
@@ -22,7 +23,6 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 
 class SubAdapter(private val onClick: (Sub) -> Unit) :
@@ -31,7 +31,7 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
     /* ViewHolder for Flower, takes in the inflated view and the onClick behavior. */
     class SubViewHolder(itemView: View, val onClick: (Sub) -> Unit) :
         RecyclerView.ViewHolder(itemView) {
-        private val subName: TextView = itemView.findViewById(R.id.flower_text)
+           private val subName: TextView = itemView.findViewById(R.id.flower_text)
         private val subImageView: TextView = itemView.findViewById(R.id.flower_image)
         private val cardNum: TextView = itemView.findViewById(R.id.card_num)
         private val addDatePay: TextView =  itemView.findViewById(R.id.day_pay_calulat)
@@ -173,7 +173,14 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
                 subImageView.setBackgroundResource(R.drawable.img)
             }
         }
+
+
+
     }
+
+
+
+
 
     /* Creates and inflates view and return FlowerViewHolder. */
     /*первоначально создание ViewHolders. parent - это и есть recycleView*/
@@ -186,7 +193,11 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
     /* Gets current flower and uses it to bind view. */
     /*Изменение значения существующих ViewHolders при прокрутке*/
     override fun onBindViewHolder(holder: SubViewHolder, position: Int) {
-        val sub = getItem(position)
+        var sub = getItem(position)
+      /*  if(sub.status== "Архив") {
+            holder.itemView.layoutParams = LinearLayout.LayoutParams(0, 0)
+        }
+*/
         holder.bind(sub)
 
     }

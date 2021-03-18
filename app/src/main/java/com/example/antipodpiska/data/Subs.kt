@@ -5,6 +5,7 @@ import android.content.res.Resources
 import android.util.Log
 import com.example.antipodpiska.R
 import com.example.antipodpiska.data.firebase.FirebaseSource
+import com.example.recyclersample.data.DataSource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
 import java.util.*
@@ -56,8 +57,8 @@ fun subList(resources: Resources,  context: Context): List<Sub> {
         val t: FirebaseSource = FirebaseSource()
         subListFromPref = t.getFromFirebase(context)
 
-
-       map= sharedPreference.getAll()
+        //хз, надо бы разблочить
+      /*  map= sharedPreference.getAll()
         keyList = ArrayList(map.keys)
         valueList = ArrayList(map.values)
 
@@ -66,16 +67,13 @@ fun subList(resources: Resources,  context: Context): List<Sub> {
             json = valueList[i].toString()
             obj = gson.fromJson(json, Sub::class.java)
             subListFromPref?.add(obj)
+        }*/
+
+        for (i in subListFromPref.indices) {
+       //     var data : DataSource = DataSource(resources, context)
+      //      data.addSub(subListFromPref[i], context)
+            list1 = list1.plus(subListFromPref[i])
         }
-
-
-
-
-
-
-
-        for (i in subListFromPref.indices)
-            list1= list1.plus(subListFromPref[i])
     }
 
     return list1

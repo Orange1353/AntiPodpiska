@@ -11,9 +11,11 @@
     <color name="grey">#46474C</color>
     <color name ="transparent_grey">#8D8E93</color>
     <color name="header_back">#2F3034</color>
-    <color name="orange">#EC8074</color>
+    <color name="orange">#E1574F</color>
     <color name="transparent">#80000000</color>
     <color name="menu_text">#B8B9BF</color>
     <color name="pink">#9934BD</color>
+    <color name="blue">#286BFA</color>
+    <color name="blue_button">#1E53C5</color>
 
 </resources>

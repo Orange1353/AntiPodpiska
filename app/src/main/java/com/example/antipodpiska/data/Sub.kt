@@ -20,6 +20,6 @@ data class Sub(
         var periodTypePay: String= "",
         var card: String= "",
         var pushEnabled: Boolean= false,
-        val date_add: String = ""
-
+        val date_add: String = "",
+        var status: String = "Активна"
 )

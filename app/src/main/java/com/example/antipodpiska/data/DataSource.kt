@@ -32,12 +32,16 @@ import com.example.antipodpiska.subDetails.SubDetailActivity
 import com.example.antipodpiska.ui.auth.SignupActivity
 import com.example.antipodpiska.utils.startSignupActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.HashMap
 
 /* Handles operations on flowersLiveData and holds details about it. */
 class DataSource(resources: Resources, context: Context) {
@@ -80,7 +84,8 @@ class DataSource(resources: Resources, context: Context) {
             updatedList.replaceAll { sub->editedSub }
             subLiveData.postValue(updatedList)
         }
-        Shared.saveToShared(sub)
+        Shared.saveToShared(editedSub)
+
     }
 
     /* Removes flower from liveData and posts value. */
@@ -117,7 +122,8 @@ class DataSource(resources: Resources, context: Context) {
     }
 
     fun editUserProfile(userNew: User, context: Context){
-        Shared.saveUserToShared(userNew, context)
+        val Shared2: SharedPrefSource = SharedPrefSource((context))
+        Shared2.saveUserToShared(userNew, context)
         userNew.token = FirebaseInstanceId.getInstance().token.toString()
         firebaseFirestore.collection("Users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).set(userNew)
             .addOnCompleteListener {
@@ -177,6 +183,7 @@ class DataSource(resources: Resources, context: Context) {
         subItem.put("periodTypePay", sub.periodTypePay.toString())
         subItem.put("id_user", FirebaseAuth.getInstance().currentUser?.uid.toString())
         subItem.put("push", sub.pushEnabled)
+        subItem.put("status", sub.status)
 
         if (sub.date_add != "" && sub.date_add != null)
             subItem.put("date_add", sub.date_add)
@@ -261,7 +268,17 @@ class DataSource(resources: Resources, context: Context) {
         addSubInFirebase(sub)
     }
 
+    fun sendSupportInFirebase(text: String, email: String, theme: String){
+        var database: DatabaseReference = FirebaseDatabase.getInstance().getReference()
+        var message: HashMap<String, String> = HashMap()
 
+        message.put("email", email)
+        message.put("message", text)
+        val cal: Calendar = GregorianCalendar()
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm")
+        database.child(theme + " " + dateFormat.format(cal.getTime()).toString()).setValue(message)
+
+    }
 
 }
 

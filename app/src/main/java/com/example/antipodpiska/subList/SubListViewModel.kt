@@ -61,6 +61,11 @@ val si:Sub = Shared.getFromShared(newSub)
     fun editUser(userNew: User, context: Context){
        dataSource.editUserProfile(userNew, context)
     }
+
+    fun sendSupportInFirebase(text: String, email: String, theme: String){
+        dataSource.sendSupportInFirebase(text, email, theme)
+    }
+
 }
 
 

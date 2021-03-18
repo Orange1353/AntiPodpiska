@@ -18,40 +18,35 @@ package com.example.antipodpiska.subDetails
 
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
+import android.view.*
 import android.widget.*
 import androidx.activity.viewModels
-
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SwitchCompat
+import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.view.ViewCompat
 import com.example.antipodpiska.R
-import com.example.antipodpiska.addition.EditActivity
 import com.example.antipodpiska.addition.EditSubActivity
-
+import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.subList.SUB_ID
-import com.example.antipodpiska.subList.SubListActivity
-import com.example.antipodpiska.utils.startSubListActivity
+import com.example.recyclersample.data.DataSource
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
+import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_sub_detail_base.*
 import kotlinx.android.synthetic.main.element_detail_any_text.view.*
-import kotlinx.android.synthetic.main.element_detail_cost_only.view.*
 import kotlinx.android.synthetic.main.element_detail_cost_only.view.text_cost_details
 import kotlinx.android.synthetic.main.element_detail_with_free.view.*
 import kotlinx.android.synthetic.main.element_next_pay.view.*
-import java.text.SimpleDateFormat
+import java.security.AccessController.getContext
 import java.time.LocalDate
-import java.time.Period
 import java.time.format.DateTimeFormatter
-import java.util.*
+
 
 class SubDetailActivity : AppCompatActivity() {
 
@@ -60,6 +55,7 @@ class SubDetailActivity : AppCompatActivity() {
         SubDetailViewModelFactory(this)
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub_detail_base)
@@ -70,9 +66,16 @@ class SubDetailActivity : AppCompatActivity() {
         val subName: TextView = findViewById(R.id.flower_detail_name)
         val subImage: TextView = findViewById(R.id.flower_detail_image)
         val backButton: ImageButton = findViewById(R.id.button_back)
+        val unSubButton: Button = findViewById(R.id.button_unSub)
        // val subDescription: TextView = findViewById(R.id.flower_detail_description)
-        val removeSubButton: ImageButton = findViewById(R.id.remove_button)
-        val editButton: ImageButton = findViewById(R.id.edit_button)
+
+       // val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(findViewById(R.id.toolbar))
+        getSupportActionBar()?.setTitle(null)
+
+        val menuBuilder = toolbar.menu as MenuBuilder
+        menuBuilder.setOptionalIconsVisible(true)
+//        setActionBar(toolbar)
 
    //     val dateNearestPay: TextView = findViewById(R.id.data_nearest_pay)
    /*     val costPlusPeriod: TextView =  findViewById(R.id.cost_plus_period)
@@ -84,7 +87,7 @@ class SubDetailActivity : AppCompatActivity() {
 */
 
         val inflater = applicationContext.getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE
+            Context.LAYOUT_INFLATER_SERVICE
         ) as LayoutInflater
         val container = findViewById<View>(R.id.base_lay) as LinearLayout
 
@@ -108,7 +111,7 @@ class SubDetailActivity : AppCompatActivity() {
                         .build()
                 val shapeDrawable = MaterialShapeDrawable(shapeAppearanceModel)
 
-                var t = Color.parseColor("#"+ currentSub!!.image)
+                var t = Color.parseColor("#" + currentSub!!.image)
                 shapeDrawable.setTint(t)
                 ViewCompat.setBackground(subImage, shapeDrawable)
                 subImage.setGravity(Gravity.CENTER)
@@ -164,7 +167,10 @@ class SubDetailActivity : AppCompatActivity() {
             if (currentSub?.periodFree != "")
             {
                 if (currentSub?.costSub != "") {
-                    val costPlusPeriod: View = inflater.inflate(R.layout.element_detail_with_free, null)
+                    val costPlusPeriod: View = inflater.inflate(
+                        R.layout.element_detail_with_free,
+                        null
+                    )
 
                     if (currentSub?.periodPay != "") {
 
@@ -200,13 +206,19 @@ class SubDetailActivity : AppCompatActivity() {
                         "Месяцев" -> tmp = "мес."
                     }
 
-                    val costPlusPeriod: View = inflater.inflate(R.layout.element_detail_cost_only, null)
+                    val costPlusPeriod: View = inflater.inflate(
+                        R.layout.element_detail_cost_only,
+                        null
+                    )
                     costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr + " / " + currentSub?.periodPay + " " + tmp
                     container.addView(costPlusPeriod)
                 }
                 else
                 {
-                    val costPlusPeriod: View = inflater.inflate(R.layout.element_detail_cost_only, null)
+                    val costPlusPeriod: View = inflater.inflate(
+                        R.layout.element_detail_cost_only,
+                        null
+                    )
                     costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr
                     container.addView(costPlusPeriod)
                 }
@@ -214,8 +226,8 @@ class SubDetailActivity : AppCompatActivity() {
             }
 
 
-
-
+if (currentSub.status == "Архив")
+unSubButton.text = "Возобновить подписку"
 
           if (currentSub?.card != "") {
               val card: View = inflater.inflate(R.layout.element_detail_any_text, null)
@@ -229,38 +241,37 @@ class SubDetailActivity : AppCompatActivity() {
             paidSumm.value_field.text = summCost.toString() + " " + currentSub?.costCurr
             container.addView(paidSumm)
 
-    /*
 
-            if (currentSub?.pushEnabled == true) {
-                pushEnabled.text = "Включены  "
-                pushEnabled.isChecked = true
-            } else {
-                pushEnabled.text = "Выключены"
-                pushEnabled.isChecked = false
-            }
-*/
             backButton.setOnClickListener {
                 onBackPressed()
                 finish()
             }
 
-            editButton.setOnClickListener {
-                if (currentSub != null) {
+            unSubButton.setOnClickListener {
 
-                    Intent(this, EditSubActivity::class.java).also {
-                        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        it.putExtra(SUB_ID, currentSubId)
-                        startActivity(it)
-                    }
+                if (currentSub.status == "Архив"){
+                    val newSub = clone(currentSub)
+                    newSub!!.status = "Активна"
+
+                    subDetailViewModel.editSub(currentSub, newSub!!, this)
+                    Toast.makeText(this, "Готово, вы можете отредактировать подписку при необходимости", Toast.LENGTH_SHORT).show()
+                    finish()
                 }
+                else
+                {
+                val newSub = clone(currentSub)
+                newSub?.status = "Архив"
+
+
+
+                subDetailViewModel.editSub(currentSub, newSub!!, this)
+
+
+                Toast.makeText(this, "Подписка в архиве", Toast.LENGTH_SHORT).show()
                 finish()
             }
 
-            removeSubButton.setOnClickListener {
-                if (currentSub != null) {
-                    subDetailViewModel.removeFlower(currentSub, this)
-                }
-                finish()
+
             }
 
 
@@ -280,4 +291,53 @@ class SubDetailActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_actions_detail, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+
+        R.id.edit_sub -> {
+            val bundle: Bundle? = intent.extras
+            val currentSubId = bundle?.getLong(SUB_ID)
+            val currentSub = subDetailViewModel.getFlowerForId(currentSubId!!)
+
+            if (currentSub != null) {
+
+                Intent(this, EditSubActivity::class.java).also {
+                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    it.putExtra(SUB_ID, currentSubId)
+                    startActivity(it)
+                }
+            }
+            finish()
+
+            true
+        }
+
+        R.id.delete_sub -> {
+            val bundle: Bundle? = intent.extras
+            val currentSubId = bundle?.getLong(SUB_ID)
+            val currentSub = subDetailViewModel.getFlowerForId(currentSubId!!)
+            if (currentSub != null) {
+                subDetailViewModel.removeFlower(currentSub, this)
+            }
+            finish()
+            true
+        }
+
+        else -> {
+
+            super.onOptionsItemSelected(item)
+        }
+
+
+    }
+
+    fun clone(sub: Sub): Sub? {
+        val stringSub = Gson().toJson(sub, Sub::class.java)
+        return Gson().fromJson<Sub>(stringSub, Sub::class.java)
+    }
+
 }

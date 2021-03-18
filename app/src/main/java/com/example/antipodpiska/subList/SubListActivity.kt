@@ -177,9 +177,12 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
 
     }
 
+    override  fun sendSupportMessage(text: String, email: String, theme: String)
+    {
+        subsListViewModel.sendSupportInFirebase(text, email, theme)
+    }
 
     private fun fabOnClick() {
-
       val intent = Intent(this, AddSubActivityFragments::class.java)
       startActivityForResult(intent, newSubActivityRequestCode)
     }
