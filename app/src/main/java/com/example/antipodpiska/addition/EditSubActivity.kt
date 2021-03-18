@@ -147,7 +147,6 @@ class EditSubActivity : AppCompatActivity() {
 
                     var newSub = clone(currentSub)
                     newSub = fillNewSub(newSub!!)
-
                     subDetailViewModel.editSub(currentSub, newSub, this)
 
                 }

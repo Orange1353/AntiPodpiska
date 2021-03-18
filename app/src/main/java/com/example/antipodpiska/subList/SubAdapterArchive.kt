@@ -188,9 +188,8 @@ class SubAdapterArchive(private val onClick: (Sub) -> Unit) :
     /*Изменение значения существующих ViewHolders при прокрутке*/
     override fun onBindViewHolder(holder: SubAdapter.SubViewHolder, position: Int) {
         val sub = getItem(position)
-        if(sub.status =="Активна")
-            holder.itemView.layoutParams = LinearLayout.LayoutParams(0, 0)
-
+  //      if(sub.status =="Активна")
+   //         holder.itemView.layoutParams = LinearLayout.LayoutParams(0, 0)
         holder.bind(sub)
     }
 

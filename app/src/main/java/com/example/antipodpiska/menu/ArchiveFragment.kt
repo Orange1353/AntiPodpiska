@@ -3,6 +3,7 @@ package com.example.antipodpiska.menu
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -43,7 +44,15 @@ class ArchiveFragment : Fragment() {
 
         subsListViewModel.subsLiveData.observe(this) {
             it?.let {
-                subsAdapter.submitList(it as MutableList<Sub>)
+                Log.e("55555 ARC", it.toString())
+                var list1:List<Sub> = ArrayList<Sub>()
+                for (i in it.indices) {
+                    if(it[i].status == "Архив")
+                        list1 = list1.plus(it[i])
+                }
+                subsAdapter.submitList(list1)
+
+            // subsAdapter.submitList(it as MutableList<Sub>)
                 //              headerAdapter.updateSubCount(it.size)
             }
 

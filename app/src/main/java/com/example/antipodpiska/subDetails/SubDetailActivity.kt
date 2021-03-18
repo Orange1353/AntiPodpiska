@@ -33,6 +33,7 @@ import com.example.antipodpiska.R
 import com.example.antipodpiska.addition.EditSubActivity
 import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.subList.SUB_ID
+import com.example.antipodpiska.utils.startSubListActivity
 import com.example.recyclersample.data.DataSource
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
@@ -189,8 +190,25 @@ class SubDetailActivity : AppCompatActivity() {
                         costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr
                         container.addView(costPlusPeriod)
                     }
-                    costPlusPeriod.text_before_free.text = currentSub?.periodFree + " " + currentSub?.periodTypeFree
 
+                        var tmp: String=""
+                        when(currentSub.periodTypeFree){
+                            "Дней" -> tmp = "дн."
+                            "Недель" -> tmp = "нед."
+                            "Месяцев" -> tmp = "мес."
+                        }
+
+                    costPlusPeriod.text_before_free.text = currentSub?.periodFree + " " + tmp
+
+                }
+
+                else{
+                    val costPlusPeriod: View = inflater.inflate(
+                        R.layout.element_detail_free_only,
+                        null
+                    )
+                    costPlusPeriod.text_before_free.text = currentSub?.periodFree + " " + currentSub?.periodTypeFree
+                    container.addView(costPlusPeriod)
                 }
 
             }
@@ -255,7 +273,7 @@ unSubButton.text = "Возобновить подписку"
 
                     subDetailViewModel.editSub(currentSub, newSub!!, this)
                     Toast.makeText(this, "Готово, вы можете отредактировать подписку при необходимости", Toast.LENGTH_SHORT).show()
-                    finish()
+
                 }
                 else
                 {
@@ -268,10 +286,10 @@ unSubButton.text = "Возобновить подписку"
 
 
                 Toast.makeText(this, "Подписка в архиве", Toast.LENGTH_SHORT).show()
-                finish()
+
             }
-
-
+                finish()
+                startSubListActivity()
             }
 
 
