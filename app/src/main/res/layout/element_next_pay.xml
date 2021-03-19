@@ -5,11 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:background="@color/darkBack">
 
     <TextView
-        android:id="@+id/nextPay"
+        android:id="@+id/nextPaytext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -19,4 +19,14 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         android:text="Следующий платёж " />
+    <TextView
+        android:id="@+id/nextPay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/sf_display_bold"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        />
 </LinearLayout>

@@ -5,7 +5,7 @@
         android:fontFamily="@font/sf_display_regular"
         android:id="@+id/item_subs"
         android:enabled="true"
-        android:icon="@drawable/menu_subs"
+        android:icon="@drawable/ic_menu_subs"
         android:title="Подписки"/>
     <item
         android:id="@+id/item_archive"

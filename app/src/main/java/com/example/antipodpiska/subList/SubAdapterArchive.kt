@@ -73,6 +73,15 @@ class SubAdapterArchive(private val onClick: (Sub) -> Unit) :
                 cardNum.text = "*" + sub.card
             //  addDatePay.text = sub.datePay
 
+
+
+            status.setText("Архив")
+            status.setBackgroundResource(R.drawable.shape_text_input)
+            val wrappedDrawable = DrawableCompat.wrap(status.getBackground())
+            DrawableCompat.setTint(wrappedDrawable, Color.parseColor("#757679"))
+            status.setBackgroundDrawable(wrappedDrawable)
+
+
             if (currentSub?.datePay != null && currentSub?.datePay !="")
             {
             var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
@@ -81,23 +90,14 @@ class SubAdapterArchive(private val onClick: (Sub) -> Unit) :
             var dateNow = LocalDate.now()
 
 
-
              if (currentSub?.periodFree != "") {
                  when (currentSub?.periodTypeFree) {
                      "Дней" -> datePay = datePay.plusDays(currentSub?.periodFree!!.toLong())
                      "Недель" -> datePay = datePay.plusWeeks(currentSub?.periodFree!!.toLong())
                      "Месяцев" -> datePay = datePay.plusMonths(currentSub?.periodFree!!.toLong())
                  }
-                 if (datePay > dateNow) {
-                     status.setText("Бесплатно")
-                     status.setBackgroundResource(R.drawable.shape_text_input)
-                     val wrappedDrawable = DrawableCompat.wrap(status.getBackground())
-                     DrawableCompat.setTint(wrappedDrawable, Color.parseColor("#9934BD"))
-                     status.setBackgroundDrawable(wrappedDrawable)
-
-
-                 }
              }
+
 
 
                 //   while (datePay < dateNow)

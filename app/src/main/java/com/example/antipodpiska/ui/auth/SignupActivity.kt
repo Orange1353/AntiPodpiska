@@ -53,6 +53,11 @@ class SignupActivity : AppCompatActivity(), AuthListener, KodeinAware {
 
         viewModel.authListener = this
 
+        val btnBack: Button = findViewById(R.id.button_back)
+        btnBack.setOnClickListener {
+            onBackPressed()
+        }
+
     }
 
 fun onClick(view: View){

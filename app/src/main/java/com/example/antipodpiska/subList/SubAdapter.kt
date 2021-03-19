@@ -21,6 +21,7 @@ import com.example.antipodpiska.data.Sub
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
+import kotlinx.coroutines.processNextEventInCurrentThread
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -73,6 +74,18 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
                 cardNum.text = "*" + sub.card
             //  addDatePay.text = sub.datePay
 
+
+            if (currentSub?.status == "Архив")
+            {
+                addDatePay.text = "Отписались " + currentSub?.datePay
+                status.setText("Архив")
+                    status.setBackgroundResource(R.drawable.shape_text_input)
+                    val wrappedDrawable = DrawableCompat.wrap(status.getBackground())
+                    DrawableCompat.setTint(wrappedDrawable, Color.parseColor("#737679"))
+                    status.setBackgroundDrawable(wrappedDrawable)
+            }
+
+            else
             if (currentSub?.datePay != null && currentSub?.datePay !="")
             {
             var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
@@ -111,7 +124,7 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
                                 datePay.plusMonths(currentSub?.periodPay!!.toLong())
                         }
                 }
-                if (sub.costSub != null) {
+                if (sub.costSub != "") {
 
                     if (datePay != null){
                         var tmp: String=""
@@ -120,9 +133,11 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
                             "Недель" -> tmp = "нед."
                             "Месяцев" -> tmp = "мес."
                         }
-                        addDatePay.text = "После " + datePay.format(formatter).toString() + ": " + sub.costSub + " " + sub.costCurr + "/ " + sub.periodPay + " " + tmp
+                        if (sub.periodPay != "")
+                        addDatePay.text = "После " + datePay.format(formatter).toString() + " стоимость " + sub.costSub + " " + sub.costCurr + "/ " + sub.periodPay + " " + tmp
+                        else
+                            addDatePay.text = "После " + datePay.format(formatter).toString() + " стоимость " + sub.costSub + " " + sub.costCurr
                 }
-
                 }
 
                subDateUntil.text = "до "+ datePay.format(formatter).toString()
@@ -130,27 +145,11 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
         }
 
 
-            /*addSubName.text =
-            addSubDescription.text
-            addSubEndDate.text
-            addDatePay.text
-            addPeriodFree.text
-            addCostSub.text
-            addPeriodPay.text
-            addPeriodTypeFree.selectedItem.toString()
-            addCostCurr.selectedItem.toString()
-            addPeriodTypePay.selectedItem.toString()*/
-
-
             if (sub.image != null) {
            //     subImageView.setImageResource(R.drawable.shape_initial_item)
-
          //       subImageView.setGravity(Gravity.CENTER)
-
            //     subImageView.setBackgroundColor(Color.BLUE)
-
           //      subImageView.setText("F");
-
 
                 val radius: Float = 20F
                 val shapeAppearanceModel = ShapeAppearanceModel()
@@ -172,7 +171,12 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
             } else {
                 subImageView.setBackgroundResource(R.drawable.img)
             }
+
+
+
         }
+
+
 
 
 

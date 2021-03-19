@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<RelativeLayout
+
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/darkBack"
     tools:context=".ui.auth.PhoneAuthActivity">
+
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="57dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/darkBack"
+        android:drawableLeft="@drawable/ic_menu_buttom_back"
+        android:paddingLeft="21dp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="start|center_horizontal"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        />
 
     <TextView
         android:id="@+id/textView"
@@ -90,3 +107,4 @@
          />
 
 </RelativeLayout>
+</ScrollView>

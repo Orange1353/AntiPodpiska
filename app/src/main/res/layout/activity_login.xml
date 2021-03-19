@@ -7,13 +7,29 @@
         <variable name="viewmodel"
             type="com.example.antipodpiska.ui.auth.AuthViewModel"/>
     </data>
-
-    <RelativeLayout android:layout_width="match_parent"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/darkBack"
         android:orientation="vertical"
         tools:context=".ui.auth.LoginActivity"
         android:scrollbarAlwaysDrawVerticalTrack="true">
+
+        <Button
+            android:id="@+id/button_back"
+            android:layout_width="57dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/darkBack"
+            android:drawableLeft="@drawable/ic_menu_buttom_back"
+            android:paddingLeft="21dp"
+            android:gravity="center_horizontal"
+            android:layout_gravity="start|center_horizontal"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            />
 
         <TextView
             android:id="@+id/textView"
@@ -93,14 +109,14 @@
             android:layout_height="50dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="500dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="130dp"
             android:fontFamily="@font/sf_display_medium"
             android:backgroundTint="#286BFA"
             android:onClick="@{() -> viewmodel.login()}"
             android:text="Войти"
+
+            android:layout_alignParentTop="true"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16sp"
@@ -114,7 +130,7 @@
             android:layout_height="wrap_content"/>
 
     </RelativeLayout>
-
+    </ScrollView>
 </layout>
 
 

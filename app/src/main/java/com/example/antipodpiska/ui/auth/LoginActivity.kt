@@ -41,6 +41,10 @@ class LoginActivity : AppCompatActivity(), AuthListener, KodeinAware {
 
         viewModel.deleteSharedAfterSignIn(this)
 
+        val btnBack: Button = findViewById(R.id.button_back)
+        btnBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     override fun onStarted() {

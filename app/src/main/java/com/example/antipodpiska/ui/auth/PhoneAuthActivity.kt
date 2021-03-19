@@ -165,7 +165,10 @@ class PhoneAuthActivity : AppCompatActivity() {
         )
         editText = findViewById(R.id.editTextPhone)
 
-
+        val btnBack: Button = findViewById(R.id.button_back)
+        btnBack.setOnClickListener {
+            onBackPressed()
+        }
 
     }
 

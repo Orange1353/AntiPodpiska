@@ -10,13 +10,16 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.antipodpiska.R
 import com.example.antipodpiska.addition.AddSubActivity
@@ -65,6 +68,7 @@ class MenuFragment : Fragment() {
         recyclerView.adapter = subsAdapter
         var subsListViewModel = ViewModelProvider(activity!!).get(SubListViewModel::class.java)
 
+
         subsListViewModel.subsLiveData.observe(this) {
             it?.let {
                 Log.e("55555 MENU", it.toString())
@@ -73,7 +77,9 @@ class MenuFragment : Fragment() {
                     if(it[i].status == "Активна")
                     list1 = list1.plus(it[i])
                 }
+
                 subsAdapter.submitList(list1)
+           //     subsAdapter.submitList(it as MutableList<Sub>)
                 //              headerAdapter.updateSubCount(it.size)
             }
 
@@ -86,9 +92,9 @@ class MenuFragment : Fragment() {
         }
 */
 
-
         return view
     }
+
 
 
 

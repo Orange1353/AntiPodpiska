@@ -10,7 +10,7 @@ data class Sub(
         var description: String= "",
     //дата окончания подписки
         var typeSub: String= "",
-        //Дата начала подписки
+        //Дата начала подписки, или, если в архиве, дата когда отписались
         var datePay: String= "",
         var periodFree: String= "",
         var costSub: String= "",

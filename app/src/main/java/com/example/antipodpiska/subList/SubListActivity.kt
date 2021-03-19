@@ -55,7 +55,6 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
         SubListViewModelFactory(this)
     }
 
-
     private val CHANNEL_ID = "channel"
     private val notificationId = 101
 
@@ -175,6 +174,7 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
 
         createNotChannel()
 
+
     }
 
     override  fun sendSupportMessage(text: String, email: String, theme: String)
@@ -183,6 +183,7 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
     }
 
     private fun fabOnClick() {
+
       val intent = Intent(this, AddSubActivityFragments::class.java)
       startActivityForResult(intent, newSubActivityRequestCode)
     }

@@ -27,7 +27,7 @@
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:background="@color/header_back"
-               android:layout_marginLeft="55dp"
+               android:layout_marginLeft="57dp"
                android:text="Написать в службу поддержки"
                android:fontFamily="@font/sf_display_regular"
                android:textAllCaps="false"
@@ -36,11 +36,11 @@
 
            <Button
                android:id="@+id/button_back"
-               android:layout_width="55dp"
+               android:layout_width="57dp"
                android:layout_height="match_parent"
                android:background="@color/header_back"
                android:drawableLeft="@drawable/ic_menu_buttom_back"
-               android:paddingLeft="23dp"
+               android:paddingLeft="21dp"
                android:gravity="center_horizontal"
                android:layout_gravity="start|center_horizontal"
                android:textAllCaps="false"
