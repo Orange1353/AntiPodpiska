@@ -10,9 +10,48 @@
         android:layout_height="match_parent"
         android:background="#232323">
 
-        <LinearLayout
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:background="@color/header_back"
+            android:elevation="4dp"
+            android:focusedByDefault="false"
+            android:focusable="false"
+
+            app:theme="@style/AppThemeToolbarSearch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+            <SearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="80dp"
+                android:paddingStart="-10dp"
+                android:submitBackground = "@android:color/transparent"
+                android:queryBackground = "@android:color/transparent"
+                android:focusedByDefault="false"
+                android:focusable="false"
+                android:background="@drawable/shape_search"
+                android:backgroundTint="@color/grey_search"
+                android:queryHint="Поиск..."
+                android:searchIcon="@drawable/ic_icon_search"
+                android:searchHintIcon="@drawable/ic_icon_search"
+                android:layout_height="36dp"
+                android:iconifiedByDefault="false">
+
+                <requestFocus />
+            </SearchView>
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="55dp"
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="@+id/lay0">
 
@@ -24,7 +63,6 @@
             <!--            android:layout_marginTop="31dp"-->
             <!--            app:layout_constraintEnd_toEndOf="parent"-->
             <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
 
 
             <androidx.recyclerview.widget.RecyclerView

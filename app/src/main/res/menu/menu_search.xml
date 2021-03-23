@@ -5,6 +5,7 @@
         android:id="@+id/searchView"
         android:icon="@drawable/ic_user_menu"
         android:title="Search"
+        android:tooltipText="TTT"
         app:showAsAction="always"
-        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+        app:actionViewClass="android.widget.SearchView" />
 </menu>

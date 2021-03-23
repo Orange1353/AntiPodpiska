@@ -66,7 +66,7 @@ tools:context=".menu.MenuProfileFragment">
                 <Button
                     android:id="@+id/button_profile"
                     style="?android:attr/borderlessButtonStyle"
-
+android:clickable="false"
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
                     android:backgroundTint="@color/dark_light"
@@ -113,9 +113,11 @@ tools:context=".menu.MenuProfileFragment">
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/sf_display_medium"
-                    android:backgroundTint="@color/dark_light"
+                    android:drawableLeft="@drawable/ic_user_menu"
 
-                    android:paddingLeft="30dp"
+                    android:backgroundTint="@color/dark_light"
+android:clickable="false"
+                    android:paddingLeft="33dp"
                     android:textAllCaps="false"
                     android:textColor="@color/menu_text"
                     android:textSize="16sp" />
@@ -154,6 +156,7 @@ tools:context=".menu.MenuProfileFragment">
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
+                    android:clickable="false"
                     android:backgroundTint="@color/dark_light"
                     android:drawableLeft="@drawable/ic_menu_profine_phone"
                     android:paddingLeft="32dp"
@@ -198,7 +201,7 @@ tools:context=".menu.MenuProfileFragment">
                     android:backgroundTint="@color/dark_light"
                     android:drawableLeft="@drawable/ic_menu_profile_email"
                     android:paddingLeft="32dp"
-
+android:clickable="false"
                     android:textAllCaps="false"
                     android:textColor="@color/menu_text"
                     android:textSize="16sp" />

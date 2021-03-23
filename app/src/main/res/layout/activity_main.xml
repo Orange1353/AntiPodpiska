@@ -21,15 +21,7 @@
         android:layout_marginBottom="58dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="@+id/lay0"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        app:layoutManager="LinearLayoutManager"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+
 
     <LinearLayout
         android:id="@+id/bottom_navigation_lay"
@@ -50,15 +42,14 @@
 
     <ImageButton
         android:id="@+id/fab"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
-
-android:layout_marginBottom="42dp"
-        android:layout_marginEnd="42dp"
-
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="7dp"
         android:background="@drawable/gradient_float_button"
-        app:layout_constraintBottom_toBottomOf="@+id/lay_container"
+
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:tint="#FFFFFF" />
 
 

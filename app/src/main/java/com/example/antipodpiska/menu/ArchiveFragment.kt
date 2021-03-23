@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
@@ -41,6 +42,40 @@ class ArchiveFragment : Fragment() {
         val recyclerView: RecyclerView = view!!.findViewById(R.id.recycler_view_menu)
         recyclerView.adapter = subsAdapter
         var subsListViewModel = ViewModelProvider(activity!!).get(SubListViewModel::class.java)
+
+
+        var searchView: SearchView = view.findViewById(R.id.search_view)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(s: String): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(s: String): Boolean {
+
+                if(s!= "") {
+                    var list1: List<Sub> = ArrayList<Sub>()
+                    for (i in subsListViewModel.subsLiveData.value!!.indices) {
+                        if (subsListViewModel.subsLiveData.value!![i].name.contains(s, false))
+                            list1 = list1.plus(subsListViewModel.subsLiveData.value!![i])
+                    }
+                    subsAdapter.submitList(list1)
+                }
+                else {
+                    var list1:List<Sub> = ArrayList<Sub>()
+                    for (i in subsListViewModel.subsLiveData.value!!.indices) {
+                        if(subsListViewModel.subsLiveData.value!![i].status == "Архив")
+                            list1 = list1.plus(subsListViewModel.subsLiveData.value!![i])
+                    }
+                    subsAdapter.submitList(list1)
+                }
+
+
+                // Toast.makeText(context, "0" + s + "0", Toast.LENGTH_SHORT).show()
+                return true
+            }
+        })
+
 
         subsListViewModel.subsLiveData.observe(this) {
             it?.let {

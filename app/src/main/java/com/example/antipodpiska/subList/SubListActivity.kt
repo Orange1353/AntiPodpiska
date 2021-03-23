@@ -7,6 +7,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.icu.util.Calendar
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -27,10 +28,7 @@ import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.data.User
 import com.example.antipodpiska.data.firebase.FirebaseSource
-import com.example.antipodpiska.menu.ArchiveFragment
-import com.example.antipodpiska.menu.CommunicatorMenu
-import com.example.antipodpiska.menu.MenuFragment
-import com.example.antipodpiska.menu.NavigationMenuFragment
+import com.example.antipodpiska.menu.*
 import com.example.antipodpiska.subDetails.SubDetailActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -135,7 +133,7 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
                 R.id.item_calendar -> {
                     fab.isVisible = false
                     bottomNavigationView.isSelected = true
-                    val fragment = ArchiveFragment()
+                    val fragment = CalendarFragment()
                     this.supportFragmentManager.beginTransaction().replace(
                         R.id.lay_container,
                         fragment

@@ -101,5 +101,11 @@ dependencies {
     //notifications
    //     implementation "com.android.support:support-compat:28.0.0"
 
+
+
+// Chart and graph library
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+
     implementation "androidx.browser:browser:1.2.0"
 }

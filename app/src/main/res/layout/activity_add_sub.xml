@@ -403,6 +403,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Выключены"
+            app:track="@drawable/switch_style"
+            app:switchMinWidth="35dp"
+            app:switchPadding="10dp"
+            android:textSize="14sp"
+            app:thumbTint="@color/white"
+            android:thumb="@drawable/shape_switch_thumb"
             android:fontFamily="@font/sf_display_regular"
             android:textColor="@color/white" />
 
