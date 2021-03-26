@@ -11,24 +11,31 @@
         android:id="@+id/lay_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/header_back"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_menu_back"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/header_back"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:backgroundTint="@color/header_back"
             android:fontFamily="@font/sf_display_medium"
             android:text="Календарь"
+            android:textColor="@color/white"
             android:textAllCaps="false"
             android:textSize="16sp" />
     </FrameLayout>
 
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/lay_calendar"
         android:layout_width="match_parent"
-        android:layout_height="145dp"
+        android:layout_height="165dp"
         android:layout_marginTop="25dp"
         android:orientation="horizontal"
         android:weightSum="2"
@@ -42,11 +49,44 @@
             android:id="@+id/piechart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="150dp"
+
+
             android:layout_weight="1" />
 
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:orientation="vertical">-->
+<!--        <TextView-->
+<!--            android:id="@+id/pieChartMonthlyAverage"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:layout_marginLeft="60dp"-->
+<!--            android:text="5555555"-->
+<!--           />-->
+<!--        </LinearLayout>-->
 
-    </LinearLayout>
 
+    </RelativeLayout>
 
+    <CalendarView
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lay_calendar"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+
+        android:background="@drawable/shape_initial_item"
+        android:dateTextAppearance="@style/CalenderViewDateCustomText"
+        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText"
+        android:backgroundTint="@color/grey_search"
+        android:theme="@style/CalenderViewCustom"
+        android:layout_centerInParent="true"
+        app:layout_constraintTop_toBottomOf="@+id/lay_calendar">
+
+    </CalendarView>
 </androidx.constraintlayout.widget.ConstraintLayout>

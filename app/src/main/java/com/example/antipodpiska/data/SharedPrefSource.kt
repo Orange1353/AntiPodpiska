@@ -77,8 +77,8 @@ class SharedPrefSource constructor(context: Context)  {
     }
 
     fun deleteShared(sub: Sub){
-        val gson = Gson()
-        val json = gson.toJson(sub)
+       // val gson = Gson()
+       // val json = gson.toJson(sub)
         prefsEditor.remove(sub.id.toString()).apply()
     }
 
@@ -89,10 +89,41 @@ class SharedPrefSource constructor(context: Context)  {
         prefsEditorUser.remove("email").apply()
     }
 
-    fun getFromShared(sub: Sub) : Sub{
+    fun getNeardayPayDate(context: Context): Map<String, *>? {
+        val preferences: SharedPreferences = context.getSharedPreferences("NeardayDate", Context.MODE_PRIVATE)
+      //  return preferences.getString(idSub.toString(), "").toString()
+        return preferences.all
+    }
+
+    fun setNeardayPayDate(context: Context, idSub: Long, nearDayPay: String){
+        val preferences: SharedPreferences = context.getSharedPreferences("NeardayDate", Context.MODE_PRIVATE)
+        val prefsEditor: SharedPreferences.Editor = preferences.edit()
+        prefsEditor.putString(idSub.toString(), nearDayPay).apply()
+    }
+
+    fun  deleteNeardayPayDate(context: Context, idSub: Long){
+        val preferences: SharedPreferences = context.getSharedPreferences("NeardayDate", Context.MODE_PRIVATE)
+        val prefsEditor: SharedPreferences.Editor = preferences.edit()
+        prefsEditor.remove(idSub.toString()).apply()
+    }
+
+   /* fun getNeardayType(context: Context): Map<String, *>? {
+        val preferences: SharedPreferences = context.getSharedPreferences("NeardayType", Context.MODE_PRIVATE)
+        //  return preferences.getString(idSub.toString(), "").toString()
+        return preferences.all
+    }
+
+    fun setNeardayType(context: Context, idSub: Long, type: String){
+        val preferences: SharedPreferences = context.getSharedPreferences("NeardayType", Context.MODE_PRIVATE)
+        val prefsEditor: SharedPreferences.Editor = preferences.edit()
+        prefsEditor.putString(idSub.toString(), type).apply()
+    }
+    */
+
+    fun getFromShared(subId: String) : Sub{
 
         val gson = Gson()
-        val json: String = preferences.getString("5562010050634948298", "").toString()
+        val json: String = preferences.getString(subId, "").toString()
         val sub1: Sub = gson.fromJson(json, Sub::class.java)
         return sub1
 

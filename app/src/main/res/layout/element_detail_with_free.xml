@@ -1,73 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="horizontal"
     android:background="@color/darkBack"
     android:layout_height="wrap_content">
 
     <FrameLayout
+        android:id="@+id/frameLayout5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginBottom="40dp"
-        android:background="@drawable/rectangle_free_gradient">
+        android:background="@drawable/rectangle_free_gradient"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/text_free"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="19dp"
+            android:layout_gravity="start"
+            android:layout_marginStart="10dp"
+
+            android:fontFamily="@font/sf_display_bold"
             android:text="Бесплатно"
             android:textColor="@color/white"
-            android:textSize="22sp"
-            android:fontFamily="@font/sf_display_bold"/>
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/text_before_free"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="10dp"
             android:fontFamily="@font/sf_display_medium"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="62dp"
             android:textColor="@color/white"
             android:textSize="18sp" />
+        </LinearLayout>
+
     </FrameLayout>
+
     <FrameLayout
-        android:layout_marginLeft="10dp"
+        android:id="@+id/frameLayout6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="40dp"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
         android:background="@drawable/rectangle_cost_short"
-        android:layout_height="wrap_content">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/text_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/sf_display_bold"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            android:layout_marginTop="19dp"
-            android:text="Стоимость" />
+            android:layout_gravity="start"
+            android:layout_marginLeft="10dp"
 
-        <TextView
-            android:id="@+id/text_cost_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="5dp"
-            android:fontFamily="@font/sf_display_medium"
-            android:layout_marginTop="62dp"
+            android:fontFamily="@font/sf_display_bold"
+            android:text="Стоимость"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/text_cost_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:lineSpacingMultiplier="0.9"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/sf_display_medium"
+                android:lines="2"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
     </FrameLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

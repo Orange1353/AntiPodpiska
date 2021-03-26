@@ -8,12 +8,14 @@
     tools:context=".addition.CreateNameAndTypeFragment">
 
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_back"
         android:drawableLeft="@drawable/ic_arrow_back_white"
         android:layout_width="match_parent"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/header_back"
+        android:backgroundTint="@color/header_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

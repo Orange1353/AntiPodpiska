@@ -18,7 +18,7 @@
         android:layout_marginLeft="20dp"
         android:textColor="@color/white"
         android:textSize="18sp"
-        android:text="Следующий платёж " />
+        android:text="Следующий платёж   " />
     <TextView
         android:id="@+id/nextPay"
         android:layout_width="wrap_content"

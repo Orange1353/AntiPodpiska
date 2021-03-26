@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <color name="purple_200">#232323</color>
-    <color name="purple_500">#262729</color>
+    <color name="purple_500">#262729</color>i
     <color name="purple_700">#232323</color>
     <color name="dark_light">#36373A</color>
     <color name="darkBack">#232323</color>
@@ -18,5 +18,14 @@
     <color name="blue">#286BFA</color>
     <color name="blue_button">#1E53C5</color>
     <color name="grey_search">#414249</color>
+    <color name="grey_week_calendar">#96A1AE</color>
+    <color name="light_grey">#B0B1B5</color>
 
+    <color name="calendar_green">#0FCDCD</color>
+    <color name="calendar_orange">#E1574F </color>
+    <color name="calendar_pink">#9934BD </color>
+    <color name="calendar_blue">#286BFA </color>
+    <color name="calendar_blue2">#5DB1FF </color>
+    <color name="calendar_fiolet">#746EDB </color>
+    <color name="calendar_grey">#B8B9BF </color>
 </resources>

@@ -3,6 +3,7 @@ package com.example.antipodpiska.subList
 
 //import android.widget.ListAdapter
 
+import android.content.Context
 import android.graphics.Color
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -13,10 +14,12 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.ViewCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.antipodpiska.R
+import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
@@ -24,14 +27,14 @@ import com.google.android.material.shape.ShapeAppearanceModel
 import kotlinx.coroutines.processNextEventInCurrentThread
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import javax.sql.DataSource
 
 
 class SubAdapter(private val onClick: (Sub) -> Unit) :
     ListAdapter<Sub, SubAdapter.SubViewHolder>(FlowerDiffCallback) {
 
+
     /* ViewHolder for Flower, takes in the inflated view and the onClick behavior. */
-    class SubViewHolder(itemView: View, val onClick: (Sub) -> Unit) :
+    class SubViewHolder(itemView: View, val onClick: (Sub) -> Unit, context: Context) :
         RecyclerView.ViewHolder(itemView) {
            private val subName: TextView = itemView.findViewById(R.id.flower_text)
         private val subImageView: TextView = itemView.findViewById(R.id.flower_image)
@@ -39,19 +42,8 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
         private val addDatePay: TextView =  itemView.findViewById(R.id.day_pay_calulat)
         private val status: EditText = itemView.findViewById(R.id.text_status)
         private val subDateUntil: TextView = itemView.findViewById(R.id.textViewUntil)
-
-
-       /* private val addSubName: TextView = itemView.findViewById(R.id.add_flower_name)
-        private val addSubDescription: TextView = itemView.findViewById(R.id.add_flower_description)
-        private val addSubEndDate: TextView = itemView.findViewById(R.id.add_end_date)
-
-        private val addPeriodFree: TextView =  itemView.findViewById(R.id.add_free_days)
-        private val addCostSub: TextView =  itemView.findViewById(R.id.add_cost)
-        private val addPeriodPay: TextView =  itemView.findViewById(R.id.add_period)
-        private val addPeriodTypeFree: Spinner = itemView.findViewById(R.id.spinner_free_period_type)
-        private val addCostCurr: Spinner = itemView.findViewById(R.id.spinner_period_pay)
-        private val addPeriodTypePay: Spinner = itemView.findViewById(R.id.spinner_period_pay)
-*/
+        private val sharedPrefSource: SharedPrefSource = SharedPrefSource(context)
+        private val context: Context = context
 
         private var currentSub: Sub? = null
 
@@ -128,20 +120,23 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
                 if (sub.costSub != "") {
 
                     if (datePay != null){
-                        var tmp: String=""
+                 /*       var tmp: String=""
                         when(sub.periodTypePay){
                             "Дней" -> tmp = "дн."
                             "Недель" -> tmp = "нед."
                             "Месяцев" -> tmp = "мес."
-                        }
+                        }*/
                         if (sub.periodPay != "")
-                        addDatePay.text = "После " + datePay.format(formatter).toString() + " стоимость " + sub.costSub + " " + sub.costCurr + "/ " + sub.periodPay + " " + tmp
+                        addDatePay.text = "После " + datePay.format(formatter).toString() + " стоимость " + sub.costSub + " " + sub.costCurr //+ "/ " + sub.periodPay + " " + tmp
                         else
                             addDatePay.text = "После " + datePay.format(formatter).toString() + " стоимость " + sub.costSub + " " + sub.costCurr
                 }
                 }
 
                subDateUntil.text = "до "+ datePay.format(formatter).toString()
+
+         //      sharedPrefSource.setNeardayCost(context, sub.id, sub.costSub)
+               sharedPrefSource.setNeardayPayDate(context, sub.id, datePay.format(formatter).toString())
 
         }
 
@@ -192,7 +187,7 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.text_row_item, parent, false)
-        return SubViewHolder(view, onClick)
+        return SubViewHolder(view, onClick, parent.context)
     }
 
     /* Gets current flower and uses it to bind view. */
@@ -204,7 +199,6 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
         }
 */
         holder.bind(sub)
-
     }
 }
 

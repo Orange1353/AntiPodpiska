@@ -44,6 +44,7 @@ class EditSubActivity : AppCompatActivity() {
     private lateinit var addPeriodTypePay: Spinner
     private lateinit var pushEnabled: SwitchCompat
     private lateinit var buttonSave: Button
+    private lateinit var buttonBack: Button
     private val Shared: SharedPrefSource by lazy{ SharedPrefSource(this) }
     private val subDetailViewModel by viewModels<SubDetailViewModel> {
         SubDetailViewModelFactory(this)
@@ -68,6 +69,7 @@ class EditSubActivity : AppCompatActivity() {
         addPeriodTypePay = findViewById(R.id.spinner_period_pay)
         addCard = findViewById(R.id.card)
         pushEnabled = findViewById(R.id.switch_enabled)
+        buttonBack = findViewById(R.id.button_back)
         val buttonCalendar: ImageView = findViewById(R.id.imageViewCalendar)
         val saveSubButton: Button = findViewById(R.id.done_button)
 
@@ -154,6 +156,9 @@ class EditSubActivity : AppCompatActivity() {
                 startSubListActivity()
             }
 
+            buttonBack.setOnClickListener {
+                onBackPressed()
+            }
 
             pushEnabled.setOnCheckedChangeListener { buttonView, isChecked ->
 
@@ -224,7 +229,8 @@ class EditSubActivity : AppCompatActivity() {
             "CNY"-> addCostCurr.setSelection(4)
             "CHF"-> addCostCurr.setSelection(5)
             "JPY"-> addCostCurr.setSelection(6)
-            "OTHER"-> addCostCurr.setSelection(7)
+            "BTC" -> addCostCurr.setSelection(7)
+            "OTHER"-> addCostCurr.setSelection(8)
         }
         //  addCostCurr
         when(currentSub?.periodTypePay){

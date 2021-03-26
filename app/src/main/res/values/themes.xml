@@ -2,22 +2,22 @@
     <!-- Base application theme. -->
     <style name="Theme.AntiPodpiska" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-<!--        Фон навигатионменю-->
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/darkBack</item>
-        <item name="colorSecondaryVariant">@color/darkBack</item>
-        <item name="colorOnSecondary">@color/black</item>
+<!--        <item name="colorPrimary">@color/purple_500</item>-->
+<!--        <item name="colorPrimaryVariant">@color/purple_700</item>-->
+<!--&lt;!&ndash;        Фон навигатионменю&ndash;&gt;-->
+<!--        <item name="colorOnPrimary">@color/white</item>-->
+<!--        &lt;!&ndash; Secondary brand color. &ndash;&gt;-->
+<!--        <item name="colorSecondary">@color/darkBack</item>-->
+<!--        <item name="colorSecondaryVariant">@color/darkBack</item>-->
+<!--        <item name="colorOnSecondary">@color/black</item>-->
         <!-- Status bar color. -->
-
         <item name="textInputStyle">@style/TextAppearance.App.TextInputLayout</item>
         <item name="colorControlActivated">@color/grey2</item>
         <item name="colorControlHighlight">@color/grey2</item>
         <item name="colorControlNormal">@color/grey2</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnSecondary</item>
         <!-- Customize your theme here. -->
+        <item name="android:navigationBarColor">#131313</item>
         <item name="android:windowBackground">@color/darkBack</item>
     </style>
     <style name="spinner_style">
@@ -71,6 +71,24 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">16sp</item>
 
+    </style>
+
+
+
+
+    <style name="CalenderViewCustom" parent="Theme.AppCompat">
+        <!--        выделенный день-->
+        <item name="colorAccent">@android:color/holo_blue_dark</item>
+        <item name="android:textColorPrimary">@color/white</item>
+
+    </style>
+
+    <style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/grey_week_calendar</item>
     </style>
 
 

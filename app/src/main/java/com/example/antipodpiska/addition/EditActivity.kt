@@ -178,7 +178,8 @@ val oldSub = currentSub
             "CNY"-> addCostCurr.setSelection(4)
             "CHF"-> addCostCurr.setSelection(5)
             "JPY"-> addCostCurr.setSelection(6)
-            "OTHER"-> addCostCurr.setSelection(7)
+            "BTC"-> addCostCurr.setSelection(7)
+            "OTHER"-> addCostCurr.setSelection(8)
         }
       //  addCostCurr
         when(currentSub.periodTypePay){

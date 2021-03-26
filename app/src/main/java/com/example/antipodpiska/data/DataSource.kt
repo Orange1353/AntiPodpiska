@@ -97,6 +97,7 @@ class DataSource(resources: Resources, context: Context) {
             subLiveData.postValue(updatedList)
 
             Shared.deleteShared(sub)
+            Shared.deleteNeardayPayDate(context, sub.id)
         }
     }
 

@@ -22,6 +22,7 @@
         <item>CNY</item>
         <item>CHF</item>
         <item>JPY</item>
+        <item>BTC</item>
         <item>OTHER</item>
 
     </string-array>

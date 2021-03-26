@@ -56,7 +56,7 @@ class ArchiveFragment : Fragment() {
                 if(s!= "") {
                     var list1: List<Sub> = ArrayList<Sub>()
                     for (i in subsListViewModel.subsLiveData.value!!.indices) {
-                        if (subsListViewModel.subsLiveData.value!![i].name.contains(s, false))
+                        if (subsListViewModel.subsLiveData.value!![i].name.contains(s, false) && subsListViewModel.subsLiveData.value!![i].status == "Архив")
                             list1 = list1.plus(subsListViewModel.subsLiveData.value!![i])
                     }
                     subsAdapter.submitList(list1)

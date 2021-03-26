@@ -8,16 +8,19 @@
     tools:context=".addition.CreateNameAndTypeFragment">
 
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_menu_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Меню"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:paddingLeft="33dp"
         android:fontFamily="@font/sf_display_regular"
         android:textAllCaps="false"
         android:textSize="16sp"
-        android:background="@color/header_back"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/header_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

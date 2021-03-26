@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/darkBack">
 
@@ -10,21 +12,22 @@
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:fontFamily="@font/sf_display_medium"
-        android:layout_marginLeft="20dp"
         android:text="TextView"
-        android:textColor="@color/transparent_grey"
-        android:textSize="14sp" />
-    <Button
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:background="@color/darkBack">
-    </Button>
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/light_grey"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/value_field"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:fontFamily="@font/sf_display_medium"
-        android:textSize="18sp"
+        android:text="TextView"
+        android:layout_marginLeft="154dp"
         android:textColor="@color/white"
-        android:text="TextView" />
-</LinearLayout>
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

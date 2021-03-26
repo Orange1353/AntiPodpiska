@@ -23,6 +23,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.activity.viewModels
@@ -34,7 +35,6 @@ import com.example.antipodpiska.addition.EditSubActivity
 import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.subList.SUB_ID
 import com.example.antipodpiska.utils.startSubListActivity
-import com.example.recyclersample.data.DataSource
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -44,8 +44,6 @@ import kotlinx.android.synthetic.main.element_detail_any_text.view.*
 import kotlinx.android.synthetic.main.element_detail_cost_only.view.text_cost_details
 import kotlinx.android.synthetic.main.element_detail_with_free.view.*
 import kotlinx.android.synthetic.main.element_next_pay.view.*
-import kotlinx.android.synthetic.main.fragment_create_card.view.*
-import java.security.AccessController.getContext
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -123,19 +121,16 @@ class SubDetailActivity : AppCompatActivity() {
 
                 if (currentSub?.periodPay != "") {
 
-                    var tmp: String = ""
-                    when (currentSub.periodTypePay) {
-                        "Дней" -> tmp = "дн."
-                        "Недель" -> tmp = "нед."
-                        "Месяцев" -> tmp = "мес."
-                    }
+
+
+                    val tmp = rusification(currentSub?.periodPay, currentSub?.periodTypePay)
 
                     val costPlusPeriod: View = inflater.inflate(
                         R.layout.element_detail_cost_only,
                         null
                     )
                     costPlusPeriod.text_cost_details.text =
-                        currentSub?.costSub + " " + currentSub?.costCurr + " / " + currentSub?.periodPay + " " + tmp
+                        currentSub?.costSub + " " + currentSub?.costCurr + " " + rusificationEvery(tmp) +" " + currentSub?.periodPay + " " + tmp
                     container.addView(costPlusPeriod)
                 } else {
                     val costPlusPeriod: View = inflater.inflate(
@@ -164,7 +159,11 @@ class SubDetailActivity : AppCompatActivity() {
             }
         }
 
+
+
 else {
+                       var dateEndFree = ""
+
                        if (currentSub?.datePay != null && currentSub?.datePay != "") {
                        var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
                        var dateEnd = LocalDate.parse(currentSub?.datePay, formatter)
@@ -180,9 +179,12 @@ else {
                        if (currentSub?.periodFree != "")
                            when (currentSub?.periodTypeFree) {
                                "Дней" -> dateEnd = dateEnd.plusDays(currentSub?.periodFree.toLong())
-                               "Недель" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodFree.toLong())
-                               "Месяцев" -> dateEnd = dateEnd.plusMonths(currentSub?.periodFree.toLong())
+                               "Недель" -> dateEnd =
+                                   dateEnd.plusWeeks(currentSub?.periodFree.toLong())
+                               "Месяцев" -> dateEnd =
+                                   dateEnd.plusMonths(currentSub?.periodFree.toLong())
                            }
+//dateEndFree = dateEnd
 
 
                        if (currentSub?.periodPay != "")
@@ -190,8 +192,10 @@ else {
                            summCost += costSub
                            when (currentSub?.periodTypePay) {
                                "Дней" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay.toLong())
-                               "Недель" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodPay.toLong())
-                               "Месяцев" -> dateEnd = dateEnd.plusMonths(currentSub?.periodPay.toLong())
+                               "Недель" -> dateEnd =
+                                   dateEnd.plusWeeks(currentSub?.periodPay.toLong())
+                               "Месяцев" -> dateEnd =
+                                   dateEnd.plusMonths(currentSub?.periodPay.toLong())
                            }
                        }
 
@@ -213,15 +217,18 @@ else {
 
                            if (currentSub?.periodPay != "") {
 
-                                   var tmp: String=""
-                                   when(currentSub.periodTypePay){
-                                       "Дней" -> tmp = "дн."
-                                       "Недель" -> tmp = "нед."
-                                       "Месяцев" -> tmp = "мес."
+                               var tmp = rusification(currentSub?.periodPay, currentSub?.periodTypePay)
+                               var tmp1 = tmp
+                               if((currentSub?.periodPay + tmp).length > 8)
+                                   when (tmp.substring(0, 1)) {
+                                       "д" -> tmp1 = "дн."
+                                       "н" -> tmp1 = "нед."
+                                       "м" -> tmp1 = "мес."
                                    }
+                               costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr + " " + "\n"+rusificationEvery(tmp) +" " + currentSub?.periodPay + " " + tmp1
 
-                               costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr + " / " + currentSub?.periodPay + " " + tmp
                                container.addView(costPlusPeriod)
+
                            }
                            else
                            {
@@ -229,13 +236,8 @@ else {
                                container.addView(costPlusPeriod)
                            }
 
-                               var tmp: String=""
-                               when(currentSub.periodTypeFree){
-                                   "Дней" -> tmp = "дн."
-                                   "Недель" -> tmp = "нед."
-                                   "Месяцев" -> tmp = "мес."
-                               }
 
+                           val tmp = rusification(currentSub?.periodFree, currentSub?.periodTypeFree)
                            costPlusPeriod.text_before_free.text = currentSub?.periodFree + " " + tmp
 
                        }
@@ -245,7 +247,8 @@ else {
                                R.layout.element_detail_free_only,
                                null
                            )
-                           costPlusPeriod.text_before_free.text = currentSub?.periodFree + " " + currentSub?.periodTypeFree
+                           val tmp = rusification(currentSub?.periodFree, currentSub?.periodTypeFree)
+                           costPlusPeriod.text_before_free.text = currentSub?.periodFree + " " + tmp
                            container.addView(costPlusPeriod)
                        }
 
@@ -255,18 +258,14 @@ else {
 
                        if (currentSub?.periodPay != "") {
 
-                           var tmp: String=""
-                           when(currentSub.periodTypePay){
-                               "Дней" -> tmp = "дн."
-                               "Недель" -> tmp = "нед."
-                               "Месяцев" -> tmp = "мес."
-                           }
+
 
                            val costPlusPeriod: View = inflater.inflate(
                                R.layout.element_detail_cost_only,
                                null
                            )
-                           costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr + " / " + currentSub?.periodPay + " " + tmp
+                           val tmp = rusification(currentSub?.periodPay, currentSub?.periodTypePay)
+                           costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr + " " + rusificationEvery(tmp) +" " + currentSub?.periodPay + " " + tmp
                            container.addView(costPlusPeriod)
                        }
                        else
@@ -311,7 +310,11 @@ else {
                     newSub!!.status = "Активна"
 
                     subDetailViewModel.editSub(currentSub, newSub!!, this)
-                    Toast.makeText(this, "Готово, вы можете отредактировать подписку при необходимости", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Готово, вы можете отредактировать подписку при необходимости",
+                        Toast.LENGTH_LONG
+                    ).show()
 
                 }
                 else
@@ -390,6 +393,55 @@ else {
             super.onOptionsItemSelected(item)
         }
 
+
+    }
+
+
+
+    fun rusification(period: String, periodType: String): String {
+
+        var tmp: String = ""
+        if (periodType == "Месяцев") {
+            when
+            {
+                period.toInt() % 10 == 1 -> tmp = "месяц"
+              //  period.substring(period.length-3, period.length-1)
+                period.toInt() % 100 in 5..20 || period.toInt() % 10 == 0-> tmp = "месяцев"
+                period.toInt() % 10 in 2..4 -> tmp = "месяца"
+            }
+        }
+       else if (periodType == "Дней") {
+            when
+            {
+                period.toInt() % 10 == 1 -> tmp = "день"
+                //  period.substring(period.length-3, period.length-1)
+                period.toInt() % 100 in 5..20 || period.toInt() % 10 == 0 -> tmp = "дней"
+                period.toInt() % 10 in 2..4 -> tmp = "дня"
+            }
+        }
+        else if (periodType == "Недель") {
+            when
+            {
+                period.toInt() % 10 == 1 -> tmp = "неделю"
+                //  period.substring(period.length-3, period.length-1)
+                period.toInt() % 100 in 5..20 || period.toInt() % 10 == 0 -> tmp = "недель"
+                period.toInt() % 10 in 2..4 -> tmp = "недели"
+            }
+        }
+
+        return tmp
+    }
+
+    fun rusificationEvery(tmp: String): String{
+
+        when{
+
+           tmp == "день" || tmp == "месяц"-> return "каждый"
+           tmp == "дня"  || tmp == "недели"|| tmp == "месяца" || tmp == "дней"|| tmp == "недель" || tmp == "месяцев"-> return "каждые"
+           tmp == "недели"|| tmp == "месяца"-> return "каждые"
+           tmp == "неделю"-> return "каждую"
+            else-> return ""
+        }
 
     }
 

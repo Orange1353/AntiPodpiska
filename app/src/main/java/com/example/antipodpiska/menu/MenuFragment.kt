@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -17,6 +18,7 @@ import com.example.antipodpiska.addition.AddSubActivityFragments
 import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.subDetails.SubDetailActivity
 import com.example.antipodpiska.subList.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 const val SUB_ID = "sub id"
@@ -50,6 +52,7 @@ class MenuFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View  = inflater.inflate(R.layout.fragment_menu, container, false)
 
+        val context: Context? = getContext()
         val subsAdapter = SubAdapter { sub -> adapterOnClick(sub) }
         //      val concatAdapter = ConcatAdapter(headerAdapter, subsAdapter)
 
@@ -71,17 +74,19 @@ class MenuFragment : Fragment() {
                 if(s!= "") {
                     var list1: List<Sub> = ArrayList<Sub>()
                     for (i in subsListViewModel.subsLiveData.value!!.indices) {
-                        if (subsListViewModel.subsLiveData.value!![i].name.contains(s, false))
+                        if (subsListViewModel.subsLiveData.value!![i].name.contains(s, false) && subsListViewModel.subsLiveData.value!![i].status == "Активна")
                             list1 = list1.plus(subsListViewModel.subsLiveData.value!![i])
                     }
                     subsAdapter.submitList(list1)
                 }
                 else {
                     var list1:List<Sub> = ArrayList<Sub>()
+
                     for (i in subsListViewModel.subsLiveData.value!!.indices) {
                         if(subsListViewModel.subsLiveData.value!![i].status == "Активна")
                             list1 = list1.plus(subsListViewModel.subsLiveData.value!![i])
                     }
+
                     subsAdapter.submitList(list1)
                 }
 

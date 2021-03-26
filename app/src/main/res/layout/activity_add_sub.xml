@@ -7,9 +7,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/darkBack">
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_back"
+        android:layout_width="35dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/darkBack"
+
+        android:drawableTop="@drawable/ic_menu_buttom_back"
+        android:layout_marginLeft="10dp"
+        android:padding="0dp"
+        android:gravity="center_horizontal"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        />
     <ScrollView
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="35dp"
         android:layout_width="360dp"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center"
 
         android:layout_height="wrap_content">
@@ -74,7 +91,7 @@
         android:layout_height="35dp"
         android:layout_marginLeft="20dp"
         android:backgroundTint="@color/darkBack"
-        android:maxLength="48"
+        android:maxLength="21"
         android:singleLine="true"
         android:imeOptions="actionDone"
         android:layout_marginRight="20dp"
@@ -436,9 +453,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-
-
 
 </LinearLayout>
     </ScrollView>

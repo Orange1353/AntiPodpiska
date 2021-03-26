@@ -21,5 +21,7 @@ data class Sub(
         var card: String= "",
         var pushEnabled: Boolean= false,
         val date_add: String = "",
-        var status: String = "Активна"
+        var status: String = "Активна",
+        var nearDayPay: String = ""
+
 )

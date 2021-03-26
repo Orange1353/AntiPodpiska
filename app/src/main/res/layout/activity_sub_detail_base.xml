@@ -55,12 +55,12 @@ app:titleMarginStart="0dp"
                 android:id="@+id/flower_detail_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="20sp"
                 android:fontFamily="@font/sf_display_medium"
+                android:textColor="@color/white"
+                android:layout_marginStart="15dp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/flower_detail_image"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton

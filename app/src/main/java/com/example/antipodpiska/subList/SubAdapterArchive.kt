@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.antipodpiska.R
+import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
@@ -181,7 +182,7 @@ class SubAdapterArchive(private val onClick: (Sub) -> Unit) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubAdapter.SubViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.text_row_item, parent, false)
-        return SubAdapter.SubViewHolder(view, onClick)
+        return SubAdapter.SubViewHolder(view, onClick, parent.context)
     }
 
     /* Gets current flower and uses it to bind view. */

@@ -11,14 +11,20 @@
             android:id="@+id/lay_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/header_back"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_menu_back"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/header_back"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:textColor="@color/white"
+
+                android:backgroundTint="@color/header_back"
                 android:text="Настройки"
                 android:layout_marginLeft="57dp"
                 android:fontFamily="@font/sf_display_regular"
@@ -26,11 +32,13 @@
                 android:textSize="16sp"
                 />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_back"
                 android:layout_width="57dp"
                 android:layout_height="match_parent"
-                android:background="@color/header_back"
+                android:backgroundTint="@color/header_back"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:drawableLeft="@drawable/ic_menu_buttom_back"
                 android:paddingLeft="21dp"
                 android:gravity="center_horizontal"

@@ -211,7 +211,7 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
             }
         val pendingIntent: PendingIntent= PendingIntent.getActivity(this, 0, intent, 0)
 
-        val builder= NotificationCompat.Builder(this, CHANNEL_ID).setSmallIcon(R.drawable.logo_mail)
+        val builder= NotificationCompat.Builder(this, CHANNEL_ID).setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle("Время проверить подписку!")
             .setContentText("Завтра истекает N ")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
