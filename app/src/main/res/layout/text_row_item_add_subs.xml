@@ -1,0 +1,45 @@
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="51dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/shape_item">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/flower_image"
+        android:layout_width="70dp"
+        android:layout_height="35dp"
+        android:layout_margin="8dp"
+        android:contentDescription="@string/flower1_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/flower_text"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/shape_initial_item"
+        android:fontFamily="@font/sf_display_medium"
+
+        app:shapeAppearanceOverlay="@style/ImageViewMiniCorner"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/flower_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/sf_display_regular"
+        android:text="@string/flower1_name"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:textColor="@color/black_light"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/flower_image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

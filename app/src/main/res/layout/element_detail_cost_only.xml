@@ -3,7 +3,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/darkBack"
+    android:background="@color/light_back"
     android:layout_height="wrap_content">
 
 <FrameLayout
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:fontFamily="@font/sf_display_bold"
-        android:textColor="@color/white"
+        android:textColor="@color/black_light"
         android:textSize="22sp"
         android:layout_marginTop="29dp"
         android:text="Стоимость" />
@@ -34,7 +34,7 @@
         android:fontFamily="@font/sf_display_medium"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="62dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black_light"
         android:textSize="18sp" />
 </FrameLayout>
     </LinearLayout>

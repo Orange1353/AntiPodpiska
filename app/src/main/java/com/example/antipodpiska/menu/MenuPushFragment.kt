@@ -56,7 +56,12 @@ class MenuPushFragment : Fragment() {
         pushEnabled.isChecked = user.pushAll
         periodEnabled.isChecked = user.periodPush
         val tmp = user.beginPush
-        textSeekBar.text = " "+user.beginPush+" дн."
+
+        when {
+            user.beginPush == 1 -> textSeekBar.text = " " + user.beginPush + " день"
+            user.beginPush in 2..4 ->  textSeekBar.text = " " + user.beginPush + " дня"
+            else ->  textSeekBar.text = " " + user.beginPush + " дней"
+        }
 
 
 
@@ -107,7 +112,11 @@ class MenuPushFragment : Fragment() {
 
         seekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
-                textSeekBar.text = " $i дн."
+                when {
+                    i == 1 -> textSeekBar.text = " $i день"
+                    i in 2..4 ->  textSeekBar.text = " $i дня"
+                    else ->  textSeekBar.text = " $i дней"
+                }
             }
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
             override fun onStopTrackingTouch(seekBar: SeekBar) {}

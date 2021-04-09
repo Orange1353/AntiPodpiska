@@ -6,7 +6,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/darkBack">
+        android:background="@color/menu_back_light">
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_back"
         android:layout_width="35dp"
@@ -14,7 +14,7 @@
         android:insetBottom="0dp"
         android:layout_height="35dp"
         android:layout_marginTop="4dp"
-        android:backgroundTint="@color/darkBack"
+        android:backgroundTint="@color/menu_back_light"
 
         android:drawableTop="@drawable/ic_menu_buttom_back"
         android:layout_marginLeft="10dp"
@@ -51,22 +51,20 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="33dp"
-        app:srcCompat="@drawable/ic_group" />
+        app:srcCompat="@drawable/ic_create_sub" />
 
     <TextView
         android:id="@+id/create"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:fontFamily="@font/sf_display_medium"
-        android:layout_marginTop="43dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="43dp"
+        android:fontFamily="@font/sf_display_medium"
         android:text="Редактирование подписки"
-        >
+        android:textColor="@color/black_light"
+        android:textSize="20sp">
 
     </TextView>
-
 
 
 </LinearLayout>
@@ -80,7 +78,7 @@
         android:layout_marginTop="36dp"
         android:fontFamily="@font/sf_display_regular"
         android:text="Название подписки"
-        android:textColor="@color/grey2"
+       android:textColor="@color/grey2_light"
         android:textSize="14sp"
  />
 
@@ -90,16 +88,15 @@
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_marginLeft="20dp"
-        android:backgroundTint="@color/darkBack"
-        android:maxLength="21"
+        android:maxLength="16"
         android:singleLine="true"
-        android:imeOptions="actionDone"
+        android:imeOptions="actionNext"
         android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/shape_text_input"
         android:gravity="center_vertical"
         android:paddingStart="10dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black_light"
         android:textSize="18sp"
         android:fontFamily="@font/sf_display_regular"
         />
@@ -113,7 +110,7 @@
 
         android:layout_marginTop="16dp"
         android:text="Ссылка на ресурс"
-        android:textColor="@color/grey2"
+       android:textColor="@color/grey2_light"
         android:textSize="14sp"
    />
 
@@ -124,17 +121,16 @@
         android:layout_height="35dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
-        android:backgroundTint="@color/darkBack"
         android:maxLength="48"
         android:singleLine="true"
         android:layout_marginRight="20dp"
         android:background="@drawable/shape_text_input"
         android:gravity="center_vertical"
         android:paddingStart="10dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black_light"
         android:textSize="18sp"
         android:fontFamily="@font/sf_display_regular"
-        android:imeOptions="actionDone"
+                android:imeOptions="actionNext"
         />
 
 
@@ -145,7 +141,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Выберите тип подписки"
-        android:textColor="@color/grey2"
+        android:textColor="@color/grey2_light"
         android:fontFamily="@font/sf_display_regular"
 
         android:textSize="14sp"
@@ -177,7 +173,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Бесплатный период"
-                android:textColor="@color/grey2"
+               android:textColor="@color/grey2_light"
                 android:textSize="14sp"
         android:fontFamily="@font/sf_display_regular"
 
@@ -191,7 +187,6 @@
             <EditText
                 android:id="@+id/add_free_days"
                 android:layout_width="100dp"
-                android:backgroundTint="@color/darkBack"
                 android:layout_height="35dp"
                 android:layout_marginStart="20dp"
                 android:background="@drawable/shape_text_input"
@@ -200,11 +195,13 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/sf_display_regular"
                 android:inputType="number"
+
+
                 android:maxLength="3"
                 android:paddingStart="10dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black_light"
                 android:textSize="18sp"
-                android:imeOptions="actionDone"
+                android:imeOptions="actionNext"
                 />
 
             <Spinner
@@ -214,9 +211,9 @@
                 android:layout_marginStart="20dp"
                 android:background="@drawable/arrow_spinner"
                 android:entries="@array/spinner_array_period"
-                android:popupBackground="@color/darkBack"
+                android:popupBackground="@color/menu_back_light"
                 android:spinnerMode="dropdown"
-                android:textColor="@color/white"
+                android:textColor="@color/black_light"
                 android:fontFamily="@font/sf_display_regular"
                />
         </LinearLayout>
@@ -229,7 +226,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Стоимость подписки"
                 android:fontFamily="@font/sf_display_regular"
-                android:textColor="@color/grey2"
+               android:textColor="@color/grey2_light"
                 android:textSize="14sp"
  />
 
@@ -247,14 +244,13 @@
                 android:fontFamily="@font/sf_display_regular"
                 android:background="@drawable/shape_text_input"
                 android:digits="0123456789."
-                android:backgroundTint="@color/darkBack"
                 android:gravity="center_vertical"
                 android:inputType="textMultiLine|number"
                 android:maxLength="7"
                 android:paddingStart="10dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black_light"
                 android:textSize="18sp"
-                android:imeOptions="actionDone"
+                android:imeOptions="actionNext"
                />
 
             <Spinner
@@ -263,11 +259,12 @@
                 android:layout_height="35dp"
                 android:fontFamily="@font/sf_display_regular"
                 android:layout_marginStart="20dp"
+                android:imeOptions="actionNext"
                 android:background="@drawable/arrow_spinner"
                 android:entries="@array/spinner_array_period"
-                android:popupBackground="@color/darkBack"
+                android:popupBackground="@color/menu_back_light"
                 android:spinnerMode="dropdown"
-                android:textColor="@color/white"
+                android:textColor="@color/black_light"
           />
         </LinearLayout>
 
@@ -279,7 +276,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/sf_display_regular"
                 android:text="Периодичность платежей"
-                android:textColor="@color/grey2"
+               android:textColor="@color/grey2_light"
                 android:textSize="14sp"
  />
 
@@ -295,17 +292,15 @@
                 android:layout_height="35dp"
                 android:layout_marginStart="20dp"
                 android:background="@drawable/shape_text_input"
-                android:backgroundTint="@color/darkBack"
                 android:digits="0123456789"
                 android:gravity="center_vertical"
                 android:layout_gravity="center"
                 android:inputType="number"
                 android:maxLength="3"
                 android:paddingStart="10dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black_light"
                 android:textSize="18sp"
-                android:imeOptions="actionDone"
-      />
+                android:imeOptions="actionNext"      />
 
             <Spinner
                 android:fontFamily="@font/sf_display_regular"
@@ -315,9 +310,9 @@
                 android:layout_marginStart="20dp"
                 android:background="@drawable/arrow_spinner"
                 android:entries="@array/spinner_array_period"
-                android:popupBackground="@color/darkBack"
+                android:popupBackground="@color/menu_back_light"
                 android:spinnerMode="dropdown"
-                android:textColor="@color/white"
+                android:textColor="@color/black_light"
  />
         </LinearLayout>
 
@@ -328,7 +323,7 @@
         android:layout_marginStart="14dp"
         android:layout_marginTop="16dp"
         android:text="Дата начала подписки"
-        android:textColor="@color/grey2"
+       android:textColor="@color/grey2_light"
         android:textSize="14sp"
         android:fontFamily="@font/sf_display_regular"
         app:layout_constraintStart_toEndOf="@+id/imageViewCalendar"
@@ -360,7 +355,7 @@
         android:focusableInTouchMode="false"
         android:text="ДД.ММ.ГГГГ"
         android:fontFamily="@font/sf_display_regular"
-        android:textColor="@color/grey2"
+       android:textColor="@color/grey2_light"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/imageViewCalendar"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -376,7 +371,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/sf_display_regular"
         android:text="Привязанная карта"
-        android:textColor="@color/grey2"
+       android:textColor="@color/grey2_light"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
@@ -389,14 +384,13 @@
         android:layout_marginTop="5dp"
         android:fontFamily="@font/sf_display_regular"
         android:background="@drawable/shape_text_input"
-        android:backgroundTint="@color/darkBack"
         android:digits="0123456789"
         android:gravity="center"
+        android:imeOptions="actionDone"
         android:inputType="number"
         android:maxLength="4"
-        android:imeOptions="actionDone"
-        android:layout_gravity="bottom|left"
-        android:textColor="@color/white"
+         android:layout_gravity="bottom|left"
+        android:textColor="@color/black_light"
         android:textSize="14sp" />
     <LinearLayout
         android:layout_width="match_parent"
@@ -412,7 +406,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_display_regular"
             android:layout_marginStart="42dp"
-            android:textColor="@color/grey2"
+           android:textColor="@color/grey2_light"
             android:text="Push" />
 
         <androidx.appcompat.widget.SwitchCompat
@@ -427,7 +421,7 @@
             app:thumbTint="@color/white"
             android:thumb="@drawable/shape_switch_thumb"
             android:fontFamily="@font/sf_display_regular"
-            android:textColor="@color/white" />
+            android:textColor="@color/black_light" />
 
 
     </LinearLayout>
@@ -442,7 +436,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="50dp"
-        android:backgroundTint="@color/grey2"
+        android:backgroundTint="@color/blue_light"
         android:text="Сохранить"
         android:textAllCaps="false"
         android:layout_gravity="center"

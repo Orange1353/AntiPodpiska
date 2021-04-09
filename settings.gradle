@@ -1,2 +1,4 @@
+include ':libraryCalendar'
+include ':eventcalenderlibrary'
 include ':app'
 rootProject.name = "AntiPodpiska"

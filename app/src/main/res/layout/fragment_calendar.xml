@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/darkBack"
+        android:background="@color/menu_back_light"
         tools:context=".menu.CalendarFragment">
 
     <FrameLayout
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@color/header_back"
         android:insetTop="0dp"
+        android:elevation="4dp"
         android:insetBottom="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,70 +24,77 @@
             android:layout_height="match_parent"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:backgroundTint="@color/header_back"
-            android:fontFamily="@font/sf_display_medium"
+            app:cornerRadius="0dp"
+            android:backgroundTint="@color/header_light"
+            android:fontFamily="@font/sf_display_bold"
+
             android:text="Календарь"
-            android:textColor="@color/white"
+            android:textColor="@color/black_light"
             android:textAllCaps="false"
             android:textSize="16sp" />
     </FrameLayout>
 
+<!--    <CalendarView-->
+<!--        android:id="@+id/calendar_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:background="@drawable/shape_initial_item"-->
+<!--        android:backgroundTint="@color/grey_search"-->
+<!--        android:dateTextAppearance="@style/CalenderViewDateCustomText"-->
+<!--        android:theme="@style/CalenderViewCustom"-->
+<!--        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/lay_up"-->
+<!--        tools:layout_editor_absoluteX="20dp">-->
+<!--    </CalendarView>   -->
 
-    <RelativeLayout
-        android:id="@+id/lay_calendar"
-        android:layout_width="match_parent"
-        android:layout_height="165dp"
-        android:layout_marginTop="25dp"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        app:layout_constraintTop_toBottomOf="@+id/lay_up"
-        tools:layout_editor_absoluteX="0dp">
-
-        <!--Pie chart to display the data-->
-
-
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/piechart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-
-            android:layout_weight="1" />
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:orientation="vertical">-->
-<!--        <TextView-->
-<!--            android:id="@+id/pieChartMonthlyAverage"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:layout_marginLeft="60dp"-->
-<!--            android:text="5555555"-->
-<!--           />-->
-<!--        </LinearLayout>-->
-
-
-    </RelativeLayout>
-
-    <CalendarView
-        android:id="@+id/calendar_view"
+    <FrameLayout
+        android:id="@+id/frameLayout7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/lay_calendar"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
 
-        android:background="@drawable/shape_initial_item"
-        android:dateTextAppearance="@style/CalenderViewDateCustomText"
-        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText"
-        android:backgroundTint="@color/grey_search"
-        android:theme="@style/CalenderViewCustom"
-        android:layout_centerInParent="true"
-        app:layout_constraintTop_toBottomOf="@+id/lay_calendar">
+        android:background="@drawable/shape_calendar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-    </CalendarView>
+        <com.applandeo.materialcalendarview.CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_initial_item"
+            android:paddingStart="7dp"
+            android:paddingTop="7dp"
+            android:paddingEnd="7dp"
+            app:abbreviationsBarColor="@color/grey_search"
+            app:abbreviationsLabelsColor="@color/white"
+            app:daysLabelsColor="@color/white"
+            app:forwardButtonSrc="@drawable/ic_arrow_right1"
+            app:headerColor="@color/grey_search"
+            app:headerLabelColor="@color/white"
+            app:pagesColor="@color/grey_search"
+            app:previousButtonSrc="@drawable/ic_menu_buttom_back"
+
+            app:todayLabelColor="@color/white"
+            app:type="classic"
+            tools:layout_editor_absoluteX="20dp" />
+    </FrameLayout>
+
+
+    <org.mylibrary.librarycalendar.CalenderEvent
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:selector_color="@color/grey_search"
+        app:current_month_day_color="@color/white"
+        app:off_month_day_color="@color/grey_search"
+        app:week_name_color="@color/grey_search"
+        app:month_color="@color/grey_search"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </org.mylibrary.librarycalendar.CalenderEvent>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

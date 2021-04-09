@@ -1,33 +1,26 @@
 package com.example.antipodpiska.addition
 
+
 import android.app.DatePickerDialog
 import android.content.Context
-import com.example.antipodpiska.subDetails.SubDetailViewModel
-import com.example.antipodpiska.subDetails.SubDetailViewModelFactory
-
-
-
-import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.activity.viewModels
-
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import com.example.antipodpiska.R
-import com.example.antipodpiska.addition.EditActivity
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
-
+import com.example.antipodpiska.subDetails.SubDetailViewModel
+import com.example.antipodpiska.subDetails.SubDetailViewModelFactory
 import com.example.antipodpiska.subList.SUB_ID
-import com.example.antipodpiska.subList.SubListActivity
 import com.example.antipodpiska.utils.startSubListActivity
-import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.database.collection.LLRBNode
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_add_sub.*
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.Period
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class EditSubActivity : AppCompatActivity() {
@@ -78,8 +71,10 @@ class EditSubActivity : AppCompatActivity() {
         val adapter: ArrayAdapter<*> = ArrayAdapter.createFromResource(
             this,
             R.array.spinner_array_tupe_sub,
-            R.layout.spinner_dropdown_text)
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_text)
+            R.layout.spinner_dropdown_dark
+        )
+
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_dark)
         spinner_typeSub.setAdapter(adapter)
 
 
@@ -89,7 +84,8 @@ class EditSubActivity : AppCompatActivity() {
         val adapter_free_period: ArrayAdapter<*> = ArrayAdapter.createFromResource(
             this,
             R.array.spinner_array_period,
-            R.layout.spinner_dropdown_text)
+            R.layout.spinner_dropdown_text
+        )
         adapter_free_period.setDropDownViewResource(R.layout.spinner_dropdown_text);
 
         spinner_free_period.setAdapter(adapter_free_period);
@@ -99,7 +95,8 @@ class EditSubActivity : AppCompatActivity() {
         val adapter_cost: ArrayAdapter<*> = ArrayAdapter.createFromResource(
             this,
             R.array.spinner_array_curr_cost,
-            R.layout.spinner_dropdown_text)
+            R.layout.spinner_dropdown_text
+        )
 
         adapter_cost.setDropDownViewResource(R.layout.spinner_dropdown_text);
         spinner_cost.setAdapter(adapter_cost);
@@ -206,10 +203,10 @@ class EditSubActivity : AppCompatActivity() {
         when(currentSub?.typeSub) {
             "Музыка" -> addTypeSub.setSelection(1)
             "Приложения" -> addTypeSub.setSelection(2)
-            "Смарт-Тв"-> addTypeSub.setSelection(3)
-            "Связь"-> addTypeSub.setSelection(4)
-            "Облака"-> addTypeSub.setSelection(5)
-            "Иное"-> addTypeSub.setSelection(6)
+            "Смарт-Тв" -> addTypeSub.setSelection(3)
+            "Связь" -> addTypeSub.setSelection(4)
+            "Облака" -> addTypeSub.setSelection(5)
+            "Иное" -> addTypeSub.setSelection(6)
         }
         addDatePay.setText(currentSub?.datePay)
         addPeriodFree.setText(currentSub?.periodFree)
@@ -217,26 +214,26 @@ class EditSubActivity : AppCompatActivity() {
         addPeriodPay.setText(currentSub?.periodPay)
 
         when(currentSub?.periodTypeFree){
-            "Дней"->  addPeriodTypeFree.setSelection(0)
-            "Недель"-> addPeriodTypeFree.setSelection(1)
-            "Месяцев"->  addPeriodTypeFree.setSelection(2)
+            "Дней" -> addPeriodTypeFree.setSelection(0)
+            "Недель" -> addPeriodTypeFree.setSelection(1)
+            "Месяцев" -> addPeriodTypeFree.setSelection(2)
         }
         when(currentSub?.costCurr){
             "RUB" -> addCostCurr.setSelection(0)
-            "USD"-> addCostCurr.setSelection(1)
-            "EUR"-> addCostCurr.setSelection(2)
-            "GBR"-> addCostCurr.setSelection(3)
-            "CNY"-> addCostCurr.setSelection(4)
-            "CHF"-> addCostCurr.setSelection(5)
-            "JPY"-> addCostCurr.setSelection(6)
+            "USD" -> addCostCurr.setSelection(1)
+            "EUR" -> addCostCurr.setSelection(2)
+            "GBR" -> addCostCurr.setSelection(3)
+            "CNY" -> addCostCurr.setSelection(4)
+            "CHF" -> addCostCurr.setSelection(5)
+            "JPY" -> addCostCurr.setSelection(6)
             "BTC" -> addCostCurr.setSelection(7)
-            "OTHER"-> addCostCurr.setSelection(8)
+            "OTHER" -> addCostCurr.setSelection(8)
         }
         //  addCostCurr
         when(currentSub?.periodTypePay){
-            "Дней"->  addPeriodTypePay.setSelection(0)
-            "Недель"-> addPeriodTypePay.setSelection(1)
-            "Месяцев"->  addPeriodTypePay.setSelection(2)
+            "Дней" -> addPeriodTypePay.setSelection(0)
+            "Недель" -> addPeriodTypePay.setSelection(1)
+            "Месяцев" -> addPeriodTypePay.setSelection(2)
         }
         //
         addCard.setText(currentSub?.card)
@@ -249,15 +246,21 @@ class EditSubActivity : AppCompatActivity() {
 
 
     }
-    fun addDate(context: Context, cal: Calendar, dateSetListenerDatePay: DatePickerDialog.OnDateSetListener )
+    fun addDate(
+        context: Context,
+        cal: Calendar,
+        dateSetListenerDatePay: DatePickerDialog.OnDateSetListener
+    )
     {
-        DatePickerDialog(context, dateSetListenerDatePay,
+        DatePickerDialog(
+            context, dateSetListenerDatePay,
             cal.get(Calendar.YEAR),
             cal.get(Calendar.MONTH),
-            cal.get(Calendar.DAY_OF_MONTH)).show()
+            cal.get(Calendar.DAY_OF_MONTH)
+        ).show()
     }
 
-fun clone(sub:Sub): Sub? {
+fun clone(sub: Sub): Sub? {
     val stringSub = Gson().toJson(sub, Sub::class.java)
     return Gson().fromJson<Sub>(stringSub, Sub::class.java)
 }

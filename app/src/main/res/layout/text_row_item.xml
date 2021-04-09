@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="125dp"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
     android:layout_marginTop="10dp"
     android:background="@drawable/shape_item">
 
-    <TextView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/flower_image"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="135dp"
+        android:layout_height="109dp"
         android:layout_margin="8dp"
         android:contentDescription="@string/flower1_description"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,9 +20,10 @@
         app:layout_constraintStart_toStartOf="parent"
         android:background="@drawable/shape_initial_item"
         android:fontFamily="@font/sf_display_medium"
+
+app:shapeAppearanceOverlay="@style/ImageViewCorner"
         android:gravity="center"
         android:textSize="40sp"
-        android:text="T"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -30,49 +31,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:fontFamily="@font/sf_display_medium"
         android:text="@string/flower1_name"
-        android:fontFamily="@font/sf_display_medium"
         android:textAppearance="?attr/textAppearanceHeadline5"
-        android:textColor="#FFFFFF"
-android:layout_marginBottom="3dp"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/text_status"
-        app:layout_constraintStart_toEndOf="@+id/flower_image" />
+        android:textColor="@color/black_light"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/flower_image"
+        app:layout_constraintTop_toTopOf="@+id/flower_image" />
 
-    <TextView
-        android:id="@+id/card_num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="28dp"
-        android:paddingTop="3dp"
-        android:textColor="@color/transparent_grey"
-        android:textSize="11sp"
-        android:fontFamily="@font/sf_display_medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewUntil" />
 
     <EditText
         android:id="@+id/text_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_text_input"
-        android:backgroundTint="@color/orange"
+        android:background="@drawable/shape_initial_item"
         android:clickable="false"
-        android:fontFamily="@font/sf_display_medium"
         android:duplicateParentState="false"
         android:editable="false"
+        android:fontFamily="@font/sf_display_bold"
         android:inputType="none"
-        android:paddingLeft="8dp"
-        android:paddingTop="3dp"
-        android:paddingRight="8dp"
-        android:paddingBottom="3dp"
-        android:text="Оплачено"
-        android:textColor="@color/white"
-        android:layout_marginTop="3dp"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+        android:text="N"
+        android:textColor="@color/grey_legend"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/day_pay_calulat"
         app:layout_constraintStart_toStartOf="@+id/flower_text"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/flower_text">
 
     </EditText>
 
@@ -80,25 +64,70 @@ android:layout_marginBottom="3dp"
         android:id="@+id/day_pay_calulat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:fontFamily="@font/sf_display_medium"
-        android:textSize="11sp"
         android:textColor="@color/transparent_grey"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/flower_text"
-        app:layout_constraintTop_toBottomOf="@+id/text_status" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewUntil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="2dp"
-        android:fontFamily="@font/sf_display_medium"
-        android:paddingTop="3dp"
+        android:fontFamily="@font/sf_display_bold"
         android:textColor="@color/transparent_grey"
-        android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="12sp"
+        android:lineSpacingMultiplier="0.7"
         app:layout_constraintStart_toEndOf="@+id/text_status"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/text_status" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button"
+        android:layout_width="113dp"
+        android:layout_height="27dp"
+        android:text="Значение?"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:layout_marginBottom="7dp"
+        android:fontFamily="@font/sf_display_medium"
+        android:backgroundTint="@color/blue_light"
+        app:cornerRadius="8dp"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@+id/flower_image"
+        app:layout_constraintStart_toStartOf="@+id/flower_text" />
+
+
+    <FrameLayout
+
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginTop="7dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+<TextView
+    android:id="@+id/countDays"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+android:layout_gravity="center"
+    android:gravity="center"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:fontFamily="@font/sf_display_medium"
+    app:layout_constraintTop_toTopOf="parent"
+    android:textSize="9sp"
+    android:lineSpacingMultiplier="0.7"
+
+    />
+    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+        android:id="@+id/circularProgressBar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

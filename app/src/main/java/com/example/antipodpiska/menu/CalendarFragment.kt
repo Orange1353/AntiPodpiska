@@ -1,30 +1,25 @@
 package com.example.antipodpiska.menu
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Typeface
+import android.graphics.*
 import android.os.Bundle
-import android.text.*
-import android.text.style.ForegroundColorSpan
-import android.text.style.RelativeSizeSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
 import androidx.fragment.app.Fragment
+import com.applandeo.materialcalendarview.CalendarView
+import com.applandeo.materialcalendarview.EventDay
 import com.example.antipodpiska.R
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
 import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.data.PieData
-import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.highlight.Highlight
-import com.github.mikephil.charting.utils.Utils
 import java.time.LocalDate
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 class CalendarFragment : Fragment() {
@@ -42,97 +37,49 @@ class CalendarFragment : Fragment() {
        val view: View = inflater.inflate(R.layout.fragment_calendar, container, false)
 
 
-        var pieChart: PieChart = view.findViewById(R.id.piechart)
 
+    /*    var events: List<EventDay> = ArrayList()
+        val calendar1 = Calendar.getInstance()
+        calendar1.add(Calendar.DAY_OF_MONTH, 10)
 
-        var colorClassArray: List<Int> = listOf(
-            resources.getColor(R.color.calendar_green),
-            resources.getColor(R.color.calendar_orange),
-            resources.getColor(
-                R.color.calendar_pink
-            ),
-            resources.getColor(R.color.calendar_blue),
-            resources.getColor(R.color.calendar_blue2),
-            resources.getColor(R.color.calendar_fiolet),
-            resources.getColor(
-                R.color.calendar_grey
-            )
+        // Пусть bmp1 и bmp2 -  картинки, которые нужно склеить
+// Предположим, что вторую нужно нарисовать справа от первой
+// Создаём изображение нужных размеров
+        // Пусть bmp1 и bmp2 -  картинки, которые нужно склеить
+// Предположим, что вторую нужно нарисовать справа от первой
+// Создаём изображение нужных размеров
+        val bmp1 = BitmapFactory.decodeResource(resources, R.drawable.ic_cross)
+        val bmp2 = BitmapFactory.decodeResource(resources, R.drawable.ic_menu_calendar)
+
+        val bmp = Bitmap.createBitmap(
+            bmp1.getWidth() + bmp2.getWidth(),
+            Math.max(bmp1.getHeight(), bmp2.getHeight()),
+            Bitmap.Config.ARGB_8888
         )
+        val c = Canvas(bmp) // Создаём canvas, на котором будем рисовать
+
+        // Рисуем bmp1
+        // Рисуем bmp1
+        c.drawBitmap(bmp1, 0f, 0f, Paint())
+        // Рисуем bmp2 справа от bmp1
+        // Рисуем bmp2 справа от bmp1
+        c.drawBitmap(bmp2, bmp1.getWidth().toFloat(), 0f, Paint())
 
 
-
-
-        var context: Context? = getContext()
-
-        var moneyMap: HashMap<String, Double> =  getMoney(costOfAllSubsByTypes(context!!))
-        var pieDataset: PieDataSet = PieDataSet(dataValues(costOfAllSubsByTypes(context)), "")
-
-
-
-
-        pieDataset.setColors(colorClassArray)
-        pieDataset.sliceSpace=2f
-
-        pieDataset.setDrawValues(false)
-        var data: PieData = PieData(pieDataset)
-
-        data.setValueTextSize(11f)
-        data.setValueTextColor(Color.WHITE)
-        pieChart.data = data
-
-        pieChart.extraLeftOffset = -70f
-        pieChart.setDrawEntryLabels(false)
-        pieChart.holeRadius = 67F
-        //максимальная строчка возможная
-      //  pieChart.minAngleForSlices = 60f
-        //закругления
-  //      pieChart.setDrawRoundedSlices(true)
-        pieChart.setHoleColor(resources.getColor(R.color.darkBack))
-        pieChart.setNoDataText("Добавьте подписки!")
-        pieChart.setTransparentCircleColor(resources.getColor(R.color.darkBack))
-        pieChart.setTransparentCircleAlpha(0)
-        pieChart.description = null
-        pieChart.invalidate()
-        //https://medium.com/androiddevelopers/spantastic-text-styling-with-spans-17b0c16b4568   SpannableString
-
-
-  //      if (moneyMap.get("₽")!! % 1 == 0.0)
-//        pieChart.setCenterText(moneyMap.get("₽").toString().substring(0, moneyMap.get("₽").toString().length -2) + "₽")
-     //   else
-            pieChart.setCenterText(moneyMap.get("₽").toString() + " ₽")
-
-        pieChart.setCenterTextColor(resources.getColor(R.color.white))
-
-
-        val legend: Legend = pieChart.getLegend()
-        legend.textColor = resources.getColor(R.color.transparent_grey)
-        legend.textSize = 11f
-        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER);
-        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-        legend.setOrientation(Legend.LegendOrientation.VERTICAL);
-        legend.formSize = 10f
-        legend.form = Legend.LegendForm.CIRCLE
-        legend.formToTextSpace = 7f
-        legend.yEntrySpace = 4f
-        legend.xOffset = 60f
-
-
-        val tf = Typeface.createFromAsset(context!!.getAssets(), "font/sf_display_medium.ttf")
-        legend.typeface = tf
-
-
-
-        var calendar: CalendarView = view.findViewById(R.id.calendar_view)
-
-
+        events= listOf(EventDay(calendar1, R.drawable.ic_cross, Color.parseColor("#ffffff")))
+        var calendarView : CalendarView = view.findViewById(R.id.calendarView)
+        calendarView.setCalendarDayLayout(R.layout.custom_calendar_day)
+        calendarView.setEvents(events)
+*/
         return view
+
     }
 
     fun chartValueSelected(chartView: PieChart, entry: PieEntry, highlight: Highlight) {
         chartView.data?.setDrawValues(true)
     }
 
-    fun getMoney( mapCountsByType: HashMap<String, Double>?): HashMap<String, Double> {
+    fun getMoney(mapCountsByType: HashMap<String, Double>?): HashMap<String, Double> {
 
         val dataVals: HashMap<String, Double> =  HashMap<String, Double>()
 
@@ -141,15 +88,15 @@ class CalendarFragment : Fragment() {
                 if (key.length < 4) {
                     var tmp = ""
                     when(key.toString()){
-                    "RUB" -> tmp = "₽"
-                    "USD" -> tmp = "$"
-                    "EUR" -> tmp = "€"
-                    "GPB" -> tmp = "£"
-                    "CNY" -> tmp = "Ұ"
-                    "CHF" -> tmp = "₣"
-                    "JPY" -> tmp = "¥"
-                    "BTC" -> tmp = "₿"
-                    "OTHER" -> tmp = "?"
+                        "RUB" -> tmp = "₽"
+                        "USD" -> tmp = "$"
+                        "EUR" -> tmp = "€"
+                        "GPB" -> tmp = "£"
+                        "CNY" -> tmp = "Ұ"
+                        "CHF" -> tmp = "₣"
+                        "JPY" -> tmp = "¥"
+                        "BTC" -> tmp = "₿"
+                        "OTHER" -> tmp = ""
                     }
                     dataVals.put(tmp, value)
                 }
@@ -255,11 +202,10 @@ class CalendarFragment : Fragment() {
                 }
             }
 
-Log.e("8888", allSummAndCountsByTypes.toString())
+    Log.e("8888", allSummAndCountsByTypes.toString())
 
         return allSummAndCountsByTypes
     }
-
 
 
 

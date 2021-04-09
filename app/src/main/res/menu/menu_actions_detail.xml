@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_edit"
         app:showAsAction="never"
         android:orderInCategory="0"
-        android:backgroundTint="@color/grey2"
+        android:backgroundTint="@color/header_light"
         android:title="Редактировать">
     </item>
     <item

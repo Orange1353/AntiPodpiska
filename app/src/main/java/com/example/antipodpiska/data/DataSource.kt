@@ -234,7 +234,7 @@ class DataSource(resources: Resources, context: Context) {
                 when (sub?.periodTypeFree) {
                     "Дней" -> datePay = datePay.plusDays(sub?.periodFree!!.toLong())
                     "Недель" -> datePay = datePay.plusWeeks(sub?.periodFree!!.toLong())
-                    "Месяцев" -> datePay = datePay.plusMonths(sub?.periodFree!!.toLong())
+                    "Месяцев" -> datePay = datePay.plusDays(30 * sub?.periodFree!!.toLong())
                 }
 
             if (sub?.periodPay != "") {
@@ -243,7 +243,7 @@ class DataSource(resources: Resources, context: Context) {
                         "Дней" -> datePay = datePay.plusDays(sub?.periodPay!!.toLong())
                         "Недель" -> datePay = datePay.plusWeeks(sub?.periodPay!!.toLong())
                         "Месяцев" -> datePay =
-                            datePay.plusMonths(sub?.periodPay!!.toLong())
+                            datePay.plusDays(30 * sub?.periodPay!!.toLong())
                     }
             }
 

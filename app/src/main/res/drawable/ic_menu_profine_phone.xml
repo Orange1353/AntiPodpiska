@@ -8,31 +8,31 @@
       android:strokeLineJoin="round"
       android:strokeWidth="0.2551"
       android:fillColor="#00000000"
-      android:strokeColor="#B8B9BF"
+      android:strokeColor="@color/blue_light"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M8.9285,29.004C9.7853,29.004 10.4798,28.3095 10.4798,27.4527C10.4798,26.5959 9.7853,25.9014 8.9285,25.9014C8.0717,25.9014 7.3771,26.5959 7.3771,27.4527C7.3771,28.3095 8.0717,29.004 8.9285,29.004Z"
       android:strokeLineJoin="round"
       android:strokeWidth="0.2551"
       android:fillColor="#00000000"
-      android:strokeColor="#B8B9BF"
+      android:strokeColor="@color/blue_light"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M10.4798,2.7022C10.7653,2.7022 10.9977,2.9335 10.9977,3.219C10.9977,3.5045 10.7653,3.7363 10.4798,3.7363H7.3774C7.0919,3.7363 6.8605,3.5049 6.8605,3.219C6.8605,2.9332 7.0919,2.7022 7.3774,2.7022H10.4798Z"
       android:strokeLineJoin="round"
       android:strokeWidth="0.2551"
       android:fillColor="#00000000"
-      android:strokeColor="#B8B9BF"
+      android:strokeColor="@color/blue_light"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M15.6517,5.5977H2.2062V24.9027H15.6517V5.5977Z"
       android:strokeLineJoin="round"
       android:strokeWidth="0.2551"
       android:fillColor="#00000000"
-      android:strokeColor="#B8B9BF"
+      android:strokeColor="@color/blue_light"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M14.7897,0.7715H3.0686C1.9259,0.7715 1,1.6974 1,2.8384V27.8316C1,28.9766 1.9259,29.9028 3.0686,29.9028H14.7897C15.9327,29.9028 16.8582,28.9769 16.8582,27.8316V2.8384C16.8579,1.6974 15.9327,0.7715 14.7897,0.7715ZM7.3778,27.4518C7.3778,26.5959 8.071,25.8992 8.9278,25.8992C9.7847,25.8992 10.4795,26.5959 10.4795,27.4518C10.4795,28.31 9.7843,29.0032 8.9278,29.0032C8.0713,29.0032 7.3778,28.3103 7.3778,27.4518ZM10.4798,2.7004C10.7666,2.7004 10.997,2.9327 10.997,3.2189C10.997,3.505 10.7666,3.7374 10.4798,3.7374H7.3781C7.0919,3.7374 6.8612,3.505 6.8612,3.2189C6.8612,2.9327 7.0919,2.7004 7.3781,2.7004H10.4798ZM2.2065,5.5989H15.6517V24.9023H2.2065V5.5989Z"
-      android:fillColor="#B8B9BF"
+      android:fillColor="@color/blue_light"
       android:fillType="evenOdd"/>
 </vector>

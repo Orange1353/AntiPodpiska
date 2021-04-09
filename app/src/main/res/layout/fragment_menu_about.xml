@@ -4,14 +4,14 @@
       xmlns:tools="http://schemas.android.com/tools"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:background="@color/darkBack"
+      android:background="@color/menu_back_light"
       tools:context=".menu.MenuAboutFragment">
 
       <FrameLayout
           android:id="@+id/lay_up"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:background="@color/header_back"
+          android:background="@color/header_light"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintTop_toTopOf="parent">
 
@@ -19,14 +19,16 @@
               android:id="@+id/button_menu_back"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:backgroundTint="@color/header_back"
+              android:backgroundTint="@color/header_light"
               android:insetTop="0dp"
+              app:cornerRadius="0dp"
+
               android:insetBottom="0dp"
               android:text="О приложении"
               android:layout_marginLeft="57dp"
-              android:fontFamily="@font/sf_display_regular"
+              android:fontFamily="@font/sf_display_bold"
               android:textAllCaps="false"
-              android:textColor="@color/white"
+              android:textColor="@color/black_light"
               android:textSize="16sp"
               />
 
@@ -35,8 +37,10 @@
               android:layout_width="57dp"
               android:insetTop="0dp"
               android:insetBottom="0dp"
+              app:cornerRadius="0dp"
+
               android:layout_height="match_parent"
-              android:backgroundTint="@color/header_back"
+              android:backgroundTint="@color/header_light"
               android:drawableLeft="@drawable/ic_menu_buttom_back"
               android:paddingLeft="21dp"
               android:gravity="center_horizontal"
@@ -52,11 +56,11 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_text_input"
-        android:backgroundTint="@color/dark_light"
+        android:backgroundTint="@color/white"
         android:padding="20dp"
         android:fontFamily="@font/sf_display_regular"
         android:text="@string/about"
-        android:textColor="@color/menu_text"
+        android:textColor="@color/black_light"
         android:textSize="18sp"
 
 

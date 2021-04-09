@@ -41,6 +41,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    sourceSets {
+        main {
+            res {
+                srcDirs 'src\\main\\res'
+            }
+        }
+    }
 }
 
 dependencies {
@@ -108,4 +115,11 @@ dependencies {
 
 
     implementation "androidx.browser:browser:1.2.0"
+
+    implementation 'com.applandeo:material-calendar-view:1.9.0-rc03'
+
+    implementation project( ':libraryCalendar')
+
+    implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
+
 }

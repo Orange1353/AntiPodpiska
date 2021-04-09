@@ -13,7 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/darkBack"
+        android:background="@color/light_back"
         android:orientation="vertical"
         tools:context=".ui.auth.LoginActivity"
         android:scrollbarAlwaysDrawVerticalTrack="true">
@@ -21,14 +21,18 @@
         <Button
             android:id="@+id/button_back"
             android:layout_width="57dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/darkBack"
+
+style="@style/NoShadowButton"
+        android:layout_height="wrap_content"
+            android:backgroundTint="@color/light_back"
             android:drawableLeft="@drawable/ic_menu_buttom_back"
             android:paddingLeft="21dp"
             android:gravity="center_horizontal"
             android:layout_gravity="start|center_horizontal"
-            android:textAllCaps="false"
-            android:textSize="16sp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:cornerRadius="0dp"
+            android:elevation="0sp"
             />
 
         <TextView
@@ -40,7 +44,7 @@
             android:layout_marginTop="100dp"
             android:text="Авторизация"
             android:fontFamily="@font/sf_display_bold"
-            android:textColor="@color/white"
+            android:textColor="@color/black_light"
             android:textSize="24sp" />
 
 
@@ -52,24 +56,24 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:hint="Введите email"
-            android:textColorHint="@color/grey2"
+            android:textColorHint="@color/grey2_light"
             android:paddingTop="10dp"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             android:paddingBottom="10dp"
-            app:boxBackgroundColor="@color/darkBack">
+            app:boxBackgroundColor="@color/light_back">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/add_flower_name"
                 android:layout_marginLeft="25dp"
                 android:singleLine="true"
                 android:text="@={viewmodel.email}"
-                android:textColor="@color/white"
+                android:textColor="@color/black_light"
                 android:fontFamily="@font/sf_display_regular"
                 android:inputType="textEmailAddress"
                 android:layout_marginRight="25dp"
                 android:textSize="18sp"
                 android:layout_width="match_parent"
-                android:imeOptions="actionDone"
+                android:imeOptions="actionNext"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,18 +85,18 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:hint="Введите пароль"
-            android:textColorHint="@color/grey2"
+            android:textColorHint="@color/grey2_light"
             android:paddingTop="10dp"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             android:paddingBottom="10dp"
-            app:boxBackgroundColor="@color/darkBack">
+            app:boxBackgroundColor="@color/light_back">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_password"
                 android:layout_marginLeft="25dp"
                 android:text="@={viewmodel.password}"
                 android:singleLine="true"
-                android:textColor="@color/white"
+                android:textColor="@color/black_light"
                 android:inputType="textPassword"
                 android:fontFamily="@font/sf_display_regular"
                 android:layout_marginRight="25dp"
@@ -112,7 +116,7 @@
             android:layout_marginTop="500dp"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/sf_display_medium"
-            android:backgroundTint="#286BFA"
+            android:backgroundTint="@color/blue_light"
             android:onClick="@{() -> viewmodel.login()}"
             android:text="Войти"
 

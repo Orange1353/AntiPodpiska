@@ -4,14 +4,14 @@
        xmlns:tools="http://schemas.android.com/tools"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:background="@color/darkBack"
+       android:background="@color/menu_back_light"
        tools:context=".menu.MenuPushFragment">
 
        <FrameLayout
            android:id="@+id/lay_up"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:background="@color/header_back"
+           android:background="@color/header_light"
 
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintTop_toTopOf="parent">
@@ -22,10 +22,10 @@
                android:layout_height="match_parent"
                android:insetTop="0dp"
                android:insetBottom="0dp"
-               android:textColor="@color/white"
-
-               android:backgroundTint="@color/header_back"
-               android:fontFamily="@font/sf_display_regular"
+               android:textColor="@color/black_light"
+app:cornerRadius="0dp"
+               android:backgroundTint="@color/header_light"
+               android:fontFamily="@font/sf_display_bold"
                android:text="Push-уведомления"
                android:layout_marginLeft="57dp"
                android:textAllCaps="false"
@@ -35,9 +35,10 @@
                android:id="@+id/button_back"
                android:layout_width="57dp"
                android:layout_height="match_parent"
-               android:backgroundTint="@color/header_back"
+               android:backgroundTint="@color/header_light"
                android:insetTop="0dp"
                android:insetBottom="0dp"
+               app:cornerRadius="0dp"
                android:drawableLeft="@drawable/ic_menu_buttom_back"
                android:paddingLeft="21dp"
                android:gravity="center_horizontal"
@@ -68,37 +69,37 @@
                <LinearLayout
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
+                   android:background="@drawable/shape_item"
+                   android:backgroundTint="@color/white"
                    android:orientation="horizontal">
 
-                   <Button
-                       android:id="@+id/button_push"
-                       style="?android:attr/borderlessButtonStyle"
-                       android:layout_width="wrap_content"
-                       android:layout_height="match_parent"
-                       android:backgroundTint="@color/dark_light"
-                       android:text="Push-уведомления"
-                       android:fontFamily="@font/sf_display_medium"
-                       android:paddingLeft="15dp"
-                       android:gravity="start|center_vertical"
-                       android:clickable="false"
-                       android:singleLine="true"
-                       android:textSize="16sp"
-                       android:textAllCaps="false"
-                       android:textColor="@color/menu_text"
-                       />
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textColor="@color/black_light"
+                      android:fontFamily="@font/sf_display_medium"
+                      android:layout_gravity="center_vertical"
+                      android:paddingLeft="15dp"
+                      android:textSize="16sp"
+                      android:text="Push-уведомления">
+
+                  </TextView>
                    <androidx.appcompat.widget.SwitchCompat
                        android:id="@+id/switch_enabled"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
                        android:paddingRight="11dp"
                        android:textSize="16sp"
+
                        android:singleLine="true"
+                       android:backgroundTint="@color/white"
+                       android:background="@drawable/shape_item"
                        app:track="@drawable/switch_style"
                        app:switchMinWidth="35dp"
                        app:thumbTint="@color/white"
                        android:thumb="@drawable/shape_switch_thumb"
                        android:fontFamily="@font/sf_display_regular"
-                       android:textColor="@color/white" />
+                       android:textColor="@color/black_light" />
 
 
                </LinearLayout>
@@ -120,12 +121,15 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/shape_item"
+    android:backgroundTint="@color/white"
     android:orientation="vertical">
 
 
                <LinearLayout
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
+
                    android:orientation="vertical"
                    >
 
@@ -138,7 +142,8 @@
                        android:textSize="16sp"
                        android:paddingTop="10dp"
                        android:paddingLeft="15dp"
-                       android:textColor="@color/menu_text"
+                       android:textColor="@color/black_light"
+                       android:fontFamily="@font/sf_display_medium"
                        android:text="Начать уведомлять об оплате " />
 
 
@@ -158,19 +163,19 @@
                        android:gravity="center_vertical|start"
                        android:textSize="16sp"
                        android:paddingTop="5dp"
-                       android:textColor="@color/menu_text"
-                        />
+                       android:textColor="@color/black_light"
+                       android:fontFamily="@font/sf_display_medium"                        />
                        <TextView
                            android:id="@+id/textView_seek_bar"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_weight="1"
                            android:paddingLeft="15dp"
-
+                           android:fontFamily="@font/sf_display_bold"
                            android:gravity="center_vertical|start"
                            android:textSize="16sp"
                            android:paddingTop="5dp"
-                           android:textColor="@color/white"
+                           android:textColor="@color/black_light"
                            />
                </LinearLayout>
 
@@ -179,6 +184,8 @@
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+        android:background="@drawable/shape_item"
+        android:backgroundTint="@color/white"
     android:orientation="horizontal">
 
     <SeekBar
@@ -188,7 +195,6 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:max="7"
-        android:thumbTint="@color/white"
 
         android:progress="1"
         android:progressDrawable="@drawable/shape_seek_bar"
@@ -218,6 +224,8 @@
                <LinearLayout
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
+                   android:background="@drawable/shape_item"
+                   android:backgroundTint="@color/white"
                    android:orientation="vertical">
 
                    <TextView
@@ -228,7 +236,8 @@
                        android:paddingTop="10dp"
                         android:layout_gravity="center_vertical"
                        android:paddingLeft="15dp"
-                       android:textColor="@color/menu_text"
+                       android:textColor="@color/black_light"
+                       android:fontFamily="@font/sf_display_medium"
                        android:text="Напоминание " />
 
                    <androidx.appcompat.widget.SwitchCompat
@@ -237,16 +246,19 @@
                        android:layout_height="wrap_content"
                        android:text="Однократно "
                        android:paddingRight="11dp"
+                       android:background="@drawable/shape_item"
+                       android:backgroundTint="@color/white"
                        android:singleLine="true"
                        android:paddingStart="15dp"
                        android:textSize="16sp"
+                       android:fontFamily="@font/sf_display_medium"
+
                        app:track="@drawable/switch_style"
                        app:switchMinWidth="35dp"
                        app:thumbTint="@color/white"
                        android:thumb="@drawable/shape_switch_thumb"
                        android:paddingLeft="10dp"
-                       android:fontFamily="@font/sf_display_regular"
-                       android:textColor="@color/white" />
+                       android:textColor="@color/black_light" />
 
 
                </LinearLayout>
@@ -258,16 +270,16 @@
         android:id="@+id/button_save"
         android:layout_width="240dp"
         android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/grey2_light"
         android:insetTop="0dp"
         android:insetBottom="0dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="140dp"
-        android:backgroundTint="@color/grey2"
         android:text="Сохранить"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"

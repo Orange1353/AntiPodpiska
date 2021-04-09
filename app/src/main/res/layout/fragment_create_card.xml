@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkBack"
+    android:background="@color/light_back"
     tools:context=".addition.CreateNameAndTypeFragment">
 
 
@@ -12,8 +12,9 @@
         android:id="@+id/button_back"
         android:layout_width="match_parent"
         android:drawableLeft="@drawable/ic_arrow_back_white"
+        android:drawableTint="@color/grey2_light"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/header_back"
+        android:backgroundTint="@color/header_light"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +50,7 @@
             android:paddingTop="150dp"
             android:singleLine="false"
             android:textAllCaps="false"
+            android:textColor="@color/black_light"
             android:text="Подписка&#10;добавлена"
             android:textSize="25sp"
             android:visibility="invisible">
@@ -58,44 +60,53 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/color"
             android:layout_width="match_parent"
+            android:background="@color/white"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="33dp"
-                android:src="@drawable/ic_add_card"
+                android:layout_marginTop="23dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="180dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="53dp"
-                android:text="Данные оплаты"
-                android:fontFamily="@font/sf_display_medium"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/sf_display_medium"
+                    android:text="Данные оплаты"
+                    android:textColor="@color/black_light"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/ic_add_card1" />
+
+
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginStart="27dp"
+                android:layout_marginTop="40dp"
                 android:fontFamily="@font/sf_display_regular"
-                android:text="Чтобы вы знали с какой карты будут списаны средства за подписку"
-                android:textColor="@color/grey2"
+                android:text="Чтобы вы знали с какой карты будут\n списаны средства за подписку"
+                android:textColor="@color/grey2_light"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
             <FrameLayout
                 android:id="@+id/frameLayout"
@@ -119,7 +130,7 @@
                     android:fontFamily="@font/sf_display_regular"
                     android:layout_marginBottom="50dp"
                     android:text="Введите последние 4 цифры карты"
-                    android:textColor="@color/grey2"
+                    android:textColor="@color/grey2_light"
                     android:textSize="14sp"
                     android:layout_gravity="bottom|center_horizontal"
  />
@@ -129,7 +140,7 @@
                     android:layout_width="50dp"
                     android:layout_height="25dp"
                     android:background="@drawable/shape_text_input"
-                    android:backgroundTint="@color/darkBack"
+                    android:backgroundTint="@color/light_back"
                     android:digits="0123456789"
                     android:gravity="center"
                     android:inputType="number"
@@ -139,7 +150,7 @@
                     android:layout_marginStart="42dp"
                     android:layout_gravity="bottom|left"
                     android:imeOptions="actionDone"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black_light"
                     android:textSize="14sp"
                     />
                 <TextView
@@ -150,7 +161,7 @@
                     android:layout_marginBottom="20dp"
                     android:text="****"
                     android:inputType="textPassword"
-                    android:textColor="@color/grey2"
+                    android:textColor="@color/black_light"
                     android:textSize="14sp"
                     android:layout_gravity="bottom"
                     />
@@ -162,7 +173,7 @@
                     android:layout_marginBottom="20dp"
                     android:text="****"
                     android:inputType="textPassword"
-                    android:textColor="@color/grey2"
+                    android:textColor="@color/black_light"
                     android:textSize="14sp"
                     android:layout_gravity="bottom"
                     />
@@ -174,7 +185,7 @@
                     android:layout_marginBottom="20dp"
                     android:text="****"
                     android:inputType="textPassword"
-                    android:textColor="@color/grey2"
+                    android:textColor="@color/black_light"
                     android:textSize="14sp"
                     android:layout_gravity="bottom"
                     />
@@ -192,10 +203,10 @@
                     android:id="@+id/push_enabled"
                     android:layout_width="125dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_display_regular"
                     android:layout_marginStart="42dp"
-                    android:textColor="@color/grey2"
-                    android:text="Push" />
+                    android:fontFamily="@font/sf_display_regular"
+                    android:text="Push"
+                    android:textColor="@color/grey2_light" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switch_enabled"
@@ -208,7 +219,7 @@
                     app:switchPadding="10dp"
                     android:thumb="@drawable/shape_switch_thumb"
                     android:fontFamily="@font/sf_display_regular"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black_light" />
 
 
             </LinearLayout>
@@ -221,7 +232,7 @@
                 android:insetBottom="0dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="#286BFA"
+                android:backgroundTint="@color/blue_light"
                 android:text="Далее"
                 android:textAllCaps="false"
                 android:textColor="@color/white"

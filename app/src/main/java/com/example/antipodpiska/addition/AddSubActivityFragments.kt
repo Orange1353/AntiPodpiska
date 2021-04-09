@@ -46,6 +46,7 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
         setContentView(R.layout.activity_add_sub_fragments)
 
         fragmentManager.beginTransaction().add(R.id.container, CreateNameAndTypeFragment()).commit()
+     //   fragmentManager.beginTransaction().add(R.id.container, CreateNameAndTypeFragment()).commit()
         checkUserCloud()
     }
 

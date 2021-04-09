@@ -11,17 +11,27 @@
 <!--        <item name="colorSecondaryVariant">@color/darkBack</item>-->
 <!--        <item name="colorOnSecondary">@color/black</item>-->
         <!-- Status bar color. -->
+<!--        <item name="android:datePickerDialogTheme">@style/MyDatePickerDialogTheme</item>-->
         <item name="textInputStyle">@style/TextAppearance.App.TextInputLayout</item>
         <item name="colorControlActivated">@color/grey2</item>
         <item name="colorControlHighlight">@color/grey2</item>
         <item name="colorControlNormal">@color/grey2</item>
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnSecondary</item>
+        <item name="android:windowBackground">@color/light_back</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/header_light</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:fontFamily">@font/sf_display_medium</item>
+        <item name="fontFamily">@font/sf_display_medium</item>
+
         <!-- Customize your theme here. -->
-        <item name="android:navigationBarColor">#131313</item>
-        <item name="android:windowBackground">@color/darkBack</item>
+<!--        <item name="android:windowBackground">@color/#E5E5E5</item>-->
     </style>
+
+    <style name="NoShadowButton" parent="android:style/Widget.Button">
+        <item name="backgroundTint">@color/light_back</item>
+        <item name="android:stateListAnimator">@null</item> </style>
+
     <style name="spinner_style">
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/black_light</item>
         <item name="android:background">@drawable/spinner_style</item>
         <item name="android:layout_marginLeft">5dp</item>
         <item name="android:layout_marginRight">5dp</item>
@@ -29,12 +39,14 @@
         <item name="android:paddingLeft">6dp</item>
         <item name="android:paddingTop">4dp</item>
         <item name="android:paddingBottom">4dp</item>
+
         <item name="android:popupBackground">#FFFFFF</item>
     </style>
     <style name="TextLabel" parent="TextAppearance.AppCompat">
         <!-- Hint color and label color in FALSE state -->
         <item name="android:textColorHint">@color/white</item>
         <item name="android:textSize">20sp</item>
+
         <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
         <item name="colorAccent">@color/white</item>
         <item name="colorControlNormal">@color/white</item>
@@ -44,9 +56,10 @@
 
     <style name="AppThemeForToolbar" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:textColorSecondary">@color/white</item>
-        <item name="android:colorBackground">@color/header_back</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorSecondary">@color/black_light</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:textColor">@color/black_light</item>
+        <item name="actionModeBackground">@drawable/shape_item</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -91,5 +104,33 @@
         <item name="android:textColor">@color/grey_week_calendar</item>
     </style>
 
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:editTextColor">@color/black_light</item>
+    </style>
 
+<!--    <style name="MyDatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog">-->
+<!--        <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>-->
+<!--        <item name="android:calendarTextColor">@color/blue</item>-->
+<!--        <item name="colorAccent">@color/pink</item>-->
+<!--    </style>-->
+<!--    <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">-->
+<!--        <item name="android:headerBackground">@color/light_back</item>-->
+<!--        <item name="android:font">@font/sf_display_regular</item>-->
+<!--        <item name="android:calendarTextColor">@color/blue</item>-->
+
+<!--        <item name="colorAccent">@color/pink</item>-->
+<!--    </style>-->
+
+    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="fontFamily">@font/sf_display_regular</item>
+        <item name="android:textColorSecondary">@color/grey2_light</item>
+    </style>
+
+    <style name="ImageViewCorner">
+        <item name="cornerSize">7dp</item>
+    </style>
+    <style name="ImageViewMiniCorner">
+        <item name="cornerSize">10dp</item>
+    </style>
 </resources>

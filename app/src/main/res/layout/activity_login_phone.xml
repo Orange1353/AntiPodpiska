@@ -10,14 +10,14 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkBack"
+    android:background="@color/light_back"
     tools:context=".ui.auth.PhoneAuthActivity">
 
     <Button
         android:id="@+id/button_back"
         android:layout_width="57dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/darkBack"
+        android:backgroundTint="@color/light_back"
         android:drawableLeft="@drawable/ic_menu_buttom_back"
         android:paddingLeft="21dp"
         android:gravity="center_horizontal"
@@ -36,7 +36,7 @@
 
         android:text="Вход"
         android:fontFamily="@font/sf_display_bold"
-        android:textColor="@color/white"
+        android:textColor="@color/black_light"
         android:textSize="24sp" />
 
     <TextView
@@ -49,7 +49,7 @@
         android:fontFamily="@font/sf_display_regular"
         android:layout_marginTop="24dp"
         android:text="Пожалуйста, введите номер вашего телефона, чтобы начать"
-        android:textColor="@color/grey2"
+        android:textColor="@color/grey2_light"
 
 
         android:textSize="14sp" />
@@ -68,7 +68,7 @@
             android:layout_width="120dp"
             android:gravity="end"
             android:fontFamily="@font/sf_display_regular"
-            android:popupBackground="@color/darkBack"
+            android:popupBackground="@color/light_back"
             android:layout_height="wrap_content" />
 
         <EditText
@@ -79,9 +79,8 @@
             android:textSize="18sp"
             android:fontFamily="@font/sf_display_regular"
             android:digits="0123456789"
-            android:textColor="@color/white"
-            android:textColorHint="@color/grey2"
-            android:hint="Номер телефона"
+            android:textColor="@color/black_light"
+            android:textColorHint="@color/grey2_light"
             android:maxLength="10"
             android:imeOptions="actionDone"/>
 
@@ -97,7 +96,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/sf_display_medium"
-        android:backgroundTint="#286BFA"
+        android:backgroundTint="@color/blue_light"
         android:textSize="16sp"
         android:textColor="@color/white"
         android:text="Продолжить"

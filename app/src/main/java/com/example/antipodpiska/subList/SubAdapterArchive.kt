@@ -34,7 +34,6 @@ class SubAdapterArchive(private val onClick: (Sub) -> Unit) :
         RecyclerView.ViewHolder(itemView) {
         private val subName: TextView = itemView.findViewById(R.id.flower_text)
         private val subImageView: TextView = itemView.findViewById(R.id.flower_image)
-        private val cardNum: TextView = itemView.findViewById(R.id.card_num)
         private val addDatePay: TextView =  itemView.findViewById(R.id.day_pay_calulat)
         private val status: EditText = itemView.findViewById(R.id.text_status)
         private val subDateUntil: TextView = itemView.findViewById(R.id.textViewUntil)
@@ -71,7 +70,6 @@ class SubAdapterArchive(private val onClick: (Sub) -> Unit) :
             subName.text = sub.name
 
             if (sub.card != "")
-                cardNum.text = "*" + sub.card
             //  addDatePay.text = sub.datePay
 
 
@@ -95,7 +93,7 @@ class SubAdapterArchive(private val onClick: (Sub) -> Unit) :
                  when (currentSub?.periodTypeFree) {
                      "Дней" -> datePay = datePay.plusDays(currentSub?.periodFree!!.toLong())
                      "Недель" -> datePay = datePay.plusWeeks(currentSub?.periodFree!!.toLong())
-                     "Месяцев" -> datePay = datePay.plusMonths(currentSub?.periodFree!!.toLong())
+                     "Месяцев" -> datePay = datePay.plusDays(30 * currentSub?.periodFree!!.toLong())
                  }
              }
 
@@ -109,7 +107,7 @@ class SubAdapterArchive(private val onClick: (Sub) -> Unit) :
                             "Недель" -> datePay =
                                 datePay.plusWeeks(currentSub?.periodPay!!.toLong())
                             "Месяцев" -> datePay =
-                                datePay.plusMonths(currentSub?.periodPay!!.toLong())
+                                datePay.plusDays(30 * currentSub?.periodPay!!.toLong())
                         }
                 }
                 if (sub.costSub != null) {

@@ -28,4 +28,18 @@
     <color name="calendar_blue2">#5DB1FF </color>
     <color name="calendar_fiolet">#746EDB </color>
     <color name="calendar_grey">#B8B9BF </color>
+
+
+
+    <color name="light_back">#FAFBFC</color>
+    <color name="blue_light">#286BFA</color>
+    <color name="border_light">#ABAFB4</color>
+    <color name="black_light">#292D33</color>
+    <color name="grey2_light">#979AAB</color>
+    <color name="red_light">#BF2222</color>
+    <color name="header_light">#F9F9F7</color>
+    <color name="menu_back_light">#EDEEF0</color>i
+    <color name="orange_light">#E1574F</color>
+    <color name="grey_legend">#8D8E93</color>
+    <color name="grey_progress_bar">#E3E3E3</color>
 </resources>

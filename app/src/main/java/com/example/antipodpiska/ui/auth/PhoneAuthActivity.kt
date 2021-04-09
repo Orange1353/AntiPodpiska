@@ -159,7 +159,7 @@ class PhoneAuthActivity : AppCompatActivity() {
         buttonContinue=findViewById(R.id.buttonContinue)
         spinner?.setAdapter(ArrayAdapter<String>(
                 this,
-                R.layout.spinner_dropdown_dark,
+                R.layout.spinner_dropdown_text,
                 CountryDataDelete.countryAreaCodes
             )
         )

@@ -35,8 +35,8 @@ class CreateNameAndTypeFragment : Fragment() {
         val adapter: ArrayAdapter<*> = ArrayAdapter.createFromResource(
             context!!,
             R.array.spinner_array_tupe_sub,
-            R.layout.spinner_dropdown_text)
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_text)
+            R.layout.spinner_dropdown_dark)
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_dark)
         spinner_typeSub.setAdapter(adapter)
 
         var addSubName: EditText = view.findViewById(R.id.add_flower_name)

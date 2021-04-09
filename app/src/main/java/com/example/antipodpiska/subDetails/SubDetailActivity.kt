@@ -162,7 +162,6 @@ class SubDetailActivity : AppCompatActivity() {
 
 
 else {
-                       var dateEndFree = ""
 
                        if (currentSub?.datePay != null && currentSub?.datePay != "") {
                        var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
@@ -182,9 +181,9 @@ else {
                                "Недель" -> dateEnd =
                                    dateEnd.plusWeeks(currentSub?.periodFree.toLong())
                                "Месяцев" -> dateEnd =
-                                   dateEnd.plusMonths(currentSub?.periodFree.toLong())
+                                   dateEnd.plusDays(30 * currentSub?.periodFree.toLong())
                            }
-//dateEndFree = dateEnd
+                           var dateEndFree = dateEnd
 
 
                        if (currentSub?.periodPay != "")
@@ -195,11 +194,12 @@ else {
                                "Недель" -> dateEnd =
                                    dateEnd.plusWeeks(currentSub?.periodPay.toLong())
                                "Месяцев" -> dateEnd =
-                                   dateEnd.plusMonths(currentSub?.periodPay.toLong())
+                                   dateEnd.plusDays(30 * currentSub?.periodPay.toLong())
                            }
                        }
 
 
+                           if(currentSub.datePay != dateEnd.format(formatter).toString())
                        dateNearestPay.nextPay.text = dateEnd.format(formatter).toString()
 
                        container.addView(dateNearestPay)
@@ -237,8 +237,8 @@ else {
                            }
 
 
-                           val tmp = rusification(currentSub?.periodFree, currentSub?.periodTypeFree)
-                           costPlusPeriod.text_before_free.text = currentSub?.periodFree + " " + tmp
+                          // val tmp = rusification(currentSub?.periodFree, currentSub?.periodTypeFree)
+                           costPlusPeriod.text_before_free.text = "до" //currentSub?.periodFree + " " + tmp
 
                        }
 

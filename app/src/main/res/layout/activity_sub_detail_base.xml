@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@color/darkBack"
+    android:background="@color/light_back"
 
     >
 
@@ -14,22 +14,24 @@
         android:id="@+id/base_lay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2F3034"
+        android:background="@color/header_light"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="77dp"
-            android:background="@color/header_back">
+            android:elevation="4dp"
+
+            android:background="@color/header_light">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 app:titleMarginStart="0dp"
-                android:background="@color/header_back"
-                android:backgroundTint="@color/header_back"
+                android:background="@color/header_light"
+                android:backgroundTint="@color/header_light"
                 android:gravity="center_vertical"
                 android:theme="@style/AppThemeForToolbar"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -56,7 +58,7 @@ app:titleMarginStart="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_display_medium"
-                android:textColor="@color/white"
+                android:textColor="@color/black_light"
                 android:layout_marginStart="15dp"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -71,7 +73,7 @@ app:titleMarginStart="0dp"
                 android:layout_marginEnd="11dp"
                 android:background="@drawable/ic_cross"
                 android:text="Button"
-                android:backgroundTint="@color/grey2"
+                android:backgroundTint="@color/grey2_light"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -87,7 +89,7 @@ app:titleMarginStart="0dp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:layout_marginBottom="25dp"
-        android:backgroundTint="#286BFA"
+        android:backgroundTint="@color/blue_light"
         app:cornerRadius="8dp"
         android:textColor="@color/white"
         android:fontFamily="@font/sf_display_medium"

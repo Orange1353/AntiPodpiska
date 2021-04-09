@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    ba
+
     <item
         android:fontFamily="@font/sf_display_regular"
         android:id="@+id/item_subs"
@@ -13,6 +13,12 @@
         android:enabled="true"
         android:icon="@drawable/ic_menu_archive"
         android:title="Архив"/>
+    <item
+        android:fontFamily="@font/sf_display_regular"
+        android:id="@+id/item_statistics"
+        android:enabled="true"
+        android:icon="@drawable/ic_menu_calendar"
+        android:title="Статистика"/>
     <item
         android:fontFamily="@font/sf_display_regular"
         android:id="@+id/item_calendar"

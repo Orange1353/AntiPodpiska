@@ -4,18 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkBack"
+    android:background="@color/light_back"
     tools:context=".addition.CreateNameAndTypeFragment">
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_back"
         android:drawableLeft="@drawable/ic_arrow_back_white"
+        android:drawableTint="@color/grey2_light"
         android:layout_width="match_parent"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/header_back"
+        android:backgroundTint="@color/header_light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,6 +42,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/color"
             android:layout_width="match_parent"
+            android:background="@color/white"
             android:layout_height="match_parent">
 
             <EditText
@@ -54,52 +56,58 @@
                 android:focusableInTouchMode="false"
                 android:text="ДД.ММ.ГГГГ"
                 android:fontFamily="@font/sf_display_regular"
-                android:textColor="@color/grey2"
+                android:textColor="@color/grey2_light"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/imageViewCalendar"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="33dp"
-                android:src="@drawable/ic_image_add_sub"
+                android:layout_marginTop="23dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="180dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="55dp"
+                android:layout_gravity="center_vertical"
                 android:text="Условия подписки"
                 android:fontFamily="@font/sf_display_medium"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="@color/black_light"
+                android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/ic_image_add_sub"
+                    />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="36dp"
-                android:text="Бесплатный период"
                 android:fontFamily="@font/sf_display_regular"
-                android:textColor="@color/grey2"
+                android:layout_marginTop="30dp"
+                android:text="Бесплатный период"
+                android:textColor="@color/grey2_light"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
 
             <EditText
                 android:id="@+id/add_free_days"
                 android:layout_width="100dp"
-                android:backgroundTint="@color/darkBack"
                 android:layout_height="35dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
@@ -110,11 +118,11 @@
                 android:inputType="number"
                 android:maxLength="3"
                 android:paddingStart="10dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black_light"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5"
-                android:imeOptions="actionDone"/>
+                android:imeOptions="actionNext"  />
 
             <Spinner
                 android:id="@+id/spinner_free_period_type"
@@ -125,9 +133,9 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/arrow_spinner"
                 android:entries="@array/spinner_array_period"
-                android:popupBackground="@color/darkBack"
+                android:popupBackground="@color/light_back"
                 android:spinnerMode="dropdown"
-                android:textColor="@color/white"
+                android:textColor="@color/black_light"
                 app:layout_constraintStart_toEndOf="@+id/add_free_days"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -138,7 +146,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:text="Стоимость подписки"
-                android:textColor="@color/grey2"
+                android:textColor="@color/grey2_light"
                 android:fontFamily="@font/sf_display_regular"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -153,17 +161,17 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/shape_text_input"
                 android:digits="0123456789."
-                android:backgroundTint="@color/darkBack"
                 android:gravity="center_vertical"
                 android:inputType="textMultiLine|number"
                 android:maxLength="7"
                 android:paddingStart="10dp"
-                android:textColor="@color/white"
+                               android:textColor="@color/black_light"
+
                 android:fontFamily="@font/sf_display_regular"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView56"
-                android:imeOptions="actionDone"/>
+                android:imeOptions="actionNext"  />
 
             <Spinner
                 android:id="@+id/spinner_curr_cost"
@@ -174,10 +182,11 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/arrow_spinner"
                 android:entries="@array/spinner_array_period"
-                android:popupBackground="@color/darkBack"
+                android:popupBackground="@color/light_back"
                 android:spinnerMode="dropdown"
 
-                android:textColor="@color/white"
+                               android:textColor="@color/black_light"
+
                 app:layout_constraintStart_toEndOf="@+id/add_cost"
                 app:layout_constraintTop_toBottomOf="@+id/textView56" />
 
@@ -189,7 +198,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:text="Периодичность платежей"
-                android:textColor="@color/grey2"
+                android:textColor="@color/grey2_light"
                 android:fontFamily="@font/sf_display_regular"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -203,18 +212,18 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/shape_text_input"
-                android:backgroundTint="@color/darkBack"
                 android:digits="0123456789"
                 android:gravity="center_vertical"
                 android:fontFamily="@font/sf_display_regular"
                 android:inputType="number"
                 android:maxLength="3"
                 android:paddingStart="10dp"
-                android:textColor="@color/white"
+                               android:textColor="@color/black_light"
+
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView57"
-                android:imeOptions="actionDone"/>
+                android:imeOptions="actionDone"  />
 
             <Spinner
                 android:id="@+id/spinner_period_pay"
@@ -225,9 +234,10 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/arrow_spinner"
                 android:entries="@array/spinner_array_period"
-                android:popupBackground="@color/darkBack"
+                android:popupBackground="@color/light_back"
                 android:spinnerMode="dropdown"
-                android:textColor="@color/white"
+                               android:textColor="@color/black_light"
+
                 app:layout_constraintStart_toEndOf="@+id/add_period"
                 app:layout_constraintTop_toBottomOf="@+id/textView57" />
 
@@ -239,13 +249,13 @@
                 android:insetBottom="0dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/grey2"
+                android:backgroundTint="#ABAFB4"
                 android:text="Далее"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
+
                 android:fontFamily="@font/sf_display_medium"
                 android:textSize="16sp"
-                app:cornerRadius="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -267,7 +277,7 @@
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="22dp"
                 android:text="Дата начала подписки *"
-                android:textColor="@color/grey2"
+                android:textColor="@color/grey2_light"
                 android:fontFamily="@font/sf_display_regular"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/imageViewCalendar"

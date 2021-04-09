@@ -4,14 +4,14 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/darkBack"
+        android:background="@color/menu_back_light"
         tools:context=".menu.MenuSettingFragment">
 
         <FrameLayout
             android:id="@+id/lay_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/header_back"
+            android:background="@color/header_light"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -22,12 +22,12 @@
                 android:layout_height="match_parent"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:textColor="@color/white"
-
-                android:backgroundTint="@color/header_back"
+                android:textColor="@color/black_light"
+app:cornerRadius="0dp"
+                android:backgroundTint="@color/header_light"
                 android:text="Настройки"
                 android:layout_marginLeft="57dp"
-                android:fontFamily="@font/sf_display_regular"
+                android:fontFamily="@font/sf_display_bold"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 />
@@ -36,8 +36,9 @@
                 android:id="@+id/button_back"
                 android:layout_width="57dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/header_back"
+                android:backgroundTint="@color/header_light"
                 android:insetTop="0dp"
+                app:cornerRadius="0dp"
                 android:insetBottom="0dp"
                 android:drawableLeft="@drawable/ic_menu_buttom_back"
                 android:paddingLeft="21dp"
@@ -56,6 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_item"
+        android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lay_up">
@@ -69,6 +71,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/shape_item"
+        android:backgroundTint="@color/white"
         android:orientation="horizontal">
 
         <Button
@@ -76,7 +80,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="70dp"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/dark_light"
+            android:backgroundTint="@color/white"
             android:drawableLeft="@drawable/ic_menu_profile_email"
             android:paddingLeft="27dp"
             android:textAllCaps="false"
@@ -90,7 +94,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/dark_light"
+            android:backgroundTint="@color/white"
             android:text="Push-уведомления"
             android:fontFamily="@font/sf_display_medium"
             android:paddingLeft="20dp"
@@ -99,7 +103,7 @@
             android:singleLine="true"
             android:textSize="16sp"
             android:textAllCaps="false"
-            android:textColor="@color/menu_text"
+            android:textColor="@color/black_light"
              />
 
     </LinearLayout>
@@ -113,6 +117,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/shape_item"
         android:orientation="horizontal">
 
         <Button
@@ -121,7 +127,7 @@
             android:layout_width="70dp"
             android:layout_height="match_parent"
             android:drawableLeft="@drawable/ic_user_menu"
-            android:backgroundTint="@color/dark_light"
+            android:backgroundTint="@color/white"
             android:paddingLeft="32dp"
             android:clickable="false"
             android:textAllCaps="false"
@@ -133,7 +139,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/dark_light"
+            android:backgroundTint="@color/white"
             android:text="Редактировать профиль"
             android:gravity="start|center_vertical"
             android:fontFamily="@font/sf_display_medium"
@@ -142,7 +148,7 @@
             android:singleLine="true"
             android:textSize="16sp"
             android:textAllCaps="false"
-            android:textColor="@color/menu_text"
+            android:textColor="@color/black_light"
            />
 
     </LinearLayout>

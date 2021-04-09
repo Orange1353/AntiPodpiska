@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkBack"
+    android:background="@color/menu_back_light"
     tools:context=".addition.CreateNameAndTypeFragment">
 
 
@@ -15,18 +15,19 @@
         android:text="Меню"
         android:insetTop="0dp"
         android:insetBottom="0dp"
+        app:cornerRadius="0dp"
         android:paddingLeft="33dp"
-        android:fontFamily="@font/sf_display_regular"
+        android:fontFamily="@font/sf_display_bold"
         android:textAllCaps="false"
         android:textSize="16sp"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/header_back"
+        android:textColor="@color/black_light"
+        android:backgroundTint="@color/header_light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:background="@drawable/shape_item"
-
+        android:backgroundTint="@color/white"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -47,11 +48,11 @@
                 android:fontFamily="@font/sf_display_medium"
                 android:paddingLeft="33dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/dark_light"
+                android:backgroundTint="@color/white"
                 android:text="Профиль"
                 android:textAllCaps="false"
                 android:textSize="16sp"
-                android:textColor="@color/menu_text"
+                android:textColor="@color/black_light"
                 >
 
             </Button>
@@ -68,13 +69,13 @@
                 android:layout_height="match_parent"
                 style="?android:attr/borderlessButtonStyle"
                 android:fontFamily="@font/sf_display_medium"
-                android:backgroundTint="@color/dark_light"
+                android:backgroundTint="@color/white"
                 android:text="Настройки"
                 android:drawableLeft="@drawable/ic_setting_menu"
                 android:paddingLeft="30dp"
                 android:textAllCaps="false"
                 android:textSize="16sp"
-                android:textColor="@color/menu_text"
+                android:textColor="@color/black_light"
                 >
             </Button>
 
@@ -90,13 +91,13 @@
                 android:layout_height="match_parent"
                 style="?android:attr/borderlessButtonStyle"
                 android:fontFamily="@font/sf_display_medium"
-                android:backgroundTint="@color/dark_light"
+                android:backgroundTint="@color/white"
                 android:text="Поддержка"
                 android:drawableLeft="@drawable/ic_support_menu"
                 android:paddingLeft="27dp"
                 android:textAllCaps="false"
                 android:textSize="16sp"
-                android:textColor="@color/menu_text"
+                android:textColor="@color/black_light"
                 >
             </Button>
 
@@ -112,12 +113,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/sf_display_medium"
-                android:backgroundTint="@color/dark_light"
+                android:backgroundTint="@color/white"
                 android:drawableLeft="@drawable/ic_about_app_menu"
                 android:paddingLeft="32dp"
                 android:text="О приложении"
                 android:textAllCaps="false"
-                android:textColor="@color/menu_text"
+                android:textColor="@color/black_light"
                 android:textSize="16sp" />
 
             <ImageView
@@ -132,13 +133,13 @@
                 android:layout_height="match_parent"
                 style="?android:attr/borderlessButtonStyle"
                 android:fontFamily="@font/sf_display_medium"
-                android:backgroundTint="@color/dark_light"
+                android:backgroundTint="@color/white"
                 android:text="Выйти"
                 android:drawableLeft="@drawable/ic_log_out"
                 android:paddingLeft="34dp"
                 android:textAllCaps="false"
                 android:textSize="16sp"
-                android:textColor="@color/menu_text"
+                android:textColor="@color/black_light"
                 >
             </Button>
 

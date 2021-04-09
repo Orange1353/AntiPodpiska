@@ -8,7 +8,7 @@
   <path
       android:pathData="M5,1L315,1A4,4 0,0 1,319 5L319,105A4,4 0,0 1,315 109L5,109A4,4 0,0 1,1 105L1,5A4,4 0,0 1,5 1z"
       android:strokeWidth="2"
-      android:fillColor="@color/darkBack">
+      android:fillColor="@color/light_back">
     <aapt:attr name="android:strokeColor">
       <gradient 
           android:startY="-5.99999"

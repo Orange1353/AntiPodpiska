@@ -1,7 +1,9 @@
 package com.example.antipodpiska.addition
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -71,9 +73,9 @@ class CreatePediodFragment : Fragment() {
 
             val myFormat = "dd.MM.yyyy"
             val sdf = SimpleDateFormat(myFormat, Locale.US)
-
             addDatePay.setText(sdf.format(cal.time))
         }
+
 
         addDatePay.setOnClickListener {
         addDate(context, cal, dateSetListenerDatePay)
@@ -92,6 +94,7 @@ class CreatePediodFragment : Fragment() {
             communicator.periodFragmentToCardFragment(freePeriod.text.toString(), spinner_free_period.selectedItem.toString(), costSub.text.toString(), spinner_cost.selectedItem.toString(), periodPay.text.toString(), spinner_period_pay.selectedItem.toString(), addDatePay.text.toString())
             else
                 Toast.makeText(context, "Заполните дату начала подписки!",  Toast.LENGTH_SHORT).show()
+
         }
 
 
@@ -106,7 +109,8 @@ class CreatePediodFragment : Fragment() {
 
     fun addDate(context: Context, cal: Calendar, dateSetListenerDatePay: DatePickerDialog.OnDateSetListener )
     {
-        DatePickerDialog(context, dateSetListenerDatePay,
+        //вид календаря в AlertDialog(просто удалить)
+        DatePickerDialog(context, AlertDialog.THEME_HOLO_LIGHT, dateSetListenerDatePay,
             cal.get(Calendar.YEAR),
             cal.get(Calendar.MONTH),
             cal.get(Calendar.DAY_OF_MONTH)).show()

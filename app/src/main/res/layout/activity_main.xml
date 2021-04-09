@@ -12,7 +12,7 @@
     android:id="@+id/lay0"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#232323">
+    android:background="@color/menu_back_light">
 
     <LinearLayout
         android:id="@+id/lay_container"
@@ -32,10 +32,13 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
-            style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/purple_500"
+            android:background="@color/header_light"
+            android:backgroundTint="@color/grey2_light"
+            app:backgroundTint="@color/header_light"
+            app:itemBackground="@color/header_light"
+            android:theme="@style/BottomNavigationTheme"
             app:menu="@menu/bottom_navigation_menu" />
 
     </LinearLayout>

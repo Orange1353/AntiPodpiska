@@ -5,13 +5,13 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:background="@color/darkBack"
+android:background="@color/menu_back_light"
 tools:context=".menu.MenuProfileFragment">
 
     <FrameLayout
         android:id="@+id/lay_up"
         android:layout_width="match_parent"
-        android:background="@color/header_back"
+        android:background="@color/header_light"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,13 +21,13 @@ tools:context=".menu.MenuProfileFragment">
             android:layout_width="match_parent"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:textColor="@color/white"
-
+            android:textColor="@color/black_light"
+            app:cornerRadius="0dp"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/header_back"
-            android:text="Профиль"
+            android:backgroundTint="@color/header_light"
+            android:text="Мой профиль"
             android:layout_marginLeft="57dp"
-            android:fontFamily="@font/sf_display_regular"
+            android:fontFamily="@font/sf_display_bold"
             android:textAllCaps="false"
             android:textSize="16sp"
   />
@@ -36,10 +36,10 @@ tools:context=".menu.MenuProfileFragment">
             android:id="@+id/button_back"
             android:layout_width="57dp"
             android:insetTop="0dp"
+            app:cornerRadius="0dp"
             android:insetBottom="0dp"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/header_back"
-            app:backgroundTint="@color/orange"
+            android:backgroundTint="@color/header_light"
             android:drawableLeft="@drawable/ic_menu_buttom_back"
             android:paddingLeft="21dp"
             android:gravity="center_horizontal"
@@ -55,6 +55,7 @@ tools:context=".menu.MenuProfileFragment">
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:backgroundTint="@color/white"
         android:background="@drawable/shape_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,16 +91,16 @@ android:clickable="false"
                     android:id="@+id/edit_text_profile_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/dark_light"
+                    android:backgroundTint="@color/white"
                     android:hint="Имя"
                     android:fontFamily="@font/sf_display_medium"
                     android:maxLength="20"
                     android:paddingLeft="30dp"
                     android:editable="false"
                     android:singleLine="true"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black_light"
                     android:textColorHint="@color/grey2"
-                    android:imeOptions="actionDone"/>
+                    android:imeOptions="actionNext"  />
 
             </LinearLayout>
 
@@ -134,15 +135,15 @@ android:clickable="false"
                     android:id="@+id/edit_text_profile_nick"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/dark_light"
+                    android:backgroundTint="@color/white"
                     android:editable="false"
                     android:hint="Никнейм                   "
                     android:maxLength="20"
                     android:paddingLeft="30dp"
                     android:singleLine="true"
-                    android:textColor="@color/white"
+                   android:textColor="@color/black_light"
                     android:textColorHint="@color/grey2"
-                    android:imeOptions="actionDone"/>
+                    android:imeOptions="actionNext"  />
 
             </LinearLayout>
 
@@ -177,15 +178,15 @@ android:clickable="false"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/sf_display_medium"
-                    android:backgroundTint="@color/dark_light"
+                    android:backgroundTint="@color/white"
                     android:hint="Номер телефона     "
                     android:editable="false"
                     android:singleLine="true"
                     android:maxLength="14"
                     android:paddingLeft="30dp"
-                    android:textColor="@color/white"
+                   android:textColor="@color/black_light"
                     android:textColorHint="@color/grey2"
-                    android:imeOptions="actionDone"/>
+                    android:imeOptions="actionNext"  />
 
             </LinearLayout>
 
@@ -218,14 +219,14 @@ android:clickable="false"
                     android:id="@+id/edit_text_profile_email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/dark_light"
+                    android:backgroundTint="@color/white"
                     android:hint="Email                          "
                     android:editable="false"
                     android:maxLength="40"
                     android:paddingLeft="30dp"
                     android:singleLine="true"
                     android:fontFamily="@font/sf_display_medium"
-                    android:textColor="@color/white"
+                   android:textColor="@color/black_light"
                     android:textColorHint="@color/grey2"
                     android:imeOptions="actionDone"/>
             </LinearLayout>
