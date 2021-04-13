@@ -5,30 +5,20 @@ package com.example.antipodpiska.subList
 
 import android.content.Context
 import android.graphics.Color
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.graphics.drawable.DrawableCompat
-import androidx.core.view.ViewCompat
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.antipodpiska.R
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
-import com.google.android.material.shape.CornerFamily
-import com.google.android.material.shape.MaterialShapeDrawable
-import com.google.android.material.shape.ShapeAppearanceModel
 import com.mikhaellopez.circularprogressbar.CircularProgressBar
-import kotlinx.coroutines.processNextEventInCurrentThread
 import java.time.LocalDate
-import java.time.Period
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import kotlin.math.absoluteValue
@@ -257,7 +247,7 @@ else
             }*/
 
 
-//subImageView.setImageResource( R.drawable.delete2)
+        subImageView.setImageResource( R.drawable.img)
         }
 
 
@@ -318,6 +308,26 @@ else
             holder.itemView.layoutParams = LinearLayout.LayoutParams(0, 0)
         }
 */
+
+
+        val totalItems = itemCount
+        val view: View = holder.itemView
+
+        if (position === totalItems - 1) { // final position will equal total items - 1
+            view.scaleX = 1f
+            view.scaleY = 1f
+        } else if (position === totalItems - 2) {
+            view.scaleX = 0.8f
+            view.scaleY = 0.8f
+        } else if (position === totalItems - 3) {
+            view.scaleX = 0.6f
+            view.scaleY = 0.6f
+        } else {
+            view.scaleX = 0.4f
+            view.scaleY = 0.4f
+        }
+
+
         holder.bind(sub)
     }
 

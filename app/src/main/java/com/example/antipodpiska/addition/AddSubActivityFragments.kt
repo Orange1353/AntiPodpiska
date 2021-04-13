@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.example.antipodpiska.R
+import com.example.antipodpiska.data.ExistSub
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.User
 import com.example.antipodpiska.data.firebase.FirebaseSource
@@ -45,8 +46,8 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_sub_fragments)
 
+    //    fragmentManager.beginTransaction().add(R.id.container, CreateExistFragment()).commit()
         fragmentManager.beginTransaction().add(R.id.container, CreateNameAndTypeFragment()).commit()
-     //   fragmentManager.beginTransaction().add(R.id.container, CreateNameAndTypeFragment()).commit()
         checkUserCloud()
     }
 

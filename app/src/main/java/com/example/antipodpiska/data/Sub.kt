@@ -23,5 +23,4 @@ data class Sub(
         val date_add: String = "",
         var status: String = "Активна",
         var nearDayPay: String = ""
-
 )
