@@ -7,7 +7,7 @@
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
     android:layout_marginTop="10dp"
-    android:background="@drawable/shape_item">
+    android:background="@drawable/ripple_for_recycler">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/flower_image"

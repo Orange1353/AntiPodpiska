@@ -25,29 +25,34 @@ class SubListViewModel(val dataSource: DataSource) : ViewModel() {
    // var viewModelRoutesFragment = ViewModelProvider(SubListActivity()).get(SubListViewModel::class.java)
     /* If the name and description are present, create new Flower and add it to the datasource */
     fun insertSub(subName: String?, subDescription: String?,  typeSub: String, datePay: String?, periodFree: String, costSub: String,
-                  costCurr: String, periodPay: String, periodTypeFree: String, periodTypePay: String,card: String, pushEnabled:Boolean, dateAdd:String, context: Context
+                  costCurr: String, periodPay: String, periodTypeFree: String, periodTypePay: String,card: String, pushEnabled:Boolean, dateAdd:String, image0: Int, context: Context
     ) {
         if (subName == null || subDescription == null || datePay == null) {
             return
         }
 
-        val image = dataSource.getRandomSubImageAsset()
+       var imageDrawable = image0
+       var image: String = ""
+       if(image0 == -1)
+           image = dataSource.getRandomSubImageAsset()
+
         val newSub = Sub(
-            Random.nextLong(),
-            subName,
-            image,
-            subDescription,
-            typeSub,
-            datePay,
-            periodFree,
-            costSub,
-            costCurr,
-            periodPay,
-            periodTypeFree,
-            periodTypePay,
-            card,
-            pushEnabled,
-            dateAdd
+            id = Random.nextLong(),
+            name = subName,
+            image = image,
+            description = subDescription,
+            typeSub = typeSub,
+            datePay = datePay,
+            periodFree = periodFree,
+            costSub = costSub,
+            costCurr = costCurr,
+            periodPay = periodPay,
+            periodTypeFree = periodTypeFree,
+            periodTypePay = periodTypePay,
+            card = card,
+            pushEnabled = pushEnabled,
+            date_add = dateAdd,
+            imageDrawable = imageDrawable
         )
 /*
 val  Shared: SharedPrefSource = SharedPrefSource(context)

@@ -54,6 +54,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="55dp"
             android:orientation="vertical"
+
             app:layout_constraintTop_toTopOf="@+id/lay0">
 
             <!--        <EditText-->
@@ -73,7 +74,8 @@
                 android:layout_marginBottom="30dp"
                 app:layoutManager="LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
-
+android:fitsSystemWindows="true"
+                android:layoutAnimation="@anim/layout_recycler_down_to_up"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
         </LinearLayout>

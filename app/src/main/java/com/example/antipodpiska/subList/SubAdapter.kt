@@ -246,8 +246,9 @@ else
                 subImageView.setBackgroundResource(R.drawable.img)
             }*/
 
+if (sub.imageDrawable != -1)
+        subImageView.setImageResource(sub.imageDrawable)
 
-        subImageView.setImageResource( R.drawable.img)
         }
 
 
@@ -310,7 +311,7 @@ else
 */
 
 
-        val totalItems = itemCount
+   /*     val totalItems = itemCount
         val view: View = holder.itemView
 
         if (position === totalItems - 1) { // final position will equal total items - 1
@@ -325,7 +326,7 @@ else
         } else {
             view.scaleX = 0.4f
             view.scaleY = 0.4f
-        }
+        }*/
 
 
         holder.bind(sub)

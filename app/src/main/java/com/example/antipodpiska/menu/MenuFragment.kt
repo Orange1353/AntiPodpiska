@@ -6,6 +6,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -64,6 +66,10 @@ class MenuFragment : Fragment() {
 
         var searchView: SearchView = view.findViewById(R.id.search_view)
 
+
+
+
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(s: String): Boolean {
                 return true
@@ -74,7 +80,7 @@ class MenuFragment : Fragment() {
                 if(s!= "") {
                     var list1: List<Sub> = ArrayList<Sub>()
                     for (i in subsListViewModel.subsLiveData.value!!.indices) {
-                        if (subsListViewModel.subsLiveData.value!![i].name.contains(s, false) && subsListViewModel.subsLiveData.value!![i].status == "Активна")
+                        if (subsListViewModel.subsLiveData.value!![i].name.toLowerCase().contains(s, false) && subsListViewModel.subsLiveData.value!![i].status == "Активна")
                             list1 = list1.plus(subsListViewModel.subsLiveData.value!![i])
                     }
                     subsAdapter.submitList(list1)
@@ -125,6 +131,14 @@ class MenuFragment : Fragment() {
        startActivityForResult(intent, newSubActivityRequestCode)
    }
 
+private fun layoutAnimation(recyclerView: RecyclerView){
+    var context: Context = recyclerView.context
+    var layoutController: LayoutAnimationController = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_recycler_down_to_up)
+    recyclerView.layoutAnimation = layoutController
+    recyclerView.adapter?.notifyDataSetChanged()
+    recyclerView.scheduleLayoutAnimation()
+
+}
 
   /*override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_search, menu)

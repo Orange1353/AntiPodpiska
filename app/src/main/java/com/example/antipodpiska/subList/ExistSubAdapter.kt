@@ -19,7 +19,7 @@ class ExistSubAdapter(private val onClick: (ExistSub) -> Unit) :
     class ExistSubViewHolder(itemView: View, val onClick: (ExistSub) -> Unit, context: Context) :
         RecyclerView.ViewHolder(itemView) {
         private val subName: TextView = itemView.findViewById(R.id.flower_text)
-
+        private val subImage: ImageView = itemView.findViewById((R.id.flower_image))
         private val context: Context = context
 
         private var currentExistSub: ExistSub? = null
@@ -35,8 +35,8 @@ class ExistSubAdapter(private val onClick: (ExistSub) -> Unit) :
         fun bind(sub: ExistSub) {
 
             currentExistSub = sub
-
             subName.text = sub.name
+            subImage.setImageResource(sub.logoId)
         }
 
 

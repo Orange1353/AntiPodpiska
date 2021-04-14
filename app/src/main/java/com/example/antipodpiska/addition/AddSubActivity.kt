@@ -45,6 +45,7 @@ const val TYPE_PERIOD = "typePeriod"
 const val CARD = "card"
 const val PUSH = "push"
 const val DATE_ADD = "dateAdd"
+const val SUB_IMAGE = "image"
 
 class AddSubActivity : AppCompatActivity() {
 

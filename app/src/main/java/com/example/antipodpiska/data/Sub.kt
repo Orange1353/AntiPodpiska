@@ -22,5 +22,6 @@ data class Sub(
         var pushEnabled: Boolean= false,
         val date_add: String = "",
         var status: String = "Активна",
-        var nearDayPay: String = ""
+        var nearDayPay: String = "",
+        var imageDrawable: Int = -1
 )

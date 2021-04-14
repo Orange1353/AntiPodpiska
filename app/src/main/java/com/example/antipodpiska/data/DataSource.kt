@@ -149,7 +149,6 @@ class DataSource(resources: Resources, context: Context) {
         val listColor= listOf("FAB328", "EF5F72", "00B8E2", "7E3390", "1D6BF0")
         val randomColor = listColor.random()
         return randomColor
-
     }
 
     companion object {

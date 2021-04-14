@@ -16,6 +16,7 @@ import com.example.antipodpiska.R
 import com.example.antipodpiska.data.ExistSub
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.User
+import com.example.antipodpiska.data.existSubList
 import com.example.antipodpiska.data.firebase.FirebaseSource
 import com.example.antipodpiska.menu.NavigationMenuFragment
 import com.example.antipodpiska.subDetails.SubDetailActivity
@@ -35,6 +36,7 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
     private var fragmentManager : FragmentManager = getSupportFragmentManager()
     //+1 оставить. чтобы было 2 дока shared
     private val PREFS_NAME = FirebaseAuth.getInstance().currentUser?.uid.toString()+"1"
+    private var existsubId: Int? = null
 
     private val Shared: SharedPrefSource by lazy{ SharedPrefSource(this) }
 
@@ -46,9 +48,27 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_sub_fragments)
 
-    //    fragmentManager.beginTransaction().add(R.id.container, CreateExistFragment()).commit()
-        fragmentManager.beginTransaction().add(R.id.container, CreateNameAndTypeFragment()).commit()
-        checkUserCloud()
+
+        fragmentManager.beginTransaction().add(R.id.container, CreateExistFragment()).commit()
+
+
+       checkUserCloud()
+    }
+
+
+    override fun existFragmentToNameFragment(indexExistSub: Int){
+        val args = Bundle()
+        args.putInt("SUB", indexExistSub)
+        var preferences: SharedPreferences = this.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefsEditor: SharedPreferences.Editor = preferences.edit()
+        prefsEditor.putInt("id", indexExistSub).apply();
+
+        val fragment = CreateNameAndTypeFragment()
+        fragment.arguments = args
+        fragmentManager.beginTransaction().replace(R.id.container, fragment)
+            .addToBackStack(null)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            .commit()
     }
 
     override fun nameFragmentToPeriodFragment(nameSub: String, descriptionSub: String, typeSub: String){
@@ -93,7 +113,7 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
 //        intent.putExtra(SUB_ID, sub.id)
         //   startActivity(intent)
         addSub()
- //       startSubListActivity()
+  //      startSubListActivity()
     }
 
     override fun onBackPressedInFragms23() {
@@ -158,8 +178,16 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
             val typePeriod = preferences.getString("typePeriod", "") ?: ""
             val card = preferences.getString("card", "") ?: ""
             val push = preferences.getBoolean("push", false)
+            val id = preferences.getInt("id", -1)
 
-            val dateFormat = SimpleDateFormat("dd.MM.yyyy")
+            var image = -1
+            if (id != -1)
+            {  val listExist = existSubList(resources, this)
+               image = listExist[id].logoId     }
+
+
+
+        val dateFormat = SimpleDateFormat("dd.MM.yyyy")
             val cal: Calendar = GregorianCalendar()
 
             val dateAdd = dateFormat.format(cal.getTime()).toString()
@@ -177,6 +205,8 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
             resultIntent.putExtra(CARD, card)
             resultIntent.putExtra(PUSH, push)
             resultIntent.putExtra(DATE_ADD, dateAdd)
+            if(image != -1)
+            resultIntent.putExtra(SUB_IMAGE, image)
 
             setResult(Activity.RESULT_OK, resultIntent)
             finish()

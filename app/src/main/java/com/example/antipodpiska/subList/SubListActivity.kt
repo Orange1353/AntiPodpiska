@@ -7,26 +7,25 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.icu.util.Calendar
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
-import android.widget.Toast
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.observe
+import com.example.antipodpiska.InProgress
 import com.example.antipodpiska.R
 import com.example.antipodpiska.addition.AddSubActivityFragments
 import com.example.antipodpiska.addition.DATE_ADD
+import com.example.antipodpiska.addition.SUB_IMAGE
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.data.User
@@ -66,6 +65,8 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener {
             fabOnClick()
+            val animation = AnimationUtils.loadAnimation(this, R.anim.grow_on_click_btn)
+            fab.startAnimation(animation)
         }
       //  val window: Window = this@SubListActivity.window
       //  window.navigationBarColor = ContextCompat.getColor(this@SubListActivity, R.color.header_light)
@@ -138,7 +139,8 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
                 R.id.item_calendar -> {
                     fab.isVisible = false
                     bottomNavigationView.isSelected = true
-                    val fragment = CalendarFragment()
+                    //   val fragment = CalendarFragment()
+                    val fragment = InProgress()
                     this.supportFragmentManager.beginTransaction().replace(
                         R.id.lay_container,
                         fragment
@@ -170,6 +172,7 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
             }
         }
 
+        var animAlpha: Animation = AnimationUtils.loadAnimation(this, R.anim.grow_on_click_btn)
 
 
     //    val headerAdapter = HeaderAdapter()
@@ -203,6 +206,7 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
 
       val intent = Intent(this, AddSubActivityFragments::class.java)
       startActivityForResult(intent, newSubActivityRequestCode)
+
     }
 
     private fun createNotChannel(){
@@ -326,7 +330,9 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
                     card = ""
                 var push = data.getBooleanExtra(PUSH, false)
                 val dateAdd = data.getStringExtra(DATE_ADD)
-
+                var image =  data.getIntExtra(SUB_IMAGE, 0)
+                if ( image == 0)
+                    image = -1
 
 //image?
                 subsListViewModel.insertSub(
@@ -343,6 +349,7 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
                     card,
                     push,
                     dateAdd!!,
+                    image,
                     this
                 )
             }

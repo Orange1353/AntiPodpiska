@@ -46,6 +46,7 @@ import kotlinx.android.synthetic.main.element_detail_with_free.view.*
 import kotlinx.android.synthetic.main.element_next_pay.view.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 
 class SubDetailActivity : AppCompatActivity() {
@@ -64,7 +65,7 @@ class SubDetailActivity : AppCompatActivity() {
 
         /* Connect variables to UI elements. */
         val subName: TextView = findViewById(R.id.flower_detail_name)
-        val subImage: TextView = findViewById(R.id.flower_detail_image)
+        val subImage: ImageView = findViewById(R.id.flower_detail_image)
         val backButton: ImageButton = findViewById(R.id.button_back)
         val unSubButton: Button = findViewById(R.id.button_unSub)
 
@@ -92,23 +93,27 @@ class SubDetailActivity : AppCompatActivity() {
             val dateNearestPay: View = inflater.inflate(R.layout.element_next_pay, null)
             val container = findViewById<View>(R.id.base_lay) as LinearLayout
 
-            val radius: Float = 20F
-            val shapeAppearanceModel = ShapeAppearanceModel()
-                .toBuilder()
-                .setAllCorners(CornerFamily.ROUNDED, radius)
-                .build()
-            val shapeDrawable = MaterialShapeDrawable(shapeAppearanceModel)
 
-            var t = Color.parseColor("#" + currentSub!!.image)
-            shapeDrawable.setTint(t)
-            ViewCompat.setBackground(subImage, shapeDrawable)
-            subImage.setGravity(Gravity.CENTER)
-            var firstLetter: String = currentSub!!.name.substring(0, 1)
-            firstLetter = firstLetter.toUpperCase()
-            subImage.setText(firstLetter)
+            if (currentSub!!.imageDrawable != -1)
+                subImage.setImageResource(currentSub.imageDrawable)
+           /* else {
+                val radius: Float = 20F
+                val shapeAppearanceModel = ShapeAppearanceModel()
+                    .toBuilder()
+                    .setAllCorners(CornerFamily.ROUNDED, radius)
+                    .build()
+                val shapeDrawable = MaterialShapeDrawable(shapeAppearanceModel)
 
+                var t = Color.parseColor("#" + currentSub!!.image)
+                shapeDrawable.setTint(t)
+                ViewCompat.setBackground(subImage, shapeDrawable)
+                subImage.setGravity(Gravity.CENTER)
+                var firstLetter: String = currentSub!!.name.substring(0, 1)
+                firstLetter = firstLetter.toUpperCase()
+                subImage.setText(firstLetter)
+            }*/
 
-            if(currentSub.status == "Архив")
+            if(currentSub?.status == "Архив")
             {
 
                 dateNearestPay.nextPaytext.text = "Подписка находится в архиве"
@@ -162,9 +167,10 @@ class SubDetailActivity : AppCompatActivity() {
 
 
 else {
-
+                var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+                var dateEndFree = LocalDate.parse(currentSub?.datePay, formatter)
                        if (currentSub?.datePay != null && currentSub?.datePay != "") {
-                       var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+
                        var dateEnd = LocalDate.parse(currentSub?.datePay, formatter)
 
                        var dateNow = LocalDate.now()
@@ -178,12 +184,10 @@ else {
                        if (currentSub?.periodFree != "")
                            when (currentSub?.periodTypeFree) {
                                "Дней" -> dateEnd = dateEnd.plusDays(currentSub?.periodFree.toLong())
-                               "Недель" -> dateEnd =
-                                   dateEnd.plusWeeks(currentSub?.periodFree.toLong())
-                               "Месяцев" -> dateEnd =
-                                   dateEnd.plusDays(30 * currentSub?.periodFree.toLong())
+                               "Недель" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodFree.toLong())
+                               "Месяцев" -> dateEnd = dateEnd.plusDays(30 * currentSub?.periodFree.toLong())
                            }
-                           var dateEndFree = dateEnd
+                           dateEndFree = dateEnd
 
 
                        if (currentSub?.periodPay != "")
@@ -236,9 +240,12 @@ else {
                                container.addView(costPlusPeriod)
                            }
 
-
+                         var dateAdd = LocalDate.parse(currentSub?.datePay, formatter)
+                         var progress = ChronoUnit.DAYS.between(dateAdd, dateEndFree)
+                         dateAdd.plusDays(progress)
                           // val tmp = rusification(currentSub?.periodFree, currentSub?.periodTypeFree)
-                           costPlusPeriod.text_before_free.text = "до" //currentSub?.periodFree + " " + tmp
+                           var t = "до "+ dateAdd.format(formatter).toString()
+                           costPlusPeriod.text_before_free.text = t //currentSub?.periodFree + " " + tmp             //DateAdd + FreePeriod
 
                        }
 
@@ -247,9 +254,15 @@ else {
                                R.layout.element_detail_free_only,
                                null
                            )
-                           val tmp = rusification(currentSub?.periodFree, currentSub?.periodTypeFree)
-                           costPlusPeriod.text_before_free.text = currentSub?.periodFree + " " + tmp
-                           container.addView(costPlusPeriod)
+
+                           var dateAdd = LocalDate.parse(currentSub?.datePay, formatter)
+                           var progress = ChronoUnit.DAYS.between(dateAdd, dateEndFree)
+                           dateAdd.plusDays(progress)
+                           var t = "до "+ dateAdd.format(formatter).toString()
+                           costPlusPeriod.text_before_free.text = t
+                           //val tmp = rusification(currentSub?.periodFree, currentSub?.periodTypeFree)
+                          // costPlusPeriod.text_before_free.text = currentSub?.periodFree + " " + tmp
+                          // container.addView(costPlusPeriod)
                        }
 
                    }
