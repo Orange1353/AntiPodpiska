@@ -12,11 +12,12 @@ fun existSubList(resources: Resources, context: Context): List<ExistSub> {
     val images =  ListExistSubs.subImages
     val description = ListExistSubs.subDescriptions
     val type =  ListExistSubs.subTypes
+    val colors = ListExistSubs.subColors
     var subExistList: ArrayList<ExistSub> = ArrayList()
 
     var index = 0
     for (name in names){
-        subExistList.add(ExistSub(index, name, images[index], description[index], type[index]))
+        subExistList.add(ExistSub(index, name, images[index], description[index], type[index], colors[index]))
         index ++
     }
 

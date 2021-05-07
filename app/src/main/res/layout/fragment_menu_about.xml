@@ -15,14 +15,14 @@
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintTop_toTopOf="parent">
 
-          <com.google.android.material.button.MaterialButton
+          <Button
               android:id="@+id/button_menu_back"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:backgroundTint="@color/header_light"
               android:insetTop="0dp"
               app:cornerRadius="0dp"
-
+              android:letterSpacing="0"
               android:insetBottom="0dp"
               android:text="О приложении"
               android:layout_marginLeft="57dp"
@@ -58,12 +58,11 @@
         android:background="@drawable/shape_text_input"
         android:backgroundTint="@color/white"
         android:padding="20dp"
+        android:lineSpacingMultiplier="1.25"
         android:fontFamily="@font/sf_display_regular"
         android:text="@string/about"
         android:textColor="@color/black_light"
         android:textSize="18sp"
-
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

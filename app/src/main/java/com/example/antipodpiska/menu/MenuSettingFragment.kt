@@ -1,6 +1,7 @@
 package com.example.antipodpiska.menu
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,5 +59,18 @@ class MenuSettingFragment : Fragment() {
 
         return view
     }
-
+    override fun onResume() {
+        super.onResume()
+        if (view == null) {
+            return
+        }
+        view!!.isFocusableInTouchMode = true
+        view!!.requestFocus()
+        view!!.setOnKeyListener { v, keyCode, event ->
+            if (event.action === KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                communicator.onBackPressedMenuItem()
+                true
+            } else false
+        }
+    }
 }

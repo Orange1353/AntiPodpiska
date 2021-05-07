@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+
+    >
 
     <item
         android:fontFamily="@font/sf_display_regular"
@@ -7,17 +9,17 @@
         android:enabled="true"
         android:icon="@drawable/ic_menu_subs"
         android:title="Подписки"/>
-    <item
-        android:id="@+id/item_archive"
-        android:fontFamily="@font/sf_display_regular"
-        android:enabled="true"
-        android:icon="@drawable/ic_menu_archive"
-        android:title="Архив"/>
+<!--    <item-->
+<!--        android:id="@+id/item_archive"-->
+<!--        android:fontFamily="@font/sf_display_regular"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/ic_menu_archive"-->
+<!--        android:title="Архив"/>-->
     <item
         android:fontFamily="@font/sf_display_regular"
         android:id="@+id/item_statistics"
         android:enabled="true"
-        android:icon="@drawable/ic_menu_calendar"
+        android:icon="@drawable/ic_menu_statistic"
         android:title="Статистика"/>
     <item
         android:fontFamily="@font/sf_display_regular"

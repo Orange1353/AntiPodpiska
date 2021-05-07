@@ -117,7 +117,7 @@ class SubDetailActivity : AppCompatActivity() {
             {
 
                 dateNearestPay.nextPaytext.text = "Подписка находится в архиве"
-                dateNearestPay.nextPaytext.setTextColor(getResources().getColor(R.color.transparent_grey))
+                dateNearestPay.nextPaytext.setTextColor(getResources().getColor(R.color.grey2_light))
                 container.addView(dateNearestPay)
 
 

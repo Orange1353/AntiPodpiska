@@ -5,10 +5,10 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.antipodpiska.R
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
@@ -92,7 +92,7 @@ class StatisticsFragment : Fragment() {
         //закругления
         //      pieChart.setDrawRoundedSlices(true)
         pieChart.setHoleColor(resources.getColor(R.color.menu_back_light))
-        pieChart.setNoDataText("Добавьте подписки!")
+
         pieChart.setTransparentCircleColor(resources.getColor(R.color.menu_back_light))
         pieChart.setTransparentCircleAlpha(0)
         pieChart.description = null
@@ -105,13 +105,11 @@ class StatisticsFragment : Fragment() {
         //   else
 
         //Значения
-        if (moneyMap.get("₽").toString() != null && moneyMap.get("₽").toString()!= "")
-        pieChart.setCenterText(moneyMap.get("₽").toString() + " ₽")
-else
-    pieChart.setCenterText("")
+        pieChart.setCenterText( getAllMoneyInString(moneyMap))
 
         pieChart.setCenterTextColor(resources.getColor(R.color.black_light))
 
+    pieChart.setCenterTextColor(R.color.black_light)
 
         val legend: Legend = pieChart.getLegend()
         legend.textColor = resources.getColor(R.color.grey_legend)
@@ -123,19 +121,29 @@ else
         legend.form = Legend.LegendForm.CIRCLE
         legend.formToTextSpace = 7f
         legend.yEntrySpace = 4f
-        legend.xOffset = 60f
-
-
+        legend.xOffset = 20f
         val tf = Typeface.createFromAsset(context!!.getAssets(), "font/sf_display_medium.ttf")
         legend.typeface = tf
 
-
-
+        pieChart.setNoDataText("Добавьте подписки и их стоимость!")
 
         return view
     }
 
-    fun getMoney( mapCountsByType: HashMap<String, Double>?): HashMap<String, Double> {
+
+    fun getAllMoneyInString(moneyMap: HashMap<String, Double>): String {
+
+        var stringMoney = ""
+
+        moneyMap.forEach { k, v ->
+            stringMoney = stringMoney + v + " " + k + "\n"
+        }
+
+        return stringMoney
+    }
+
+
+    fun getMoney(mapCountsByType: HashMap<String, Double>?): HashMap<String, Double> {
 
         val dataVals: HashMap<String, Double> =  HashMap<String, Double>()
 

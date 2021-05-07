@@ -40,28 +40,66 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_item"
+            android:backgroundTint="@color/white"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_profile_img"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_user_menu"
+                android:paddingLeft="33dp"
+                android:backgroundTint="@color/white"
+
+                android:clickable="false"
+                />
             <Button
                 style="?android:attr/borderlessButtonStyle"
                 android:id="@+id/button_profile"
                 android:layout_width="match_parent"
-                android:drawableLeft="@drawable/ic_user_menu"
                 android:fontFamily="@font/sf_display_medium"
-                android:paddingLeft="33dp"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/white"
                 android:text="Профиль"
+                android:gravity="center_vertical|start"
+                android:paddingLeft="20dp"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 android:textColor="@color/black_light"
                 >
 
             </Button>
-
+        </LinearLayout>
             <ImageView
                 android:id="@+id/imageView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/line_break" />
+
+                    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_item"
+            android:backgroundTint="@color/white"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_setting_img"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_setting_menu"
+                android:paddingLeft="30dp"
+                android:backgroundTint="@color/white"
+
+                android:clickable="false"
+                />
 
             <Button
                 android:id="@+id/button_setting"
@@ -71,20 +109,38 @@
                 android:fontFamily="@font/sf_display_medium"
                 android:backgroundTint="@color/white"
                 android:text="Настройки"
-                android:drawableLeft="@drawable/ic_setting_menu"
-                android:paddingLeft="30dp"
+                android:gravity="center_vertical|start"
+                android:paddingLeft="20dp"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 android:textColor="@color/black_light"
                 >
             </Button>
+                    </LinearLayout>
 
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/line_break" />
+     <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_item"
+            android:backgroundTint="@color/white"
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/button_support_img"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_support_menu"
+                android:paddingLeft="27dp"
+                android:backgroundTint="@color/white"
+
+                android:clickable="false"
+                />
             <Button
                 android:id="@+id/button_support"
                 android:layout_width="match_parent"
@@ -93,20 +149,37 @@
                 android:fontFamily="@font/sf_display_medium"
                 android:backgroundTint="@color/white"
                 android:text="Поддержка"
-                android:drawableLeft="@drawable/ic_support_menu"
-                android:paddingLeft="27dp"
                 android:textAllCaps="false"
+                android:gravity="center_vertical|start"
+                android:paddingLeft="20dp"
                 android:textSize="16sp"
                 android:textColor="@color/black_light"
                 >
             </Button>
-
+     </LinearLayout>
             <ImageView
                 android:id="@+id/imageView10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/line_break" />
+     <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_item"
+            android:backgroundTint="@color/white"
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/button_about_img"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_about_app_menu"
+                android:paddingLeft="32dp"
+                android:backgroundTint="@color/white"
+
+                android:clickable="false"
+                />
             <Button
                 android:id="@+id/button_about_app"
                 style="?android:attr/borderlessButtonStyle"
@@ -114,18 +187,37 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/sf_display_medium"
                 android:backgroundTint="@color/white"
-                android:drawableLeft="@drawable/ic_about_app_menu"
-                android:paddingLeft="32dp"
+                android:gravity="center_vertical|start"
+                android:paddingLeft="20dp"
                 android:text="О приложении"
                 android:textAllCaps="false"
                 android:textColor="@color/black_light"
                 android:textSize="16sp" />
+     </LinearLayout>
 
             <ImageView
                 android:id="@+id/imageView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/line_break" />
+
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_item"
+            android:backgroundTint="@color/white"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_exit_img"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_log_out"
+                android:paddingLeft="34dp"
+                android:backgroundTint="@color/white"
+                android:clickable="false"
+                />
             <Button
 
                 android:id="@+id/button_logout"
@@ -135,14 +227,14 @@
                 android:fontFamily="@font/sf_display_medium"
                 android:backgroundTint="@color/white"
                 android:text="Выйти"
-                android:drawableLeft="@drawable/ic_log_out"
-                android:paddingLeft="34dp"
+                android:gravity="center_vertical|start"
+                android:paddingLeft="20dp"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 android:textColor="@color/black_light"
                 >
             </Button>
-
+            </LinearLayout>
 
         </LinearLayout>
 

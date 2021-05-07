@@ -13,14 +13,15 @@
         <!-- Status bar color. -->
 <!--        <item name="android:datePickerDialogTheme">@style/MyDatePickerDialogTheme</item>-->
         <item name="textInputStyle">@style/TextAppearance.App.TextInputLayout</item>
-        <item name="colorControlActivated">@color/grey2</item>
-        <item name="colorControlHighlight">@color/grey2</item>
-        <item name="colorControlNormal">@color/grey2</item>
+<!--        <item name="colorControlActivated">@color/grey2</item>-->
+<!--        <item name="colorControlHighlight">@color/grey2</item>-->
+<!--        <item name="colorControlNormal">@color/grey2</item>-->
         <item name="android:windowBackground">@color/light_back</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/header_light</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:fontFamily">@font/sf_display_medium</item>
         <item name="fontFamily">@font/sf_display_medium</item>
+        <item name="android:navigationBarColor">@color/blue_back</item>
 
         <!-- Customize your theme here. -->
 <!--        <item name="android:windowBackground">@color/#E5E5E5</item>-->
@@ -67,17 +68,24 @@
     <style name="AppThemeToolbarSearch" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:inputType">textNoSuggestions</item>
-        <item name="android:colorBackground">@color/header_back</item>
+        <item name="android:colorBackground">@color/header_light</item>
         <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:textColorHint">@color/grey2</item>
-        <item name="android:textColorSecondary">@color/grey2</item>
+        <item name="android:textColorHint">@color/grey2_light</item>
+        <item name="android:textColorSecondary">@color/grey2_light</item>
 <item name="android:textCursorDrawable">@color/white</item>
 
     </style>
 
     <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
-        <item name="android:textColor">@color/grey2</item>
+        <item name="android:textColor">@color/grey2_light</item>
+        <item name="android:textColorHint">@color/grey2_light</item>
         <item name="android:textSize">14sp</item>
+        <item name="boxStrokeColor">#fff333</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxCornerRadiusBottomEnd"> 8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusTopStart">8dp</item>
     </style>
 
     <style name="HelperTextAppearance" parent="TextAppearance.AppCompat">
@@ -122,9 +130,8 @@
 <!--    </style>-->
 
     <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
-        <item name="colorPrimary">@color/blue</item>
         <item name="fontFamily">@font/sf_display_regular</item>
-        <item name="android:textColorSecondary">@color/grey2_light</item>
+
     </style>
 
     <style name="ImageViewCorner">
@@ -133,4 +140,39 @@
     <style name="ImageViewMiniCorner">
         <item name="cornerSize">10dp</item>
     </style>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents">
+        <item name="colorPrimary">@color/blue_back</item>
+        <item name="colorPrimaryDark">@color/orange_light</item>
+        <item name="colorAccent">@color/blue_back</item>
+    </style>
+
+
+    <style name="EditText.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:minHeight">56dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/sf_display_medium</item>
+        <item name="hintEnabled">true</item>
+
+        <item name="hintTextColor">@color/grey2_light</item>
+        <item name="android:textColor">@color/grey2_light</item>
+        <item name="android:textColorHint">@color/grey2_light</item>
+        <item name="boxStrokeColor">@color/grey2_light</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxCornerRadiusBottomEnd"> 8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusTopStart">8dp</item>
+    </style>
+
+
+    <style name="SquareFabShapeOverlay" parent="ShapeAppearanceOverlay.MaterialComponents.FloatingActionButton">
+        <item name="cornerSize">0dp</item>
+    </style>
+    <declare-styleable name="FabBottomNavigationView">
+        <attr name="fab_cradle_margin" format="dimension"/>
+        <attr name="fab_cradle_rounded_corner_radius" format="dimension"/>
+        <attr name="cradle_vertical_offset" format="dimension"/>
+        <attr name="fab_size" format="dimension"/>
+    </declare-styleable>
 </resources>

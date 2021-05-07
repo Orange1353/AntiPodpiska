@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="purple_200">#232323</color>
-    <color name="purple_500">#262729</color>i
-    <color name="purple_700">#232323</color>
-    <color name="dark_light">#36373A</color>
-    <color name="darkBack">#232323</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFF</color>
-    <color name ="grey2">#757679</color>
-    <color name="grey">#46474C</color>
-    <color name ="transparent_grey">#8D8E93</color>
-    <color name="header_back">#2F3034</color>
-    <color name="orange">#E1574F</color>
-    <color name="transparent">#80000000</color>
+<!--    <color name="purple_200">#232323</color>-->
+<!--    <color name="purple_500">#262729</color>i-->
+<!--    <color name="purple_700">#232323</color>-->
+<!--    <color name="dark_light">#36373A</color>-->
+<!--    <color name="darkBack">#232323</color>-->
+<!--    <color name="black">#000000</color>-->
+<!--    <color name="white">#FFFFFF</color>-->
+<!--    <color name ="grey2">#757679</color>-->
+<!--    <color name="grey">#46474C</color>-->
+<!--    <color name ="transparent_grey">#8D8E93</color>-->
+<!--    <color name="header_back">#2F3034</color>-->
+<!--    <color name="orange">#E1574F</color>-->
+
+
+   <color name="transparent">#80000000</color>
     <color name="menu_text">#B8B9BF</color>
     <color name="pink">#9934BD</color>
     <color name="blue">#286BFA</color>
@@ -28,9 +30,6 @@
     <color name="calendar_blue2">#5DB1FF </color>
     <color name="calendar_fiolet">#746EDB </color>
     <color name="calendar_grey">#B8B9BF </color>
-
-
-
     <color name="light_back">#FAFBFC</color>
     <color name="blue_light">#286BFA</color>
     <color name="border_light">#ABAFB4</color>
@@ -42,4 +41,15 @@
     <color name="orange_light">#E1574F</color>
     <color name="grey_legend">#8D8E93</color>
     <color name="grey_progress_bar">#E3E3E3</color>
+    <color name="other_grey">#B8B9BF</color>
+    <color name="dark_grey">#6E6E6E</color>
+<color name="blue_back">#00AAFF</color>
+<color name="blue_dark">#002A7C</color>
+
+
+
+
+
+    <color name="youtube_back">#FF0000</color>
+    <color name="spotify">#1ED760</color>
 </resources>

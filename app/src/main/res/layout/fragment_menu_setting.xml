@@ -22,6 +22,7 @@
                 android:layout_height="match_parent"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:letterSpacing="0"
                 android:textColor="@color/black_light"
 app:cornerRadius="0dp"
                 android:backgroundTint="@color/header_light"

@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="125dp"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:elevation="10dp"
     android:layout_marginTop="10dp"
     android:background="@drawable/ripple_for_recycler">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/flower_image"
-        android:layout_width="135dp"
-        android:layout_height="109dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_margin="8dp"
         android:contentDescription="@string/flower1_description"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         android:background="@drawable/shape_initial_item"
         android:fontFamily="@font/sf_display_medium"
-android:backgroundTint="@color/menu_back_light"
 app:shapeAppearanceOverlay="@style/ImageViewCorner"
         android:gravity="center"
         android:textSize="40sp"
@@ -31,7 +31,7 @@ app:shapeAppearanceOverlay="@style/ImageViewCorner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:fontFamily="@font/sf_display_medium"
+        android:fontFamily="@font/sf_display_bold"
         android:text="@string/flower1_name"
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:textColor="@color/black_light"
@@ -39,73 +39,61 @@ app:shapeAppearanceOverlay="@style/ImageViewCorner"
         app:layout_constraintStart_toEndOf="@+id/flower_image"
         app:layout_constraintTop_toTopOf="@+id/flower_image" />
 
-
-    <EditText
-        android:id="@+id/text_status"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_initial_item"
-        android:clickable="false"
-        android:duplicateParentState="false"
-        android:editable="false"
-        android:fontFamily="@font/sf_display_bold"
-        android:inputType="none"
 
-        android:text="N"
-        android:textColor="@color/grey_legend"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/day_pay_calulat"
         app:layout_constraintStart_toStartOf="@+id/flower_text"
         app:layout_constraintTop_toBottomOf="@+id/flower_text">
 
-    </EditText>
+        <EditText
+            android:id="@+id/text_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_initial_item"
+            android:clickable="false"
+            android:duplicateParentState="false"
+            android:editable="false"
+            android:fontFamily="@font/sf_display_bold"
+            android:inputType="none"
+            android:lineSpacingExtra="-5dp"
+            android:text="N"
+            android:textColor="@color/grey_legend"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/day_pay_calulat"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/sf_display_medium"
-        android:textColor="@color/transparent_grey"
-        android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/flower_text"
-        app:layout_constraintTop_toTopOf="parent" />
+        </EditText>
 
-    <TextView
-        android:id="@+id/textViewUntil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:fontFamily="@font/sf_display_bold"
-        android:textColor="@color/transparent_grey"
-        android:textSize="12sp"
-        android:lineSpacingMultiplier="0.7"
-        app:layout_constraintStart_toEndOf="@+id/text_status"
-        app:layout_constraintTop_toTopOf="@+id/text_status" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
-        android:layout_width="113dp"
-        android:layout_height="27dp"
-        android:text="Значение?"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:layout_marginBottom="7dp"
-        android:fontFamily="@font/sf_display_medium"
-        android:backgroundTint="@color/blue_light"
-        app:cornerRadius="8dp"
-        android:textSize="12sp"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@+id/flower_image"
-        app:layout_constraintStart_toStartOf="@+id/flower_text" />
+        <TextView
+            android:id="@+id/day_pay_calulat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_display_medium"
+            android:textColor="@color/grey2_light"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_status" />
+
+        <TextView
+            android:id="@+id/textViewUntil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/sf_display_bold"
+            android:lineSpacingMultiplier="0.7"
+            android:textColor="@color/grey2_light"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/text_status"
+            app:layout_constraintTop_toTopOf="@+id/text_status" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <FrameLayout
-
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="7dp"
+        android:layout_marginEnd="37dp"
         android:layout_marginTop="7dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">

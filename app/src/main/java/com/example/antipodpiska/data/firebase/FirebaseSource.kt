@@ -53,7 +53,9 @@ class FirebaseSource {
                     emitter.onComplete()
                 }
                 else
+                {
                     emitter.onError(it.exception!!)
+                }
             }
         }
 

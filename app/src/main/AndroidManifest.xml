@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.antipodpiska">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -7,6 +8,8 @@
     <application
         android:name=".FirebaseApplication"
         android:allowBackup="true"
+        android:screenOrientation="portrait"
+        tools:replace="label"
         android:icon="@mipmap/ic_launcher"
         android:label="Отписка"
         android:roundIcon="@mipmap/ic_launcher"
@@ -23,9 +26,10 @@
         <activity android:name=".subDetails.SubDetailActivity" />
         <activity android:name=".subDetails.SubDetailActivityBase" />
         <activity android:name=".addition.AddSubActivity" />
-        <activity android:name=".ui.auth.LoginActivity" />
         <activity android:name=".ui.auth.VerifyPhoneActivity" />
-        <activity android:name=".ui.auth.SplashScreenActivity">
+        <activity android:name=".ui.auth.LoginActivity"
+            android:windowSoftInputMode="adjustPan"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

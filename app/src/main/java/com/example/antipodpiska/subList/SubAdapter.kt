@@ -5,12 +5,14 @@ package com.example.antipodpiska.subList
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +20,7 @@ import com.example.antipodpiska.R
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
 import com.mikhaellopez.circularprogressbar.CircularProgressBar
+import java.lang.Math.pow
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
@@ -25,7 +28,9 @@ import kotlin.math.absoluteValue
 
 
 class SubAdapter(private val onClick: (Sub) -> Unit) :
-    ListAdapter<Sub, SubAdapter.SubViewHolder>(FlowerDiffCallback) {
+
+    ListAdapter<Sub, SubAdapter.SubViewHolder>(FlowerDiffCallback){
+    private var lastPosition = -1
 
 
     /* ViewHolder for Flower, takes in the inflated view and the onClick behavior. */
@@ -36,9 +41,10 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
         private val addDatePay: TextView =  itemView.findViewById(R.id.day_pay_calulat)
         private val status: EditText = itemView.findViewById(R.id.text_status)
         private val subDateUntil: TextView = itemView.findViewById(R.id.textViewUntil)
+        private val addDayPayText: TextView = itemView.findViewById(R.id.day_pay_calulat_text)
+        private lateinit var layout: CardView
         private val sharedPrefSource: SharedPrefSource = SharedPrefSource(context)
         private val context: Context = context
-
         private var currentSub: Sub? = null
 
         init {
@@ -53,28 +59,59 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
         * изменяет значение у уже существующего Viewholder*/
         fun bind(sub: Sub) {
 
+            try {
+               layout = itemView.findViewById(R.id.layout_back)
+            }
+            catch (e: NullPointerException)
+            {
+            }
             currentSub = sub
 
-            if (sub.name.length > 12)
-            subName.text = sub.name.substring(0, 12)+".."
-            else
-                subName.text = sub.name
+            var useBack = false
+            if (sub.color!= 0 && sub.color != -1)
+            useBack = getRGB(context.getResources().getString(sub.color))
+else
+    useBack = getRGB("#FFFAFBFC")
+
+
+            subName.text = sub.name
 //            if (sub.card != "")
             //  addDatePay.text = sub.datePay
+            if (useBack)
+                subName.setTextColor(context.resources.getColor(R.color.black_light))
+
+            else
+                subName.setTextColor(context.resources.getColor(R.color.white))
+
+            val face: Typeface = Typeface.createFromAsset(
+                context.assets, "font/sf_display_medium.ttf"
+            )
+            subName.setTypeface(face)
+
 
 
             if (currentSub?.status == "Архив")
             {
                 addDatePay.text = "Отписались " + currentSub?.datePay
                 status.setText("Архив")
-                //    status.setBackgroundResource(R.drawable.shape_text_input)
+                if (useBack) {
+                    status.setTextColor(context.resources.getColor(R.color.black_light))
+                    addDatePay.setTextColor(context.resources.getColor(R.color.black_light))
+                }
+                    else {
+                    status.setTextColor(context.resources.getColor(R.color.white))
+                    addDatePay.setTextColor(context.resources.getColor(R.color.white))
+                }
+                val face: Typeface = Typeface.createFromAsset(
+                    context.assets, "font/sf_display_bold.ttf"
+                )
 
-               // val wrappedDrawable = DrawableCompat.wrap(status.getBackground())
-              //      DrawableCompat.setTint(wrappedDrawable, Color.parseColor("#737679"))
-              //     status.setBackgroundDrawable(wrappedDrawable)
+                status.setTypeface(face)
+                addDayPayText.text = ""
             }
 
             else
+
             if (currentSub?.datePay != null && currentSub?.datePay !="")
          {
             var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
@@ -90,25 +127,18 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
                      "Недель" -> datePay = datePay.plusWeeks(currentSub?.periodFree!!.toLong())
                      "Месяцев" -> datePay = datePay.plusDays(30 * currentSub?.periodFree!!.toLong())
                  }
-      /*           if (datePay > dateNow) {
-                     status.setText("Бесплатно")
-                     status.setBackgroundResource(R.drawable.shape_text_input)
-                     val wrappedDrawable = DrawableCompat.wrap(status.getBackground())
-                     DrawableCompat.setTint(wrappedDrawable, Color.parseColor("#9934BD"))
-                     status.setBackgroundDrawable(wrappedDrawable)
 
-
-                 }*/
              }
-
 
                 //   while (datePay < dateNow)
                 if (currentSub?.periodPay != "") {
                     while (datePay <= dateNow)
                         when (currentSub?.periodTypePay) {
                             "Дней" -> datePay = datePay.plusDays(currentSub?.periodPay!!.toLong())
-                            "Недель" -> datePay =  datePay.plusWeeks(currentSub?.periodPay!!.toLong())
-                            "Месяцев" -> datePay =  datePay.plusDays(30 * currentSub?.periodPay!!.toLong())
+                            "Недель" -> datePay =
+                                datePay.plusWeeks(currentSub?.periodPay!!.toLong())
+                            "Месяцев" -> datePay =
+                                datePay.plusDays(30 * currentSub?.periodPay!!.toLong())
                         }
                 }
 
@@ -116,42 +146,72 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
                     if (datePay!!.format(formatter) != sub.datePay){
 
                         if (sub.periodPay != "")
-                        addDatePay.text = "Следующий платёж " + datePay.format(formatter).toString() //+ " стоимость " + sub.costSub + " " + sub.costCurr //+ "/ " + sub.periodPay + " " + tmp
-                       // else
-                      //      addDatePay.text = "Следующий платёж " + datePay.format(formatter).toString()// + " стоимость " + sub.costSub + " " + sub.costCurr
+                        addDatePay.text = datePay.format(formatter).toString() //+ " стоимость " + sub.costSub + " " + sub.costCurr //+ "/ " + sub.periodPay + " " + tmp
 
                 }
 
-        //       subDateUntil.text = "до "+ datePay.format(formatter).toString()
              if (sub.periodPay !="")
-                 subDateUntil.text = "за\n"+ sub.periodPay+" "+ rusification(sub.periodPay, sub.periodTypePay)
+                 subDateUntil.text = "оплата за "+ sub.periodPay+" "+ rusification(
+                     sub.periodPay,
+                     sub.periodTypePay
+                 )
 
+             if (useBack) {
+                 subDateUntil.setTextColor(context.resources.getColor(R.color.other_grey))
+                 addDayPayText.setTextColor(context.resources.getColor(R.color.other_grey))
+                 addDatePay.setTextColor(context.resources.getColor(R.color.black_light))
+             }
+             else {
+                 subDateUntil.setTextColor(context.resources.getColor(R.color.other_grey))
+                 addDayPayText.setTextColor(context.resources.getColor(R.color.other_grey))
+                 addDatePay.setTextColor(context.resources.getColor(R.color.white))
+             }
+               sharedPrefSource.setNeardayPayDate(
+                   context,
+                   sub.id,
+                   datePay.format(formatter).toString()
+               )
 
-         //      sharedPrefSource.setNeardayCost(context, sub.id, sub.costSub)
-               sharedPrefSource.setNeardayPayDate(context, sub.id, datePay.format(formatter).toString())
+             val face: Typeface = Typeface.createFromAsset(
+                 context.assets, "font/sf_display_medium.ttf"
+             )
+
+             subDateUntil.setTypeface(face)
+             addDayPayText.setTypeface(face)
+             addDatePay.setTypeface(face)
+
 
         if (sub.costSub != "")
         { when(sub.costCurr){
-                     "RUB" -> status.setText(sub.costSub +  "₽")
-                     "EUR" -> status.setText(sub.costSub + "€")
-                     "USD" -> status.setText(sub.costSub + "$")
-                     "GPB" -> status.setText(sub.costSub + "£")
-                     "CNY" -> status.setText(sub.costSub + "Ұ")
-                     "CHF" -> status.setText(sub.costSub + "₣")
-                     "JPY" -> status.setText(sub.costSub + "¥")
-                     "BTC" -> status.setText(sub.costSub + "₿")
-                     "OTHER" -> status.setText(sub.costSub + "")
+            "RUB" -> status.setText("₽ " + sub.costSub)
+            "EUR" -> status.setText("€ " + sub.costSub)
+            "USD" -> status.setText("$ " + sub.costSub)
+            "GPB" -> status.setText("£ " + sub.costSub)
+            "CNY" -> status.setText("Ұ " + sub.costSub)
+            "CHF" -> status.setText("₣ " + sub.costSub)
+            "JPY" -> status.setText("¥ " + sub.costSub)
+            "BTC" -> status.setText("₿ " + sub.costSub)
+            "OTHER" -> status.setText(sub.costSub)
              }
 
+            if (useBack)
+                status.setTextColor(context.resources.getColor(R.color.black_light))
+            else
+                status.setTextColor(context.resources.getColor(R.color.white))
+            val face: Typeface = Typeface.createFromAsset(
+                context.assets, "font/sf_display_bold.ttf"
+            )
 
-             status.setTextColor(Color.parseColor("#BF2222"))}
+            status.setTypeface(face)
+        }
              val circularProgressBar = itemView.findViewById<CircularProgressBar>(R.id.circularProgressBar)
 
              circularProgressBar.apply {
                  // Set Progress
                  roundBorder = true
                  startAngle = 0f
-                 progressBarColor = resources.getColor(R.color.blue_light)
+
+
 
                  if (sub.datePay == datePay.format(formatter).toString())
                  {     progressMax = 1f
@@ -164,32 +224,67 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
 
                      progress = ChronoUnit.DAYS.between(dateNow, datePay).toFloat()
 
+
+
 if(sub.periodPay != "")
   period = sub.periodPay.toFloat()
 else
     period= sub.periodFree.toFloat()
 
                      when (sub.periodTypePay) {
-                       "Дней"   -> {
-                           progressMax = period
-                           countDays.text = Math.round(progress).toString()+"\n"+rusification((Math.round(progress).absoluteValue).toString(), "Дней")
-                               //(Math.round(progressMax) - Math.round(progress)).absoluteValue.toString()+"\n"+rusification((Math.round(progressMax) -  Math.round(progress)).toString(), "Дней")
-                       }
-                        "Недель"   -> {
-                            progressMax = period*14
-                            countDays.text = Math.round(progress).absoluteValue.toString()+"\n"+rusification((Math.round(progress).absoluteValue).toString(), "Дней")
-                                //(Math.round(progressMax)- Math.round(progress)).absoluteValue.toString()+"\n"+rusification((Math.round(progressMax) -  Math.round(progress)).toString(), "Дней")
-                        }
-                        "Месяцев"   -> {
-                            progressMax = period*30
-                            countDays.text = Math.round(progress).absoluteValue.toString()+"\n"+rusification((Math.round(progress).absoluteValue).toString(), "Дней")
-                                //( Math.round(progressMax)- Math.round(progress)).absoluteValue.toString()+"\n"+rusification((Math.round(progressMax) -  Math.round(progress)).toString(), "Дней")
-                        }
+                         "Дней" -> {
+                             progressMax = period
+                             countDays.text = Math.round(progress).toString() + "\n" + rusification(
+                                 (Math.round(
+                                     progress
+                                 ).absoluteValue).toString(), "Дней"
+                             )
+                             //(Math.round(progressMax) - Math.round(progress)).absoluteValue.toString()+"\n"+rusification((Math.round(progressMax) -  Math.round(progress)).toString(), "Дней")
+                         }
+                         "Недель" -> {
+                             progressMax = period * 14
+                             countDays.text =
+                                 Math.round(progress).absoluteValue.toString() + "\n" + rusification(
+                                     (Math.round(
+                                         progress
+                                     ).absoluteValue).toString(), "Дней"
+                                 )
+                             //(Math.round(progressMax)- Math.round(progress)).absoluteValue.toString()+"\n"+rusification((Math.round(progressMax) -  Math.round(progress)).toString(), "Дней")
+                         }
+                         "Месяцев" -> {
+                             progressMax = period * 30
+                             countDays.text =
+                                 Math.round(progress).absoluteValue.toString() + "\n" + rusification(
+                                     (Math.round(
+                                         progress
+                                     ).absoluteValue).toString(), "Дней"
+                                 )
+                             //( Math.round(progressMax)- Math.round(progress)).absoluteValue.toString()+"\n"+rusification((Math.round(progressMax) -  Math.round(progress)).toString(), "Дней")
+                         }
                     }
+
+                     if (useBack)
+                     {   progressBarColor = resources.getColor(R.color.dark_grey)
+                         countDays.setTextColor(resources.getColor(R.color.dark_grey))
+                     }
+                     else {
+                         progressBarColor = resources.getColor(R.color.white)
+                         countDays.setTextColor(resources.getColor(R.color.white))
+                     }
+
 
                      if(progress < 4) {
                          countDays.setTextColor(resources.getColor(R.color.orange_light))
                          progressBarColor = resources.getColor(R.color.orange_light)
+                        status.setTextColor(resources.getColor(R.color.red_light))
+                         val face: Typeface = Typeface.createFromAsset(
+                             context.assets, "font/sf_display_bold.ttf"
+                         )
+                         val face2: Typeface = Typeface.createFromAsset(
+                             context.assets, "font/sf_display_medium.ttf"
+                         )
+                         status.setTypeface(face)
+                         countDays.setTypeface(face2)
                      }
                  }
 
@@ -203,14 +298,22 @@ else
 
          //        progressBarColorDirection = CircularProgressBar.GradientDirection.TOP_TO_BOTTOM
                  // Set background ProgressBar Color
-                 backgroundProgressBarColor = resources.getColor(R.color.grey_progress_bar)
+
+
+                 if (useBack)
+                     backgroundProgressBarColor = resources.getColor(R.color.dark_grey)
+                 else
+                     backgroundProgressBarColor = resources.getColor(R.color.white)
+
+
+
                  // or with gradient
                  /*backgroundProgressBarColorStart = Color.WHITE
                  backgroundProgressBarColorEnd = Color.RED
                  backgroundProgressBarColorDirection = CircularProgressBar.GradientDirection.TOP_TO_BOTTOM*/
 
-                 progressBarWidth = 3f // in DP
-                 backgroundProgressBarWidth = 2f // in DP
+                 progressBarWidth = 5f // in DP
+                 backgroundProgressBarWidth = 3f // in DP
              }
 
 
@@ -219,35 +322,17 @@ else
          }
 
 
-         /* if (sub.image != null) {
-           //     subImageView.setImageResource(R.drawable.shape_initial_item)
-           //     subImageView.setGravity(Gravity.CENTER)
-           //     subImageView.setBackgroundColor(Color.BLUE)
-           //      subImageView.setText("F");
+if (sub.imageDrawable != -1 && sub.imageDrawable != 0) {
+    subImageView.setImageResource(sub.imageDrawable)
 
-                val radius: Float = 20F
-                val shapeAppearanceModel = ShapeAppearanceModel()
-                        .toBuilder()
-                        .setAllCorners(CornerFamily.ROUNDED, radius)
-                        .build()
-                val shapeDrawable = MaterialShapeDrawable(shapeAppearanceModel)
+    if(layout!=null)
+    layout.setCardBackgroundColor(context.getColor(sub.color))
+}
+            else{
+                subImageView.setImageResource(R.drawable.menu_subs_foreground)
+    layout.setCardBackgroundColor(context.getColor(R.color.light_back))
+            }
 
-                var t = Color.parseColor("#" + sub.image)
-                shapeDrawable.setTint(t)
-                ViewCompat.setBackground(subImageView, shapeDrawable)
-                subImageView.setGravity(Gravity.CENTER)
-               var firstLetter: String = sub.name.substring(0, 1)
-                firstLetter=firstLetter.toUpperCase()
-                subImageView.setText(firstLetter)
-
-
-
-            } else {
-                subImageView.setBackgroundResource(R.drawable.img)
-            }*/
-
-if (sub.imageDrawable != -1)
-        subImageView.setImageResource(sub.imageDrawable)
 
         }
 
@@ -290,14 +375,27 @@ if (sub.imageDrawable != -1)
     }
 
 
+fun onItemInit(viewHolder: RecyclerView.ViewHolder){
 
+}
+    fun onItemBigResize(viewHolder: RecyclerView.ViewHolder?, position: Int, dyAbs: Int) {}
 
+    fun onItemSmallResize(viewHolder: RecyclerView.ViewHolder?, position: Int, dyAbs: Int) {}
+
+    fun onItemBigResizeScrolled(viewHolder: RecyclerView.ViewHolder?, position: Int, dyAbs: Int) {}
+
+    fun onItemSmallResizeScrolled(
+        viewHolder: RecyclerView.ViewHolder?,
+        position: Int,
+        dyAbs: Int
+    ) {
+    }
 
     /* Creates and inflates view and return FlowerViewHolder. */
     /*первоначально создание ViewHolders. parent - это и есть recycleView*/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.text_row_item, parent, false)
+            .inflate(R.layout.card_item_sub, parent, false)
         return SubViewHolder(view, onClick, parent.context)
     }
 
@@ -305,36 +403,30 @@ if (sub.imageDrawable != -1)
     /*Изменение значения существующих ViewHolders при прокрутке*/
     override fun onBindViewHolder(holder: SubViewHolder, position: Int) {
         var sub = getItem(position)
-      /*  if(sub.status== "Архив") {
-            holder.itemView.layoutParams = LinearLayout.LayoutParams(0, 0)
-        }
-*/
-
-
-   /*     val totalItems = itemCount
-        val view: View = holder.itemView
-
-        if (position === totalItems - 1) { // final position will equal total items - 1
-            view.scaleX = 1f
-            view.scaleY = 1f
-        } else if (position === totalItems - 2) {
-            view.scaleX = 0.8f
-            view.scaleY = 0.8f
-        } else if (position === totalItems - 3) {
-            view.scaleX = 0.6f
-            view.scaleY = 0.6f
-        } else {
-            view.scaleX = 0.4f
-            view.scaleY = 0.4f
-        }*/
-
 
         holder.bind(sub)
     }
 
 
+
+
+
 }
 
+fun getRGB(rgb: String): Boolean {
+    val r = rgb.substring(2, 4).toInt(16) // 16 for hex
+    val g = rgb.substring(4, 6).toInt(16) // 16 for hex
+    val b = rgb.substring(6, 8).toInt(16) // 16 for hex
+
+
+    val L =( 0.2126 * pow(r.toDouble(), 2.2)
+    + 0.7152 * pow(g.toDouble(), 2.2)
+    + 0.0722 * pow(b.toDouble(), 2.2))/100000
+
+    //> 0.5
+    val use_black = L > 1.7
+    return use_black
+}
 object FlowerDiffCallback : DiffUtil.ItemCallback<Sub>() {
     override fun areItemsTheSame(oldItem: Sub, newItem: Sub): Boolean {
         return oldItem == newItem

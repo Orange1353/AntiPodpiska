@@ -90,19 +90,19 @@ class SharedPrefSource constructor(context: Context)  {
     }
 
     fun getNeardayPayDate(context: Context): Map<String, *>? {
-        val preferences: SharedPreferences = context.getSharedPreferences("NeardayDate", Context.MODE_PRIVATE)
+        val preferences: SharedPreferences = context.getSharedPreferences("NeardayDate$PREFS_NAME", Context.MODE_PRIVATE)
       //  return preferences.getString(idSub.toString(), "").toString()
         return preferences.all
     }
 
     fun setNeardayPayDate(context: Context, idSub: Long, nearDayPay: String){
-        val preferences: SharedPreferences = context.getSharedPreferences("NeardayDate", Context.MODE_PRIVATE)
+        val preferences: SharedPreferences = context.getSharedPreferences("NeardayDate$PREFS_NAME", Context.MODE_PRIVATE)
         val prefsEditor: SharedPreferences.Editor = preferences.edit()
         prefsEditor.putString(idSub.toString(), nearDayPay).apply()
     }
 
     fun  deleteNeardayPayDate(context: Context, idSub: Long){
-        val preferences: SharedPreferences = context.getSharedPreferences("NeardayDate", Context.MODE_PRIVATE)
+        val preferences: SharedPreferences = context.getSharedPreferences("NeardayDate$PREFS_NAME", Context.MODE_PRIVATE)
         val prefsEditor: SharedPreferences.Editor = preferences.edit()
         prefsEditor.remove(idSub.toString()).apply()
     }

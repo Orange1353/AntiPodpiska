@@ -180,10 +180,18 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
             val push = preferences.getBoolean("push", false)
             val id = preferences.getInt("id", -1)
 
-            var image = -1
+            var imageDrawable = -1
+            //var imageColor = getResources().getColor(R.color.light_back)
+
+        val listExist = existSubList(resources, this)
+        var imageColor = listExist[1].color
+        //-328708
             if (id != -1)
-            {  val listExist = existSubList(resources, this)
-               image = listExist[id].logoId     }
+            {
+               imageDrawable = listExist[id].logoId
+               imageColor = listExist[id].color   //2131099898
+            }
+
 
 
 
@@ -205,8 +213,9 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
             resultIntent.putExtra(CARD, card)
             resultIntent.putExtra(PUSH, push)
             resultIntent.putExtra(DATE_ADD, dateAdd)
-            if(image != -1)
-            resultIntent.putExtra(SUB_IMAGE, image)
+            if(imageDrawable != -1)
+            resultIntent.putExtra(SUB_IMAGE, imageDrawable)
+            resultIntent.putExtra(SUB_COLOR, imageColor)
 
             setResult(Activity.RESULT_OK, resultIntent)
             finish()

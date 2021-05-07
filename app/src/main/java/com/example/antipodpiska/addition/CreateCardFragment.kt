@@ -38,7 +38,7 @@ class CreateCardFragment : Fragment() {
         val btnContinue: Button = view.findViewById(R.id.button_continue)
         val btnReady:Button = view.findViewById(R.id.button_ready)
         var lay :ConstraintLayout = view.findViewById(R.id.color)
-
+        var layClick :ConstraintLayout = view.findViewById(R.id.lay_click)
 
         var pushEnabled : SwitchCompat= view.findViewById(R.id.switch_enabled)
 
@@ -60,6 +60,9 @@ class CreateCardFragment : Fragment() {
         }
 
         btnReady.setOnClickListener {
+            communicator.cardFragmentToListSub(addCard.text.toString(), pushEnabled.isChecked())
+        }
+        layClick.setOnClickListener{
             communicator.cardFragmentToListSub(addCard.text.toString(), pushEnabled.isChecked())
         }
 

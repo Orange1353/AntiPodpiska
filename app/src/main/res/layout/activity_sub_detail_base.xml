@@ -18,11 +18,13 @@
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
+<!--        alpha- затемнение/размытие-->
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header_lay"
             android:layout_width="match_parent"
             android:layout_height="77dp"
             android:elevation="4dp"
-
+            android:alpha="0.5"
             android:background="@color/header_light">
 
             <androidx.appcompat.widget.Toolbar
@@ -46,7 +48,7 @@ app:titleMarginStart="0dp"
                 android:layout_width="58dp"
                 android:layout_height="58dp"
                 android:layout_marginStart="20dp"
-                android:background="@drawable/shape_initial_item"
+                android:background="@drawable/shape_circle"
                 android:gravity="center"
                 android:textSize="40sp"
                 app:layout_constraintBottom_toBottomOf="parent"

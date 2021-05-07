@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
@@ -23,9 +24,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.iid.FirebaseInstanceId
-import io.reactivex.Completable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+
 import kotlinx.android.synthetic.main.activity_add_sub.*
 import kotlinx.android.synthetic.main.activity_sub_detail.*
 import java.text.SimpleDateFormat
@@ -46,6 +45,7 @@ const val CARD = "card"
 const val PUSH = "push"
 const val DATE_ADD = "dateAdd"
 const val SUB_IMAGE = "image"
+const val SUB_COLOR = "color"
 
 class AddSubActivity : AppCompatActivity() {
 
@@ -91,6 +91,9 @@ val buttonBack: Button = findViewById(R.id.button_back)
 
         var cal = Calendar.getInstance()
 
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.setStatusBarColor(getResources().getColor(R.color.blue_back))
 
         val dateSetListenerDatePay = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
             cal.set(Calendar.YEAR, year)

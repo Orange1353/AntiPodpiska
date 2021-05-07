@@ -169,7 +169,7 @@ class DataSource(resources: Resources, context: Context) {
         val subItem = HashMap<String, Any>()
 
         subItem.put("id", sub.id)
-        subItem.put("image", sub.image)
+        subItem.put("color", sub.color)
         subItem.put("description", sub.description.toString())
         subItem.put("name", sub.name.toString())
         subItem.put("card", sub.card.toString())
@@ -184,6 +184,8 @@ class DataSource(resources: Resources, context: Context) {
         subItem.put("id_user", FirebaseAuth.getInstance().currentUser?.uid.toString())
         subItem.put("push", sub.pushEnabled)
         subItem.put("status", sub.status)
+        subItem.put("imageDrawable", sub.imageDrawable)
+
 
         if (sub.date_add != "" && sub.date_add != null)
             subItem.put("date_add", sub.date_add)

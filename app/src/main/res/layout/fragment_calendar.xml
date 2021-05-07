@@ -11,7 +11,7 @@
         android:id="@+id/lay_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/header_back"
+        android:background="@color/header_light"
         android:insetTop="0dp"
         android:elevation="4dp"
         android:insetBottom="0dp"

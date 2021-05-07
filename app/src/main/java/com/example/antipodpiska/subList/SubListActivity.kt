@@ -1,6 +1,5 @@
 package com.example.antipodpiska.subList
 
-
 import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -9,14 +8,17 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.view.animation.AlphaAnimation
+import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -25,6 +27,7 @@ import com.example.antipodpiska.InProgress
 import com.example.antipodpiska.R
 import com.example.antipodpiska.addition.AddSubActivityFragments
 import com.example.antipodpiska.addition.DATE_ADD
+import com.example.antipodpiska.addition.SUB_COLOR
 import com.example.antipodpiska.addition.SUB_IMAGE
 import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
@@ -33,6 +36,7 @@ import com.example.antipodpiska.data.firebase.FirebaseSource
 import com.example.antipodpiska.menu.*
 import com.example.antipodpiska.subDetails.SubDetailActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.delete_delete.*
 
 
 const val SUB_ID = "sub id"
@@ -61,8 +65,11 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         val fab: View = findViewById(R.id.fab)
+
+        val appear: Animation = AnimationUtils.loadAnimation(this, android.R.anim.fade_in)
+        val gone: Animation = AnimationUtils.loadAnimation(this, android.R.anim.fade_out)
+
         fab.setOnClickListener {
             fabOnClick()
             val animation = AnimationUtils.loadAnimation(this, R.anim.grow_on_click_btn)
@@ -70,9 +77,12 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
         }
       //  val window: Window = this@SubListActivity.window
       //  window.navigationBarColor = ContextCompat.getColor(this@SubListActivity, R.color.header_light)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.setStatusBarColor(getResources().getColor(R.color.blue_back))
+
 
         setUserDataToSharedForFutureProfile()
-
         this.supportFragmentManager.beginTransaction().replace(R.id.lay_container, MenuFragment())
             .addToBackStack(
                 null
@@ -80,11 +90,18 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
             .commit()
 
+
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigationView.background = resources.getDrawable(R.color.blue)
+
+
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId){
                 R.id.item_menu -> {
-                    fab.isVisible = false
+
+                    if (fab.isVisible == true)
+                    {fab.startAnimation(gone)
+                    fab.isVisible = false}
                     bottomNavigationView.isSelected = true
 
                     val fragment = NavigationMenuFragment()
@@ -101,6 +118,7 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
                 }
 
                 R.id.item_subs -> {
+                    fab.startAnimation(appear)
                     fab.isVisible = true
                     bottomNavigationView.isSelected = true
 
@@ -121,7 +139,7 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
                     true
                 }
 
-                R.id.item_archive -> {
+                /*R.id.item_archive -> {
                     fab.isVisible = false
                     bottomNavigationView.isSelected = true
                     val fragment = ArchiveFragment()
@@ -135,9 +153,11 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                         .commit()
                     true
-                }
+                }*/
                 R.id.item_calendar -> {
-                    fab.isVisible = false
+                    if (fab.isVisible == true)
+                    {fab.startAnimation(gone)
+                        fab.isVisible = false}
                     bottomNavigationView.isSelected = true
                     //   val fragment = CalendarFragment()
                     val fragment = InProgress()
@@ -153,7 +173,9 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
                     true
                 }
                 R.id.item_statistics -> {
-                    fab.isVisible = false
+                    if (fab.isVisible == true)
+                    {fab.startAnimation(gone)
+                        fab.isVisible = false}
                     bottomNavigationView.isSelected = true
                     val fragment = StatisticsFragment()
                     this.supportFragmentManager.beginTransaction().replace(
@@ -176,7 +198,7 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
 
 
     //    val headerAdapter = HeaderAdapter()
-        val subsAdapter = SubAdapter { sub -> adapterOnClick(sub) }
+        val subsAdapter = SubAdapter({ sub -> adapterOnClick(sub) })
   //      val concatAdapter = ConcatAdapter(headerAdapter, subsAdapter)
 
   //      val recyclerView: RecyclerView = findViewById(R.id.recycler_view_menu)
@@ -330,13 +352,18 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
                     card = ""
                 var push = data.getBooleanExtra(PUSH, false)
                 val dateAdd = data.getStringExtra(DATE_ADD)
+
                 var image =  data.getIntExtra(SUB_IMAGE, 0)
-                if ( image == 0)
-                    image = -1
+        //        if ( image == 0)
+      //              image =  this.resources.getDrawable()
+//если нету картинки
+                var colordef = resources.getColor(R.color.light_back)
+                var color = data.getIntExtra(SUB_COLOR, colordef)
 
 //image?
                 subsListViewModel.insertSub(
                     subName,
+                    color,
                     subDescription,
                     typeSub,
                     dayPay,

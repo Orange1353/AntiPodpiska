@@ -8,10 +8,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
+import com.example.antipodpiska.Align
 import com.example.antipodpiska.R
 import com.example.antipodpiska.addition.AddSubActivityFragments
 import com.example.antipodpiska.data.Sub
@@ -23,6 +25,8 @@ import com.example.antipodpiska.subList.SubListViewModel
 class ArchiveFragment : Fragment() {
 
     private val newSubActivityRequestCode = 1
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var communicator: CommunicatorMenu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,15 +40,28 @@ class ArchiveFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View  = inflater.inflate(R.layout.fragment_menu, container, false)
 
-        val subsAdapter = SubAdapterArchive { sub -> adapterOnClick(sub) }
+        val subsAdapter = SubAdapter { sub -> adapterOnClick(sub) }
         //      val concatAdapter = ConcatAdapter(headerAdapter, subsAdapter)
 
-        val recyclerView: RecyclerView = view!!.findViewById(R.id.recycler_view_menu)
+        recyclerView = view!!.findViewById(R.id.recycler_view_menu)
         recyclerView.adapter = subsAdapter
         var subsListViewModel = ViewModelProvider(activity!!).get(SubListViewModel::class.java)
 
 
         var searchView: SearchView = view.findViewById(R.id.search_view)
+
+
+        communicator = activity as CommunicatorMenu
+        val button_archive: Button = view.findViewById(R.id.btn_archive)
+
+        button_archive.setOnClickListener {
+
+            communicator.replaceFragment(MenuFragment())
+
+
+        }
+
+
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(s: String): Boolean {
@@ -56,7 +73,7 @@ class ArchiveFragment : Fragment() {
                 if(s!= "") {
                     var list1: List<Sub> = ArrayList<Sub>()
                     for (i in subsListViewModel.subsLiveData.value!!.indices) {
-                        if (subsListViewModel.subsLiveData.value!![i].name.toLowerCase().contains(s, false) && subsListViewModel.subsLiveData.value!![i].status == "Архив")
+                        if (subsListViewModel.subsLiveData.value!![i].name.toLowerCase().contains(s.toLowerCase(), false) && subsListViewModel.subsLiveData.value!![i].status == "Архив")
                             list1 = list1.plus(subsListViewModel.subsLiveData.value!![i])
                     }
                     subsAdapter.submitList(list1)
@@ -100,10 +117,28 @@ class ArchiveFragment : Fragment() {
             }
     */
 
-
+//vr()
         return view
     }
+    private fun vr() {
+        val datas: MutableList<String> = java.util.ArrayList()
+        for (i in 0..14) {
+            datas.add(i.toString())
+        }
+        val config = Config()
+        config.secondaryScale = 1.0f
+        config.scaleRatio = 0.2f
+        //максимально видимых
+        config.maxStackCount = 4
+        config.initialStackCount = 6
+        config.space = 15
+        //скорость прокрутки
+        config.parallex = 1.5f
+        config.align = Align.TOP
+        recyclerView.layoutManager= StackLayoutManager(config)
+        recyclerView.setLayoutManager(StackLayoutManager(config))
 
+    }
 
 
     /* <ImageButton
@@ -138,5 +173,7 @@ class ArchiveFragment : Fragment() {
         intent.putExtra(SUB_ID, sub.id)
         startActivity(intent)
     }
+
+
 
 }

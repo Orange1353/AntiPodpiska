@@ -141,7 +141,7 @@ class SubAdapterArchive(private val onClick: (Sub) -> Unit) :
             addPeriodTypePay.selectedItem.toString()*/
 
 
-            if (sub.image != null) {
+            if (sub.color != null) {
            //     subImageView.setImageResource(R.drawable.shape_initial_item)
 
          //       subImageView.setGravity(Gravity.CENTER)
@@ -158,7 +158,7 @@ class SubAdapterArchive(private val onClick: (Sub) -> Unit) :
                         .build()
                 val shapeDrawable = MaterialShapeDrawable(shapeAppearanceModel)
 
-                var t = Color.parseColor("#" + sub.image)
+                var t = Color.parseColor("#" + sub.color)
                 shapeDrawable.setTint(t)
                 ViewCompat.setBackground(subImageView, shapeDrawable)
                 subImageView.setGravity(Gravity.CENTER)

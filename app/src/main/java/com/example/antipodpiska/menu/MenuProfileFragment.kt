@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -90,7 +91,20 @@ class MenuProfileFragment : Fragment() {
         return view
 
     }
-
+    override fun onResume() {
+        super.onResume()
+        if (view == null) {
+            return
+        }
+        view!!.isFocusableInTouchMode = true
+        view!!.requestFocus()
+        view!!.setOnKeyListener { v, keyCode, event ->
+            if (event.action === KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                communicator.onBackPressedPopBackstack()
+                true
+            } else false
+        }
+    }
 
 
 }

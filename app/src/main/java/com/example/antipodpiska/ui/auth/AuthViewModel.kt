@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
@@ -53,6 +54,7 @@ class AuthViewModel(
 
         //validating email and password
         if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
+
             authListener?.onFailure("Invalid email or password")
             return
         }
@@ -91,7 +93,9 @@ class AuthViewModel(
             .subscribe({
                 authListener?.onSuccess()
             }, {
+
                 authListener?.onFailure(it.message!!)
+
             })
         disposables.add(disposable)
     }

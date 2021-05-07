@@ -6,7 +6,7 @@ import androidx.annotation.DrawableRes
 data class Sub(
         val id: Long = 0,
         var name: String = "",
-        val image: String ="#FFFFFF",
+        val color: Int = 2131099898,
         var description: String= "",
     //дата окончания подписки
         var typeSub: String= "",

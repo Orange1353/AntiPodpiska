@@ -19,7 +19,7 @@
            android:id="@+id/lay_up"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:background="@color/header_back"
+           android:background="@color/header_light"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintTop_toTopOf="parent">
 
@@ -27,6 +27,7 @@
                android:id="@+id/button_menu_back"
                android:insetTop="0dp"
                android:insetBottom="0dp"
+               android:letterSpacing="0"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:textColor="@color/black_light"
@@ -84,7 +85,7 @@ app:cornerRadius="0dp"
                    android:layout_gravity="center"
                    android:hint="Адрес электронной почты"
                    android:maxLength="40"
-                   android:textColorHint="@color/grey2"
+                   android:textColorHint="@color/grey2_light"
                    android:paddingTop="20dp"
                    android:textSize="18sp"
                    android:fontFamily="@font/sf_display_medium"
@@ -92,7 +93,7 @@ app:cornerRadius="0dp"
                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                    android:paddingBottom="10dp"
                    android:imeOptions="actionDone"
-                   app:boxBackgroundColor="@color/darkBack">
+                   app:boxBackgroundColor="@color/white">
 
                    <com.google.android.material.textfield.TextInputEditText
                        android:id="@+id/edit_text_email"
@@ -120,7 +121,7 @@ app:cornerRadius="0dp"
                    android:layout_gravity="center"
                    android:hint="Введите тему обращения"
                    android:maxLength="500"
-                   android:textColorHint="@color/grey2"
+                   android:textColorHint="@color/grey2_light"
                    android:paddingTop="10dp"
                    android:textSize="18sp"
                    android:fontFamily="@font/sf_display_medium"
@@ -128,7 +129,7 @@ app:cornerRadius="0dp"
                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                    android:paddingBottom="10dp"
                    android:imeOptions="actionDone"
-                   app:boxBackgroundColor="@color/darkBack">
+                   app:boxBackgroundColor="@color/white">
 
                    <com.google.android.material.textfield.TextInputEditText
                        android:id="@+id/edit_text_theme"
@@ -155,7 +156,7 @@ app:cornerRadius="0dp"
                    android:layout_height="wrap_content"
                    android:layout_gravity="center"
                    android:hint="Введите текст обращения"
-                   android:textColorHint="@color/grey2"
+                   android:textColorHint="@color/grey2_light"
                    android:paddingTop="10dp"
                    android:textSize="18sp"
                    android:fontFamily="@font/sf_display_medium"
@@ -163,7 +164,7 @@ app:cornerRadius="0dp"
                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                    android:paddingBottom="10dp"
                    android:imeOptions="actionDone"
-                   app:boxBackgroundColor="@color/darkBack">
+                   app:boxBackgroundColor="@color/white">
 
                    <com.google.android.material.textfield.TextInputEditText
                        android:id="@+id/edit_text_message"

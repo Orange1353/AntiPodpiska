@@ -8,7 +8,6 @@
     <string name="flower2_description">https://docs.microsoft.com/</string>
     <string name="spinner_default_text">Тип подписки</string>
 
-
     <string-array name="spinner_array_period">
         <item>Дней</item>
         <item>Недель</item>

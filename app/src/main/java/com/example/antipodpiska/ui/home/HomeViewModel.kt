@@ -18,6 +18,6 @@ class HomeViewModel(
 
     fun logout(view: View){
         repository.logout()
-        view.context.startSplashScreenActivity()
+        view.context.startLoginActivity()
     }
 }

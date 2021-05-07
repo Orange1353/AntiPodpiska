@@ -2,7 +2,7 @@ package com.example.antipodpiska.data.firebase
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import io.reactivex.Completable
+
 
 class FirebaseCloud {
 /*

@@ -112,6 +112,7 @@ fun onClick(view: View){
     }
 
     override fun onFailure(message: String) {
+
         progressbar.visibility = View.GONE
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
