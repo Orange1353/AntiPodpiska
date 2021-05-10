@@ -23,6 +23,7 @@
         <item name="fontFamily">@font/sf_display_medium</item>
         <item name="android:navigationBarColor">@color/blue_back</item>
 
+        <item name = "android:windowContentTransitions" > true </item >
         <!-- Customize your theme here. -->
 <!--        <item name="android:windowBackground">@color/#E5E5E5</item>-->
     </style>

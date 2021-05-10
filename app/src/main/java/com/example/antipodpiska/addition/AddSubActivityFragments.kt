@@ -22,7 +22,6 @@ import com.example.antipodpiska.menu.NavigationMenuFragment
 import com.example.antipodpiska.subDetails.SubDetailActivity
 import com.example.antipodpiska.subList.SUB_ID
 import com.example.antipodpiska.subList.SubListViewModel
-import com.example.antipodpiska.utils.startSubListActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -104,16 +103,31 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
             .commit()
     }
 
-    override fun cardFragmentToListSub(cardNumber:String, push:Boolean){
+    override fun cardFragmentToBannerAdded(cardNumber:String, push:Boolean){
         var preferences: SharedPreferences = this.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val prefsEditor: SharedPreferences.Editor = preferences.edit()
-        prefsEditor.putString("card", cardNumber).apply();
-        prefsEditor.putBoolean("push", push).apply();
-        //    val intent = Intent(this, SubListActivity()::class.java)
-//        intent.putExtra(SUB_ID, sub.id)
-        //   startActivity(intent)
+        prefsEditor.putString("card", cardNumber).apply()
+        prefsEditor.putBoolean("push", push).apply()
+
+
+        fragmentManager.beginTransaction().remove(CreateCardFragment())
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            .commit()
+    }
+
+    override fun getNameNewSub(): String {
+        var preferences: SharedPreferences = this.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val name = preferences.getString("name", "") ?: ""
+        return name
+    }
+    override fun cardFragmentToListSub(){
+/*        var preferences: SharedPreferences = this.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefsEditor: SharedPreferences.Editor = preferences.edit()
+        prefsEditor.putString("card", cardNumber).apply()
+        prefsEditor.putBoolean("push", push).apply()*/
+
+
         addSub()
-  //      startSubListActivity()
     }
 
     override fun onBackPressedInFragms23() {

@@ -1,19 +1,18 @@
 package com.example.antipodpiska.menu
 
+import android.R.attr.transitionName
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
 import android.widget.Button
 import android.widget.SearchView
-import androidx.core.view.isVisible
+import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +25,7 @@ import com.example.antipodpiska.subDetails.SubDetailActivity
 import com.example.antipodpiska.subList.SubAdapter
 import com.example.antipodpiska.subList.SubListViewModel
 import kotlinx.android.synthetic.main.delete_delete.*
+
 
 const val SUB_ID = "sub id"
 const val SUB_NAME = "name"
@@ -64,8 +64,8 @@ class MenuFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
 
         // Inflate the layout for this fragment
@@ -146,9 +146,9 @@ class MenuFragment : Fragment() {
                     var list1: List<Sub> = ArrayList<Sub>()
                     for (i in subsListViewModel.subsLiveData.value!!.indices) {
                         if (subsListViewModel.subsLiveData.value!![i].name.toLowerCase().contains(
-                                s.toLowerCase(),
-                                false
-                            ) && subsListViewModel.subsLiveData.value!![i].status == "Активна"
+                                        s.toLowerCase(),
+                                        false
+                                ) && subsListViewModel.subsLiveData.value!![i].status == "Активна"
                         )
                             list1 = list1.plus(subsListViewModel.subsLiveData.value!![i])
                     }
@@ -519,8 +519,8 @@ countSub = it.indices.last
 
     class MarginItemDecoration(private val spaceHeight: Int) : RecyclerView.ItemDecoration() {
         override fun getItemOffsets(
-            outRect: Rect, view: View,
-            parent: RecyclerView, state: RecyclerView.State
+                outRect: Rect, view: View,
+                parent: RecyclerView, state: RecyclerView.State
         ) {
             if(parent.getChildAdapterPosition(view) == state.itemCount-1)
                 outRect.bottom = spaceHeight
@@ -577,21 +577,21 @@ private fun calculatePositionScrolledDown(recyclerView: RecyclerView): Int {
     ) {
         positionScrolled = itemToResize - 1
         mLinearLayoutManager!!.scrollToPositionWithOffset(
-            mLinearLayoutManager!!.findFirstVisibleItemPosition(), 0
+                mLinearLayoutManager!!.findFirstVisibleItemPosition(), 0
         )
     } else {
         if (recyclerView.getChildAt(itemToResize).height > recyclerView.getChildAt(
-                itemToResize - 1
-            ).height
+                        itemToResize - 1
+                ).height
         ) {
             positionScrolled = itemToResize
             mLinearLayoutManager!!.scrollToPositionWithOffset(
-                mLinearLayoutManager!!.findFirstCompletelyVisibleItemPosition(), 0
+                    mLinearLayoutManager!!.findFirstCompletelyVisibleItemPosition(), 0
             )
         } else {
             positionScrolled = itemToResize - 1
             mLinearLayoutManager!!.scrollToPositionWithOffset(
-                mLinearLayoutManager!!.findFirstVisibleItemPosition(), 0
+                    mLinearLayoutManager!!.findFirstVisibleItemPosition(), 0
             )
         }
     }
@@ -605,12 +605,12 @@ private fun calculatePositionScrolledUp(recyclerView: RecyclerView): Int {
     ) {
         positionScrolled = itemToResize
         mLinearLayoutManager!!.scrollToPositionWithOffset(
-            mLinearLayoutManager!!.findFirstVisibleItemPosition(), 0
+                mLinearLayoutManager!!.findFirstVisibleItemPosition(), 0
         )
     } else {
         positionScrolled = itemToResize + 1
         mLinearLayoutManager!!.scrollToPositionWithOffset(
-            mLinearLayoutManager!!.findFirstCompletelyVisibleItemPosition(), 0
+                mLinearLayoutManager!!.findFirstCompletelyVisibleItemPosition(), 0
         )
     }
     return positionScrolled
@@ -619,18 +619,18 @@ private fun calculatePositionScrolledUp(recyclerView: RecyclerView): Int {
 
 
 private fun forceScrollItem(
-    recyclerView: RecyclerView,
-    view: View,
-    j: Int,
-    positionScrolled: Int
+        recyclerView: RecyclerView,
+        view: View,
+        j: Int,
+        positionScrolled: Int
 ) {
     if (recyclerView.getChildViewHolder(view) !is FocusResizeAdapter<*>.FooterViewHolder) {
         if (j == positionScrolled) {
             view.layoutParams.height = heightExpandedItem
             adapter.onItemBigResizeScrolled(
-                recyclerView.getChildViewHolder(view),
-                itemToResize,
-                dyAbs
+                    recyclerView.getChildViewHolder(view),
+                    itemToResize,
+                    dyAbs
             )
         } else {
             if (mLinearLayoutManager!!.findFirstCompletelyVisibleItemPosition()
@@ -639,16 +639,16 @@ private fun forceScrollItem(
             ) {
                 view.layoutParams.height = heightExpandedItem
                 adapter.onItemBigResizeScrolled(
-                    recyclerView.getChildViewHolder(view),
-                    itemToResize,
-                    dyAbs
+                        recyclerView.getChildViewHolder(view),
+                        itemToResize,
+                        dyAbs
                 )
             } else {
                 view.layoutParams.height = heightCollapsedItem
                 adapter.onItemSmallResizeScrolled(
-                    recyclerView.getChildViewHolder(view),
-                    itemToResize,
-                    dyAbs
+                        recyclerView.getChildViewHolder(view),
+                        itemToResize,
+                        dyAbs
                 )
             }
         }
@@ -685,8 +685,8 @@ private fun fabOnClick() {
 private fun layoutAnimation(recyclerView: RecyclerView){
 var context: Context = recyclerView.context
 var layoutController: LayoutAnimationController = AnimationUtils.loadLayoutAnimation(
-    context,
-    R.anim.layout_recycler_down_to_up
+        context,
+        R.anim.layout_recycler_down_to_up
 )
 recyclerView.layoutAnimation = layoutController
 recyclerView.adapter?.notifyDataSetChanged()
@@ -782,19 +782,27 @@ fun onQueryTextSubmit(query: String?): Boolean {
 private fun adapterOnClick(sub: Sub) {
 
     var context: Context? = getContext()
+    val options: ActivityOptionsCompat? = activity?.let {
+        ActivityOptionsCompat.makeSceneTransitionAnimation(it,
+                recyclerView,  // Starting view
+                "anim" // The String
+        )
+    }
+
     val intent = Intent(context, SubDetailActivity()::class.java)
     intent.putExtra(SUB_ID, sub.id)
-    startActivity(intent)
+    startActivity(intent, options!!.toBundle())
+
 }
 
 }
 
 class OverlapDecoration : RecyclerView.ItemDecoration() {
 override fun getItemOffsets(
-    outRect: Rect,
-    view: View,
-    parent: RecyclerView,
-    state: RecyclerView.State
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
 ) {
     val itemPosition = parent.getChildAdapterPosition(view!!)
     if (itemPosition == 0) {
@@ -811,10 +819,10 @@ class SimpleDividerItemDecorationLastExcluded(private val spacing: Int) :
 RecyclerView.ItemDecoration() {
 
 override fun getItemOffsets(
-    rect: Rect,
-    view: View,
-    parent: RecyclerView,
-    s: RecyclerView.State
+        rect: Rect,
+        view: View,
+        parent: RecyclerView,
+        s: RecyclerView.State
 ) {
     parent.adapter?.let { adapter ->
         rect.right = when (parent.getChildAdapterPosition(view)) {
@@ -828,10 +836,10 @@ override fun getItemOffsets(
 
 class ItemDecorator(private val mSpace: Int) : RecyclerView.ItemDecoration() {
 override fun getItemOffsets(
-    outRect: Rect,
-    view: View,
-    parent: RecyclerView,
-    state: RecyclerView.State
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
 ) {
    val position = parent.getChildAdapterPosition(view)
    if (position != 0) outRect.top = mSpace

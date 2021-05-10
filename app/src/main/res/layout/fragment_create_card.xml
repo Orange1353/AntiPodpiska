@@ -7,6 +7,78 @@
     android:id="@+id/lay_click"
     android:background="@color/light_back"
     tools:context=".addition.CreateNameAndTypeFragment">
+    <Button
+        android:id="@+id/button_ready"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:visibility="invisible">
+
+    </Button>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:id="@+id/added"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/button_back"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/name_new_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NAME"
+            android:textSize="16sp"
+            android:layout_marginTop="60dp"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/black_light"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:fontFamily="@font/sf_display_bold">
+
+        </TextView>
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@id/name_new_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_add"
+            android:text="Подписка добавлена"
+            android:layout_marginTop="3dp"
+            android:layout_marginStart="18dp"
+            android:fontFamily="@font/sf_display_bold"
+            android:textColor="@color/black_light"
+            android:textSize="33sp"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </TextView>
+
+        <Button
+            android:id="@+id/button_detail"
+            android:layout_width="178dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf ="@id/text_add"
+            app:layout_constraintStart_toStartOf="parent"
+            android:backgroundTint="@color/blue_back"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textSize="13sp"
+            android:text="ПЕРЕЙТИ"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="19dp"
+            android:fontFamily="@font/sf_display_bold"
+
+            ></Button>
+
+        <ImageView
+            android:layout_width="328dp"
+            android:layout_height="349dp"
+            android:src="@drawable/ic_delete2"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            ></ImageView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <com.google.android.material.button.MaterialButton
@@ -34,6 +106,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <FrameLayout
+        android:id="@+id/color"
+
         android:background="@drawable/shape_item"
         android:layout_marginTop="50dp"
         android:layout_width="320dp"
@@ -41,25 +115,27 @@
         >
 
 
-        <Button
-            style="?android:attr/borderlessButtonStyle"
-            android:id="@+id/button_ready"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:drawableTop="@drawable/ic_success_added"
-            android:fontFamily="@font/sf_display_medium"
-            android:paddingTop="150dp"
-            android:singleLine="false"
-            android:textAllCaps="false"
-            android:textColor="@color/black_light"
-            android:text="Подписка&#10;добавлена"
-            android:textSize="25sp"
-            android:visibility="invisible">
+<!--        <Button-->
+<!--            style="?android:attr/borderlessButtonStyle"-->
+<!--            android:id="@+id/button_ready"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:drawableTop="@drawable/ic_success_added"-->
+<!--            android:fontFamily="@font/sf_display_medium"-->
+<!--            android:paddingTop="150dp"-->
+<!--            android:singleLine="false"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/black_light"-->
+<!--            android:text="Подписка&#10;добавлена"-->
+<!--            android:textSize="25sp"-->
+<!--            android:visibility="invisible">-->
 
-        </Button>
+<!--        </Button>-->
+
+
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/color"
             android:layout_width="match_parent"
             android:background="@color/white"
             android:layout_height="match_parent">

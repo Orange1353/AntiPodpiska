@@ -6,10 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import android.widget.*
 import androidx.appcompat.widget.SwitchCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
@@ -22,8 +19,6 @@ class CreateCardFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -37,8 +32,9 @@ class CreateCardFragment : Fragment() {
 
         val btnContinue: Button = view.findViewById(R.id.button_continue)
         val btnReady:Button = view.findViewById(R.id.button_ready)
-        var lay :ConstraintLayout = view.findViewById(R.id.color)
-        var layClick :ConstraintLayout = view.findViewById(R.id.lay_click)
+        var lay : FrameLayout = view.findViewById(R.id.color)
+        var layReady :ConstraintLayout = view.findViewById(R.id.added)
+        var nameSub: TextView = view.findViewById(R.id.name_new_sub)
 
         var pushEnabled : SwitchCompat= view.findViewById(R.id.switch_enabled)
 
@@ -55,16 +51,18 @@ class CreateCardFragment : Fragment() {
         communicator = activity as Communicator
 
         btnContinue.setOnClickListener {
-            btnReady.isVisible = true
+            layReady.isVisible = true
             lay.isVisible = false
+
+            btnReady.isVisible = true
+
+            nameSub.text = communicator.getNameNewSub()
         }
 
         btnReady.setOnClickListener {
-            communicator.cardFragmentToListSub(addCard.text.toString(), pushEnabled.isChecked())
+            communicator.cardFragmentToListSub()
         }
-        layClick.setOnClickListener{
-            communicator.cardFragmentToListSub(addCard.text.toString(), pushEnabled.isChecked())
-        }
+
 
         val buttonBack: Button= view.findViewById(R.id.button_back)
 

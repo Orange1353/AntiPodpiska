@@ -29,6 +29,7 @@ import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuBuilder
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import com.example.antipodpiska.R
 import com.example.antipodpiska.addition.EditSubActivity
@@ -44,6 +45,7 @@ import kotlinx.android.synthetic.main.element_detail_any_text.view.*
 import kotlinx.android.synthetic.main.element_detail_cost_only.view.text_cost_details
 import kotlinx.android.synthetic.main.element_detail_with_free.view.*
 import kotlinx.android.synthetic.main.element_next_pay.view.*
+import java.lang.invoke.ConstantCallSite
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
@@ -66,8 +68,9 @@ class SubDetailActivity : AppCompatActivity() {
         /* Connect variables to UI elements. */
         val subName: TextView = findViewById(R.id.flower_detail_name)
         val subImage: ImageView = findViewById(R.id.flower_detail_image)
-        val backButton: ImageButton = findViewById(R.id.button_back)
+        val backButton: Button = findViewById(R.id.button_back)
         val unSubButton: Button = findViewById(R.id.button_unSub)
+        val mainLayout: ConstraintLayout = findViewById(R.id.main_lay_detail)
 
         setSupportActionBar(findViewById(R.id.toolbar))
         getSupportActionBar()?.setTitle(null)
@@ -93,9 +96,11 @@ class SubDetailActivity : AppCompatActivity() {
             val dateNearestPay: View = inflater.inflate(R.layout.element_next_pay, null)
             val container = findViewById<View>(R.id.base_lay) as LinearLayout
 
+            mainLayout.setBackgroundColor(this.getColor(currentSub!!.color))
 
             if (currentSub!!.imageDrawable != -1)
                 subImage.setImageResource(currentSub.imageDrawable)
+
            /* else {
                 val radius: Float = 20F
                 val shapeAppearanceModel = ShapeAppearanceModel()
