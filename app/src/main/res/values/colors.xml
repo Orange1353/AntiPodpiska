@@ -43,10 +43,10 @@
     <color name="grey_progress_bar">#E3E3E3</color>
     <color name="other_grey">#B8B9BF</color>
     <color name="dark_grey">#6E6E6E</color>
-<color name="blue_back">#00AAFF</color>
-<color name="blue_dark">#002A7C</color>
-
-
+    <color name="blue_back">#00AAFF</color>
+    <color name="blue_dark">#002A7C</color>
+    <color name="grey_element">#E4E9F0</color>
+<color name="grey_element_text">#8E91A2</color>
 
 
 

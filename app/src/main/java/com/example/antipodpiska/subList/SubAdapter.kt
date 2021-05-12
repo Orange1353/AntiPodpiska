@@ -424,9 +424,11 @@ fun getRGB(rgb: String): Boolean {
     + 0.0722 * pow(b.toDouble(), 2.2))/100000
 
     //> 0.5
-    val use_black = L > 1.7
+    val use_black = L > 1.1
     return use_black
 }
+
+
 object FlowerDiffCallback : DiffUtil.ItemCallback<Sub>() {
     override fun areItemsTheSame(oldItem: Sub, newItem: Sub): Boolean {
         return oldItem == newItem

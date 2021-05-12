@@ -195,7 +195,6 @@ app:cornerRadius="0dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:max="7"
-
         android:progress="1"
         android:progressDrawable="@drawable/shape_seek_bar"
         android:min="1"

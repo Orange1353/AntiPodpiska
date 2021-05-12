@@ -195,11 +195,10 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
             val id = preferences.getInt("id", -1)
 
             var imageDrawable = -1
-            //var imageColor = getResources().getColor(R.color.light_back)
+            var imageColor = (R.color.light_back)
 
         val listExist = existSubList(resources, this)
-        var imageColor = listExist[1].color
-        //-328708
+     //   var imageColor = listExist[1].color
             if (id != -1)
             {
                imageDrawable = listExist[id].logoId

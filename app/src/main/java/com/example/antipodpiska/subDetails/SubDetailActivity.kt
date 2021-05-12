@@ -25,16 +25,19 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.view.View.GONE
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
+import androidx.core.view.isVisible
 import com.example.antipodpiska.R
 import com.example.antipodpiska.addition.EditSubActivity
 import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.subList.SUB_ID
+import com.example.antipodpiska.subList.getRGB
 import com.example.antipodpiska.utils.startSubListActivity
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
@@ -42,7 +45,6 @@ import com.google.android.material.shape.ShapeAppearanceModel
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_sub_detail_base.*
 import kotlinx.android.synthetic.main.element_detail_any_text.view.*
-import kotlinx.android.synthetic.main.element_detail_cost_only.view.text_cost_details
 import kotlinx.android.synthetic.main.element_detail_with_free.view.*
 import kotlinx.android.synthetic.main.element_next_pay.view.*
 import java.lang.invoke.ConstantCallSite
@@ -71,6 +73,21 @@ class SubDetailActivity : AppCompatActivity() {
         val backButton: Button = findViewById(R.id.button_back)
         val unSubButton: Button = findViewById(R.id.button_unSub)
         val mainLayout: ConstraintLayout = findViewById(R.id.main_lay_detail)
+        var textFree: TextView = findViewById(R.id.text_before_free)
+        var textCost: TextView = findViewById(R.id.text_cost_details)
+        var nextPay: TextView = findViewById(R.id.nextPay)
+        var paidSumm: TextView = findViewById(R.id.paid_summ)
+        var tiedCard: TextView = findViewById(R.id.detail_card)
+        var timeStart: TextView = findViewById(R.id.time_start)
+        var progressBar: ProgressBar = findViewById(R.id.progress)
+        var layFree: LinearLayout = findViewById(R.id.frameLayoutFree)
+        var layCost: LinearLayout = findViewById(R.id.frameLayoutCost)
+        var textFreeUp: TextView = findViewById(R.id.text_free)
+        var textCostUp: TextView = findViewById(R.id.text_cost)
+        var dayBeforePay: TextView = findViewById(R.id.day_before_pay)
+
+        var laydelete1: LinearLayout = findViewById(R.id.delete_archive1)
+        var laydelete2: LinearLayout = findViewById(R.id.delete_archive2)
 
         setSupportActionBar(findViewById(R.id.toolbar))
         getSupportActionBar()?.setTitle(null)
@@ -88,18 +105,37 @@ class SubDetailActivity : AppCompatActivity() {
             currentSubId = bundle.getLong(SUB_ID)
         }
 
+        var useBlack = true
 
         currentSubId?.let {
             val currentSub = subDetailViewModel.getFlowerForId(it)
             subName.text = currentSub?.name
 
+
+            if ( currentSub!!.color!= 0 &&  currentSub.color != -1)
+                useBlack = getRGB(this.getResources().getString( currentSub.color))
+            else
+                useBlack = getRGB("#FFFAFBFC")
+
+            if (useBlack)
+            { subName.setTextColor(this.resources.getColor(R.color.black_light))
+                dayBeforePay.setTextColor(this.resources.getColor(R.color.black_light))
+            }
+            else {
+                subName.setTextColor(this.resources.getColor(R.color.white))
+                dayBeforePay.setTextColor(this.resources.getColor(R.color.white))
+            }
             val dateNearestPay: View = inflater.inflate(R.layout.element_next_pay, null)
             val container = findViewById<View>(R.id.base_lay) as LinearLayout
 
             mainLayout.setBackgroundColor(this.getColor(currentSub!!.color))
+            window.setStatusBarColor(getResources().getColor(currentSub!!.color))
+
 
             if (currentSub!!.imageDrawable != -1)
                 subImage.setImageResource(currentSub.imageDrawable)
+
+            timeStart.text = currentSub.datePay
 
            /* else {
                 val radius: Float = 20F
@@ -120,6 +156,10 @@ class SubDetailActivity : AppCompatActivity() {
 
             if(currentSub?.status == "Архив")
             {
+                layCost.isVisible = false
+                layFree.isVisible = false
+                laydelete1.isVisible = false
+                laydelete2.isVisible = false
 
                 dateNearestPay.nextPaytext.text = "Подписка находится в архиве"
                 dateNearestPay.nextPaytext.setTextColor(getResources().getColor(R.color.grey2_light))
@@ -135,24 +175,18 @@ class SubDetailActivity : AppCompatActivity() {
 
                     val tmp = rusification(currentSub?.periodPay, currentSub?.periodTypePay)
 
-                    val costPlusPeriod: View = inflater.inflate(
-                        R.layout.element_detail_cost_only,
-                        null
-                    )
-                    costPlusPeriod.text_cost_details.text =
+
+                    textCost.text =
                         currentSub?.costSub + " " + currentSub?.costCurr + " " + rusificationEvery(tmp) +" " + currentSub?.periodPay + " " + tmp
-                    container.addView(costPlusPeriod)
+
                 } else {
-                    val costPlusPeriod: View = inflater.inflate(
-                        R.layout.element_detail_cost_only,
-                        null
-                    )
-                    costPlusPeriod.text_cost_details.text =
+
+                    textCost.text =
                         currentSub?.costSub + " " + currentSub?.costCurr
-                    container.addView(costPlusPeriod)
                 }
 
             }
+
                 val description: View = inflater.inflate(R.layout.element_detail_any_text, null)
                 description.name_field.text = "Описание"
                 description.value_field.text = currentSub.description
@@ -162,10 +196,10 @@ class SubDetailActivity : AppCompatActivity() {
                 unSubButton.text = "Возобновить учёт"
 
             if (currentSub?.card != "") {
-                val card: View = inflater.inflate(R.layout.element_detail_any_text, null)
-                card.name_field.text = "Привязанная карта"
-                card.value_field.text = "*" + currentSub?.card
-                container.addView(card)
+
+
+                tiedCard.text = "*" + currentSub?.card
+
             }
         }
 
@@ -209,9 +243,9 @@ else {
 
 
                            if(currentSub.datePay != dateEnd.format(formatter).toString())
-                       dateNearestPay.nextPay.text = dateEnd.format(formatter).toString()
+                               nextPay.text = dateEnd.format(formatter).toString()
 
-                       container.addView(dateNearestPay)
+
 
                    }
 
@@ -219,10 +253,6 @@ else {
                    if (currentSub?.periodFree != "")
                    {
                        if (currentSub?.costSub != "") {
-                           val costPlusPeriod: View = inflater.inflate(
-                               R.layout.element_detail_with_free,
-                               null
-                           )
 
                            if (currentSub?.periodPay != "") {
 
@@ -234,15 +264,15 @@ else {
                                        "н" -> tmp1 = "нед."
                                        "м" -> tmp1 = "мес."
                                    }
-                               costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr + " " + "\n"+rusificationEvery(tmp) +" " + currentSub?.periodPay + " " + tmp1
+                               textCost.text = currentSub?.costSub + " " + currentSub?.costCurr + " " + "\n"+rusificationEvery(tmp) +" " + currentSub?.periodPay + " " + tmp1
 
-                               container.addView(costPlusPeriod)
+
 
                            }
                            else
                            {
-                               costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr
-                               container.addView(costPlusPeriod)
+                               textCost.text = currentSub?.costSub + " " + currentSub?.costCurr
+
                            }
 
                          var dateAdd = LocalDate.parse(currentSub?.datePay, formatter)
@@ -250,70 +280,56 @@ else {
                          dateAdd.plusDays(progress)
                           // val tmp = rusification(currentSub?.periodFree, currentSub?.periodTypeFree)
                            var t = "до "+ dateAdd.format(formatter).toString()
-                           costPlusPeriod.text_before_free.text = t //currentSub?.periodFree + " " + tmp             //DateAdd + FreePeriod
-
+                           textFree.text = t //currentSub?.periodFree + " " + tmp             //DateAdd + FreePeriod
+                           progressBar.progress = progress.toInt()
+                           progressBar.max = currentSub.periodPay.toInt()
+                           dayBeforePay.text = progress.toString()+" " + rusification(progress.toString(), currentSub.periodTypeFree).toUpperCase() +" до оплаты"
                        }
 
                        else{
-                           val costPlusPeriod: View = inflater.inflate(
-                               R.layout.element_detail_free_only,
-                               null
-                           )
-
+                           layCost.isVisible = false
                            var dateAdd = LocalDate.parse(currentSub?.datePay, formatter)
                            var progress = ChronoUnit.DAYS.between(dateAdd, dateEndFree)
                            dateAdd.plusDays(progress)
                            var t = "до "+ dateAdd.format(formatter).toString()
-                           costPlusPeriod.text_before_free.text = t
+                           textFree.text = t
                            //val tmp = rusification(currentSub?.periodFree, currentSub?.periodTypeFree)
                           // costPlusPeriod.text_before_free.text = currentSub?.periodFree + " " + tmp
                           // container.addView(costPlusPeriod)
+
+                           progressBar.progress = progress.toInt()
+                           progressBar.max = currentSub.periodPay.toInt()
+
+                           dayBeforePay.text = progress.toString()+" " + rusification(progress.toString(), currentSub.periodTypePay).toUpperCase() +" до оплаты"
                        }
 
                    }
                    else
                    if (currentSub?.costSub != "") {
-
                        if (currentSub?.periodPay != "") {
-
-
-
-                           val costPlusPeriod: View = inflater.inflate(
-                               R.layout.element_detail_cost_only,
-                               null
-                           )
+                           layFree.visibility = GONE
                            val tmp = rusification(currentSub?.periodPay, currentSub?.periodTypePay)
-                           costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr + " " + rusificationEvery(tmp) +" " + currentSub?.periodPay + " " + tmp
-                           container.addView(costPlusPeriod)
+                           textCost.text = currentSub?.costSub + " " + currentSub?.costCurr + " " + rusificationEvery(tmp) +" " + currentSub?.periodPay + " " + tmp
                        }
-                       else
-                       {
-                           val costPlusPeriod: View = inflater.inflate(
-                               R.layout.element_detail_cost_only,
-                               null
-                           )
-                           costPlusPeriod.text_cost_details.text = currentSub?.costSub + " " + currentSub?.costCurr
-                           container.addView(costPlusPeriod)
+                       else {
+                           layFree.visibility = GONE
+                           textCost.text = currentSub?.costSub + " " + currentSub?.costCurr
                        }
-
                    }
 
                  if (currentSub?.card != "") {
-                     val card: View = inflater.inflate(R.layout.element_detail_any_text, null)
-                     card.name_field.text = "Привязанная карта"
-                     card.value_field.text = "*" + currentSub?.card
-                     container.addView(card)
+
+                     tiedCard.text = "*" + currentSub?.card
+
                  }
 
-                   val paidSumm: View = inflater.inflate(R.layout.element_detail_any_text, null)
-                   paidSumm.name_field.text = "Оплачено уже"
-                   paidSumm.value_field.text = summCost.toString() + " " + currentSub?.costCurr
-                   container.addView(paidSumm)
+                   paidSumm.text = summCost.toString() + " " + currentSub?.costCurr
 
-                val description: View = inflater.inflate(R.layout.element_detail_any_text, null)
+
+             /*   val description: View = inflater.inflate(R.layout.element_detail_any_text, null)
                 description.name_field.text = "Описание"
                 description.value_field.text = currentSub.description
-                container.addView(description)
+                container.addView(description)*/
             }
 
             backButton.setOnClickListener {
@@ -467,5 +483,7 @@ else {
         val stringSub = Gson().toJson(sub, Sub::class.java)
         return Gson().fromJson<Sub>(stringSub, Sub::class.java)
     }
+
+
 
 }
