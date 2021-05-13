@@ -5,6 +5,8 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -64,7 +66,7 @@ class CreatePediodFragment : Fragment() {
         val addDatePay: EditText = view.findViewById(R.id.day_pay)
         val buttonBack: Button= view.findViewById(R.id.button_back)
         val buttonCalendar: ImageView = view.findViewById(R.id.imageViewCalendar)
-
+        val btnContinue: Button = view.findViewById(R.id.button_continue)
 
         var cal = Calendar.getInstance()
 
@@ -86,9 +88,22 @@ class CreatePediodFragment : Fragment() {
         addDate(context, cal, dateSetListenerDatePay)
         }
 
+        addDatePay.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(addDatePay.text.toString() != "ДД.ММ.ГГГГ")
+                    btnContinue.setBackgroundTintList(context.getResources().getColorStateList(R.color.blue_light))
+                else
+                    btnContinue.setBackgroundTintList(context.getResources().getColorStateList(R.color.border_light))
+            }
+        })
 
 
-        val btnContinue: Button = view.findViewById(R.id.button_continue)
         communicator = activity as Communicator
         btnContinue.setOnClickListener {
 

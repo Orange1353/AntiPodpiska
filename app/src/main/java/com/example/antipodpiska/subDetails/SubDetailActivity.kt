@@ -1,21 +1,5 @@
 package com.example.antipodpiska.subDetails
 
-/*
- * Copyright (C) 2020 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 
 
 import android.annotation.SuppressLint
@@ -168,55 +152,44 @@ class SubDetailActivity : AppCompatActivity() {
 
                 if (currentSub?.costSub != "") {
 
-
                 if (currentSub?.periodPay != "") {
-
-
 
                     val tmp = rusification(currentSub?.periodPay, currentSub?.periodTypePay)
 
-
                     textCost.text =
                         currentSub?.costSub + " " + currentSub?.costCurr + " " + rusificationEvery(tmp) +" " + currentSub?.periodPay + " " + tmp
-
                 } else {
-
                     textCost.text =
                         currentSub?.costSub + " " + currentSub?.costCurr
                 }
-
             }
-
                 val description: View = inflater.inflate(R.layout.element_detail_any_text, null)
                 description.name_field.text = "Описание"
                 description.value_field.text = currentSub.description
                 container.addView(description)
 
-
                 unSubButton.text = "Возобновить учёт"
 
             if (currentSub?.card != "") {
-
-
                 tiedCard.text = "*" + currentSub?.card
-
             }
         }
 
 
-
 else {
+
                 var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
                 var dateEndFree = LocalDate.parse(currentSub?.datePay, formatter)
-                       if (currentSub?.datePay != null && currentSub?.datePay != "") {
+
+  //                     if (currentSub?.datePay != null && currentSub?.datePay != "") {
 
                        var dateEnd = LocalDate.parse(currentSub?.datePay, formatter)
-
                        var dateNow = LocalDate.now()
-
                        var costSub = 0
                        summCost = 0
 
+
+                //Подсчет следующего платежа
                        if (currentSub?.costSub != "")
                            costSub = currentSub?.costSub.toInt()
 
@@ -224,10 +197,9 @@ else {
                            when (currentSub?.periodTypeFree) {
                                "Дней" -> dateEnd = dateEnd.plusDays(currentSub?.periodFree.toLong())
                                "Недель" -> dateEnd = dateEnd.plusWeeks(currentSub?.periodFree.toLong())
-                               "Месяцев" -> dateEnd = dateEnd.plusDays(30 * currentSub?.periodFree.toLong())
+                               "Месяцев" -> dateEnd = dateEnd.plusMonths(currentSub?.periodFree.toLong())
                            }
                            dateEndFree = dateEnd
-
 
                        if (currentSub?.periodPay != "")
                        while (dateEnd < dateNow) {
@@ -237,80 +209,100 @@ else {
                                "Недель" -> dateEnd =
                                    dateEnd.plusWeeks(currentSub?.periodPay.toLong())
                                "Месяцев" -> dateEnd =
-                                   dateEnd.plusDays(30 * currentSub?.periodPay.toLong())
+                                   dateEnd.plusMonths(currentSub?.periodPay.toLong())
                            }
                        }
+                       if(currentSub.datePay != dateEnd.format(formatter).toString())
+                          nextPay.text = dateEnd.format(formatter).toString()
 
 
-                           if(currentSub.datePay != dateEnd.format(formatter).toString())
-                               nextPay.text = dateEnd.format(formatter).toString()
 
 
 
-                   }
+
+                //Если сейчас бесплатный период
+                    if(currentSub?.periodFree != "" && dateNow < dateEndFree && currentSub?.periodFree != "0")
+                {
+                    var progress2 = ChronoUnit.DAYS.between(dateNow, dateEndFree)
+                    progressBar.progress = progress2.toInt()
+                    progressBar.max = currentSub.periodFree.toInt()
+                    dayBeforePay.text = progress2.toString()+" " + rusification(progress2.toString(), currentSub.periodTypeFree).toUpperCase() +" до оплаты"
+                }
+                else
+                    if(currentSub.periodPay != "")
+                    {
+                        var progress2 = ChronoUnit.DAYS.between(dateNow, dateEnd)
+                        progressBar.progress = progress2.toInt()
+                        progressBar.max = currentSub.periodPay.toInt()
+                        dayBeforePay.text = progress2.toString()+" " + rusification(progress2.toString(), currentSub.periodTypePay).toUpperCase() +" до оплаты"
+                    }
 
 
-                   if (currentSub?.periodFree != "")
+
+
+
+
+//                   }
+
+
+             // Заполнение серых полей периодов
+
+
+                // С Бесплатным периодом
+                   if (currentSub?.periodFree != "" && currentSub?.periodFree != "0")
                    {
+                       //Заполнение квадратика
+                       var dateAdd = LocalDate.parse(currentSub?.datePay, formatter)
+                       var progress = ChronoUnit.DAYS.between(dateAdd, dateEndFree)
+                       dateAdd.plusDays(progress)
+                       var t = "до "+ dateEndFree.format(formatter).toString()
+                       textFree.text = t
+
+                       // Есть стоимость
                        if (currentSub?.costSub != "") {
 
+                           //Есть период платежей
                            if (currentSub?.periodPay != "") {
 
                                var tmp = rusification(currentSub?.periodPay, currentSub?.periodTypePay)
                                var tmp1 = tmp
-                               if((currentSub?.periodPay + tmp).length > 8)
+                               if((currentSub?.periodPay + tmp).length > 7)
                                    when (tmp.substring(0, 1)) {
                                        "д" -> tmp1 = "дн."
                                        "н" -> tmp1 = "нед."
                                        "м" -> tmp1 = "мес."
                                    }
-                               textCost.text = currentSub?.costSub + " " + currentSub?.costCurr + " " + "\n"+rusificationEvery(tmp) +" " + currentSub?.periodPay + " " + tmp1
-
-
-
+                               textCost.text = currentSub?.costSub + " " + currentSub?.costCurr + " " +rusificationEvery(tmp) +" " + currentSub?.periodPay + " " + tmp1
                            }
+                           //Нет периода платежей
                            else
                            {
                                textCost.text = currentSub?.costSub + " " + currentSub?.costCurr
-
                            }
-
-                         var dateAdd = LocalDate.parse(currentSub?.datePay, formatter)
-                         var progress = ChronoUnit.DAYS.between(dateAdd, dateEndFree)
-                         dateAdd.plusDays(progress)
-                          // val tmp = rusification(currentSub?.periodFree, currentSub?.periodTypeFree)
-                           var t = "до "+ dateAdd.format(formatter).toString()
-                           textFree.text = t //currentSub?.periodFree + " " + tmp             //DateAdd + FreePeriod
-                           progressBar.progress = progress.toInt()
-                           progressBar.max = currentSub.periodPay.toInt()
-                           dayBeforePay.text = progress.toString()+" " + rusification(progress.toString(), currentSub.periodTypeFree).toUpperCase() +" до оплаты"
                        }
 
+                       //Нет стоимости
                        else{
                            layCost.isVisible = false
-                           var dateAdd = LocalDate.parse(currentSub?.datePay, formatter)
-                           var progress = ChronoUnit.DAYS.between(dateAdd, dateEndFree)
-                           dateAdd.plusDays(progress)
-                           var t = "до "+ dateAdd.format(formatter).toString()
-                           textFree.text = t
-                           //val tmp = rusification(currentSub?.periodFree, currentSub?.periodTypeFree)
-                          // costPlusPeriod.text_before_free.text = currentSub?.periodFree + " " + tmp
-                          // container.addView(costPlusPeriod)
 
-                           progressBar.progress = progress.toInt()
-                           progressBar.max = currentSub.periodPay.toInt()
 
-                           dayBeforePay.text = progress.toString()+" " + rusification(progress.toString(), currentSub.periodTypePay).toUpperCase() +" до оплаты"
                        }
 
+
                    }
+
+
+                   //Нет Бесплатного периода
                    else
+                       //Есть стоимость
                    if (currentSub?.costSub != "") {
+                       //Еcть период платежей
                        if (currentSub?.periodPay != "") {
                            layFree.visibility = GONE
                            val tmp = rusification(currentSub?.periodPay, currentSub?.periodTypePay)
                            textCost.text = currentSub?.costSub + " " + currentSub?.costCurr + " " + rusificationEvery(tmp) +" " + currentSub?.periodPay + " " + tmp
                        }
+                       //нет периода платежей
                        else {
                            layFree.visibility = GONE
                            textCost.text = currentSub?.costSub + " " + currentSub?.costCurr
@@ -442,6 +434,8 @@ else {
               //  period.substring(period.length-3, period.length-1)
                 period.toInt() % 100 in 5..20 || period.toInt() % 10 == 0-> tmp = "месяцев"
                 period.toInt() % 10 in 2..4 -> tmp = "месяца"
+                period.toInt() % 10 in 5..9 -> tmp = "месяцев"
+
             }
         }
        else if (periodType == "Дней") {
@@ -451,6 +445,7 @@ else {
                 //  period.substring(period.length-3, period.length-1)
                 period.toInt() % 100 in 5..20 || period.toInt() % 10 == 0 -> tmp = "дней"
                 period.toInt() % 10 in 2..4 -> tmp = "дня"
+                period.toInt() % 10 in 5..9 -> tmp = "дней"
             }
         }
         else if (periodType == "Недель") {
@@ -460,6 +455,7 @@ else {
                 //  period.substring(period.length-3, period.length-1)
                 period.toInt() % 100 in 5..20 || period.toInt() % 10 == 0 -> tmp = "недель"
                 period.toInt() % 10 in 2..4 -> tmp = "недели"
+                period.toInt() % 10 in 5..9 -> tmp = "недель"
             }
         }
 
@@ -470,10 +466,10 @@ else {
 
         when{
 
-           tmp == "день" || tmp == "месяц"-> return "каждый"
-           tmp == "дня"  || tmp == "недели"|| tmp == "месяца" || tmp == "дней"|| tmp == "недель" || tmp == "месяцев"-> return "каждые"
-           tmp == "недели"|| tmp == "месяца"-> return "каждые"
-           tmp == "неделю"-> return "каждую"
+           tmp == "день" || tmp == "месяц"-> return "\nкаждый"
+           tmp == "дня"  || tmp == "недели"|| tmp == "месяца" || tmp == "дней"|| tmp == "недель" || tmp == "месяцев"-> return "\nкаждые"
+           tmp == "недели"|| tmp == "месяца"-> return "\nкаждые"
+           tmp == "неделю"-> return "\nкаждую"
             else-> return ""
         }
 
@@ -483,7 +479,6 @@ else {
         val stringSub = Gson().toJson(sub, Sub::class.java)
         return Gson().fromJson<Sub>(stringSub, Sub::class.java)
     }
-
 
 
 }

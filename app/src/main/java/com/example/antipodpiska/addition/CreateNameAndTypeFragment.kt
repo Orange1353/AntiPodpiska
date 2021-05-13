@@ -2,12 +2,16 @@ package com.example.antipodpiska.addition
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import com.example.antipodpiska.R
 import com.example.antipodpiska.data.existSubList
 import com.example.antipodpiska.utils.startSubListActivity
@@ -30,7 +34,7 @@ class CreateNameAndTypeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-       var view: View = inflater.inflate(R.layout.fragment_create_name_type, container, false)
+        var view: View = inflater.inflate(R.layout.fragment_create_name_type, container, false)
 
         var context: Context? = getContext()
         var spinner_typeSub: Spinner = view.findViewById(R.id.spinner_type_sub)
@@ -43,6 +47,37 @@ class CreateNameAndTypeFragment : Fragment() {
 
         var addSubName: EditText = view.findViewById(R.id.add_flower_name)
         var addSubDescription: EditText= view.findViewById(R.id.add_flower_description)
+        val btnContinue: Button = view.findViewById(R.id.button_continue)
+
+        addSubName.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(addSubDescription.text.toString() != "" && addSubName.text.toString() != "")
+                    btnContinue.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.blue_light))
+                else
+                    btnContinue.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.border_light))
+            }
+        })
+
+        addSubDescription.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+if(addSubDescription.text.toString() != "" && addSubName.text.toString() != "")
+    btnContinue.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.blue_light))
+                else
+    btnContinue.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.border_light))
+            }
+        })
 
 
         var listExist = existSubList(resources, context!!)
@@ -59,7 +94,8 @@ class CreateNameAndTypeFragment : Fragment() {
             }
         }
 
-        val btnContinue: Button = view.findViewById(R.id.button_continue)
+
+
         communicator = activity as Communicator
         btnContinue.setOnClickListener {
             if(addSubName.text.toString() != "" && addSubDescription.text.toString() != "")

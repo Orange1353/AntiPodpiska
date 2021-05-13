@@ -52,4 +52,8 @@
 
     <color name="youtube_back">#FF0000</color>
     <color name="spotify">#1ED760</color>
+    <color name="apple_arcade">#FFF1F2</color>
+    <color name="arzamas">#F2F2F2</color>
+ <color name="bookmate">#A27A64</color>
+ <color name="clubhouse">#4A285E</color>
 </resources>
