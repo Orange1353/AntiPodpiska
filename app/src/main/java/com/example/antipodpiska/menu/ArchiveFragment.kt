@@ -99,7 +99,7 @@ class ArchiveFragment : Fragment() {
                 Log.e("55555 ARC", it.toString())
                 var list1:List<Sub> = ArrayList<Sub>()
                 for (i in it.indices) {
-                    if(it[i].status == "Архив")
+                    if(it[i].status == "Архив" || it[i].status == "Удалена")
                         list1 = list1.plus(it[i])
                 }
                 subsAdapter.submitList(list1)

@@ -5,9 +5,8 @@ package com.example.antipodpiska.subDetails
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.view.View.GONE
 import android.widget.*
@@ -15,7 +14,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import com.example.antipodpiska.R
 import com.example.antipodpiska.addition.EditSubActivity
@@ -23,18 +21,19 @@ import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.subList.SUB_ID
 import com.example.antipodpiska.subList.getRGB
 import com.example.antipodpiska.utils.startSubListActivity
-import com.google.android.material.shape.CornerFamily
-import com.google.android.material.shape.MaterialShapeDrawable
-import com.google.android.material.shape.ShapeAppearanceModel
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_sub_detail_base.*
+import kotlinx.android.synthetic.main.activity_sub_detail_base.view.*
+import kotlinx.android.synthetic.main.activity_sub_detail_base.view.time_start
 import kotlinx.android.synthetic.main.element_detail_any_text.view.*
+import kotlinx.android.synthetic.main.element_detail_for_archive.view.*
 import kotlinx.android.synthetic.main.element_detail_with_free.view.*
 import kotlinx.android.synthetic.main.element_next_pay.view.*
-import java.lang.invoke.ConstantCallSite
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
+import java.util.*
 
 
 class SubDetailActivity : AppCompatActivity() {
@@ -56,6 +55,7 @@ class SubDetailActivity : AppCompatActivity() {
         val subImage: ImageView = findViewById(R.id.flower_detail_image)
         val backButton: Button = findViewById(R.id.button_back)
         val unSubButton: Button = findViewById(R.id.button_unSub)
+        val unSubedButton: Button = findViewById(R.id.button_unSubed)
         val mainLayout: ConstraintLayout = findViewById(R.id.main_lay_detail)
         var textFree: TextView = findViewById(R.id.text_before_free)
         var textCost: TextView = findViewById(R.id.text_cost_details)
@@ -80,7 +80,7 @@ class SubDetailActivity : AppCompatActivity() {
         menuBuilder.setOptionalIconsVisible(true)
 
         val inflater = applicationContext.getSystemService(
-            Context.LAYOUT_INFLATER_SERVICE
+                Context.LAYOUT_INFLATER_SERVICE
         ) as LayoutInflater
         val container = findViewById<View>(R.id.base_lay) as LinearLayout
 
@@ -97,7 +97,7 @@ class SubDetailActivity : AppCompatActivity() {
 
 
             if ( currentSub!!.color!= 0 &&  currentSub.color != -1)
-                useBlack = getRGB(this.getResources().getString( currentSub.color))
+                useBlack = getRGB(this.getResources().getString(currentSub.color))
             else
                 useBlack = getRGB("#FFFAFBFC")
 
@@ -138,7 +138,8 @@ class SubDetailActivity : AppCompatActivity() {
                 subImage.setText(firstLetter)
             }*/
 
-            if(currentSub?.status == "Архив")
+            if(currentSub?.status == "Архив" || currentSub?.status == "Удалена" )
+
             {
                 layCost.isVisible = false
                 layFree.isVisible = false
@@ -147,7 +148,12 @@ class SubDetailActivity : AppCompatActivity() {
 
                 dateNearestPay.nextPaytext.text = "Подписка находится в архиве"
                 dateNearestPay.nextPaytext.setTextColor(getResources().getColor(R.color.grey2_light))
+                dateNearestPay.time_start.text = currentSub.datePay
+                dateNearestPay.in_archive.text = currentSub.dateOfDelete
                 container.addView(dateNearestPay)
+
+
+
 
 
                 if (currentSub?.costSub != "") {
@@ -163,21 +169,16 @@ class SubDetailActivity : AppCompatActivity() {
                         currentSub?.costSub + " " + currentSub?.costCurr
                 }
             }
-                val description: View = inflater.inflate(R.layout.element_detail_any_text, null)
-                description.name_field.text = "Описание"
-                description.value_field.text = currentSub.description
-                container.addView(description)
+
 
                 unSubButton.text = "Возобновить учёт"
-
+                unSubedButton.isVisible = false
             if (currentSub?.card != "") {
                 tiedCard.text = "*" + currentSub?.card
             }
         }
 
-
 else {
-
                 var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
                 var dateEndFree = LocalDate.parse(currentSub?.datePay, formatter)
 
@@ -207,9 +208,9 @@ else {
                            when (currentSub?.periodTypePay) {
                                "Дней" -> dateEnd = dateEnd.plusDays(currentSub?.periodPay.toLong())
                                "Недель" -> dateEnd =
-                                   dateEnd.plusWeeks(currentSub?.periodPay.toLong())
+                                       dateEnd.plusWeeks(currentSub?.periodPay.toLong())
                                "Месяцев" -> dateEnd =
-                                   dateEnd.plusMonths(currentSub?.periodPay.toLong())
+                                       dateEnd.plusMonths(currentSub?.periodPay.toLong())
                            }
                        }
                        if(currentSub.datePay != dateEnd.format(formatter).toString())
@@ -329,37 +330,63 @@ else {
                 finish()
             }
 
-            unSubButton.setOnClickListener {
 
-                if (currentSub.status == "Архив"){
-                    val newSub = clone(currentSub)
-                    newSub!!.status = "Активна"
-
-                    subDetailViewModel.editSub(currentSub, newSub!!, this)
-                    Toast.makeText(
-                        this,
-                        "Готово, вы можете отредактировать подписку при необходимости",
-                        Toast.LENGTH_LONG
-                    ).show()
-
-                }
-                else
-                {
+            unSubedButton.setOnClickListener {
                 val newSub = clone(currentSub)
                 newSub?.status = "Архив"
 
-                   // var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
-                    var timeNow = LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
-                    newSub?.datePay = timeNow
+                // var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+                var timeNow = LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+                newSub?.dateOfDelete = timeNow
 
 
-                 subDetailViewModel.editSub(currentSub, newSub!!, this)
+                subDetailViewModel.editSub(currentSub, newSub!!, this)
 
                 Toast.makeText(this, "Подписка в Архиве", Toast.LENGTH_SHORT).show()
+                          finish()
+                          startSubListActivity()
             }
-                finish()
-                startSubListActivity()
+
+
+            unSubButton.setOnClickListener {
+
+                if (currentSub.status == "Архив" || currentSub.status == "Удалена"){
+   //                 val newSub = clone(currentSub)
+    //                newSub!!.status = "Активна"
+   //                 newSub!!.dateOfDelete = ""
+
+                    val dateFormat = SimpleDateFormat("dd.MM.yyyy")
+                    val cal: Calendar = GregorianCalendar()
+ //                   newSub.datePay = dateFormat.format(cal.getTime()).toString()
+
+                 //   subDetailViewModel.editSub(currentSub, newSub!!, this)
+
+                 //   subDetailViewModel.insertSub(newSub!!, this)
+
+                    subDetailViewModel.insertSub(currentSub.name, currentSub.color, currentSub.description, currentSub.typeSub, dateFormat.format(cal.getTime()).toString(), "", currentSub.costSub,
+                            currentSub.costCurr, currentSub.periodPay, currentSub.periodTypeFree, currentSub.periodTypePay, currentSub.card, currentSub.pushEnabled, currentSub.date_add, currentSub.imageDrawable, this,  "Активна")
+
+
+
+                    Toast.makeText(
+                            this,
+                            "Готово, вы можете отредактировать подписку при необходимости",
+                            Toast.LENGTH_LONG
+                    ).show()
+
+                    finish()
+                    startSubListActivity()
+                }
+                else
+                {
+                    var uri: String = currentSub.description
+                    if(!uri.contains("http"))
+                        uri = "http://" + uri
+                    val viewIntent = Intent("android.intent.action.VIEW", Uri.parse(uri))
+                    startActivity(viewIntent)
             }
+
+         }
 
 
        /*     pushEnabled.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -404,14 +431,38 @@ else {
         }
 
         R.id.delete_sub -> {
+
+
             val bundle: Bundle? = intent.extras
             val currentSubId = bundle?.getLong(SUB_ID)
             val currentSub = subDetailViewModel.getFlowerForId(currentSubId!!)
+
+            if(currentSub?.status == "Архив" || currentSub?.status == "Удалена"){
             if (currentSub != null) {
                 subDetailViewModel.removeFlower(currentSub, this)
             }
             finish()
+            }
+            else
+            {
+                val newSub = clone(currentSub!!)
+               // newSub?.status = "Удалена"
+                newSub!!.status = "Удалена"
+
+                // var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+                var timeNow = LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+                newSub?.dateOfDelete = timeNow
+
+                subDetailViewModel.editSub(currentSub, newSub!!, this)
+
+                Toast.makeText(this, "Подписка в Архиве", Toast.LENGTH_SHORT).show()
+                finish()
+                startSubListActivity()
+            }
+
             true
+
+
         }
 
         else -> {

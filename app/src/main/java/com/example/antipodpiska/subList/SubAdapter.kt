@@ -86,13 +86,17 @@ else
             val face: Typeface = Typeface.createFromAsset(
                 context.assets, "font/sf_display_medium.ttf"
             )
+
             subName.setTypeface(face)
 
-
-
-            if (currentSub?.status == "Архив")
+            if (currentSub?.status == "Архив" || currentSub?.status == "Удалена")
             {
-                addDatePay.text = "Отписались " + currentSub?.datePay
+
+                if (currentSub?.status == "Архив")
+                addDatePay.text = "Отписались " + currentSub?.dateOfDelete
+                else
+                addDatePay.text = "Удалили " + currentSub?.dateOfDelete
+
                 status.setText("Архив")
                 if (useBack) {
                     status.setTextColor(context.resources.getColor(R.color.black_light))
@@ -146,7 +150,7 @@ else
                     if (datePay!!.format(formatter) != sub.datePay){
 
                         if (sub.periodPay != "")
-                        addDatePay.text = datePay.format(formatter).toString() //+ " стоимость " + sub.costSub + " " + sub.costCurr //+ "/ " + sub.periodPay + " " + tmp
+                        addDatePay.text =datePay.format(formatter).toString() //+ " стоимость " + sub.costSub + " " + sub.costCurr //+ "/ " + sub.periodPay + " " + tmp
 
                 }
 
@@ -210,7 +214,6 @@ else
                  // Set Progress
                  roundBorder = true
                  startAngle = 0f
-
 
 
                  if (sub.datePay == datePay.format(formatter).toString())
@@ -280,12 +283,15 @@ else
                          val face: Typeface = Typeface.createFromAsset(
                              context.assets, "font/sf_display_bold.ttf"
                          )
-                         val face2: Typeface = Typeface.createFromAsset(
-                             context.assets, "font/sf_display_medium.ttf"
-                         )
+
                          status.setTypeface(face)
-                         countDays.setTypeface(face2)
+
                      }
+
+                     val face2: Typeface = Typeface.createFromAsset(
+                             context.assets, "font/sf_display_medium.ttf"
+                     )
+
                  }
 
 

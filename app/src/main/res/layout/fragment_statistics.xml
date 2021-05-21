@@ -34,6 +34,66 @@
             android:textSize="16sp" />
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/stat_costs_head"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        android:text="Расходы за период:"
+        android:textAllCaps="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lay_up">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/stat_costs"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="10000р, 200Y"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stat_costs_head">
+
+    </TextView>
+
+
+
+    <EditText
+        android:id="@+id/state_date_from"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:gravity="center_vertical"
+        android:text="ДД.ММ.ГГГГ"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/sf_display_regular"
+        android:textColor="@color/grey2_light"
+        android:textSize="18sp"
+        android:backgroundTint="@color/menu_back_light"
+        android:background="@drawable/shape_item"
+        android:digits="0123456789"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stat_costs">
+
+    </EditText>
+    <EditText
+    android:id="@+id/state_date_until"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:gravity="center_vertical"
+        android:text="ДД.ММ.ГГГГ"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/sf_display_regular"
+        android:textColor="@color/grey2_light"
+        android:textSize="18sp"
+        android:backgroundTint="@color/menu_back_light"
+        android:background="@drawable/shape_item"
+        android:digits="0123456789"
+    app:layout_constraintStart_toEndOf="@id/state_date_from"
+    app:layout_constraintTop_toBottomOf="@+id/stat_costs">
+
+</EditText>
 
     <RelativeLayout
         android:id="@+id/lay_calendar"
@@ -42,7 +102,7 @@
         android:layout_marginTop="25dp"
         android:orientation="horizontal"
         android:weightSum="2"
-        app:layout_constraintTop_toBottomOf="@+id/lay_up"
+        app:layout_constraintTop_toBottomOf="@+id/state_date_from"
         tools:layout_editor_absoluteX="0dp">
 
         <!--Pie chart to display the data-->

@@ -23,5 +23,6 @@ data class Sub(
         val date_add: String = "",
         var status: String = "Активна",
         var nearDayPay: String = "",
-        var imageDrawable: Int = -1
+        var imageDrawable: Int = -1,
+        var dateOfDelete: String = ""
 )

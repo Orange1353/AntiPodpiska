@@ -185,7 +185,7 @@ class DataSource(resources: Resources, context: Context) {
         subItem.put("push", sub.pushEnabled)
         subItem.put("status", sub.status)
         subItem.put("imageDrawable", sub.imageDrawable)
-
+        subItem.put("dateOfDelete", sub.dateOfDelete)
 
         if (sub.date_add != "" && sub.date_add != null)
             subItem.put("date_add", sub.date_add)

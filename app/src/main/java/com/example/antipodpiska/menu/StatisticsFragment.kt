@@ -1,13 +1,18 @@
 package com.example.antipodpiska.menu
 
+import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.example.antipodpiska.R
 import com.example.antipodpiska.data.SharedPrefSource
@@ -17,7 +22,11 @@ import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,6 +56,37 @@ class StatisticsFragment : Fragment() {
 
 
         var pieChart: PieChart = view.findViewById(R.id.piechart)
+        val dateFrom: EditText = view.findViewById(R.id.state_date_from)
+        val dateUntil: EditText = view.findViewById(R.id.state_date_until)
+        var cal = Calendar.getInstance()
+        var context: Context? = getContext()
+
+
+         val dateSetListenerDatePay = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            cal.set(Calendar.YEAR, year)
+            cal.set(Calendar.MONTH, monthOfYear)
+            cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+            val myFormat = "dd.MM.yyyy"
+            val sdf = SimpleDateFormat(myFormat, Locale.US)
+            dateFrom.setText(sdf.format(cal.time))
+        }
+        val dateSetListenerDatePay2 = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            cal.set(Calendar.YEAR, year)
+            cal.set(Calendar.MONTH, monthOfYear)
+            cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+            val myFormat = "dd.MM.yyyy"
+            val sdf = SimpleDateFormat(myFormat, Locale.US)
+            dateUntil.setText(sdf.format(cal.time))
+        }
+
+        dateFrom.setOnClickListener {
+        addDate(context!!, cal, dateSetListenerDatePay)
+        }
+        dateUntil.setOnClickListener {
+            addDate(context!!, cal, dateSetListenerDatePay2)
+        }
 
 
         var colorClassArray: List<Int> = listOf(
@@ -66,7 +106,7 @@ class StatisticsFragment : Fragment() {
 
 
 
-        var context: Context? = getContext()
+
 
         var moneyMap: HashMap<String, Double> =  getMoney(costOfAllSubsByTypes(context!!))
         var pieDataset: PieDataSet = PieDataSet(dataValues(costOfAllSubsByTypes(context)), "")
@@ -251,6 +291,16 @@ class StatisticsFragment : Fragment() {
    //     Log.e("8888", allSummAndCountsByTypes.toString())
 
         return allSummAndCountsByTypes
+    }
+
+
+    fun addDate(context: Context, cal: Calendar, dateSetListenerDatePay: DatePickerDialog.OnDateSetListener )
+    {
+        //вид календаря в AlertDialog(просто удалить)
+        DatePickerDialog(context, AlertDialog.THEME_HOLO_LIGHT, dateSetListenerDatePay,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)).show()
     }
 
 }

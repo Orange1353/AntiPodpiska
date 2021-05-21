@@ -361,7 +361,7 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
                 var color = data.getIntExtra(SUB_COLOR, colordef)
 
 //image?
-                subsListViewModel.insertSub(
+                    subsListViewModel.insertSub(
                     subName,
                     color,
                     subDescription,
