@@ -17,13 +17,15 @@ import kotlin.math.log
 
 import kotlin.random.Random
 
-class SubListViewModel(val dataSource: DataSource) : ViewModel() {
+class SubListViewModel(val dataSource: DataSource, context: Context) : ViewModel() {
     private val firebaseFirestore: FirebaseFirestore by lazy {
         FirebaseFirestore.getInstance()
     }
-    val subsLiveData = dataSource.getSubList()
+    var subsLiveData = dataSource.getSubList(context)
    // var viewModelRoutesFragment = ViewModelProvider(SubListActivity()).get(SubListViewModel::class.java)
     /* If the name and description are present, create new Flower and add it to the datasource */
+
+
     fun insertSub(subName: String?, subColor: Int, subDescription: String?,  typeSub: String, datePay: String?, periodFree: String, costSub: String,
                   costCurr: String, periodPay: String, periodTypeFree: String, periodTypePay: String,card: String, pushEnabled:Boolean, dateAdd:String, image0: Int, context: Context
     ) {
@@ -74,6 +76,7 @@ val si:Sub = Shared.getFromShared(newSub)
         dataSource.sendSupportInFirebase(text, email, theme)
     }
 
+
 }
 
 
@@ -84,7 +87,7 @@ class SubListViewModelFactory(private val context: Context) : ViewModelProvider.
         if (modelClass.isAssignableFrom(SubListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return SubListViewModel(
-                dataSource = DataSource.getDataSource(context.resources, context)
+                dataSource = DataSource.getDataSource(context.resources, context), context = context
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

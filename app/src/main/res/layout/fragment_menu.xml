@@ -74,7 +74,6 @@
             android:layout_height="match_parent"
             android:layout_marginTop="55dp"
             android:orientation="vertical"
-android:paddingBottom="10dp"
             app:layout_constraintTop_toTopOf="@+id/lay0">
 
             <!--        <EditText-->
@@ -96,7 +95,7 @@ android:paddingBottom="10dp"
                 android:layout_height="match_parent"
 android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                            app:layoutManager="LinearLayoutManager"
+                app:layoutManager="LinearLayoutManager"
                 app:layout_constraintTop_toTopOf="parent"
              />
         </LinearLayout>

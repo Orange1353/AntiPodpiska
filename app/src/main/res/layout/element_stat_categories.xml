@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+>
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/blue"
+        android:layout_height="match_parent"
+        android:src="@drawable/line_break_stat" />
+
+<androidx.constraintlayout.widget.ConstraintLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+    android:elevation="0dp"
+    android:background="@color/menu_back_light">
+
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image_rect"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginStart="35dp"
+        android:background="@drawable/shape_item_stat"
+        android:backgroundTint="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/name_category"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="21dp"
+        android:fontFamily="@font/sf_display_medium"
+        android:textAllCaps="false"
+        android:textColor="@color/black_light"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_rect"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_right"
+        style="@style/NoShadowButton"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/ic_arrow_right_quest"
+        android:drawableTint="@color/grey2_light"
+        android:elevation="0dp"
+        android:gravity="center_horizontal"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cost_category"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="21dp"
+        android:fontFamily="@font/sf_display_medium"
+        android:textAllCaps="false"
+        android:textColor="@color/black_light"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_right"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

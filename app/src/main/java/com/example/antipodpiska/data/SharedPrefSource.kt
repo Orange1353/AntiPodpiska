@@ -3,9 +3,10 @@ package com.example.antipodpiska.data
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import com.example.antipodpiska.menu.Statistics.Currencies
 import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.Gson
-import java.util.HashMap
+import java.util.*
 
 
 class SharedPrefSource constructor(context: Context)  {
@@ -23,9 +24,22 @@ class SharedPrefSource constructor(context: Context)  {
        val gson = Gson()
        val json = gson.toJson(sub)
        prefsEditor.putString(sub.id.toString(), json).apply();
-
    }
 
+    fun saveToSharedCurr(curr: Currencies, context: Context){
+        val preferencesCurr = context.getSharedPreferences("Currency", Context.MODE_PRIVATE)
+        val gson = Gson()
+        val json = gson.toJson(curr)
+        preferencesCurr.edit().putString("RUB", json).apply();
+    }
+
+    fun getFromSharedCurr(context: Context): Currencies {
+        val preferencesCurr = context.getSharedPreferences("Currency", Context.MODE_PRIVATE)
+        val gson = Gson()
+        val json = preferencesCurr.getString("RUB", "").toString()
+        val curr: Currencies = gson.fromJson(json, Currencies::class.java)
+        return curr
+    }
 
     fun addTempUser(email : String, password: String, nickname: String, context: Context){
         val preferencesUser: SharedPreferences = context.getSharedPreferences("Temp", Context.MODE_PRIVATE)

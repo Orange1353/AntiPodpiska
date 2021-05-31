@@ -8,18 +8,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.observe
@@ -34,9 +30,9 @@ import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.data.User
 import com.example.antipodpiska.data.firebase.FirebaseSource
 import com.example.antipodpiska.menu.*
+import com.example.antipodpiska.menu.Statistics.StatisticsFragment
 import com.example.antipodpiska.subDetails.SubDetailActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.delete_delete.*
 
 
 const val SUB_ID = "sub id"
@@ -91,18 +87,18 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
             .commit()
 
 
+    //    val bottomAppBar: BottomAppBar = findViewById(R.id.bottomAppBar)
+    //bottomNavigationView    .background = resources.getDrawable(R.color.blue)
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNavigationView.background = resources.getDrawable(R.color.blue)
-
 
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId){
                 R.id.item_menu -> {
 
-                    if (fab.isVisible == true)
-                    {fab.startAnimation(gone)
-                    fab.isVisible = false}
-                    bottomNavigationView.isSelected = true
+      //              if (fab.isVisible == true)
+                 /*   {fab.startAnimation(gone)
+                    fab.isVisible = false
+                    }*/
 
                     val fragment = NavigationMenuFragment()
                     this.supportFragmentManager.beginTransaction().replace(
@@ -118,9 +114,9 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
                 }
 
                 R.id.item_subs -> {
-                    fab.startAnimation(appear)
-                    fab.isVisible = true
-                    bottomNavigationView.isSelected = true
+           //         fab.startAnimation(appear)
+             //       fab.isVisible = true
+            //        bottomNavigationView.isSelected = true
 
                     val fragment = MenuFragment()
                     this.supportFragmentManager.popBackStack()
@@ -134,7 +130,6 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
                         )
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                         .commit()
-
 
                     true
                 }
@@ -155,10 +150,10 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
                     true
                 }*/
                 R.id.item_calendar -> {
-                    if (fab.isVisible == true)
-                    {fab.startAnimation(gone)
-                        fab.isVisible = false}
-                    bottomNavigationView.isSelected = true
+   //                 if (fab.isVisible == true)
+  //                  {fab.startAnimation(gone)
+   //                     fab.isVisible = false}
+    //                bottomNavigationView.isSelected = true
                     //   val fragment = CalendarFragment()
                     val fragment = InProgress()
                     this.supportFragmentManager.beginTransaction().replace(
@@ -173,11 +168,11 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
                     true
                 }
                 R.id.item_statistics -> {
-                    if (fab.isVisible == true)
-                    {fab.startAnimation(gone)
-                        fab.isVisible = false}
-                    bottomNavigationView.isSelected = true
-                    val fragment = StatisticsFragment()
+//                    if (fab.isVisible == true)
+//                    {fab.startAnimation(gone)
+//                        fab.isVisible = false}
+//                    bottomNavigationView.isSelected = true
+                   val fragment = StatisticsFragment()
                     this.supportFragmentManager.beginTransaction().replace(
                         R.id.lay_container,
                         fragment
@@ -189,7 +184,6 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
                         .commit()
                     true
                 }
-
                 else->false
             }
         }

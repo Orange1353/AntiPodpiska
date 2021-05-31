@@ -37,7 +37,7 @@
     <color name="grey2_light">#979AAB</color>
     <color name="red_light">#BF2222</color>
     <color name="header_light">#F9F9F7</color>
-    <color name="menu_back_light">#EDEEF0</color>i
+    <color name="menu_back_light">#EDEEF0</color>
     <color name="orange_light">#E1574F</color>
     <color name="grey_legend">#8D8E93</color>
     <color name="grey_progress_bar">#E3E3E3</color>
@@ -46,7 +46,7 @@
     <color name="blue_back">#00AAFF</color>
     <color name="blue_dark">#002A7C</color>
     <color name="grey_element">#E4E9F0</color>
-<color name="grey_element_text">#8E91A2</color>
+    <color name="grey_element_text">#8E91A2</color>
 
 
 
@@ -98,4 +98,7 @@
  <color name="kinopoisk">#141414</color>
  <color name="litres">#FDFDFD</color>
  <color name="mts">#E30611</color>
+ <color name="pochta">#000E8D</color>
+ <color name="tink">#FDE905</color>
+ <color name="halva">#FCEFE8</color>
 </resources>

@@ -36,7 +36,7 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
     /* ViewHolder for Flower, takes in the inflated view and the onClick behavior. */
     class SubViewHolder(itemView: View, val onClick: (Sub) -> Unit, context: Context) :
         RecyclerView.ViewHolder(itemView) {
-           private val subName: TextView = itemView.findViewById(R.id.flower_text)
+        private val subName: TextView = itemView.findViewById(R.id.flower_text)
         private val subImageView: ImageView = itemView.findViewById(R.id.flower_image)
         private val addDatePay: TextView =  itemView.findViewById(R.id.day_pay_calulat)
         private val status: EditText = itemView.findViewById(R.id.text_status)
@@ -190,7 +190,7 @@ else
             "RUB" -> status.setText("₽ " + sub.costSub)
             "EUR" -> status.setText("€ " + sub.costSub)
             "USD" -> status.setText("$ " + sub.costSub)
-            "GPB" -> status.setText("£ " + sub.costSub)
+            "GBP" -> status.setText("£ " + sub.costSub)
             "CNY" -> status.setText("Ұ " + sub.costSub)
             "CHF" -> status.setText("₣ " + sub.costSub)
             "JPY" -> status.setText("¥ " + sub.costSub)

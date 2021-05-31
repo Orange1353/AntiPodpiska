@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
     >
 
@@ -8,6 +9,7 @@
         android:id="@+id/item_subs"
         android:enabled="true"
         android:icon="@drawable/ic_menu_subs"
+        app:showAsAction="always"
         android:title="Подписки"/>
 <!--    <item-->
 <!--        android:id="@+id/item_archive"-->
@@ -20,17 +22,28 @@
         android:id="@+id/item_statistics"
         android:enabled="true"
         android:icon="@drawable/ic_menu_statistic"
+        app:showAsAction="always"
         android:title="Статистика"/>
+
+    <item
+        android:fontFamily="@font/sf_display_regular"
+        android:id="@+id/item_empty"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title=" "/>
+
     <item
         android:fontFamily="@font/sf_display_regular"
         android:id="@+id/item_calendar"
         android:enabled="true"
+        app:showAsAction="always"
         android:icon="@drawable/ic_menu_calendar"
         android:title="Календарь"/>
     <item
         android:fontFamily="@font/sf_display_regular"
         android:id="@+id/item_menu"
         android:enabled="true"
+        app:showAsAction="always"
         android:icon="@drawable/ic_menu_menu"
         android:title="Меню"/>
 </menu>

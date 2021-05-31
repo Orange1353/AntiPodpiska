@@ -91,7 +91,7 @@ class CalendarFragment : Fragment() {
                         "RUB" -> tmp = "₽"
                         "USD" -> tmp = "$"
                         "EUR" -> tmp = "€"
-                        "GPB" -> tmp = "£"
+                        "GBP" -> tmp = "£"
                         "CNY" -> tmp = "Ұ"
                         "CHF" -> tmp = "₣"
                         "JPY" -> tmp = "¥"

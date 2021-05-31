@@ -140,11 +140,12 @@ android:layout_marginStart="15dp"
                     android:id="@+id/circularProgressBar"
                     android:layout_width="46dp"
                     android:layout_height="46dp"
-                    app:cpb_background_progressbar_width="3dp"
+                    app:cpb_background_progressbar_width="2dp"
                     app:cpb_progressbar_width="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </FrameLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

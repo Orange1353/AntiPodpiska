@@ -28,6 +28,7 @@ import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.data.User
 import com.example.antipodpiska.data.firebase.FirebaseSource
 import com.example.antipodpiska.data.subList
+import com.example.antipodpiska.menu.Statistics.Currencies
 import com.example.antipodpiska.subDetails.SubDetailActivity
 import com.example.antipodpiska.ui.auth.SignupActivity
 import com.example.antipodpiska.utils.startSignupActivity
@@ -110,7 +111,7 @@ class DataSource(resources: Resources, context: Context) {
         return null
     }
 
-    fun getSubList(): LiveData<List<Sub>> {
+    fun getSubList(context: Context): LiveData<List<Sub>> {
         deleteLiveData()
      /*   var listSubLive = ArrayList<Sub>()
         for(i in 1..subLiveData.value!!.size)
@@ -118,7 +119,7 @@ class DataSource(resources: Resources, context: Context) {
             if ()
         }
 */
-
+getCurrencyFromFirebase(context)
         return subLiveData
     }
 
@@ -281,6 +282,25 @@ class DataSource(resources: Resources, context: Context) {
         database.child(theme + " " + dateFormat.format(cal.getTime()).toString()).setValue(message)
 
     }
+
+
+    fun getCurrencyFromFirebase(context: Context) {
+
+        val shared: SharedPrefSource = SharedPrefSource(context)
+
+        var docRef = firebaseFirestore.collection("Currency").document("RUB").get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        shared.saveToSharedCurr(document.toObject(Currencies::class.java)!!, context)
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.e("TAG", "Error getting documents: ", exception)
+                }
+
+    }
+
+
 
 }
 

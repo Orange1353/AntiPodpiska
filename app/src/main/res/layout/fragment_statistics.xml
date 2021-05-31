@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/menu_back_light"
-    tools:context=".menu.StatisticsFragment">
+    tools:context=".menu.Statistics.StatisticsFragment">
 
     <FrameLayout
         android:id="@+id/lay_up"
@@ -39,61 +39,120 @@
         android:layout_width="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_height="wrap_content"
-        android:text="Расходы за период:"
+        android:textColor="@color/grey_element_text"
+        android:text="период"
         android:textAllCaps="true"
+        android:textSize="10sp"
+        android:layout_marginLeft="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lay_up">
 
     </TextView>
 
-    <TextView
-        android:id="@+id/stat_costs"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="10000р, 200Y"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stat_costs_head">
-
-    </TextView>
-
-
 
     <EditText
         android:id="@+id/state_date_from"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:gravity="center_vertical"
         android:text="ДД.ММ.ГГГГ"
         android:focusableInTouchMode="false"
         android:fontFamily="@font/sf_display_regular"
-        android:textColor="@color/grey2_light"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/black_light"
         android:backgroundTint="@color/menu_back_light"
         android:background="@drawable/shape_item"
         android:digits="0123456789"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stat_costs">
+        app:layout_constraintTop_toBottomOf="@+id/stat_costs_head">
 
     </EditText>
+
+    <TextView
+        android:id="@+id/tire"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        app:layout_constraintStart_toEndOf="@id/state_date_from"
+        app:layout_constraintTop_toBottomOf="@+id/stat_costs_head"
+        android:layout_marginLeft="10dp"
+        android:text="—"
+        android:gravity="center_vertical"
+
+        android:editable="false"
+        android:textSize="16sp"
+        android:textColor="@color/black_light"
+        >
+    </TextView>
+
     <EditText
     android:id="@+id/state_date_until"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:gravity="center_vertical"
         android:text="ДД.ММ.ГГГГ"
         android:focusableInTouchMode="false"
         android:fontFamily="@font/sf_display_regular"
-        android:textColor="@color/grey2_light"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/black_light"
         android:backgroundTint="@color/menu_back_light"
         android:background="@drawable/shape_item"
         android:digits="0123456789"
-    app:layout_constraintStart_toEndOf="@id/state_date_from"
-    app:layout_constraintTop_toBottomOf="@+id/stat_costs">
+    app:layout_constraintStart_toEndOf="@id/tire"
+    app:layout_constraintTop_toBottomOf="@+id/stat_costs_head">
 
 </EditText>
+
+
+    <TextView
+        android:id="@+id/stat_costs_head_money"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey_element_text"
+        android:text="расходы за период"
+        android:textAllCaps="true"
+        android:textSize="10sp"
+        android:layout_marginLeft="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/state_date_from">
+
+    </TextView>
+
+    <HorizontalScrollView
+        android:id="@+id/SCROLLER_ID"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stat_costs_head_money"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:scrollbars="none"
+        android:fillViewport="true"
+        >
+
+    <TextView
+        android:id="@+id/stat_summs"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_vertical"
+
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/sf_display_regular"
+        android:textSize="16sp"
+        android:scrollbars = "vertical"
+        android:maxLines="1"
+        android:textColor="@color/black_light"
+        android:backgroundTint="@color/menu_back_light"
+        android:background="@drawable/shape_item"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_weight="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/stat_costs_head_money">
+
+    </TextView>
+    </HorizontalScrollView>
 
     <RelativeLayout
         android:id="@+id/lay_calendar"
@@ -102,7 +161,7 @@
         android:layout_marginTop="25dp"
         android:orientation="horizontal"
         android:weightSum="2"
-        app:layout_constraintTop_toBottomOf="@+id/state_date_from"
+        app:layout_constraintTop_toBottomOf="@+id/SCROLLER_ID"
         tools:layout_editor_absoluteX="0dp">
 
         <!--Pie chart to display the data-->
@@ -131,7 +190,27 @@
         <!--           />-->
         <!--        </LinearLayout>-->
 
-
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lay_calendar">
+
+    </LinearLayout>
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/list_types"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/container"
+    >
+
+</androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
