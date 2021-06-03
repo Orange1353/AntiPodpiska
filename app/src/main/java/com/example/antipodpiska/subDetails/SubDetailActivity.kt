@@ -95,9 +95,10 @@ class SubDetailActivity : AppCompatActivity() {
             val currentSub = subDetailViewModel.getFlowerForId(it)
             subName.text = currentSub?.name
 
+            var t = resources.getIdentifier(currentSub?.color, "color", "com.example.antipodpiska")
 
-            if ( currentSub!!.color!= 0 &&  currentSub.color != -1)
-                useBlack = getRGB(this.getResources().getString(currentSub.color))
+            if ( currentSub!!.color!= null)
+                useBlack = getRGB(this.getResources().getString(t))
             else
                 useBlack = getRGB("#FFFAFBFC")
 
@@ -112,13 +113,14 @@ class SubDetailActivity : AppCompatActivity() {
             val dateNearestPay: View = inflater.inflate(R.layout.element_next_pay, null)
             val container = findViewById<View>(R.id.base_lay) as LinearLayout
 
-            mainLayout.setBackgroundColor(this.getColor(currentSub!!.color))
-            window.setStatusBarColor(getResources().getColor(currentSub!!.color))
+            mainLayout.setBackgroundColor(this.getColor(t))
+            window.setStatusBarColor(getResources().getColor(t))
 
 
-            if (currentSub!!.imageDrawable != -1)
-                subImage.setImageResource(currentSub.imageDrawable)
-
+            if (currentSub!!.imageDrawable != "-1") {
+                var t: Int = resources.getIdentifier(currentSub.imageDrawable,"drawable", "com.example.antipodpiska")
+                subImage.setImageResource(t)
+            }
             timeStart.text = currentSub.datePay
 
            /* else {
@@ -145,7 +147,7 @@ class SubDetailActivity : AppCompatActivity() {
                 layFree.isVisible = false
                 laydelete1.isVisible = false
                 laydelete2.isVisible = false
-
+                progressBar.visibility = View.INVISIBLE
                 dateNearestPay.nextPaytext.text = "Подписка находится в архиве"
                 dateNearestPay.nextPaytext.setTextColor(getResources().getColor(R.color.grey2_light))
                 dateNearestPay.time_start.text = currentSub.datePay
@@ -227,7 +229,7 @@ else {
                     var progress2 = ChronoUnit.DAYS.between(dateNow, dateEndFree)
                     progressBar.progress = progress2.toInt()
                     progressBar.max = currentSub.periodFree.toInt()
-                    dayBeforePay.text = progress2.toString()+" " + rusification(progress2.toString(), currentSub.periodTypeFree).toUpperCase() +" до оплаты"
+                    dayBeforePay.text = progress2.toString()+" " + rusification(progress2.toString(), "Дней").toUpperCase() +" до оплаты"
                 }
                 else
                     if(currentSub.periodPay != "")
@@ -235,7 +237,7 @@ else {
                         var progress2 = ChronoUnit.DAYS.between(dateNow, dateEnd)
                         progressBar.progress = progress2.toInt()
                         progressBar.max = currentSub.periodPay.toInt()
-                        dayBeforePay.text = progress2.toString()+" " + rusification(progress2.toString(), currentSub.periodTypePay).toUpperCase() +" до оплаты"
+                        dayBeforePay.text = progress2.toString()+" " + rusification(progress2.toString(), "Дней").toUpperCase() +" до оплаты"
                     }
 
 

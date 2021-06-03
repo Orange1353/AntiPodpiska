@@ -1,20 +1,18 @@
 package com.example.antipodpiska.addition
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import android.view.Display
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.widget.SwitchCompat
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.antipodpiska.R
-import java.lang.Math.round
 
 
 class CreateCardFragment : Fragment() {
@@ -25,8 +23,10 @@ class CreateCardFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         var view: View = inflater.inflate(R.layout.fragment_create_card, container, false)
 
@@ -82,13 +82,13 @@ class CreateCardFragment : Fragment() {
             buttonBack.isVisible = false
             btnReady.isVisible = true
 
-
-
+            val imm: InputMethodManager = context!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+imm.hideSoftInputFromWindow(view.windowToken, 0)
             nameSub.text = communicator.getNameNewSub()
         }
 
         btnReady.setOnClickListener {
-            communicator.cardFragmentToListSub()
+            communicator.cardFragmentToBannerAdded(addCard.text.toString(), pushEnabled.isChecked)
         }
 
 

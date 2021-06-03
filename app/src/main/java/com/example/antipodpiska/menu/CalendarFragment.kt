@@ -16,6 +16,8 @@ import com.example.antipodpiska.data.Sub
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.highlight.Highlight
+import org.mylibrary.librarycalendar.CalenderEvent
+import org.mylibrary.librarycalendar.model.Event
 import java.time.LocalDate
 import java.util.*
 import kotlin.collections.ArrayList
@@ -38,10 +40,12 @@ class CalendarFragment : Fragment() {
 
 
 
-    /*    var events: List<EventDay> = ArrayList()
+      var events: List<EventDay> = ArrayList()
         val calendar1 = Calendar.getInstance()
         calendar1.add(Calendar.DAY_OF_MONTH, 10)
 
+
+ /*
         // Пусть bmp1 и bmp2 -  картинки, которые нужно склеить
 // Предположим, что вторую нужно нарисовать справа от первой
 // Создаём изображение нужных размеров
@@ -65,12 +69,18 @@ class CalendarFragment : Fragment() {
         // Рисуем bmp2 справа от bmp1
         c.drawBitmap(bmp2, bmp1.getWidth().toFloat(), 0f, Paint())
 
+*/
+
 
         events= listOf(EventDay(calendar1, R.drawable.ic_cross, Color.parseColor("#ffffff")))
         var calendarView : CalendarView = view.findViewById(R.id.calendarView)
         calendarView.setCalendarDayLayout(R.layout.custom_calendar_day)
         calendarView.setEvents(events)
-*/
+
+
+        val calendar2: CalenderEvent = view.findViewById(R.id.yyyy)
+        calendar2.addEvent(Event(2062021, "4444"))
+
         return view
 
     }

@@ -109,10 +109,11 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
         prefsEditor.putString("card", cardNumber).apply()
         prefsEditor.putBoolean("push", push).apply()
 
-
+        addSub()
         fragmentManager.beginTransaction().remove(CreateCardFragment())
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
             .commit()
+
     }
 
     override fun getNameNewSub(): String {
@@ -121,13 +122,13 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
         return name
     }
     override fun cardFragmentToListSub(){
-/*        var preferences: SharedPreferences = this.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+      /*  var preferences: SharedPreferences = this.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val prefsEditor: SharedPreferences.Editor = preferences.edit()
         prefsEditor.putString("card", cardNumber).apply()
-        prefsEditor.putBoolean("push", push).apply()*/
+        prefsEditor.putBoolean("push", push).apply()
 
+*/
 
-        addSub()
     }
 
     override fun onBackPressedInFragms23() {
@@ -194,8 +195,8 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
             val push = preferences.getBoolean("push", false)
             val id = preferences.getInt("id", -1)
 
-            var imageDrawable = -1
-            var imageColor = (R.color.light_back)
+            var imageDrawable = "menu_subs_foreground"
+            var imageColor = "light_back"
 
         val listExist = existSubList(resources, this)
      //   var imageColor = listExist[1].color
@@ -226,7 +227,7 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
             resultIntent.putExtra(CARD, card)
             resultIntent.putExtra(PUSH, push)
             resultIntent.putExtra(DATE_ADD, dateAdd)
-            if(imageDrawable != -1)
+            if(imageDrawable != "menu_subs_foreground")
             resultIntent.putExtra(SUB_IMAGE, imageDrawable)
             resultIntent.putExtra(SUB_COLOR, imageColor)
 

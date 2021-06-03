@@ -47,6 +47,7 @@
     <color name="blue_dark">#002A7C</color>
     <color name="grey_element">#E4E9F0</color>
     <color name="grey_element_text">#8E91A2</color>
+ <color name="grey_progress_bar_back">#AAABB3</color>
 
 
 
@@ -78,7 +79,7 @@
  <color name="ozon">#005DF6</color>
  <color name="playstation">#052A5F</color>
  <color name="start">#232930</color>
- <color name="skyeng">#CAF9FF</color>
+ <color name="skyeng">#00C1FF</color>
  <color name="soundcloud">#FF550F</color>
  <color name="storytel">#FFCCC2</color>
  <color name="tinder">#FD5068</color>
@@ -101,4 +102,7 @@
  <color name="pochta">#000E8D</color>
  <color name="tink">#FDE905</color>
  <color name="halva">#FCEFE8</color>
+
+
+
 </resources>

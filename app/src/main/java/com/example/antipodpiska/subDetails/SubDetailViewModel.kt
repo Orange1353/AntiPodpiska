@@ -42,8 +42,8 @@ class SubDetailViewModel(private val datasource: DataSource) : ViewModel() {
 
     }
 
-    fun insertSub(subName: String?, subColor: Int, subDescription: String?,  typeSub: String, datePay: String?, periodFree: String, costSub: String,
-                  costCurr: String, periodPay: String, periodTypeFree: String, periodTypePay: String,card: String, pushEnabled:Boolean, dateAdd:String, image0: Int, context: Context, status: String
+    fun insertSub(subName: String?, subColor: String, subDescription: String?,  typeSub: String, datePay: String?, periodFree: String, costSub: String,
+                  costCurr: String, periodPay: String, periodTypeFree: String, periodTypePay: String,card: String, pushEnabled:Boolean, dateAdd:String, image0: String, context: Context, status: String
     ) {
         if (subName == null || subDescription == null || datePay == null) {
             return

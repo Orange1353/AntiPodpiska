@@ -8,7 +8,7 @@ import com.example.antipodpiska.R
 
 object ListExistSubs {
     val subNames = arrayOf("Adobe Creative Cloud", "Allboxes.ru",  "Amazon Music", "Amazon Video",  "Apple Arcade",
-            "Apple One", "Arzamas", "Badoo Premium", "Blinkist", "Bookmate",
+            "Apple One", "Badoo Premium", "Blinkist", "Bookmate",
             "Boom", "Boosty.to", "Clubhouse", "Coursera", "Deezer",
             "Discord Nitro", "Dota2 Plus", "Dropbox", "Duolingo", "EA play",
             "Ebay", "Eurosport", "Figma", "Fortnite", "GeForce Now",
@@ -30,27 +30,27 @@ object ListExistSubs {
 
      )*/
 
-    val subImages = arrayOf(R.drawable.logo_adobe, R.drawable.logo_allboxes_ru, R.drawable.logo_amazon_music, R.drawable.logo_amazon_music, R.drawable.logo_apple_arcade,
-            R.drawable.logo_apple_one, R.drawable.logo_arzamas, R.drawable.logo_badoo, R.drawable.logo_blinkist, R.drawable.logo_bookmate,
-            R.drawable.logo_boom, R.drawable.logo_boosty, R.drawable.logo_clubhouse, R.drawable.logo_coursera, R.drawable.logo_deezer,
-            R.drawable.logo_discord, R.drawable.logo_dota, R.drawable.logo_dropbox, R.drawable.logo_duolign, R.drawable.logo_ea,
-            R.drawable.logo_ebay, R.drawable.logo_euro, R.drawable.logo_figma, R.drawable.logo_fortnite, R.drawable.logo_geforce,
-            R.drawable.logo_gett, R.drawable.logo_gdrive, R.drawable.logo_humble, R.drawable.logo_ivi, R.drawable.logo_instaread,
-            R.drawable.logo_jira, R.drawable.logo_dance, R.drawable.logo_last_pass, R.drawable.logo_lengualeo, R.drawable.logo_megogo, R.drawable.logo_medium,
-            R.drawable.logo_onedrive, R.drawable.logo_mybook, R.drawable.logo_netflix, R.drawable.logo_okko, R.drawable.logo_okko,
-            R.drawable.logo_ozon, R.drawable.logo_playstation, R.drawable.logo_pornhub, R.drawable.logo_start, R.drawable.logo_skyeng,
-            R.drawable.logo_soundcloud, R.drawable.logo_spotify, R.drawable.logo_storytel, R.drawable.logo_tinder, R.drawable.logo_twitchprime, R.drawable.logo_uber,
-            R.drawable.logo_ubisoft, R.drawable.logo_vk, R.drawable.logo_vpn99, R.drawable.logo_vsco, R.drawable.logo_voka,
-            R.drawable.logo_wattpad, R.drawable.logo_wink, R.drawable.logo_xbox, R.drawable.logo_youtube_premium, R.drawable.logo_youtube_premium,
-            R.drawable.logo_more, R.drawable.logo_nintendo, R.drawable.logo_origin, R.drawable.logo_rebilla, R.drawable.logo_recurly,
-            R.drawable.logo_trello, R.drawable.logo_tvzavr, R.drawable.logo_wakamin, R.drawable.logo_xvid, R.drawable.logo_zoom,
-            R.drawable.logo_amedia, R.drawable.logo_vedom, R.drawable.logo_kinopoisk, R.drawable.logo_litres, R.drawable.logo_mts,
-            R.drawable.logo_pochta,  R.drawable.logo_sber_zvuk,  R.drawable.logo_sber,  R.drawable.logo_tinkoff,  R.drawable.logo_tnt,
-            R.drawable.logo_halva, R.drawable.logo_yadisk, R.drawable.logo_yadrive, R.drawable.logo_yaplus, R.drawable.logo_yataxi,
-            R.drawable.logo_yamusic, R.drawable.logo_1c, R.drawable.logo_24tv)
+    val subImages = arrayOf("logo_adobe", "logo_allboxes_ru", "logo_amazon_music", "logo_amazon_music", "logo_apple_arcade",
+            "logo_apple_one", "logo_badoo", "logo_blinkist", "logo_bookmate",
+            "logo_boom", "logo_boosty", "logo_clubhouse", "logo_coursera", "logo_deezer",
+            "logo_discord", "logo_dota", "logo_dropbox", "logo_duolign", "logo_ea",
+            "logo_ebay", "logo_euro", "logo_figma", "logo_fortnite", "logo_geforce",
+            "logo_gett", "logo_gdrive", "logo_humble", "logo_ivi", "logo_instaread",
+            "logo_jira", "logo_dance", "logo_last_pass", "logo_lengualeo", "logo_megogo", "logo_medium",
+            "logo_onedrive", "logo_mybook", "logo_netflix", "logo_okko", "logo_okko",
+            "logo_ozon", "logo_playstation", "logo_pornhub", "logo_start", "logo_skyeng",
+            "logo_soundcloud", "logo_spotify", "logo_storytel", "logo_tinder", "logo_twitchprime", "logo_uber",
+            "logo_ubisoft", "logo_vk", "logo_vpn99", "logo_vsco", "logo_voka",
+            "logo_wattpad", "logo_wink", "logo_xbox", "logo_youtube_premium", "logo_youtube_premium",
+            "logo_more", "logo_nintendo", "logo_origin", "logo_rebilla", "logo_recurly",
+            "logo_trello", "logo_tvzavr", "logo_wakamin", "logo_xvid", "logo_zoom",
+            "logo_amedia", "logo_vedom", "logo_kinopoisk", "logo_litres", "logo_mts",
+            "logo_pochta",  "logo_sber_zvuk",  "logo_sber",  "logo_tinkoff",  "logo_tnt",
+            "logo_halva", "logo_yadisk", "logo_yadrive", "logo_yaplus", "logo_yataxi",
+            "logo_yamusic", "logo_1c", "logo_24tv")
 
     val subDescriptions = arrayOf("https://www.adobe.com/", "Allboxes.ru", "https://music.amazon.com/", "https://www.primevideo.com/","https://www.apple.com/apple-arcade/",
-            "https://www.apple.com/ru/apple-one/", "https://arzamas.academy/account","https://badoo.com/", "https://play.google.com/store/apps/details?id=com.blinkslabs.blinkist.android&hl=ru&gl=US", "https://ru.bookmate.com/subscription",
+            "https://www.apple.com/ru/apple-one/", "https://badoo.com/", "https://play.google.com/store/apps/details?id=com.blinkslabs.blinkist.android&hl=ru&gl=US", "https://ru.bookmate.com/subscription",
             "https://boom.ru", "https://boosty.to/", "https://play.google.com/store/apps/details?id=io.clubhouse.clubhouse&hl=ru&gl=US", "https://www.coursera.org/", "https://www.deezer.com/ru/",
            "https://support.discord.com/hc/ru", "http://www.dota2.com/plus?l=russian", "https://www.dropbox.com/h","https://ru.duolingo.com/", "https://www.ea.com",
             "ru.ebay.com", "https://www.eurosport.ru/", "https://www.figma.com/", "https://www.epicgames.com/fortnite/ru/fortnite-crew-subscription", "https://www.nvidia.com/ru-ru/geforce-now/",
@@ -70,7 +70,7 @@ object ListExistSubs {
          )
 
     val subTypes = arrayOf("Приложения", "Иное", "Музыка",  "Приложения", "Приложения",
-            "Приложения", "Приложения", "Приложения",  "Приложения", "Иное",
+            "Приложения", "Приложения",  "Приложения", "Иное",
             "Приложения", "Иное", "Приложения",  "Приложения", "Музыка",
             "Связь", "Приложения",  "Облака", "Приложения", "Приложения",
             "Иное", "Иное", "Приложения", "Приложения", "Иное", "Иное",
@@ -89,23 +89,23 @@ object ListExistSubs {
             "Музыка", "Иное", "Смарт-Тв"
     )
 
-    val subColors = arrayOf(R.color.adobe, R.color.white, R.color.black, R.color.black, R.color.apple_arcade,
-            R.color.white, R.color.arzamas, R.color.black, R.color.white, R.color.bookmate,
-            R.color.boom, R.color.white, R.color.clubhouse, R.color.coursera, R.color.deezer,
-            R.color.discord, R.color.black, R.color.dropbox, R.color.duolingo, R.color.ea,
-            R.color.white, R.color.black, R.color.white, R.color.black, R.color.geforce,
-            R.color.gett, R.color.white, R.color.hum, R.color.ivi, R.color.intarted,
-            R.color.white, R.color.white, R.color.lastpass, R.color.lengualeo, R.color.black, R.color.black,
-            R.color.onedrive, R.color.mybook, R.color.black, R.color.okko, R.color.okko,
-            R.color.ozon, R.color.playstation, R.color.black, R.color.start, R.color.skyeng,
-            R.color.soundcloud, R.color.spotify, R.color.storytel, R.color.tinder, R.color.twitchprime, R.color.black,
-            R.color.black, R.color.vk, R.color.white, R.color.black, R.color.voka,
-            R.color.wattpad, R.color.wink,  R.color.xbox,  R.color.black, R.color.youtube_back,
-            R.color.more, R.color.nintendo, R.color.origin, R.color.white, R.color.recurly,
-            R.color.trello, R.color.white, R.color.black, R.color.black, R.color.zoom,
-            R.color.black, R.color.vedom, R.color.kinopoisk, R.color.litres, R.color.mts,
-            R.color.pochta, R.color.white, R.color.white, R.color.tink, R.color.black,
-            R.color.halva, R.color.white, R.color.white, R.color.white, R.color.white,
-            R.color.white, R.color.white, R.color.white)
+    val subColors = arrayOf("adobe", "white", "black", "black", "apple_arcade",
+            "white", "black", "white", "bookmate",
+            "boom", "white", "clubhouse", "coursera", "deezer",
+            "discord", "black", "dropbox", "duolingo", "ea",
+            "white", "black", "white", "black", "geforce",
+            "gett", "white", "hum", "ivi", "intarted",
+            "white", "white", "lastpass", "lengualeo", "black", "black",
+            "onedrive", "mybook", "black", "okko", "okko",
+            "ozon", "playstation", "black", "start", "skyeng",
+            "soundcloud", "spotify", "storytel", "tinder", "twitchprime", "black",
+            "black", "vk", "white", "black", "voka",
+            "wattpad", "wink",  "xbox",  "black", "youtube_back",
+            "more", "nintendo", "origin", "white", "recurly",
+            "trello", "white", "black", "black", "zoom",
+            "black", "vedom", "kinopoisk", "litres", "mts",
+            "pochta", "white", "white", "tink", "black",
+            "halva", "white", "white", "white", "white",
+            "white", "white", "white")
 }
 

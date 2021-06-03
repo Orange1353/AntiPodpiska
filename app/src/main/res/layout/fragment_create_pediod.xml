@@ -108,7 +108,7 @@
             <EditText
                 android:id="@+id/add_free_days"
                 android:layout_width="100dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/shape_text_input"
@@ -127,7 +127,7 @@
             <Spinner
                 android:id="@+id/spinner_free_period_type"
                 android:layout_width="115dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:fontFamily="@font/sf_display_regular"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
@@ -156,7 +156,7 @@
             <EditText
                 android:id="@+id/add_cost"
                 android:layout_width="100dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/shape_text_input"
@@ -176,7 +176,7 @@
             <Spinner
                 android:id="@+id/spinner_curr_cost"
                 android:layout_width="115dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:fontFamily="@font/sf_display_regular"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
@@ -208,7 +208,7 @@
             <EditText
                 android:id="@+id/add_period"
                 android:layout_width="100dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/shape_text_input"
@@ -228,7 +228,7 @@
             <Spinner
                 android:id="@+id/spinner_period_pay"
                 android:layout_width="115dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:fontFamily="@font/sf_display_regular"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"

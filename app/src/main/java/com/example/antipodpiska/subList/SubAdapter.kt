@@ -46,7 +46,7 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
         private val sharedPrefSource: SharedPrefSource = SharedPrefSource(context)
         private val context: Context = context
         private var currentSub: Sub? = null
-
+       private val circularProgressBar = itemView.findViewById<CircularProgressBar>(R.id.circularProgressBar)
         init {
             itemView.setOnClickListener {
                 currentSub?.let {
@@ -68,8 +68,11 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
             currentSub = sub
 
             var useBack = false
-            if (sub.color!= 0 && sub.color != -1)
-            useBack = getRGB(context.getResources().getString(sub.color))
+
+            if (sub.color!= null) {
+              var t = context.resources.getIdentifier(sub.color, "color", "com.example.antipodpiska")
+                useBack = getRGB(context.getResources().getString(t))
+            }
 else
     useBack = getRGB("#FFFAFBFC")
 
@@ -122,6 +125,7 @@ else
             var datePay = LocalDate.parse(currentSub?.datePay, formatter)
 
             var dateNow = LocalDate.now()
+             var dateEndFree = LocalDate.parse(currentSub?.datePay, formatter)
 
 
 
@@ -129,8 +133,9 @@ else
                  when (currentSub?.periodTypeFree) {
                      "Дней" -> datePay = datePay.plusDays(currentSub?.periodFree!!.toLong())
                      "Недель" -> datePay = datePay.plusWeeks(currentSub?.periodFree!!.toLong())
-                     "Месяцев" -> datePay = datePay.plusDays(30 * currentSub?.periodFree!!.toLong())
+                     "Месяцев" -> datePay = datePay.plusMonths(currentSub?.periodFree!!.toLong())
                  }
+                 dateEndFree = datePay
 
              }
 
@@ -142,12 +147,14 @@ else
                             "Недель" -> datePay =
                                 datePay.plusWeeks(currentSub?.periodPay!!.toLong())
                             "Месяцев" -> datePay =
-                                datePay.plusDays(30 * currentSub?.periodPay!!.toLong())
+                                datePay.plusMonths(currentSub?.periodPay!!.toLong())
                         }
                 }
+             else if(currentSub?.periodFree == "")
+                    circularProgressBar.visibility = View.INVISIBLE
 
 
-                    if (datePay!!.format(formatter) != sub.datePay){
+             if (datePay!!.format(formatter) != sub.datePay){
 
                         if (sub.periodPay != "")
                         addDatePay.text =datePay.format(formatter).toString() //+ " стоимость " + sub.costSub + " " + sub.costCurr //+ "/ " + sub.periodPay + " " + tmp
@@ -208,18 +215,17 @@ else
 
             status.setTypeface(face)
         }
-             val circularProgressBar = itemView.findViewById<CircularProgressBar>(R.id.circularProgressBar)
 
              circularProgressBar.apply {
                  // Set Progress
                  roundBorder = true
-                 startAngle = 0f
+               //  startAngle = 0f
 
 
                  if (sub.datePay == datePay.format(formatter).toString())
                  {     progressMax = 1f
                  progress = 0f
-             }
+                 }
 
                  else {
                      var countDays = itemView.findViewById<TextView>(R.id.countDays)
@@ -266,9 +272,16 @@ else
                          }
                     }
 
+                      //Если сейчас бесплатный период
+                    if(currentSub?.periodFree != "" && dateNow < dateEndFree && currentSub?.periodFree != "0")
+                {
+                    var progress2 = ChronoUnit.DAYS.between(dateNow, dateEndFree)
+                    progressMax = sub.periodFree.toFloat()
+                }
+
                      if (useBack)
-                     {   progressBarColor = resources.getColor(R.color.dark_grey)
-                         countDays.setTextColor(resources.getColor(R.color.dark_grey))
+                     {   progressBarColor = resources.getColor(R.color.black_light)
+                         countDays.setTextColor(resources.getColor(R.color.black_light))
                      }
                      else {
                          progressBarColor = resources.getColor(R.color.white)
@@ -278,7 +291,7 @@ else
 
                      if(progress < 4) {
                          countDays.setTextColor(resources.getColor(R.color.orange_light))
-                         progressBarColor = resources.getColor(R.color.orange_light)
+        //                 progressBarColor = resources.getColor(R.color.orange_light)
                         status.setTextColor(resources.getColor(R.color.red_light))
                          val face: Typeface = Typeface.createFromAsset(
                              context.assets, "font/sf_display_bold.ttf"
@@ -307,7 +320,7 @@ else
 
 
                  if (useBack)
-                     backgroundProgressBarColor = resources.getColor(R.color.dark_grey)
+                     backgroundProgressBarColor = resources.getColor(R.color.grey_progress_bar_back)
                  else
                      backgroundProgressBarColor = resources.getColor(R.color.white)
 
@@ -328,18 +341,22 @@ else
          }
 
 
-if (sub.imageDrawable != -1 && sub.imageDrawable != 0) {
-    subImageView.setImageResource(sub.imageDrawable)
+if (sub.imageDrawable != "menu_subs_foreground") {
+ //   subImageView.setImageResource(sub.imageDrawable)
+     var t: Int = context.resources.getIdentifier(sub.imageDrawable,"drawable", "com.example.antipodpiska")
+     subImageView.setImageResource(t)
+
 
     if(layout!=null)
-    layout.setCardBackgroundColor(context.getColor(sub.color))
+    {
+       t =  context.resources.getIdentifier(sub.color, "color", "com.example.antipodpiska")
+        layout.setCardBackgroundColor(context.getColor(t))
+    }
 }
             else{
                 subImageView.setImageResource(R.drawable.menu_subs_foreground)
     layout.setCardBackgroundColor(context.getColor(R.color.light_back))
             }
-
-
         }
 
 
@@ -351,7 +368,7 @@ if (sub.imageDrawable != -1 && sub.imageDrawable != 0) {
                 {
                     period.toInt() % 10 == 1 -> tmp = "месяц"
                     //  period.substring(period.length-3, period.length-1)
-                    period.toInt() % 100 in 5..20 || period.toInt() % 10 == 0-> tmp = "месяцев"
+                    period.toInt() % 100 in 5..20 || period.toInt() % 10 == 0 || period.toInt() % 10 in 5..9 -> tmp = "месяцев"
                     period.toInt() % 10 in 2..4 -> tmp = "месяца"
                 }
             }
@@ -360,7 +377,7 @@ if (sub.imageDrawable != -1 && sub.imageDrawable != 0) {
                 {
                     period.toInt() % 10 == 1 -> tmp = "день"
                     //  period.substring(period.length-3, period.length-1)
-                    period.toInt() % 100 in 5..20 || period.toInt() % 10 == 0 -> tmp = "дней"
+                    period.toInt() % 100 in 5..20 || period.toInt() % 10 == 0 || period.toInt() % 10 in 5..9 -> tmp = "дней"
                     period.toInt() % 10 in 2..4 -> tmp = "дня"
                 }
             }
@@ -369,7 +386,7 @@ if (sub.imageDrawable != -1 && sub.imageDrawable != 0) {
                 {
                     period.toInt() % 10 == 1 -> tmp = "неделю"
                     //  period.substring(period.length-3, period.length-1)
-                    period.toInt() % 100 in 5..20 || period.toInt() % 10 == 0 -> tmp = "недель"
+                    period.toInt() % 100 in 5..20 || period.toInt() % 10 == 0 || period.toInt() % 10 in 5..9 -> tmp = "недель"
                     period.toInt() % 10 in 2..4 -> tmp = "недели"
                 }
             }
@@ -430,7 +447,7 @@ fun getRGB(rgb: String): Boolean {
     + 0.0722 * pow(b.toDouble(), 2.2))/100000
 
     //> 0.5
-    val use_black = L > 1.1
+    val use_black = L > 1.4
     return use_black
 }
 
@@ -443,7 +460,5 @@ object FlowerDiffCallback : DiffUtil.ItemCallback<Sub>() {
     override fun areContentsTheSame(oldItem: Sub, newItem: Sub): Boolean {
         return oldItem.id == newItem.id
     }
-
-
 
 }

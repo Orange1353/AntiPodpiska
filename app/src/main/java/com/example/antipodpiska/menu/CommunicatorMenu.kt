@@ -10,4 +10,5 @@ interface CommunicatorMenu {
     fun onBackPressedMenuItem()
     fun onBackPressedPopBackstack()
     fun sendSupportMessage(text: String, email: String, type: String)
+    fun statisticsFragmentToSampleStatistics(type: String, dateFrom: String, dateUntil: String)
 }

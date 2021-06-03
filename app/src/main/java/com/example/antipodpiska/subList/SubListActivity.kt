@@ -30,6 +30,7 @@ import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.data.User
 import com.example.antipodpiska.data.firebase.FirebaseSource
 import com.example.antipodpiska.menu.*
+import com.example.antipodpiska.menu.Statistics.SampleStatisticsFragment
 import com.example.antipodpiska.menu.Statistics.StatisticsFragment
 import com.example.antipodpiska.subDetails.SubDetailActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -75,7 +76,6 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
       //  window.navigationBarColor = ContextCompat.getColor(this@SubListActivity, R.color.header_light)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.setStatusBarColor(getResources().getColor(R.color.blue_back))
 
 
         setUserDataToSharedForFutureProfile()
@@ -154,8 +154,8 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
   //                  {fab.startAnimation(gone)
    //                     fab.isVisible = false}
     //                bottomNavigationView.isSelected = true
-                    //   val fragment = CalendarFragment()
-                    val fragment = InProgress()
+                       val fragment = CalendarFragment()
+                //    val fragment = InProgress()
                     this.supportFragmentManager.beginTransaction().replace(
                         R.id.lay_container,
                         fragment
@@ -224,6 +224,29 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
       startActivityForResult(intent, newSubActivityRequestCode)
 
     }
+
+   override fun statisticsFragmentToSampleStatistics(type: String, dateFrom: String, dateUntil: String){
+
+       val fragment = SampleStatisticsFragment()
+
+       val bundle = Bundle()
+       bundle.putString("type", type)
+       bundle.putString("dateFrom", dateFrom)
+       bundle.putString("dateUntil", dateUntil)
+
+       fragment.setArguments(bundle)
+
+       this.supportFragmentManager.beginTransaction().replace(
+           R.id.lay_container,
+           fragment
+       )
+           .addToBackStack(
+               null
+           )
+           .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+           .commit()
+
+   }
 
     private fun createNotChannel(){
         if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
@@ -347,12 +370,14 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
                 var push = data.getBooleanExtra(PUSH, false)
                 val dateAdd = data.getStringExtra(DATE_ADD)
 
-                var image =  data.getIntExtra(SUB_IMAGE, 0)
-        //        if ( image == 0)
-      //              image =  this.resources.getDrawable()
+                var image =  data.getStringExtra(SUB_IMAGE)
+                if ( image == null)
+                    image =  "menu_subs_foreground"
 //если нету картинки
-                var colordef = resources.getColor(R.color.light_back)
-                var color = data.getIntExtra(SUB_COLOR, colordef)
+
+                var color = data.getStringExtra(SUB_COLOR)
+                if ( color == null)
+                    color = "light_back"
 
 //image?
                     subsListViewModel.insertSub(

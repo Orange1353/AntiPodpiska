@@ -158,7 +158,7 @@
         android:layout_marginRight="20dp"
         android:layout_weight="30"
         android:popupBackground="@color/orange_light"
-        android:background="@drawable/back_of_spinner"
+        android:background="@drawable/back_of_spinner1"
         android:entries="@array/spinner_array_tupe_sub"
         android:textColor="@color/white"
         android:fontFamily="@font/sf_display_regular"

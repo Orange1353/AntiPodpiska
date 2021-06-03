@@ -82,10 +82,12 @@
             app:todayLabelColor="@color/white"
             app:type="classic"
             tools:layout_editor_absoluteX="20dp" />
+
     </FrameLayout>
 
 
-    <org.mylibrary.librarycalendar.CalenderEvent
+   <org.mylibrary.librarycalendar.CalenderEvent
+       android:id="@+id/yyyy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:selector_color="@color/grey_search"

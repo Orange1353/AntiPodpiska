@@ -36,7 +36,8 @@ class ExistSubAdapter(private val onClick: (ExistSub) -> Unit) :
 
             currentExistSub = sub
             subName.text = sub.name
-            subImage.setImageResource(sub.logoId)
+            var t: Int = context.resources.getIdentifier(sub.logoId,"drawable", "com.example.antipodpiska")
+            subImage.setImageResource(t)
         }
 
 

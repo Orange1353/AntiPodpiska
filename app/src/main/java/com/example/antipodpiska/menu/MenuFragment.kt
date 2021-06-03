@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.*
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
+import android.widget.AdapterView
 import android.widget.Button
 import android.widget.SearchView
 import android.widget.TextView
@@ -43,7 +44,7 @@ const val TYPE_PERIOD = "typePeriod"
 const val PUSH = "push"
 
 
-class MenuFragment : Fragment() {
+class MenuFragment : Fragment(){
 
     private val newSubActivityRequestCode = 1
     private val TAG = javaClass.simpleName
@@ -55,7 +56,7 @@ class MenuFragment : Fragment() {
     private var dyAbs = 0
     private val adapter = SubAdapter({ sub -> adapterOnClick(sub) })
 
-
+    private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var recyclerView: RecyclerView
     private lateinit var communicator: CommunicatorMenu
 
@@ -71,8 +72,8 @@ class MenuFragment : Fragment() {
 
         // Inflate the layout for this fragment
         val view: View  = inflater.inflate(R.layout.fragment_menu, container, false)
-
         val context: Context? = getContext()
+
         val subsAdapter = SubAdapter({ sub -> adapterOnClick(sub) })
         //      val concatAdapter = ConcatAdapter(headerAdapter, subsAdapter)
 
@@ -125,8 +126,6 @@ class MenuFragment : Fragment() {
     //         recyclerView.addItemDecoration(ItemDecorator(-90))
     //  recyclerView.addItemDecoration(OverlapDecoration())
     //    recyclerView.addItemDecoration(SimpleDividerItemDecorationLastExcluded(100))
-
-
 
 
         recyclerView.adapter = subsAdapter
@@ -796,6 +795,8 @@ private fun adapterOnClick(sub: Sub) {
     startActivity(intent, options!!.toBundle())
 
 }
+
+
 
 }
 
