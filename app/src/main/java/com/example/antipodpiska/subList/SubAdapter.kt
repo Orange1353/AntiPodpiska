@@ -47,6 +47,8 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
         private val context: Context = context
         private var currentSub: Sub? = null
        private val circularProgressBar = itemView.findViewById<CircularProgressBar>(R.id.circularProgressBar)
+        var countDays = itemView.findViewById<TextView>(R.id.countDays)
+
         init {
             itemView.setOnClickListener {
                 currentSub?.let {
@@ -76,7 +78,7 @@ class SubAdapter(private val onClick: (Sub) -> Unit) :
 else
     useBack = getRGB("#FFFAFBFC")
 
-
+countDays.text=""
             subName.text = sub.name
 //            if (sub.card != "")
             //  addDatePay.text = sub.datePay
@@ -150,31 +152,36 @@ else
                                 datePay.plusMonths(currentSub?.periodPay!!.toLong())
                         }
                 }
-             else if(currentSub?.periodFree == "")
-                    circularProgressBar.visibility = View.INVISIBLE
+          //   else if(currentSub?.nearDayPay == "")
+           //         circularProgressBar.visibility = View.INVISIBLE
 
 
              if (datePay!!.format(formatter) != sub.datePay){
 
                         if (sub.periodPay != "")
                         addDatePay.text =datePay.format(formatter).toString() //+ " стоимость " + sub.costSub + " " + sub.costCurr //+ "/ " + sub.periodPay + " " + tmp
-
                 }
+             else{
+                 addDatePay.text = ""
+             }
 
              if (sub.periodPay !="")
                  subDateUntil.text = "оплата за "+ sub.periodPay+" "+ rusification(
                      sub.periodPay,
                      sub.periodTypePay
                  )
+             else {
+                 subDateUntil.text = " "
+             }
 
              if (useBack) {
-                 subDateUntil.setTextColor(context.resources.getColor(R.color.other_grey))
-                 addDayPayText.setTextColor(context.resources.getColor(R.color.other_grey))
+                 subDateUntil.setTextColor(context.resources.getColor(R.color.black_light))
+                 addDayPayText.setTextColor(context.resources.getColor(R.color.black_light))
                  addDatePay.setTextColor(context.resources.getColor(R.color.black_light))
              }
              else {
-                 subDateUntil.setTextColor(context.resources.getColor(R.color.other_grey))
-                 addDayPayText.setTextColor(context.resources.getColor(R.color.other_grey))
+                 subDateUntil.setTextColor(context.resources.getColor(R.color.white))
+                 addDayPayText.setTextColor(context.resources.getColor(R.color.white))
                  addDatePay.setTextColor(context.resources.getColor(R.color.white))
              }
                sharedPrefSource.setNeardayPayDate(
@@ -215,6 +222,9 @@ else
 
             status.setTypeface(face)
         }
+             else{
+                 status.setText("")
+             }
 
              circularProgressBar.apply {
                  // Set Progress
@@ -228,7 +238,6 @@ else
                  }
 
                  else {
-                     var countDays = itemView.findViewById<TextView>(R.id.countDays)
                      var period: Float
 
                      progress = ChronoUnit.DAYS.between(dateNow, datePay).toFloat()
@@ -271,6 +280,8 @@ else
                              //( Math.round(progressMax)- Math.round(progress)).absoluteValue.toString()+"\n"+rusification((Math.round(progressMax) -  Math.round(progress)).toString(), "Дней")
                          }
                     }
+
+
 
                       //Если сейчас бесплатный период
                     if(currentSub?.periodFree != "" && dateNow < dateEndFree && currentSub?.periodFree != "0")
@@ -323,8 +334,6 @@ else
                      backgroundProgressBarColor = resources.getColor(R.color.grey_progress_bar_back)
                  else
                      backgroundProgressBarColor = resources.getColor(R.color.white)
-
-
 
                  // or with gradient
                  /*backgroundProgressBarColorStart = Color.WHITE

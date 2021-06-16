@@ -54,6 +54,8 @@ class ArchiveFragment : Fragment() {
         communicator = activity as CommunicatorMenu
         val button_archive: Button = view.findViewById(R.id.btn_archive)
 
+        button_archive.text = "Активные"
+
         button_archive.setOnClickListener {
 
             communicator.replaceFragment(MenuFragment())

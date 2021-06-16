@@ -38,7 +38,7 @@ import java.util.*
 
 class SubDetailActivity : AppCompatActivity() {
 
-    private var summCost: Int = 0
+    private var summCost: Double = 0.0
     private val subDetailViewModel by viewModels<SubDetailViewModel> {
         SubDetailViewModelFactory(this)
     }
@@ -188,13 +188,13 @@ else {
 
                        var dateEnd = LocalDate.parse(currentSub?.datePay, formatter)
                        var dateNow = LocalDate.now()
-                       var costSub = 0
-                       summCost = 0
+                       var costSub = 0.0
+                       summCost = 0.0
 
 
                 //Подсчет следующего платежа
                        if (currentSub?.costSub != "")
-                           costSub = currentSub?.costSub.toInt()
+                           costSub = currentSub?.costSub.toDouble()
 
                        if (currentSub?.periodFree != "")
                            when (currentSub?.periodTypeFree) {
@@ -351,6 +351,8 @@ else {
 
 
             unSubButton.setOnClickListener {
+
+
 
                 if (currentSub.status == "Архив" || currentSub.status == "Удалена"){
    //                 val newSub = clone(currentSub)

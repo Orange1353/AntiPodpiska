@@ -154,7 +154,7 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
   //                  {fab.startAnimation(gone)
    //                     fab.isVisible = false}
     //                bottomNavigationView.isSelected = true
-                       val fragment = CalendarFragment()
+                       val fragment = InProgress()
                 //    val fragment = InProgress()
                     this.supportFragmentManager.beginTransaction().replace(
                         R.id.lay_container,

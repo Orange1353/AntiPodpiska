@@ -2,6 +2,7 @@ package com.example.antipodpiska.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.example.antipodpiska.FirebaseApplication
@@ -24,7 +25,6 @@ class HomeActivity : AppCompatActivity(), KodeinAware {
         val binding: ActivityHomeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home)
         viewModel = ViewModelProviders.of(this, factory).get(HomeViewModel::class.java)
         binding.viewmodel = viewModel
-
     }
 
 }

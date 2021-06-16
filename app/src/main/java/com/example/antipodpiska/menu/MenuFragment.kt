@@ -87,6 +87,8 @@ class MenuFragment : Fragment(){
 
         val button_archive: Button = view.findViewById(R.id.btn_archive)
 
+        button_archive.text = "Архив"
+
         communicator = activity as CommunicatorMenu
 
 

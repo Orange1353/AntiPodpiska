@@ -95,7 +95,7 @@ object ListExistSubs {
             "discord", "black", "dropbox", "duolingo", "ea",
             "white", "black", "white", "black", "geforce",
             "gett", "white", "hum", "ivi", "intarted",
-            "white", "white", "lastpass", "lengualeo", "black", "black",
+            "white", "dance", "lastpass", "lengualeo", "black", "black",
             "onedrive", "mybook", "black", "okko", "okko",
             "ozon", "playstation", "black", "start", "skyeng",
             "soundcloud", "spotify", "storytel", "tinder", "twitchprime", "black",

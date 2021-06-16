@@ -36,6 +36,8 @@ class CreateCardFragment : Fragment() {
 
         val btnContinue: Button = view.findViewById(R.id.button_continue)
         val btnReady:Button = view.findViewById(R.id.button_ready)
+        val btnDetail:Button = view.findViewById(R.id.button_detail)
+
         var lay : FrameLayout = view.findViewById(R.id.color)
         var layReady: ConstraintLayout = view.findViewById(R.id.added)
         var nameSub: TextView = view.findViewById(R.id.name_new_sub)
@@ -83,9 +85,11 @@ class CreateCardFragment : Fragment() {
             btnReady.isVisible = true
 
             val imm: InputMethodManager = context!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-imm.hideSoftInputFromWindow(view.windowToken, 0)
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
             nameSub.text = communicator.getNameNewSub()
         }
+
+
 
         btnReady.setOnClickListener {
             communicator.cardFragmentToBannerAdded(addCard.text.toString(), pushEnabled.isChecked)

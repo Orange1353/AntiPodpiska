@@ -1,5 +1,6 @@
 package com.example.antipodpiska.ui.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.antipodpiska.data.repositories.UserRepository

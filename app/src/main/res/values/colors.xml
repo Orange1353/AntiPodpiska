@@ -64,13 +64,13 @@
  <color name="deezer">#111111</color>
  <color name="duolingo">#78C800</color>
  <color name="dropbox">#0062FF</color>
- <color name="ea">#FF281E</color>
+ <color name="ea">#0D1041</color>
  <color name="geforce">#2B2B2B</color>
  <color name="gett">#FBB726</color>
  <color name="hum">#CB2729</color>
  <color name="ivi">#EC174F</color>
  <color name="intarted">#2D3138</color>
- <color name="dance">#CD156D</color>
+ <color name="dance">#5B5CF5</color>
  <color name="lastpass">#D32D27</color>
  <color name="lengualeo">#21AF71</color>
  <color name="onedrive">#007AC5</color>
@@ -102,6 +102,7 @@
  <color name="pochta">#000E8D</color>
  <color name="tink">#FDE905</color>
  <color name="halva">#FCEFE8</color>
+ <color name="back_sub">#E4E9F0</color>
 
 
 

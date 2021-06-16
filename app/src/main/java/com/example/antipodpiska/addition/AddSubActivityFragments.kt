@@ -54,7 +54,6 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
        checkUserCloud()
     }
 
-
     override fun existFragmentToNameFragment(indexExistSub: Int){
         val args = Bundle()
         args.putInt("SUB", indexExistSub)
@@ -115,6 +114,7 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
             .commit()
 
     }
+
 
     override fun getNameNewSub(): String {
         var preferences: SharedPreferences = this.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)

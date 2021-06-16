@@ -1,5 +1,6 @@
 package com.example.antipodpiska.ui.home
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
 import com.example.antipodpiska.data.repositories.UserRepository
@@ -17,6 +18,7 @@ class HomeViewModel(
     }
 
     fun logout(view: View){
+
         repository.logout()
         view.context.startLoginActivity()
     }
