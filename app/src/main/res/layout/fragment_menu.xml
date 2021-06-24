@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/lay0"
         android:layout_width="match_parent"
-
+android:orientation="vertical"
         android:layout_height="match_parent"
         android:background="@color/menu_back_light">
 
@@ -72,7 +72,6 @@
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="55dp"
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="@+id/lay0">
 
@@ -93,7 +92,6 @@
                 android:id="@+id/recycler_view_menu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layoutManager="LinearLayoutManager"
                 app:layout_constraintTop_toTopOf="parent"
@@ -106,6 +104,6 @@ android:layout_marginTop="20dp"
 
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </layout>

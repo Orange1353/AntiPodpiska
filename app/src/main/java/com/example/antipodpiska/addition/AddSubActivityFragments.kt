@@ -196,7 +196,7 @@ class AddSubActivityFragments : AppCompatActivity(), Communicator {
             val id = preferences.getInt("id", -1)
 
             var imageDrawable = "menu_subs_foreground"
-            var imageColor = "light_back"
+            var imageColor = "blue_dark"
 
         val listExist = existSubList(resources, this)
      //   var imageColor = listExist[1].color

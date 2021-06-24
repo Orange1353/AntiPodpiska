@@ -6,7 +6,7 @@
 <!--    <color name="dark_light">#36373A</color>-->
 <!--    <color name="darkBack">#232323</color>-->
 <!--    <color name="black">#000000</color>-->
-<!--    <color name="white">#FFFFFF</color>-->
+    <color name="white">#FFFFFF</color>
 <!--    <color name ="grey2">#757679</color>-->
 <!--    <color name="grey">#46474C</color>-->
 <!--    <color name ="transparent_grey">#8D8E93</color>-->
@@ -102,6 +102,9 @@
  <color name="pochta">#000E8D</color>
  <color name="tink">#FDE905</color>
  <color name="halva">#FCEFE8</color>
+ <color name="mega">#EB2B00</color>
+<color name="mail">#015FFD</color>
+
  <color name="back_sub">#E4E9F0</color>
 
 

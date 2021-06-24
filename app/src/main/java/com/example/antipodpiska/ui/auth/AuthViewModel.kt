@@ -37,7 +37,6 @@ class AuthViewModel(
     var email: String? = null
     var password: String? = null
     var nickname: String? = null
-
     //auth listener
     var authListener: AuthListener? = null
 
@@ -51,14 +50,11 @@ class AuthViewModel(
 
     //function to perform login
     fun login() {
-
         //validating email and password
         if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
-
             authListener?.onFailure("Invalid email or password")
             return
         }
-
 
         //authentication started
         authListener?.onStarted()

@@ -11,6 +11,7 @@ import com.example.antipodpiska.databinding.ActivityHomeBinding
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
 
+@Suppress("DEPRECATION")
 class HomeActivity : AppCompatActivity(), KodeinAware {
 
     override val kodein by lazy { (applicationContext as FirebaseApplication).kodein }

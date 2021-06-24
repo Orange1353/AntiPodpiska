@@ -12,6 +12,7 @@ import com.example.antipodpiska.data.SharedPrefSource
 import com.example.antipodpiska.data.Sub
 import com.example.antipodpiska.data.User
 import com.example.antipodpiska.data.subList
+import com.example.antipodpiska.menu.Statistics.Currencies
 import com.example.antipodpiska.ui.home.HomeActivity
 import com.example.recyclersample.data.DataSource
 import com.google.android.gms.tasks.OnCompleteListener
@@ -37,20 +38,24 @@ class FirebaseSource {
     fun login(email: String, password: String) = Completable.create { emitter ->
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if (!emitter.isDisposed) {
-                if (it.isSuccessful)
+                if (it.isSuccessful){
                     emitter.onComplete()
+                    Log.e("FIREBASELOGIN", firebaseAuth.currentUser?.uid.toString())
+                }
                 else
                     emitter.onError(it.exception!!)
             }
         }
-    }
 
+
+    }
 
     fun register(email: String, password: String, nickname: String) = Completable.create { emitter ->
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if (!emitter.isDisposed) {
                 if (it.isSuccessful) {
                     emitter.onComplete()
+                    Log.e("FIREBASE", firebaseAuth.currentUser?.uid.toString())
                 }
                 else
                 {
@@ -93,7 +98,6 @@ class FirebaseSource {
         subItem.put("date_add", java.util.Calendar.getInstance().toString())
 */
 
-
         firebaseFirestore.collection("Subscriptions").document(sub.id.toString()).set(sub)
                 .addOnCompleteListener {
                     if (!emitter.isDisposed) {
@@ -120,6 +124,24 @@ class FirebaseSource {
 
             }
     }
+
+
+    fun getCurrencyFromFirebase(context: Context) {
+
+        val shared: SharedPrefSource = SharedPrefSource(context)
+
+        var docRef = firebaseFirestore.collection("Currency").document("RUB").get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        shared.saveToSharedCurr(document.toObject(Currencies::class.java)!!, context)
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.e("TAG", "Error getting documents: ", exception)
+                }
+
+    }
+
 
     //На создание пользователя нужно время. так, чуть позже после регистрации добавляем данные пользователя. при последующих нажатиях прежде чем записать проверяем есть ли уже в бд user
     fun addUserInFirebaseWithCheck(email: String, password: String, nickname: String) {

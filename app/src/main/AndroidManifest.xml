@@ -11,7 +11,7 @@
         android:screenOrientation="portrait"
         tools:replace="label"
         android:icon="@mipmap/ic_launcher"
-        android:label="Отписка"
+        android:label="Антиподписка"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.AntiPodpiska">
@@ -28,7 +28,6 @@
         <activity android:name=".addition.AddSubActivity" />
         <activity android:name=".ui.auth.VerifyPhoneActivity" />
         <activity android:name=".ui.auth.LoginActivity"
-            android:windowSoftInputMode="adjustPan"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

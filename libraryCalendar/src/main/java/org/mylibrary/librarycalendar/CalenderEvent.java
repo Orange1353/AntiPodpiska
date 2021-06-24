@@ -1,9 +1,11 @@
 package org.mylibrary.librarycalendar;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.InputFilter;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -17,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import org.mylibrary.librarycalendar.helper.PreferenceHelper;
@@ -176,7 +180,14 @@ public class CalenderEvent extends LinearLayout implements View.OnClickListener 
             buttonNext.setBackground(nextButtonDrawable);
         }
         if (prevButtonDrawable != null) {
-            buttonPrevious.setBackground(prevButtonDrawable);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                buttonPrevious.setBackground(prevButtonDrawable);
+            }
+            int t = Color.parseColor("#ffffff");
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                buttonPrevious.setBackgroundTintList(ColorStateList.valueOf(t));
+            }
         }
 
     }
@@ -549,6 +560,7 @@ textView.setTextColor(Color.WHITE);
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void initAttrs(AttributeSet attrs) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.CalenderEvent);
 
@@ -569,6 +581,7 @@ textView.setTextColor(Color.WHITE);
         nextButtonDrawable = typedArray.getDrawable(R.styleable.CalenderEvent_next_icon);
 
         prevButtonDrawable = typedArray.getDrawable(R.styleable.CalenderEvent_previous_icon);
+
 
         typedArray.recycle();
     }

@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.Animation
@@ -66,6 +67,13 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
 
         val appear: Animation = AnimationUtils.loadAnimation(this, android.R.anim.fade_in)
         val gone: Animation = AnimationUtils.loadAnimation(this, android.R.anim.fade_out)
+
+        var isFromLogin: String = ""
+        val bundle: Bundle? = intent.extras
+        if (bundle != null) {
+            isFromLogin = bundle.getString("fromLogin").toString()
+            Log.e("LOGIN", isFromLogin.toString())
+        }
 
         fab.setOnClickListener {
             fabOnClick()
@@ -154,8 +162,8 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
   //                  {fab.startAnimation(gone)
    //                     fab.isVisible = false}
     //                bottomNavigationView.isSelected = true
-                       val fragment = InProgress()
-                //    val fragment = InProgress()
+                 //      val fragment = InProgress()
+                   val fragment = CalendarFragment()
                     this.supportFragmentManager.beginTransaction().replace(
                         R.id.lay_container,
                         fragment
@@ -377,7 +385,7 @@ class SubListActivity : AppCompatActivity(), CommunicatorMenu {
 
                 var color = data.getStringExtra(SUB_COLOR)
                 if ( color == null)
-                    color = "light_back"
+                    color = "blue_dark"
 
 //image?
                     subsListViewModel.insertSub(

@@ -280,7 +280,6 @@ getCurrencyFromFirebase(context)
         val cal: Calendar = GregorianCalendar()
         val dateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm")
         database.child(theme + " " + dateFormat.format(cal.getTime()).toString()).setValue(message)
-
     }
 
 

@@ -363,8 +363,8 @@ if (sub.imageDrawable != "menu_subs_foreground") {
     }
 }
             else{
-                subImageView.setImageResource(R.drawable.menu_subs_foreground)
-    layout.setCardBackgroundColor(context.getColor(R.color.light_back))
+                subImageView.setImageResource(R.drawable.ic_logo_white)
+    layout.setCardBackgroundColor(context.getColor(R.color.blue_dark))
             }
         }
 

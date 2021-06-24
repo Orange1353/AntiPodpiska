@@ -71,15 +71,11 @@ class CalendarFragment : Fragment() {
 
 */
 
-
-        events= listOf(EventDay(calendar1, R.drawable.ic_cross, Color.parseColor("#ffffff")))
-        var calendarView : CalendarView = view.findViewById(R.id.calendarView)
-        calendarView.setCalendarDayLayout(R.layout.custom_calendar_day)
-        calendarView.setEvents(events)
-
-
         val calendar2: CalenderEvent = view.findViewById(R.id.yyyy)
         calendar2.addEvent(Event(2062021, "4444"))
+
+
+        calendar2.addEvent(Event(2062021, "444554"))
 
         return view
 

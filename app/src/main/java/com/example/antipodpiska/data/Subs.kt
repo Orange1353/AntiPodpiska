@@ -28,6 +28,7 @@ fun subList(resources: Resources,  context: Context): List<Sub> {
         periodTypeFree = "",
         periodTypePay = ""
 )*/
+
     var subListFromPref: ArrayList<Sub> = ArrayList()
 
     val sharedPreference =  context.getSharedPreferences(FirebaseAuth.getInstance().currentUser?.uid.toString(),Context.MODE_PRIVATE)
@@ -54,6 +55,7 @@ fun subList(resources: Resources,  context: Context): List<Sub> {
 
     if (subListFromPref.size == 0)
     {
+
         val t: FirebaseSource = FirebaseSource()
         subListFromPref = t.getFromFirebase(context)
 
